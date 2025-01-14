@@ -1,0 +1,9 @@
+ZAOJYBW:1: 	package kr.co.infopub.chapter.s140;
+MEZHOIY:2: 	public class TNailMain {
+AHUTRFA:3: 		public static void main(String[] args) {
+ACMHTHL:4: 			//시계 반대 방향
+LCAXLQM:5: 			TNail tnail=new TNail(7, 7);
+MFENAUB:6: 			tnail.make();
+NTXBVPL:7: 			tnail.print();
+AWPCDEA:8: 		}
+FGDFSLJ:9: 	}

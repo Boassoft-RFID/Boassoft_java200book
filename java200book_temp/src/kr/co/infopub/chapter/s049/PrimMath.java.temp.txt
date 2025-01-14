@@ -1,0 +1,23 @@
+0KLJHDJI:1: 	package kr.co.infopub.chapter.s049;
+0MIQOHDR:2: 	// Math 클래스 메서드 
+0IUVPTLR:3: 	public class PrimMath {
+0AOSHILX:4: 		public static boolean isPrime(int n){
+0AWAAUGJ:5: 			boolean isS=true;
+0ILKNYZK:6: 			for (int i = 2; i <=(int)Math.sqrt(n); i++) {
+0YLYGXWY:7: 				if(n%i==0){
+0WDGKXSV:8: 					isS=false;
+0HOSZTTA:9: 					break;
+QAUZXKX:10: 				}
+SYDEOGI:11: 			}
+HQGAVNF:12: 			return isS;
+FRHKJGQ:13: 		}
+EIGPSPR:14: 		public static void main(String[] args) {
+XPQGEZW:15: 			int number=1234567;
+KOAGVSN:16: 			boolean ifPrime=isPrime(number);   // 소수인가를 확인한다.
+JQAIWEP:17: 			if(ifPrime){
+OVTEGFT:18: 				System.out.printf("%는 1과 자신으로만 나눠떨어지는 소수다.",number);
+PONJZNB:19: 			}else{
+FOHLLTZ:20: 				System.out.printf("%d은 소수가 아니다.",number);
+ERSOVDS:21: 			}
+LBASSFK:22: 		}
+OZTVBIC:23: 	}

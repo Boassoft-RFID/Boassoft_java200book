@@ -1,0 +1,20 @@
+0DKXDDXJ:1: 	package kr.co.infopub.chapter.s065;
+0BGVIUVP:2: 	import java.lang.reflect.Constructor;
+0DPDLSKD:3: 	import java.lang.reflect.Method;
+0EPFQSCE:4: 	public class UsingClass {
+0DTKCHSM:5: 		public static void main(String[] args) {
+0MBZGUVG:6: 			Object obj1=new Object();
+0AOEFIZL:7: 			Class classes=obj1.getClass();
+0VIELGYZ:8: 			System.out.println(classes.getName());//클래스 이름
+0TUEHNIJ:9: 			System.out.println("--------constructor-------");
+RXKNAFA:10: 			Constructor [] constructor = classes.getDeclaredConstructors();
+XLTRAVX:11: 			for(Constructor con: constructor){
+ZBVOYUO:12: 				System.out.println(con.getName());
+JKUIOYA:13: 			}
+BJSOCAH:14: 			System.out.println("--------Method-------");
+SURMEMN:15: 			Method [] method = classes.getMethods();
+NNKQQTV:16: 			for(Method me: method){
+IZPJOYI:17: 				System.out.println(me.getName());
+ETYOVSB:18: 			}
+LVNYUYY:19: 		}
+GYELUVW:20: 	}

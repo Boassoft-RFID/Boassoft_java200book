@@ -1,0 +1,55 @@
+0SUYSCHK:1: 	package kr.co.infopub.chapter.s151.swing;
+0LTCOCPU:2: 	
+0MDHSKZF:3: 	import java.util.Arrays;
+0BLCCITS:4: 	
+0BZOEKEF:5: 	public class Umpire {
+0DHTKAOR:6: 	
+0GCSNBJD:7: 		private int [] pitBall;
+0KOFWCBG:8: 		private int [] hitBall;
+0MVVYQBQ:9: 		private int n;
+ZLVGUUK:10: 		public Umpire(int n) {
+DZRKZYL:11: 			this.n=n;
+XPYCFIT:12: 			pitBall=new int[n];
+NDBUPVX:13: 			hitBall=new int[n];
+GJPWJID:14: 			Arrays.fill(pitBall, -1);
+EREEIDY:15: 			Arrays.fill(hitBall, -1);
+RNWRYBK:16: 		}
+CREPSER:17: 		
+SJCMXKJ:18: 		public Umpire() {
+YPEDLTE:19: 			this(3);
+KOBFICG:20: 		}
+FXNPIAP:21: 	
+AUPOXEL:22: 		public void setPitBall(int[] pitBall) {
+IENMICN:23: 			System.arraycopy(pitBall, 0,
+URMQLYG:24: 					this.pitBall, 0, pitBall.length);
+PRQYAWR:25: 		}
+EOBLESB:26: 	
+NONXYIW:27: 		public void setHitBall(int[] hitBall) {
+ZMTLBFV:28: 			System.arraycopy(hitBall, 0,
+OFSBLRV:29: 					this.hitBall, 0, hitBall.length);
+IOLOVWN:30: 		}
+YHLQTET:31: 		
+GQEMBKF:32: 		
+XODPFHH:33: 		public int strike(){
+GUGZUUZ:34: 			int count=0;
+GGGVHYV:35: 			for (int i = 0; i < n; i++) {
+DQNUTLZ:36: 				if(pitBall[i]==hitBall[i]){
+AKAPSVV:37: 					count++;
+CGDIFDM:38: 				}
+TAMSEMG:39: 			}
+GSPIILL:40: 			return count;
+HYYJCYS:41: 		}
+JIVIFWR:42: 		
+SNPTSVP:43: 		public int ball(){
+FJPCWCA:44: 			int count=0;
+HEBILWH:45: 			for (int i = 0; i < n; i++) {
+LOBJBTT:46: 				for (int j = 0; j < n; j++) {
+AWNWYUI:47: 					if(i!=j && pitBall[i]==hitBall[j]){
+NKZCXGO:48: 						count++;
+VKLELPV:49: 					}
+CASKKXW:50: 				}
+QCOJKCT:51: 			}
+XFRCYXR:52: 			return count;
+BZIRDHW:53: 		}
+PYHJIYW:54: 	
+THQZBSZ:55: 	}

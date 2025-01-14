@@ -1,0 +1,39 @@
+0PUGBMPH:1: 	package kr.co.infopub.chapter.s183.test;
+0FWSVTJL:2: 	import java.sql.SQLException;
+0STYHNJG:3: 	import java.util.List;
+0TKZZHZG:4: 	import javafx.scene.control.TreeItem;
+0EYDBVBW:5: 	import kr.co.infopub.chapter.s183.dto.DepartmentDto;
+0DMSUBIQ:6: 	import kr.co.infopub.chapter.s183.model.EmployeeDAO;
+0XCLICCU:7: 	import kr.co.infopub.chapter.s183.util.EmpUtil;
+0UIHRMZN:8: 	// The department does not have a hierarchy, so there is no need to create a tree.
+0COUOCCF:9: 	public class DepartmentTest4 {
+LCDNLAY:10: 	 public static void main(String[] args) {
+KRAGBIA:11: 		EmployeeDAO ddao=new EmployeeDAO();
+DLNQOHT:12: 		try {
+AOAYSWF:13: 			List<DepartmentDto> lists=ddao.findAllDepartments();
+DUBINEH:14: 			TreeItem<String> root = new TreeItem<String>("부서");
+MLMCPGW:15: 			makeDepTree(root,lists);
+LTBQZDZ:16: 			printTree(root,1);
+PGSWWCA:17: 		} catch (SQLException e) {
+HUSTCJK:18: 			System.out.println( e);
+VLVYQTC:19: 		}
+QWVAXGX:20: 	 }
+OPIVJHL:21: 	 public static void makeDepTree(
+VJBLGAX:22: 			 TreeItem<String> front,List<DepartmentDto> dlists){
+CGMUSOM:23: 		for (DepartmentDto dep: dlists) {
+BHTDKVT:24: 		  TreeItem<String> troots=new TreeItem<String>(EmpUtil.tname(dep));
+KXZGZGK:25: 		  front.getChildren().add(troots);
+WKYJGDO:26: 		}
+CXXGAWM:27: 	 }	
+JCGOSZJ:28: 	 public static void printTree(TreeItem<String> root , int index){
+RFVCPMM:29: 		String tt="\t";
+PQHUWLF:30: 		String s="";
+KGSPYZZ:31: 		for(int i=1; i<index ; i++){
+VBOYITI:32: 			s+=tt;
+HPVAIBM:33: 		}
+FPJGUCH:34: 		System.out.println(s+""+root.getValue());
+RCUCOVQ:35: 		for(TreeItem<String> ss:root.getChildren()){
+SJMPJNT:36: 			printTree(ss, index+1);
+FINPHTP:37: 		}
+ACGOMXP:38: 	 }
+QOFDPOD:39: 	}

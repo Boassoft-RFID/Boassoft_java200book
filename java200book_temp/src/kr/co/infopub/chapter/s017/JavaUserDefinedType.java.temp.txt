@@ -1,0 +1,20 @@
+0KYWAJFD:1: 	package kr.co.infopub.chapter.s017;
+0VWHUCMY:2: 	//사용자 정의 클래스 
+0QXLRBLG:3: 	class JLocation{     
+0JVGWSIA:4: 		public double lat;
+0LTALKOP:5: 		public double lng;
+0USATSOD:6: 	}
+0THRWOYM:7: 	public class JavaUserDefinedType {
+0KMATVUO:8: 		public static void main(String[] args) {
+0CPRFWWX:9: 			//두 개의 기본 타입
+CTRNDMA:10: 			double latitude=37.52127220511242;
+OVICWYX:11: 			double longitude=127.0074462890625;
+HCMPYSY:12: 			//사용자 정의 객체를 생성 
+QUJUSBH:13: 			JLocation jloc=new JLocation();
+BAMWYWV:14: 			jloc.lat=latitude;      // 값을 대입
+OFCLBKI:15: 			jloc.lng=longitude;     // 값을 대입
+FVQTAPH:16: 			
+HSYMOWW:17: 			JLocation newLoc=jloc;  // 객체를 대입
+IDGBFGQ:18: 			System.out.println(newLoc.lat);  // 출력
+FWDDHRU:19: 		}
+ANDHFVU:20: 	}

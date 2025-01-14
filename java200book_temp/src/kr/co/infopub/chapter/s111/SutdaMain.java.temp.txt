@@ -1,0 +1,7 @@
+LEMCNGB:1: 	package kr.co.infopub.chapter.s111;
+XLKHVGL:2: 	public class SutdaMain {
+SNFPPRC:3: 		public static void main(String[] args) {
+PYZUEGB:4: 			Sutda sutda=new Sutda();
+ZYNCHCJ:5: 			sutda.play();
+NYKCFMI:6: 		}
+HREMPCN:7: 	}

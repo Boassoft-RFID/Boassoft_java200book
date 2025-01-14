@@ -1,0 +1,17 @@
+0ARBQPWJ:1: 	package kr.co.infopub.chapter.s087;
+0EQJIIVC:2: 	//파일 리더
+0FPBCDHK:3: 	import java.io.BufferedReader;
+0PACAUFW:4: 	import java.io.FileReader;
+0LXBHJEY:5: 	public class BillFileReader {
+0ABNIPSH:6: 		public static void main(String[] args) {
+0MWBBQEM:7: 			try(BufferedReader br=new BufferedReader(
+0QOVMNPT:8: 					      new FileReader("billboard\\bill.csv"))) {
+0LKISWAM:9: 				String msg="";
+BAKVTAF:10: 				while((msg=br.readLine())!=null){
+YPYSOYZ:11: 				    System.out.println(msg);
+MIGQQVW:12: 				}
+GFPCACV:13: 			} catch (Exception e) {
+KOENVOT:14: 				System.out.println(e);
+ITLIPCD:15: 			}
+NXMCASU:16: 		}
+IDWTVYO:17: 	}

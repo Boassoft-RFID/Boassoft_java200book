@@ -1,0 +1,51 @@
+0MOXYJGE:1: 	package kr.co.infopub.chapter.s100;
+0ZGYOPYX:2: 	import java.util.ArrayList;
+0EYCXLNS:3: 	import javafx.collections.FXCollections;
+0KJDBFRE:4: 	import javafx.collections.ObservableList;
+0RAXAZLG:5: 	public class BillboardConvert {
+0NQQCATN:6: 	 public static BillbaordProperty toBill(Billbaord b){
+0XWARZQA:7: 		BillbaordProperty bp=new BillbaordProperty();
+0FYWVGKJ:8: 		bp.setRank(b.getRank());
+0WAFIYFS:9: 		bp.setSong(b.getSong());
+HIUSIBL:10: 		bp.setArtist(b.getArtist());
+TMMHCDK:11: 		bp.setImagesrc(b.getImagesrc());
+WETUIHR:12: 		bp.setLastweek(b.getLastweek());
+FNNWZGI:13: 		return bp;
+DCNXIGS:14: 	 }
+JFFLXPB:15: 	 public static ArrayList<BillbaordProperty>toBill(ArrayList<Billbaord> blist){
+ZAINPSY:16: 		ArrayList<BillbaordProperty> bplists=new ArrayList<>();
+OJNRIBS:17: 		for(Billbaord b:blist){
+UAVDOJY:18: 			bplists.add(toBill(b));
+QUJZGEG:19: 		}
+GKZJAZT:20: 		return bplists;
+BNEOPAZ:21: 	 } 
+WPOTMCX:22: 	 public static ObservableList<BillbaordProperty> 
+AJLAINP:23: 	          toBillboard(ArrayList<BillbaordProperty> alists){
+TRJHHRZ:24: 		ObservableList<BillbaordProperty> bList =
+OCAJXIR:25: 				FXCollections.observableArrayList(alists);
+BHZUEKJ:26: 		return bList;
+PEDAHRR:27: 	 }
+ZFTEYUD:28: 	 public static ObservableList<BillbaordProperty>
+HCXRUBY:29: 	          toObservBill(ArrayList<Billbaord> alists){
+HBXMOCX:30: 		return toBillboard(toBill(alists));
+JUBQKFK:31: 	 }	
+MZZXZJK:32: 	 public static void main(String[] args) {
+XZQKSCH:33: 		RequestFromBillboardHot rfw=new RequestFromBillboardHot();
+QKVZFRQ:34: 		//ImageFXListRequest  request=new ImageFXListRequest();
+VQAOXVC:35: 		String a="https://www.billboard.com/charts/hot-100/";
+QIAHKGW:36: 		String rs=rfw.getTimeDate(a);
+SXRQSDJ:37: 		//rs=RestDay.toWantedDay(rs, 1); //count 1 : 1주흐
+JCTRNKE:38: 		rfw.getBillboardData(a+rs);
+ZQVLFSY:39: 		//rfw.printBillboard();
+UEYEGBF:40: 		
+YMNMDRS:41: 		//빌보드의 이미지를 가져올 수 없도록 개편됨 2018-09-05
+MVMTVVH:42: 		ArrayList<Billbaord> bills=rfw.getBillboards();
+XEEIRXX:43: 		// 아쉽게도 이미지를 빌보드에서 이미지를 가져올수 없어서 이미지 관련을 주석처리했다.
+XPVBFID:44: 		//request.getAllImages(bills);  //image
+UFIFXTN:45: 		ObservableList<BillbaordProperty> obsbills= 
+FZOJPVU:46: 				           BillboardConvert.toObservBill(bills);
+XRINEYE:47: 		for(BillbaordProperty bp: obsbills){
+MJFJPKV:48: 			System.out.println(bp);
+UHBYHRK:49: 		}
+EKBFPZQ:50: 	 }
+JWZTOYF:51: 	}

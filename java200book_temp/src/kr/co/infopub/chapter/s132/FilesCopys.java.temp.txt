@@ -1,0 +1,48 @@
+0FVGUAII:1: 	package kr.co.infopub.chapter.s132;
+0ENNYRXH:2: 	import java.io.File;
+0VMCAOJF:3: 	import java.io.IOException;
+0CKINURS:4: 	import java.nio.file.Files;
+0ZODDYXY:5: 	import java.text.SimpleDateFormat;
+0HQOQZBH:6: 	import java.util.Date;
+0YFJYZRH:7: 	public class FilesCopys {
+0ALXDKDU:8: 	 public static void copyUsingFiles(File source, File target) {
+0UQULIDS:9: 		try {
+IZAFDSU:10: 			Files.copy(source.toPath(), target.toPath());
+EENWVUZ:11: 		} catch (IOException e) {
+UZFGCVV:12: 			System.out.println(e);
+DFGLIKA:13: 		}
+YVQKWSL:14: 	 }	
+LPHQGUB:15: 	 public static void main(String[] args) {
+QEGWUDR:16: 		File ff=new File("upload");
+OONVIGV:17: 		File[] ffs=ff.listFiles();
+FCYLZVC:18: 		// 2017-05-03 01:23
+RYMRVFF:19: 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");	
+LXUGFBU:20: 		SimpleDateFormat fds=new SimpleDateFormat("yyyyMMdd");  // 20170503
+PRMUNUG:21: 		for (File fff: ffs) {
+VQNNAHE:22: 			String absfile=fff.getAbsolutePath();
+VJEIRVF:23: 			if(fff.isFile()){
+SAEDPXV:24: 				// 파일 이름 23424123123.txt
+XCGHBQV:25: 				String f=(absfile).substring(absfile.lastIndexOf("\\")+1);
+IJGSEJH:26: 				String fre="";
+XZOOLHR:27: 				if(f.indexOf('.')>=0){
+ETGXWMU:28: 					fre=f.substring(0,f.indexOf('.'));
+NVJKBKH:29: 				}
+HSDPMAC:30: 				Date longDay=new Date(Long.parseLong(fre)); //long-> Date
+YWXZPMZ:31: 				String fname=sdf.format(longDay);           //Date -> String
+UWZPGWW:32: 				String newFname=fds.format(longDay);        // 23424123123
+XAAOKAE:33: 				System.out.println(fname+"\t\t"+newFname);  //Date -> String
+MQXMMUB:34: 				// 23424123123.txt -> 20170503/23424123123.txt
+GNHKNNK:35: 				File newFile=new File("upload\\"+newFname); //옮기려고 하는 디렉토리
+JCIGWRD:36: 				File toFile=new File("upload\\"+newFname+"\\"+f);//옮기려는 파일
+KPLSVXB:37: 				if(!newFile.exists()){  //디렉토리가 존재하지 않는가?
+QOJJFFV:38: 					boolean iss=newFile.mkdirs();   //존재하지 않으면 만들자
+IRCSRLU:39: 					if(iss){
+GKNTBNX:40: 						copyUsingFiles(fff, toFile);//파일 복사
+WHDJXGE:41: 					}
+UGAMLZR:42: 				}else{
+XWMJNQW:43: 					 copyUsingFiles(fff, toFile);//파일복사
+OJQHMCW:44: 				}
+UPLMKKC:45: 			}
+EFPOYAC:46: 		}
+GXYTUVQ:47: 	 }
+UZPSZYG:48: 	}

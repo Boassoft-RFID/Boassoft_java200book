@@ -1,0 +1,9 @@
+EOWXNJD:1: 	package kr.co.infopub.chapter.s014;
+NYBQAXL:2: 	// 출력
+HSBKHFD:3: 	public class Hello {
+DNUPEDV:4: 		public static void main(String[] args) {
+FEHGEXH:5: 			System.out.println("**********************************************");
+XBYVHWO:6: 			System.out.println("*        이 프로그래밍은 Java200이 만들었습니다.        *");
+OAEOQXW:7: 			System.out.println("**********************************************");
+CIDXIYI:8: 		}
+HJXQYHF:9: 	}

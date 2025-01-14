@@ -1,0 +1,54 @@
+0QODAOOJ:1: 	package kr.co.infopub.chapter.s109;
+0NIZLRYP:2: 	
+0NIQYVYH:3: 	import kr.co.infopub.chapter.s107.CardUtil;
+0MEDJYLW:4: 	
+0DWRMMOS:5: 	public class Card {
+0OPPYAUP:6: 	 private String cardVal; //H8
+0UNBLWRV:7: 	 public String getCardVal() {
+0HHGZFPB:8: 		return cardVal;
+0RFBMCMZ:9: 	 }
+AQKGQRU:10: 	 public Card() {
+TEWLXWK:11: 		int deck=(int)(Math.random()*CardUtil.SUIT.length); // 0~3
+DYNKXZI:12: 		int suit=(int)(Math.random()*CardUtil.VALU.length); // 0~12
+HNVUQBJ:13: 		//임의의 카드 값을 갖는다. H6
+JFZQWDO:14: 		cardVal=CardUtil.SUIT[deck]+CardUtil.VALU[suit];
+CLKHYRI:15: 	 }
+XARAEZF:16: 	 // 테스트용
+LHWPBGI:17: 	 public Card(String s) {
+KUQWLET:18: 		this.cardVal=s;  // 문자열은 값 복사
+HKASLHR:19: 	 }
+RTKFSQL:20: 	 // 복사 생성자
+VLMIUOY:21: 	 public Card(Card c) {
+ICWYPUT:22: 		this(c.getCardVal());  // 문자열은 값 복사
+LWWYLRV:23: 		// this.cardVal=c.getCardVal(); //동일
+FPKUEKY:24: 	 }
+RABTFPX:25: 	 @Override
+ISNWSBV:26: 	 public String toString() {
+NEASEBG:27: 		return "[" + cardVal + "]";
+JWAIPNY:28: 	 }
+LZUXWTS:29: 	 // Eclipse-Source-Generate hashCode() and equals()를 이용하여 자동으로 만들자
+MBDFIFY:30: 	 @Override
+LUECPHM:31: 	 public int hashCode() {
+PMADOPE:32: 		final int prime = 31;
+KGNOUYD:33: 		int result = 1;
+JXNPZDK:34: 		result = prime * result + ((cardVal == null) ? 0 : cardVal.hashCode());
+RMGHLEP:35: 		return result;
+NTEIKPB:36: 	 }
+RWPKCGC:37: 	 // 소스를 정리하면  카드값과 카드값을 일대일로 비교한다.
+BVYWMZN:38: 	 @Override
+MBMFKNK:39: 	 public boolean equals(Object obj) {
+UUFIIRM:40: 		Card cb=(Card)obj; 
+UQMORCU:41: 		if(cardVal.equals(cb.getCardVal())){
+IJKTFMV:42: 			return true;
+JQNAMIW:43: 		}else{
+KXUJJKY:44: 			return false;
+NJGXNIA:45: 		}
+NVISGRO:46: 	 } 
+LIYNQJQ:47: 	 // 추가된 static 비교 기준 메서드
+PMFUFTH:48: 	 public static int compareCard(Card c1, Card c2){
+VTJSIHL:49: 		return c1.getCardVal().compareTo(c2.getCardVal());
+AAYRMPT:50: 	 }
+TYEKXGH:51: 	 public static int compareRCard(Card c1, Card c2){
+PKBMRLF:52: 		return -c1.getCardVal().compareTo(c2.getCardVal());
+TEKVOUE:53: 	 }
+FOZVLUC:54: 	}

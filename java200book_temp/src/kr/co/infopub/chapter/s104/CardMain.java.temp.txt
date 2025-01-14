@@ -1,0 +1,22 @@
+0GTIIURL:1: 	package kr.co.infopub.chapter.s104;
+0LZOKPFB:2: 	public class CardMain {
+0VEXIFSQ:3: 		public static void main(String[] args) {
+0QZXKMXZ:4: 			Card c1=new Card("H4");               // 생성자 (String 아규먼트)
+0LGIIGTY:5: 			Card c2=new Card("H4");               // 생성자 (String 아규먼트)
+0ABVIHKK:6: 			Card c3=new Card(c1);                 // 복사 생성자- 값동일
+0VNYFAQP:7: 	        System.out.println(c1.hashCode());    // 값은 동일 다른 해쉬
+0EJHZXRM:8: 	        System.out.println(c2.hashCode());    // 값은 동일 다른 해쉬
+0INAGQJK:9: 	        System.out.println(c1.getCardVal());  // 값은 동일
+EPDCAZX:10: 	        System.out.println(c2.getCardVal());  // 값은 동일
+HMSODME:11: 	        System.out.println(c1.equals(c2));    // hashCode 비교- 중요-false
+RDORAFG:12: 	        System.out.println(c1.equals(c3));    // hashCode 비교- 중요 -false
+GGFXIGH:13: 	        for(int i=0; i<CardUtil.SUIT.length ; i++){         // SUIT 2
+ORHRVSC:14: 	        	for (int j = 0; j <CardUtil.VALU.length; j++) { // VALU 10
+SJCKXXQ:15: 	        		// 값은 같을 수 있지만 해쉬 코드는 고유(같을 수 없다)하다.
+NYMRNQT:16: 	        		Card c=new Card();             // 임의로 카드 생성- 기본 생성자()
+TJUKLJW:17: 					System.out.printf("%s\t",c);   // c.toString()
+FBCVVKA:18: 				}
+GUGFFUU:19: 	        	System.out.println( );// 10개 출력 후 한 칸 아래
+DNLGHLO:20: 	        }
+OXGXDDM:21: 		}
+YEWDYNZ:22: 	}

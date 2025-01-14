@@ -1,0 +1,110 @@
+00ZITOUVM:1: 	package kr.co.infopub.chapter.s160;
+00BGLOGQP:2: 	import java.io.*;
+00SMJSDRY:3: 	public class Product implements Serializable{
+00EBLWNLQ:4: 		private int      prodNum;   //제조번호 숫자 6  x
+00PMWRXPJ:5: 		private String   prodPart;  //제조구분 문자 1
+00DGYAEXC:6: 		private String   pName;     //담당자  문자 4
+00DLKNBBD:7: 		private int      pValue;    //단가  숫자 3
+00PHVJPOA:8: 		private int      pAmount;   // 판매랑 숫자 3
+00GUHCJUE:9: 		private String   pPant;     // 공장코드 문자 1
+0CUYEJTC:10: 		private String   pConsum;   // 거래코드 문자 1
+0DSMFEOD:11: 		private int      pPoint;    // 제조포인트 숫자 3  xxx
+0BCJZIRZ:12: 		private int      pCount;    // 출고 횟수 숫자 3
+0OKJQBRX:13: 		private int      pMoney;    // 매출액 숫자 3     xxx
+0NPPEOAR:14: 		private String   pGrade;    // 제조등급 문자 1
+0WYFQBLF:15: 		public int getPAmount() {
+0UDZAFEY:16: 			return pAmount;
+0YEKBZBP:17: 		}
+0SFQTOXD:18: 		public String getPConsum() {
+0IQOULFO:19: 			return pConsum;
+0YHJHTET:20: 		}
+0RAHLKPD:21: 		public int getPCount() {
+0LVDEAJM:22: 			return pCount;
+0QBWUTSY:23: 		}
+0EQFLYMW:24: 		public String getPGrade() {
+0YEKFCPY:25: 			return pGrade;
+0PPZRBRX:26: 		}
+0JLDEVDT:27: 		public int getPMoney() {
+0PGKBUED:28: 			return pMoney;
+0GSUBZDC:29: 		}
+0XWOUTRE:30: 		public String getPName() {
+0PPRHHYE:31: 			return pName;
+0OMBXVXX:32: 		}
+0XYUEXOA:33: 		public String getPPant() {
+0BNUBQGU:34: 			return pPant;
+0DNVFDFY:35: 		}
+0NYSYJGU:36: 		public int getPPoint() {
+0LPPMCVD:37: 			return pPoint;
+0PDSZPFI:38: 		}
+0LEJGSKT:39: 		public int getProdNum() {
+0FKFZHVA:40: 			return prodNum;
+0VAZIFJE:41: 		}
+0FYEKNPU:42: 		public String getProdPart() {
+0XPDELNC:43: 			return prodPart;
+0HATOCPJ:44: 		}
+0URLFXPJ:45: 		public int getPValue() {
+0VWIYIKS:46: 			return pValue;
+0RWJVVGH:47: 		}
+0QNOBNHG:48: 		public void setPAmount(int i) {
+0TYQFFOW:49: 			pAmount = i;
+0KUTBCNE:50: 		}
+0IPDEPXC:51: 		public void setPConsum(String string) {
+0AGNEVCY:52: 			pConsum = string;
+0HPRAYAS:53: 		}
+0BEJWBLW:54: 		public void setPCount(int i) {
+0VVOSLJP:55: 			pCount = i;
+0SLXHBZX:56: 		}
+0USJMDDI:57: 		public void setPGrade(String string) {
+0SJDHETS:58: 			pGrade = string;
+0NOHVNCG:59: 		}
+0MHVNDHY:60: 		public void setPMoney(int i) {
+0BWIYDRC:61: 			pMoney = i;
+0DIZKOMT:62: 		}
+0RUOSOMF:63: 		public void setPName(String string) {
+0BRSLFEN:64: 			pName = string;
+0SHMQJIA:65: 		}
+0FUQWAFX:66: 		public void setPPant(String string) {
+0LYWAOYG:67: 			pPant = string;
+0AKTLKQW:68: 		}
+0PXSOLTL:69: 		public void setPPoint(int i) {
+0LABCKPX:70: 			pPoint = i;
+0QAQNCSZ:71: 		}
+0QJPLBBE:72: 		public void setProdNum(int i) {
+0WRBJPOZ:73: 			prodNum = i;
+0ITCGGWW:74: 		}
+0KVHVJWZ:75: 		public void setProdPart(String string) {
+0JKFPHDH:76: 			prodPart = string;
+0AFGPFDS:77: 		}
+0TMHVJAN:78: 		public void setPValue(int i) {
+0YJHBZEF:79: 			pValue = i;
+0KRQIHOH:80: 		}
+0UGZHRAX:81: 		public void setProduct(String[] s){
+0URNBHUG:82: 			this.setProdNum(Integer.parseInt(s[0].trim()));
+0DBNIVXH:83: 			this.setProdPart(s[1].trim());
+0TVMKAEI:84: 			this.setPName(s[2].trim());
+0NHUSEGK:85: 			this.setPValue(Integer.parseInt(s[3].trim()));
+0BXXPKHT:86: 			this.setPAmount(Integer.parseInt(s[4].trim()));
+0YLPPCMN:87: 			this.setPPant(s[5].trim());
+0DXVICGG:88: 			this.setPConsum(s[6].trim());
+0RBMMRNH:89: 			this.setPPoint(Integer.parseInt(s[7].trim()));
+0XOQBFUQ:90: 			this.setPCount(Integer.parseInt(s[8].trim()));
+0PBGMAUH:91: 			this.setPMoney(Integer.parseInt(s[9].trim()));
+0AFKZHUN:92: 			this.setPGrade(s[10].trim());
+0HBLMVKS:93: 		}
+0XBHOBPO:94: 		public String toString(){
+0LTMABRF:95: 			StringBuffer bf=new StringBuffer();
+0CUUOMMM:96: 			bf.append("-------------------------------")
+0BFZXAAJ:97: 			.append("["+this.prodNum+"/")
+0PXWJSTZ:98: 			.append(this.prodPart+"/")
+0OKXOFNP:99: 			.append(this.pName+"/")
+VHWWXWC:100: 			.append(this.pValue+"/")
+XYQFYDU:101: 			.append(this.pAmount+"/")
+XUNPHRK:102: 			.append(this.pPant+"/")
+VSOJGTE:103: 			.append(this.pPoint+"/")
+UISVZDW:104: 			.append(this.pCount+"/")
+TVQTZSQ:105: 			.append(this.pMoney+"/")
+FUTUTIA:106: 			.append(this.pGrade+"]");
+QGSWGYD:107: 	//		.append("========================");
+KPGLPSS:108: 			return bf.toString();
+SQOCXWF:109: 		}
+HSNXJBP:110: 	}

@@ -1,0 +1,105 @@
+00OAPWSAF:1: 	package kr.co.infopub.chapter.s132;
+00BTNYOKN:2: 	import java.io.File;
+00GZFATYG:3: 	import java.io.FileInputStream;
+00NHUSOIL:4: 	import java.io.FileOutputStream;
+00YEJUHKN:5: 	import java.io.IOException;
+00UJEENDW:6: 	import java.io.InputStream;
+00SBLDLTX:7: 	import java.io.OutputStream;
+00FWQJLCJ:8: 	import java.nio.channels.FileChannel;
+00TSXZNUV:9: 	import java.nio.file.Files;
+0HWULOEC:10: 	import java.util.Date;
+0AYSMKYO:11: 	public class FileUploadUtil {
+0LVMVDFM:12: 		public static void copyUsingFiles(File source, File target) {
+0WECSMCJ:13: 			try {
+0ENMSOUO:14: 				Files.copy(source.toPath(), target.toPath());
+0BCQEHOA:15: 			} catch (IOException e) {
+0HZVUESH:16: 				System.out.println(e);
+0EVJBDRG:17: 			}
+0EHACBOT:18: 		}
+0FESRVBE:19: 		//f=abc.zip => f.indexOf('.') 3
+0XBFCYJZ:20: 		//f.substring(3) .zip
+0WWNXWFF:21: 		//f.substring(0,3) abc
+0NQTHUTI:22: 		public static String getNewFile(String f){
+0ONBCHFT:23: 			String filename="";
+0GCXMQAH:24: 			String fpost="";
+0SHDQLGY:25: 			//String fre="";
+0SGCSKOJ:26: 			if(f.indexOf('.')>=0){
+0AGPRCFM:27: 				fpost=f.substring(f.indexOf('.'));
+0LKYNRJC:28: 				//fre=f.substring(0,f.indexOf('.'));
+0ZMUPMBZ:29: 				filename=new Date().getTime()+fpost;
+0FUQONFU:30: 			}else{
+0NTZUCUA:31: 				filename=new Date().getTime()+".back";
+0REXXTHG:32: 			}
+0LNRYIEF:33: 			return filename;
+0KPMIWAX:34: 		} 
+0OFPSZSQ:35: 		public static String getNewFile2(String f){
+0LLFTVDM:36: 			String filename="";
+0DOBOVXU:37: 			String fpost="";
+0YSKRAMN:38: 			String fre="";
+0VTCQPCD:39: 			if(f.indexOf('.')>=0){
+0NJSLPJM:40: 				fpost=f.substring(f.indexOf('.'));
+0ZTNQPVO:41: 				fre=f.substring(0,f.indexOf('.'));
+0ICIXGVQ:42: 				filename=fre+new Date().getTime()+fpost;
+0XQBUMUE:43: 			}else{
+0CTYQCAU:44: 				filename=f+new Date().getTime()+".back";
+0YUDJEVY:45: 			}
+0NIEUGQK:46: 			return filename;
+0GEMIFKD:47: 		} 
+0IQZICWN:48: 		public static String getNewjpg(String f){
+0SKPIJQK:49: 			String filename="";
+0UMTCBVA:50: 			String fpost="";
+0ZKTBMMW:51: 			String fre="";
+0BMJMDPF:52: 			if(f.indexOf('.')>=0){
+0YZTASFH:53: 				fpost=f.substring(f.indexOf('.'));
+0LRRWYYG:54: 				fre=f.substring(0,f.indexOf('.'));
+0WUJVEWN:55: 				filename=fre+fpost;
+0PCFEMZA:56: 			}else{
+0DIVKVEI:57: 				filename=f+".jpg";
+0NTEVUWU:58: 			}
+0MMNGAHS:59: 			return filename;
+0QQQTRLS:60: 		} 
+0HMWWWUK:61: 		private static void copyUsingFileStreams(File source, File target){
+0JFXDAOB:62: 			InputStream input = null;
+0PGTIUQE:63: 			OutputStream output = null;
+0SFLGBGR:64: 			try {
+0MJVTKVZ:65: 				input = new FileInputStream(source);
+0MSVSSLO:66: 				output = new FileOutputStream(target);
+0YQJCNLT:67: 				byte[] buf = new byte[1024];
+0EEHTTBU:68: 				int bytesRead;
+0PKFTZVS:69: 				while ((bytesRead = input.read(buf)) > 0) {
+0LVJQMAZ:70: 					output.write(buf, 0, bytesRead);
+0HNGUHZZ:71: 				}
+0JGFSOWO:72: 			}catch(IOException e){	
+0FABFZKC:73: 				System.out.println( e);
+0ZEFLMNE:74: 			}catch(Exception e){
+0EUZZFLN:75: 				System.out.println( e);
+0FBTMBHL:76: 			}
+0JWCPBFQ:77: 			finally {
+0XHQDHPQ:78: 				try {
+0PZIXHZK:79: 					input.close();
+0LJQWGRV:80: 					output.close();
+0AJSNFNA:81: 				} catch (IOException e) {
+0GDLBDPT:82: 				}
+0MFXOGUD:83: 			}
+0YGQYGOT:84: 		}
+0LRSMVTM:85: 		public static void copyUsingFileChannels(File source, File target) {
+0BMWRWDS:86: 			FileChannel input = null;
+0PQRTQMH:87: 			FileChannel output = null;
+0JGYFYML:88: 			try {
+0RBGSALH:89: 				input = new FileInputStream(source).getChannel();
+0COYCRYZ:90: 				output = new FileOutputStream(target).getChannel();
+0TQECNIC:91: 				output.transferFrom(input, 0, input.size());
+0NZESPFO:92: 			}catch(IOException e){	
+0HDOVROP:93: 				System.out.println( e);
+0AVEIVHN:94: 			}catch(Exception e){
+0EIXKUWU:95: 				System.out.println( e);
+0MGHXWSK:96: 			} 
+0PSVVNUZ:97: 			finally {
+0NDCMEKR:98: 				try {
+0IQIKYFQ:99: 					input.close();
+ROXEWVB:100: 					output.close();
+WWKOBWT:101: 				} catch (IOException e) {
+DTOFTSV:102: 				}
+EQZMLNJ:103: 			}
+IGWKJKP:104: 		}
+NGRFOOT:105: 	}

@@ -1,0 +1,53 @@
+0HQXAJZO:1: 	package kr.co.infopub.chapter.s185.dto;
+0GZDNJAY:2: 	import javafx.beans.property.IntegerProperty;
+0BJBAPLX:3: 	import javafx.beans.property.SimpleIntegerProperty;
+0FUJEXTB:4: 	import javafx.beans.property.SimpleStringProperty;
+0YRZRMMH:5: 	import javafx.beans.property.StringProperty;
+0IMNKZAQ:6: 	public class Department {
+0XFHGNTJ:7: 	 private IntegerProperty department_id;
+0UOAJOQA:8: 	 private StringProperty department_name;
+0KRMKRTR:9: 	 private IntegerProperty manager_id;
+XCMUQFF:10: 	 private IntegerProperty location_id;
+GANFWZV:11: 	 public Department() {
+GKTMDVG:12: 		this.department_id=new SimpleIntegerProperty();
+VOIXUNB:13: 		this.department_name = new SimpleStringProperty();
+VGIBJRZ:14: 		this.manager_id=new SimpleIntegerProperty();
+LEPTMCU:15: 		this.location_id=new SimpleIntegerProperty();
+QIVNHBB:16: 	 }
+WJVDSAC:17: 	 public IntegerProperty department_idProperty() {
+ESFHOLD:18: 		return department_id;
+WQYDRSF:19: 	 }
+MYFJAZG:20: 	 public int getDepartment_id() {
+HNHGLXM:21: 		return department_id.get();
+FFXSYWG:22: 	 }
+WQPEEQZ:23: 	 public void setDepartment_id(int department_id) {
+AIAIWWB:24: 		this.department_id.set(department_id);
+NPTMMZP:25: 	 }
+QWPQXML:26: 	 public StringProperty department_nameProperty() {
+KROXICR:27: 		return department_name;
+AGLWMXJ:28: 	 }
+PHEOONV:29: 	 public String getDepartment_name() {
+NAFDAVP:30: 		return department_name.get();
+NSTBQHD:31: 	 }
+DUOHZNN:32: 	 public void setDepartment_name(String department_name) {
+YZRECLC:33: 		this.department_name.set(department_name);
+JTMEFXE:34: 	 }
+MBQSAIH:35: 	 public IntegerProperty manager_idProperty() {
+KOHDQXG:36: 		return manager_id;
+VWEZCXU:37: 	 }
+CEBQZOR:38: 	 public int getManager_id() {
+GCATJWQ:39: 		return manager_id.get();
+ZCBZOMK:40: 	 }
+VGJZQUR:41: 	 public void setManager_id(int manager_id) {
+SFBDDHI:42: 		this.manager_id.set(manager_id);
+CPSLOKA:43: 	 }
+IBLWBFA:44: 	 public IntegerProperty getLocation_idProperty() {
+GMYPTCJ:45: 		return location_id;
+AEUUUYG:46: 	 }
+WPAAZJZ:47: 	 public int getLocation_id() {
+IXDDFRS:48: 		return location_id.get();
+YWIGROB:49: 	 }
+ZGBPNKB:50: 	 public void setLocation_id(int location_id) {
+SVSHZJN:51: 		this.location_id.set(location_id);
+NKAIYCL:52: 	 }
+LCQSTXZ:53: 	}

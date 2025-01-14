@@ -1,0 +1,27 @@
+0QXGAFAA:1: 	package kr.co.infopub.chapter.s038;
+0RXYNBIM:2: 	// enum, switch case
+0OAGYSOI:3: 	public class BioSwitch {
+0KARRXIE:4: 		// 메서드 선언
+0QXLTVVU:5: 		public static String textInfor(PEI index, double value) {
+0VNKQJQK:6: 			String result = "";
+0LTJKZUN:7: 			switch( index ) {
+0PBXVLIE:8: 				case PHYSICAL : result = "신체지수: " ;break;
+0AOIHRQB:9: 				case EMOTIONAL : result = "감정지수: "; break;
+EXZDLCC:10: 				case INTELLECTUAL : result = "지성지수: "; break;
+ANRMWVF:11: 				default : result = "미결정: "; break;
+NGCOMRI:12: 			}
+UUZCXOJ:13: 			return result + (value*100);
+ECFRJFA:14: 		}
+LSZHPGC:15: 		public static void main(String[] args) {
+FCRWSWB:16: 			PEI index=PEI.PHYSICAL;
+OFVHDTQ:17: 			double value=0.86;
+BCCURXH:18: 			System.out.println("신체지수 주기값: "+index.getPei());  //enum을 int로 변환 
+ZDWTNGZ:19: 			String st=textInfor( index,  value) ;
+DCVXQTC:20: 			System.out.println(st);
+IRTSHYH:21: 			System.out.println(index.ordinal());
+YFLTOXI:22: 			System.out.println(index.name());
+BYHJRFC:23: 			System.out.println(index);
+PHHOLXK:24: 			System.out.println(index.getPei());
+ZOAIDFO:25: 		}
+ODOFLXT:26: 		
+EXFYZKE:27: 	}

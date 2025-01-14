@@ -1,0 +1,167 @@
+00USBDXZR:1: 	package kr.co.infopub.chapter.s148;
+00PLOVTZE:2: 	import java.util.ArrayList;
+00MMXLLDY:3: 	import java.util.Arrays;
+00YXJJTIM:4: 	import java.util.Collections;
+00KUIVTHM:5: 	// 셔플
+00OQXMYCT:6: 	public class Sudoku {
+00MDVKEHM:7: 		boolean isShuffle=true;
+00YOCHZPH:8: 		double [][] sdoku;
+00NGNHEUY:9: 		double [][] basic;
+0TPDYIDU:10: 		int n;
+0SDPHZYM:11: 		public Sudoku(int n) {
+0PFPVQDD:12: 			this.n=n;
+0UNKTPZF:13: 			sdoku=new double[n*n][n*n];
+0QSJEJCU:14: 			basic=new double[n][n];
+0FDYFTBR:15: 		}
+0RXASLHL:16: 		public Sudoku() {
+0EOGUBGV:17: 			this(3);
+0JWDSVYK:18: 		}
+0LEZYYPZ:19: 		private void clear(){
+0PIEUPOR:20: 			int m=sdoku.length;
+0GNSQCBL:21: 			for (int i = 0; i < m; i++) {
+0QQEPYJR:22: 				Arrays.fill(sdoku[i], 0);
+0JBYTNNC:23: 			}
+0KMXEZDG:24: 		}
+0KFOCWCR:25: 		
+0AMATIZO:26: 		public boolean isShuffle() {
+0OOQVNKQ:27: 			return isShuffle;
+0WIRFBEJ:28: 		}
+0RMAYXQG:29: 		public void setShuffle(boolean isShuffle) {
+0QMACYNE:30: 			this.isShuffle = isShuffle;
+0QMSIYVD:31: 		}
+0RRXTEMS:32: 		public void init(){
+0GABAPHL:33: 			for (int i = 0; i < n; i++) {
+0CMQIYHJ:34: 				for (int j = 0; j <n; j++) {
+0SJQZRJD:35: 					basic[i][j]=i*n+j+1;
+0RNPPKUP:36: 					sdoku[i][j]=basic[i][j];
+0LTEYPAH:37: 				}
+0XWGALTV:38: 			}
+0TAPGGLN:39: 		}
+0WOMUMCL:40: 		public void shuffle(){
+0YFNVIXR:41: 			if(isShuffle()){
+0CHYNZMZ:42: 				Matrix msdo=MatrixUtil.toTwoOne(new Matrix(basic));
+0RFNZXDY:43: 				double[][]mms=msdo.getMatrix();//1x9
+0BBHQAQX:44: 				ArrayList<Double> list=new ArrayList<Double>();
+0AEMWLKB:45: 				for (int i = 0; i < mms[0].length; i++) {
+0QJUTXTP:46: 					list.add(mms[0][i]);
+0QLWCZXX:47: 				}
+0REQUMPE:48: 				Collections.shuffle(list);
+0VMPOUEO:49: 				for (int i = 0; i < mms[0].length; i++) {
+0ZBZXQNV:50: 					mms[0][i]=list.get(i);
+0SQVRZEN:51: 				}
+0LIDBAFB:52: 				msdo=MatrixUtil.toOneTwo(new Matrix(mms),n,n);
+0THGQLCJ:53: 				basic=msdo.getMatrix();
+0KHMIYMD:54: 				for (int i = 0; i < n; i++) {
+0LEEPUEY:55: 					for (int j = 0; j <n; j++) {
+0DTAGYBC:56: 						sdoku[i][j]=basic[i][j];
+0RROXXRR:57: 					}
+0WLKHGUO:58: 				}
+0SUPSQZP:59: 			}
+0GQUFMHI:60: 		}
+0APRCGIL:61: 		public void make(){
+0ZVOJGDN:62: 			clear();
+0TONVVXG:63: 			init();
+0BQVZLIW:64: 			shuffle();
+0UNFXSCC:65: 			makeS1();
+0AREVPDV:66: 			makeS2();
+0SQOMIEG:67: 			makeS3();
+0JJOWOOZ:68: 			makeS4();
+0FRWZUNY:69: 			makeS5();
+0WXWMXHE:70: 			makeS6();
+0YLLMWJJ:71: 			makeS7();
+0BSMAVDH:72: 			makeS8();
+0GHDEBNT:73: 		}
+0IEBRKDX:74: 		private double [][] x2={{0,1,0},{0,0,1},{1,0,0}};
+0TAOOLYD:75: 		private double [][] x1={{0,0,1},{1,0,0},{0,1,0}};
+0KSOCFPD:76: 		public void makeS1(){
+0IEUIZKC:77: 			Matrix s0=new Matrix(basic);
+0LAPJGZO:78: 			Matrix s1=MatrixUtil.mulMatrix( new Matrix(x2),s0);
+0IOANVDB:79: 			for (int i = 0; i < n; i++) {
+0IFTCBGQ:80: 				for (int j =0; j <n; j++) {
+0GFXTZEL:81: 					sdoku[i][j+n]=s1.getMatrix()[i][j];
+0OEMKVYJ:82: 				}
+0GDYFGEM:83: 			}
+0PSTAMEP:84: 		}
+0DICVGBA:85: 		public void makeS2(){
+0RFLLHTH:86: 			Matrix s0=new Matrix(basic);
+0AWEBNFO:87: 			Matrix s2=MatrixUtil.mulMatrix( new Matrix(x1),s0);
+0WDFBCBP:88: 			for (int i = 0; i < n; i++) {
+0REJOGAI:89: 				for (int j =0; j <n; j++) {
+0JXDWGBT:90: 					sdoku[i][j+2*n]=s2.getMatrix()[i][j];
+0KNLMIGE:91: 				}
+0TAEWQLU:92: 			}
+0KACSTWK:93: 		}
+0MFDVZRW:94: 		public void makeS3(){
+0JOEAXXW:95: 			Matrix s0=new Matrix(basic);
+0XBLLRSW:96: 			Matrix s3=MatrixUtil.mulMatrix( s0,new Matrix(x1));
+0QKHDRJZ:97: 			for (int i = 0; i < n; i++) {
+0MSOALUD:98: 				for (int j =0; j <n; j++) {
+0FNBJQKP:99: 					sdoku[i+n][j]=s3.getMatrix()[i][j];
+VPTNLUT:100: 				}
+XJOFCQV:101: 			}
+UOQBIGM:102: 		}
+EJKTDRO:103: 		public void makeS4(){
+DOXFOXF:104: 			Matrix s0=new Matrix(basic);
+JXNGUZX:105: 			Matrix s1=MatrixUtil.mulMatrix( new Matrix(x2),s0);
+QVVTXEZ:106: 			Matrix s4=MatrixUtil.mulMatrix( s1,new Matrix(x1));
+BOKBRMC:107: 			for (int i = 0; i < n; i++) {
+LFQDJTH:108: 				for (int j =0; j <n; j++) {
+BQWADTD:109: 					sdoku[i+n][j+n]=s4.getMatrix()[i][j];
+SHZTAPU:110: 				}
+MSREEPV:111: 			}
+NLVEMJS:112: 		}
+QMWGTYE:113: 		public void makeS5(){
+LJWBBOA:114: 			Matrix s0=new Matrix(basic);
+XTWXYRU:115: 			Matrix s1=MatrixUtil.mulMatrix( new Matrix(x1),s0);
+RHKMKEM:116: 			Matrix s5=MatrixUtil.mulMatrix( s1,new Matrix(x1));
+WVFUTWG:117: 			for (int i = 0; i < n; i++) {
+PBOCBDG:118: 				for (int j =0; j <n; j++) {
+YHPEMQU:119: 					sdoku[i+n][j+2*n]=s5.getMatrix()[i][j];
+ZPPYJGX:120: 				}
+MUYOKPF:121: 			}
+RAUNYAX:122: 		}
+DGRBPSQ:123: 		public void makeS6(){
+WWNLXOB:124: 			Matrix s0=new Matrix(basic);
+YYMDHIX:125: 			Matrix s6=MatrixUtil.mulMatrix( s0,new Matrix(x2));
+VEYOLLR:126: 			for (int i = 0; i < n; i++) {
+TBVWWJF:127: 				for (int j =0; j <n; j++) {
+SFELNXP:128: 					sdoku[i+2*n][j]=s6.getMatrix()[i][j];
+USNFENM:129: 				}
+WEUKCLB:130: 			}
+QYCBJTU:131: 		}
+PGMFEBU:132: 		public void makeS7(){
+YMYKQOS:133: 			Matrix s0=new Matrix(basic);
+ZKLOVXO:134: 			Matrix s1=MatrixUtil.mulMatrix( new Matrix(x2),s0);
+UZUHAKS:135: 			Matrix s7=MatrixUtil.mulMatrix( s1,new Matrix(x2));
+WLRVMWO:136: 			for (int i = 0; i < n; i++) {
+JZDVWYM:137: 				for (int j =0; j <n; j++) {
+TZTBIQG:138: 					sdoku[i+2*n][j+n]=s7.getMatrix()[i][j];
+VWXFJPP:139: 				}
+YETEDCP:140: 			}
+LOELFSW:141: 		}
+JVFGEYL:142: 		public void makeS8(){
+ITVKRWV:143: 			Matrix s0=new Matrix(basic);
+LRUQVAR:144: 			Matrix s1=MatrixUtil.mulMatrix( new Matrix(x1),s0);
+KFEWVPZ:145: 			Matrix s8=MatrixUtil.mulMatrix( s1,new Matrix(x2));
+DDGZZLQ:146: 			for (int i = 0; i < n; i++) {
+GYQAXLI:147: 				for (int j =0; j <n; j++) {
+WOKIYGG:148: 					sdoku[i+2*n][j+2*n]=s8.getMatrix()[i][j];
+ZVEVWKI:149: 				}
+MLVCBYI:150: 			}
+VLRFLCZ:151: 		}
+NJCWZHC:152: 		public void print2(){
+SYSQPYY:153: 			System.out.println(new Matrix(sdoku));
+BULDRBG:154: 		}
+GDGDAFN:155: 		public void print(){
+MPOPZHH:156: 			StringBuffer sb=new StringBuffer();
+GAWDJVG:157: 			for (int i = 0; i < sdoku.length; i++) {
+UVCDCME:158: 				sb.append("[\t");
+UIYBMXX:159: 				for (int j = 0; j < sdoku[i].length; j++) {
+OWCRGDB:160: 					sb.append((int)sdoku[i][j]+"\t");
+KBROTTZ:161: 				}
+JWFKXYK:162: 				sb.append("]");
+HMWDGJZ:163: 				sb.append("\n");
+HYVAOGZ:164: 			}
+GWDZQQG:165: 			System.out.println(sb.toString());
+WJFRIFV:166: 		}
+IOGKVKU:167: 	}

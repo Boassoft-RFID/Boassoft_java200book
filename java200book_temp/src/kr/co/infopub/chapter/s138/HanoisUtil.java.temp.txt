@@ -1,0 +1,64 @@
+0RYDDDZT:1: 	package kr.co.infopub.chapter.s138;
+0JXMARAC:2: 	public class HanoisUtil {
+0BWBHMIY:3: 	 public  static void moveHanoi(int [][] a,int num, char ringA,char ringB,char ringC){
+0NATMPAO:4: 		if(num==1){
+0QRTPBKS:5: 			showHanoi(a,ringA,ringB);
+0MYKILTQ:6: 		}else {
+0KRFMHUD:7: 			moveHanoi(a,num-1,ringA,ringC,ringB);
+0KGXQQWB:8: 			showHanoi(a,ringA,ringB);
+0PXUWDHD:9: 			moveHanoi(a,num-1,ringC,ringB,ringA);
+JWWDILD:10: 		}
+YEYUDAS:11: 	 }
+ZPTOBOT:12: 	 public static void  showHanoi(int [][] a, char ringA,char ringB){
+QTZRTGB:13: 		int aa=0;
+BUUNQVE:14: 		int ab=1;
+NIFVIRZ:15: 		switch(ringA){
+UNIHMYW:16: 			case 'a': aa=0;break;
+PNKCUDI:17: 			case 'b': aa=1;break;
+TXCUPEC:18: 			case 'c': aa=2;break;
+EMGBMRK:19: 		}
+RLTFGWA:20: 		switch(ringB){
+MJKTZNK:21: 			case 'a': ab=0;break;
+WUDFNBC:22: 			case 'b': ab=1;break;
+VHXIWPH:23: 			case 'c': ab=2;break;
+MWFUMBM:24: 		}
+IBJXEJC:25: 		System.out.println(ringA+" bar쪽에 있던 링이 "+ringB+" bar쪽으로 이동");
+CLIGTLE:26: 		puts(a,aa,ab);
+HIWWQGA:27: 		showHanoi(a);
+VOVQUFU:28: 	 }
+XOWDQVR:29: 	 public static void  showHanoi(int [][] a){
+DUPXPVC:30: 		for(int i=0;i<a.length;i++){
+YYWWVRJ:31: 			System.out.print("[\t");
+ZRQJFUS:32: 			for(int j=0;j<a[0].length;j++){
+ZWSZRHG:33: 				System.out.print(a[i][j]+"\t");
+ZLYXFKR:34: 			}
+JETCMWO:35: 			System.out.println("]");
+MHVXRJL:36: 		}
+GBBOVPB:37: 		System.out.println("=====================================");
+JQKDZRZ:38: 	 }
+BJEIXFR:39: 	 public  static int   hasTray(int [][] a,int bar){
+GTNAPAL:40: 		int no=-1;
+YAQGVLF:41: 		for(int i=0;i<a.length;i++){
+EQNACWK:42: 			if(a[i][bar]!=0){
+AAXPRHY:43: 				no=i;
+PGGGVHG:44: 				break;
+XPLJHMT:45: 			}
+VTIGPVP:46: 		}
+WVNEBWU:47: 		return no;
+YDUSZKI:48: 	 }
+XCUSTOE:49: 	 // change(a,2,2,0,0);==> 2,2의 값을 0,0으로 이동 , 2,2의 값을 0으로 
+HXMOJKM:50: 	 private  static void change(int [][] a,int aa,int ab,int ba,int bb){
+NKXTBAZ:51: 		System.out.println("("+aa+","+ab+")==>"+"("+ba+","+bb+")  :");
+IGUCSHY:52: 		a[ba][bb]=a[aa][ab];
+PPXJPWR:53: 		a[aa][ab]=0;
+ZCSRKKJ:54: 	 }
+KDSHFBO:55: 	 public static void puts(int [][]a,int barA, int barB){
+BKKZFXM:56: 		if(hasTray(a,barA)!=-1){
+HEDBBBR:57: 			if(hasTray(a,barB)!=-1){
+EDZGTIS:58: 				change(a,hasTray(a,barA),barA,hasTray(a,barB)-1,barB);
+PCCGKSG:59: 			}else{
+MWNRQHD:60: 				change(a,hasTray(a,barA),barA,a.length-1,barB);
+VOIGZDK:61: 			}
+HFIZGSX:62: 		}
+PXJUAMV:63: 	 }
+SPTGSKX:64: 	}

@@ -1,0 +1,12 @@
+0XOVZPSB:1: 	package kr.co.infopub.chapter.s157;
+0XIHLUGX:2: 	public class CakeEatings {
+0EUZTOHD:3: 		public static void main(String[] args) {
+0AWYACZM:4: 			CakePlate cake=new CakePlate();//Cake 접시 준비
+0GSPOQTD:5: 			CakeEater eater=new CakeEater(cake);//cake 접시 공유
+0TNKLZPF:6: 			CakeMaker baker=new CakeMaker(cake);//cake 접시 공유
+0VSWBGQX:7: 			// 우선순위가 높으면 더 많이 호출가능성-> 더 먼저 끝날 가능성이 높다.
+0OBFYSDH:8: 			//baker.setPriority(6); 
+0TPCMNBI:9: 			baker.start(); //먼저 빵을 만들기 시작한다.
+DLZCBSW:10: 			eater.start();
+OLANVHH:11: 		}
+ZKCZRQC:12: 	}

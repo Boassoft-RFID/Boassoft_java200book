@@ -1,0 +1,42 @@
+0WYYKQMS:1: 	package kr.co.infopub.chapter.s091;
+0ONBYUIX:2: 	import java.io.IOException;
+0RYMAMMV:3: 	
+0RHQYDJP:4: 	import org.apache.http.HttpEntity;
+0MRCLDQW:5: 	import org.apache.http.client.methods.CloseableHttpResponse;
+0JWDSCTI:6: 	import org.apache.http.client.methods.HttpGet;
+0RQENZIF:7: 	import org.apache.http.impl.client.CloseableHttpClient;
+0ILZGWIQ:8: 	import org.apache.http.impl.client.HttpClients;
+0MTWAFVD:9: 	import org.apache.http.util.EntityUtils;
+BWJLZJI:10: 	import org.jsoup.Jsoup;
+YAATMWG:11: 	import org.jsoup.nodes.Document;
+VXXDGUQ:12: 	import org.jsoup.nodes.Element;
+VEPOYZB:13: 	// Jsoup.parse : jsoup_1.13.1.jar
+HRTYKBG:14: 	// org.apache.http  : httpclient, httpcore, commons
+ELRSSEY:15: 	// https://mvnrepository.com 에서 다운로드
+FVYPZLL:16: 	public class BillboardTimeMain {
+LXNQKRV:17: 	 public static void main(String[] args) {
+PFURXEW:18: 		 String newUrls = "https://www.billboard.com/charts/hot-100/";
+BDUADZB:19: 	     HttpGet request = new HttpGet(newUrls); // HttpClient를 이용하여
+FSLYEWN:20: 	     CloseableHttpClient httpClient=null;
+ZFPCMQY:21: 	     CloseableHttpResponse response=null;
+REBUJPX:22: 	     Document doc = null;  
+NEYOTQY:23: 	     try {
+MZOZFDV:24: 	     	 httpClient = HttpClients.createDefault(); // 웹에 연결
+EOCPEFE:25: 	     	 response = httpClient.execute(request);   // 결과 얻기
+SFEXUKL:26: 	     	 StringBuffer sb=new StringBuffer();       // 5000줄정도 저장
+ZEZGIVB:27: 	         HttpEntity entity = response.getEntity(); 
+GBKJLLU:28: 	         if (entity != null) {  // 결과가 있다면 결과에서 한줄씩
+FPBRBID:29: 	             String result = EntityUtils.toString(entity); 
+LIBBCDI:30: 	             sb.append(result); // 한줄씩 저장
+DQNTHHM:31: 	         }
+HHGNDTM:32: 	         doc=Jsoup.parse(sb.toString()); // 전체 내용을 HTML 파싱
+PJRLUOG:33: 	         String id="charts";  
+QVVCWEU:34: 	         // <div id="charts" data-chart-date="2020-07-11"
+HPMJMPB:35: 	         Element eid=doc.getElementById(id);    // 고유한 charts를 찾음
+UOBNGJB:36: 	         String sdate=eid.attr("data-chart-date"); // 속성 값 
+DYVQKTU:37: 	         System.out.println("이번 빌보드 차트 날짜 : "+sdate.trim());
+SXPBHPP:38: 	     } catch (IOException e) {
+GAGEBLG:39: 			System.out.println(e);
+LMDJXNA:40: 		 }
+MHVSDSP:41: 	 }
+KVYCFHW:42: 	}

@@ -1,0 +1,32 @@
+0YMSRPYZ:1: 	package kr.co.infopub.chapter.s112;
+0KAZAMAX:2: 	public class Bakara {
+0FQFPIYV:3: 		CardPrint cp = new CardPrint();
+0CNNHZUV:4: 		int whoWin=-1;
+0LRJDLFX:5: 		public void start(){
+0TAVTHQJ:6: 			cp.make();     // 카드 만들기
+0YPZARTI:7: 			cp.shuffle();  // 카드 초기화
+0IFCNGGB:8: 		}
+0TCTFOZO:9: 		public void result() {    //누가 이겼는가 ?
+REFXQIO:10: 			whoWin=-1;
+CQHXODO:11: 			cp.print();
+PXQQTVJ:12: 			System.out.println("결과 : ");
+QJIIVXQ:13: 			System.out.println("---------------------");
+HJHVYTJ:14: 			System.out.println("플레이어 : " + cp.returnPlayer());
+VTQZIGF:15: 			System.out.println("딜러 : " + cp.returnDealer());
+KPJPVVM:16: 			if (cp.returnPlayer() < cp.returnDealer()) {
+FPWQNGL:17: 				System.out.println("딜러 승!");
+HJADICI:18: 				whoWin=2;
+SUGLMOH:19: 			}
+YSERZJT:20: 			else if (cp.returnPlayer() > cp.returnDealer()) {
+GLTIWRM:21: 				System.out.println("플레이어 승!");
+ZHHQIEK:22: 				whoWin=1;
+KKIHUDM:23: 			}
+FEDKSWT:24: 			else {
+PABGMWX:25: 				System.out.println("타이!");
+IELMYVH:26: 				whoWin=3;
+WZXGYYL:27: 			}
+TMBSHVH:28: 		}
+MNYYGTL:29: 		public int getWhoWin() {
+BNNWXYL:30: 			return whoWin;
+SHAIVTR:31: 		}
+SXZCGLF:32: 	}

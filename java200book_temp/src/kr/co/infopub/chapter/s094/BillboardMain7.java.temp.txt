@@ -1,0 +1,45 @@
+0RTQFLMR:1: 	package kr.co.infopub.chapter.s094;
+0ACGYTFU:2: 	import java.io.FileReader;
+0KVVELBB:3: 	import java.io.BufferedReader;
+0UWAUFLK:4: 	// csv
+0DULFAVY:5: 	public class BillboardMain7 {
+0QHGRZWY:6: 	//rank=1 -> 1
+0CDAFYJD:7: 	 public static String cut(String msg){
+0ELGFYWO:8: 		String val=msg.substring(msg.indexOf("=")+1);
+0PDURYHU:9: 		return val;
+ARWOZST:10: 	 }
+PDYZHBY:11: 	/*	
+JDDBERZ:12: 	   String[] msgs={"rank=1", 
+KHBRMJO:13: 		"song=Despacito", 
+WHGNNKW:14: 		"lastweek=1", 
+HQMPQDL:15: 		"imagesrc=http://www.billboard.com/images/pref_images/q61808osztw.jpg", 
+EJWYBEJ:16: 		"artist=luis fonsi"}
+MQKTMDN:17: 	*/
+WLUEMSE:18: 	 public static void show(String msg){
+SGWZNLI:19: 		System.out.println("-------------------------------------");
+IDGAYYF:20: 		String[] msgs=msg.split(", ");
+PMUXKII:21: 		String rank=cut(msgs[0]).trim();
+SDEBFGN:22: 		String song=cut(msgs[1]).trim();
+GKCIHZG:23: 		String lastweek=cut(msgs[2]).trim();
+MKJQWIR:24: 		String imagesrc=cut(msgs[3]).trim();
+SGLGJST:25: 		String artist=cut(msgs[4]).trim();
+LMSPMXI:26: 		String sf=String.format("%s, %s, %s, %s, %s",rank, song,lastweek,imagesrc,artist);
+VGISVAE:27: 		System.out.println(sf);
+TJIYWTX:28: 	 }
+WCMKVOE:29: 	 
+WGVAQIE:30: 	 public static void main(String[] args) {
+MSIYIBG:31: 		RequestFromBillboardHot rfw=new RequestFromBillboardHot();
+WDOUFQP:32: 		String a="https://www.billboard.com/charts/hot-100/";
+VSCRDKD:33: 		String rs=rfw.getTimeDate(a);
+SFKITBG:34: 		BufferedReader br=null;
+LDZQCZC:35: 		try {
+ESQCSPW:36: 			br=new BufferedReader(new FileReader("billboard\\"+rs+".csv"));
+IGACDMM:37: 			String msg="";
+WYGEFII:38: 			while((msg=br.readLine())!=null){
+WWWFZXR:39: 			    show(msg);
+HDEDIIM:40: 			}
+ARSGKEA:41: 		} catch (Exception e) {
+MHCMFDV:42: 			System.out.println(e);
+KNVKYUD:43: 		}
+PQITLGM:44: 	 }
+RAEESAP:45: 	}

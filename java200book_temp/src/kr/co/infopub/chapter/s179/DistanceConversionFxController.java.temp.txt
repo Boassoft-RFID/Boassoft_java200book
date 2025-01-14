@@ -1,0 +1,61 @@
+0RQEIDWE:1: 	package kr.co.infopub.chapter.s179;
+0SGYDICJ:2: 	import javafx.collections.FXCollections;
+0YSWAVLI:3: 	import javafx.collections.ObservableList;
+0PZFYXGN:4: 	import javafx.event.ActionEvent;
+0ATIDHZY:5: 	import javafx.fxml.FXML;
+0PYSMDDF:6: 	import javafx.scene.control.ComboBox;
+0UITPUQM:7: 	import javafx.scene.control.TextField;
+0RISNMHO:8: 	public class DistanceConversionFxController {
+0KQYVZWG:9: 	 @FXML
+PXONMHE:10: 	 private TextField tfinput;
+XROWTTW:11: 	 @FXML
+ZTSJPYP:12: 	 private TextField tfyard;
+DWBXCHT:13: 	 @FXML
+YGNJSHO:14: 	 private TextField tfmile;
+RXEBBTT:15: 	 @FXML
+VGSRUBZ:16: 	 private TextField tfcm;
+HKPFDXG:17: 	 @FXML
+KGCZNDY:18: 	 private TextField tfm;
+RBYINPA:19: 	 @FXML
+VDATBIR:20: 	 private TextField tfinch;
+WFOKRIB:21: 	 @FXML
+NFVFFAK:22: 	 private ComboBox<String> cbdistance;
+OLSSQKB:23: 	 @FXML
+SXRPVYW:24: 	 private TextField tffeet;
+SPLABOU:25: 	
+GEVYGRK:26: 	 double [][] convDistance;
+NMWXNJL:27: 	 // Conversion.names={"Cm","M","Inch","Feet","Yard","Mile"};
+MFSRUSS:28: 	 @FXML
+GXVDWPQ:29: 	 void initialize() {
+YUHGOMS:30: 		ObservableList<String> options = FXCollections.observableArrayList();
+LXKEHWO:31: 		options.addAll( Conversion.names );  //Since it is static, there is no need to create an object.
+UMPEQJX:32: 		cbdistance.setItems(options);
+KEZKGFS:33: 		
+TSHBZPZ:34: 		//Create a distance conversion table (two dimensions array)
+PXTTUEQ:35: 		convDistance=Conversion.convert();
+REAGEZC:36: 	 }
+SKGKZUC:37: 	 @FXML
+ULWQHLI:38: 	 void cbdistanceOnAction(ActionEvent event) {
+DTJTLIM:39: 	
+PWFHDYM:40: 		String sinput=tfinput.getText();
+JSLBNPB:41: 		double value=0.0;
+TFTKBCV:42: 		if(sinput!=null && !sinput.equals("")){
+LFMVFDH:43: 			value=Double.parseDouble(sinput);
+JTYNCRW:44: 		}
+QFJPPUK:45: 		
+MGCBWBU:46: 		int selectIndex=-1;
+NOJCONA:47: 		if(cbdistance.getSelectionModel()!=null){
+JEWEUCV:48: 			selectIndex=cbdistance.getSelectionModel().getSelectedIndex();
+WEWRCUC:49: 		}
+MFBOBIE:50: 				
+MCIHYYJ:51: 		if(selectIndex>=0){
+KEGAAOG:52: 			//Print the values ​​of a two dimensions array => value*convDistance[selectIndex][0]
+OYKDAAK:53: 			tfcm.setText(String.format("%.10f", value*convDistance[selectIndex][0]));
+QWPGHFQ:54: 	    	tfm.setText(String.format("%.10f", value*convDistance[selectIndex][1]));
+RYTTAIL:55: 	    	tfinch.setText(String.format("%.10f", value*convDistance[selectIndex][2]));
+LMRDZAO:56: 	    	tffeet.setText(String.format("%.10f", value*convDistance[selectIndex][3]));
+XLTAWYU:57: 	    	tfyard.setText(String.format("%.10f", value*convDistance[selectIndex][4]));
+IFXPADT:58: 	    	tfmile.setText(String.format("%.10f", value*convDistance[selectIndex][5]));
+RQWTMRF:59: 		}
+NQTQGKP:60: 	 }
+PEKOMOZ:61: 	}

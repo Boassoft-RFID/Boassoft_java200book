@@ -1,0 +1,80 @@
+0PDXYCJM:1: 	package kr.co.infopub.chapter.s186;
+0OAGAHOA:2: 	import java.sql.SQLException;
+0UBTRIQU:3: 	import java.util.List;
+0MYMPQPO:4: 	import javafx.application.Application;
+0JDTWXZE:5: 	import javafx.geometry.Insets;
+0NKDXVEF:6: 	import javafx.scene.Scene;
+0DTTWEHX:7: 	import javafx.scene.control.Label;
+0XWNTSBE:8: 	import javafx.scene.control.TreeItem;
+0TWDADMB:9: 	import javafx.scene.control.TreeView;
+BTRPDBC:10: 	import javafx.scene.layout.BorderPane;
+OGRWXPT:11: 	import javafx.stage.Stage;
+RGMTOVV:12: 	import kr.co.infopub.chapter.s185.dto.EmpConvert;
+QJLSUIA:13: 	import kr.co.infopub.chapter.s185.dto.Employee;
+FSJVKTS:14: 	import kr.co.infopub.chapter.s185.dto.EmployeeDto;
+AGHYQKT:15: 	import kr.co.infopub.chapter.s185.model.EmployeeDAO;
+TEIFJUV:16: 	import kr.co.infopub.chapter.s185.util.EmpUtil;
+XZVKNXJ:17: 	public class EmpTreeFx extends Application {
+IQUXVOE:18: 	 public static void main(String[] args) {
+NSMXFXR:19: 	  launch(args);
+RPYNYHA:20: 	 }
+EIKVOYS:21: 	 EmployeeDAO employeeDAO=new EmployeeDAO();
+ZQDYMWT:22: 	 // Create a tree hierarchy
+NQQWHYS:23: 	 public  void makeEmpTree(TreeItem<String> front,List<Employee> dlists,
+MFKMKIA:24: 			                                      String key, int index,int max){
+UMGQSCN:25: 	  if(index>max){return ; }  //If it goes over max, it's over
+FJVXBGB:26: 	  for (Employee emp: dlists) {  //There's a number, so it'll be over.
+FZCDCFX:27: 		if(EmpUtil.level(emp)!=index){   //Find only the desired level
+ISCRRGB:28: 			continue;
+KBQVRES:29: 		}else if(index>1 && EmpUtil.level(emp)==index){   //From 2 to 1 compared to the key value of 1
+TYYKAEM:30: 			if(EmpUtil.level(emp,index-1).equals(key)){
+MIBZCUA:31: 				TreeItem<String> aa=new TreeItem<String>(EmpUtil.tname(emp, index));
+TQPTNFP:32: 				front.getChildren().add(aa);
+FFAXHIS:33: 				makeEmpTree(aa,dlists,EmpUtil.level(emp,index),index+1,max);
+YIWWMAD:34: 			}else{
+TIOGQNA:35: 				continue;
+IIDVLHU:36: 			}
+IOJSCKC:37: 		}else if(EmpUtil.level(emp)==1){  //The key value of the parent (0) of 1 does not exist
+GOKAYUK:38: 			TreeItem<String> aa=new TreeItem<String>(EmpUtil.tname(emp, 1));
+VXFLOIV:39: 			front.getChildren().add(aa);
+RUNAKFZ:40: 			makeEmpTree(aa,dlists,EmpUtil.level(emp,1),2,max);
+QRWOKWM:41: 		}
+ASBLREO:42: 	  }
+NNCCEGN:43: 	 }	
+RUVWQMB:44: 	 @Override
+YEVSLUD:45: 	 public void start(Stage stage) {
+WVUYQJW:46: 	  BorderPane vbox=new BorderPane();
+WBXQZPY:47: 	  vbox.setPadding(new Insets(10, 10, 10, 10));
+ZPFFHUX:48: 	  int max=0;
+QGMTVOV:49: 		try {
+CZPWDZM:50: 			// You get the greatest level 
+XAEBSVC:51: 			max = employeeDAO.getTreeMaxLevel();
+VYKRVCI:52: 			// Get the manager/department member tree relationship. It's a hierarchy.
+DCXYGJP:53: 			List<EmployeeDto> blists = employeeDAO.findTreeManagerInEmployee();
+ZRJSCUC:54: 			// Convert to a list for JavaFX tree views.
+ZOZSYFB:55: 			List<Employee> dlists = EmpConvert.toObservProFromDto(blists);
+RIOQWUE:56: 			// Create a "manager and employee" tree item.
+OACICVT:57: 			TreeItem<String> root = new TreeItem<String>("managers and staff");
+CTEXLUB:58: 			// Attach a hierarchy tree item to the "Manager and Staff" tree item.
+EHNPWUH:59: 			makeEmpTree(root,dlists,"",1,max);
+HHWRTIJ:60: 			// Put the "managers and staff" tree item on the tree view.
+GNRTKDS:61: 			TreeView<String> treeView = new TreeView<String>(root);
+ZOFIRLX:62: 			root.setExpanded(true);
+AEZYVJP:63: 			vbox.setCenter(treeView);
+EWYGILW:64: 			Label label = new Label("                          ");
+AFKPYBV:65: 			vbox.setBottom(label);
+AMEXYVS:66: 			Scene scene = new Scene(vbox, 400, 800);
+NZHFZUM:67: 			stage.setScene(scene);
+HTKIVNO:68: 			stage.setTitle("Human Resouce Management System ver. 0.3");
+NBVDICP:69: 			stage.show();
+XAYEFNL:70: 			treeView.getSelectionModel().selectedItemProperty()
+BRTGQKN:71: 			.addListener( (observable, oldValue, newValue) -> {
+STDAMIQ:72: 				String name =newValue.getValue();
+RYTRWWG:73: 				label.setText(   EmpUtil.dep(name));
+JJTYXNF:74: 			});
+HIMXIPR:75: 	
+PRNLOJJ:76: 		} catch (SQLException e) {
+LVJABGN:77: 			System.out.println(e);
+GZEXOHQ:78: 		}
+CISDETS:79: 	 }
+RSFYLJF:80: 	}

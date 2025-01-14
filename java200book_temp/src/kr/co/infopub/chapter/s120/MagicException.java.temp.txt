@@ -1,0 +1,15 @@
+0FAQACAA:1: 	package kr.co.infopub.chapter.s120;
+0TAXLCJJ:2: 	public class MagicException extends Exception{
+0ZHWNEVK:3: 		public MagicException() {
+0GTMUGLB:4: 			this("이런 마방진 생성 불가");
+0KTBWEWV:5: 		}
+0RWIAOAH:6: 		public MagicException(String message, Throwable cause) {
+0JNPBYHJ:7: 			super(message, cause);
+0RUQFQBG:8: 		}
+0RGOMSYI:9: 		public MagicException(String message) {
+ZKGZAJA:10: 			super(message+"형태의 마방진 생성 불가");
+SCDLWIU:11: 		}
+XTFDQTW:12: 		public MagicException(Throwable cause) {
+RBICPTA:13: 			super(cause);
+MNBBFIR:14: 		}
+VHDZMGV:15: 	}

@@ -1,0 +1,182 @@
+00VBVFUQN:1: 	package kr.co.infopub.chapter.s112;
+00CDVVCMJ:2: 	public class CardPrint {
+00TQBKMIC:3: 	 CardCase cc = new CardCase();
+00MOHILUS:4: 	 CardLaw rule = new CardLaw();
+00LPDWFDA:5: 	
+00SJPHTGR:6: 	 private int TotalPlayer;
+00RQUMEFD:7: 	 private int TotalDealer;
+00CFVEKOM:8: 	
+00IISGZJN:9: 	 public CardPrint() {}
+0ORYTSYX:10: 	
+0WMQCGSL:11: 	 public void make(){
+0ZERBUTO:12: 		cc.make();
+0TADWEGL:13: 	 }
+0IKLXARI:14: 	 public void shuffle(){
+0TPRSCXY:15: 		cc.shuffle();//카드 섞기
+0XSQCAOA:16: 	 }
+0ZVQNVST:17: 	 public void print() {
+0AGSRNYJ:18: 	
+0CQWSVXD:19: 		System.out.println("<플레이어 카드>");
+0HIDFISD:20: 		System.out.println("---------------------");
+0VKXAOJA:21: 		
+0TIGBESX:22: 		System.out.print("1번째 카드 : ");
+0WQVHQYI:23: 		System.out.println(cc.getCards().get(0));
+0WOBBAUX:24: 		System.out.print("1번째 카드 수 : ");
+0GNMHRFN:25: 		System.out.println(num(0));
+0BATAOQC:26: 		
+0XKRRZKI:27: 		System.out.print("2번째 카드 : ");
+0MDINHJM:28: 		System.out.println(cc.getCards().get(1));
+0RPGWIQT:29: 		System.out.print("2번째 카드 수 : ");
+0INFVSXU:30: 		System.out.println(num(1));
+0JNZAQPM:31: 		
+0HOZEYIE:32: 		System.out.print("플레이어의 2장의 카드합 : ");
+0YGZQTSL:33: 		System.out.println(sumP());
+0AVRDXFT:34: 		TotalPlayer = sumP();
+0YLRMZOJ:35: 		
+0BJYFLBH:36: 		System.out.println("---------------------");
+0ZWNTZAI:37: 		
+0AKLXURW:38: 		if (rule.natural(sumP(), sumD())) {
+0VYWYLQQ:39: 			System.out.println("예외처리로 바로 겨룹니다!");
+0MUILTWJ:40: 			TotalPlayer = sumP();
+0TWRAEJM:41: 		}else if (rule.stand(sumP(), sumD())) {
+0GZSNZZT:42: 			standPrintPl();
+0NINQHKR:43: 		}else if (rule.thirdCardPlayer(sumP())) {
+0DFQRQEF:44: 			System.out.println("3 번째 카드를 받습니다!");
+0RIICJQV:45: 			System.out.println("3 번째 카드 : " + cc.getCards().get(4));
+0UBTKFUP:46: 			System.out.println("3 번째 카드 수 : " + num(4));
+0GWUSHEA:47: 			System.out.println("---------------------");
+0UZKASTH:48: 			System.out.println("플레이어의 총 카드 합 : " + total(sumP(), num(4)));
+0PFFAPEI:49: 			TotalPlayer = total(sumP(), num(4));
+0LIQSTFG:50: 		}
+0FPQGQVI:51: 		System.out.println("---------------------");
+0VENVWCL:52: 		System.out.println();
+0ZVTTNBP:53: 		
+0ISLBNMT:54: 		System.out.println("<딜러 카드>");
+0NFIBCME:55: 		System.out.println("---------------------");
+0EVJWSQN:56: 		
+0FLISJDZ:57: 		System.out.print("1번째 카드 : ");
+0KHILWIF:58: 		System.out.println(cc.getCards().get(2));
+0SDQLPKY:59: 		System.out.print("1번째 카드 수 : ");
+0QRANFXT:60: 		System.out.println(num(2));
+0GTSOWFF:61: 		
+0LVILESZ:62: 		System.out.print("2번째 카드 : ");
+0YZCSATZ:63: 		System.out.println(cc.getCards().get(3));
+0YHQSQMN:64: 		System.out.print("2번째 카드 수 : ");
+0JPRXEKU:65: 		System.out.println(num(3));
+0AWCWURH:66: 			
+0JKQWUYJ:67: 		System.out.print("딜러의 2장의 카드합 : ");
+0RYFFFAM:68: 		System.out.println(sumD());
+0JUYPWAF:69: 		TotalDealer = sumD();
+0NHJPAXU:70: 		
+0ZTCMBXL:71: 		System.out.println("---------------------");
+0NFYJFXJ:72: 				
+0YESTWYA:73: 		if (rule.natural(sumP(), sumD())) {
+0YLLWQND:74: 			System.out.println("예외처리로 바로 겨룹니다!");
+0TJVLJPK:75: 			TotalDealer = sumD();
+0PHFXKOC:76: 		}
+0SPINVHJ:77: 		else if (rule.stand(sumP(), sumD())) {
+0UEPRPPJ:78: 			standPrintDl();
+0ATJYPZP:79: 		}
+0YRSBLEG:80: 		else if (rule.thirdCardDealer(sumD(), num(4))) {
+0RROVRAW:81: 			System.out.println("3 번째 카드를 받습니다!");
+0KHJXMCQ:82: 			System.out.println("3 번째 카드 : " + cc.getCards().get(5));
+0MUGCMPW:83: 			System.out.println("3 번째 카드 수 : " + num(5));
+0UPXDAEW:84: 			System.out.println("---------------------");
+0HWEGQQJ:85: 			System.out.println("딜러의 총 카드 합 : " + total(sumD(), num(5)));
+0TGQMGNQ:86: 			TotalDealer = total(sumD(), num(5));
+0MAAPCBS:87: 		}
+0IJEDTEL:88: 		System.out.println("---------------------");
+0PIDPYVL:89: 		System.out.println();
+0HSSMACM:90: 	 }
+0NIXALIE:91: 	 public void standPrintPl() {
+0TFOBZEG:92: 		System.out.println("스탠드 입니다.");
+0JGCPAUZ:93: 		if (sumP() > 5 && sumP() < 8) {
+0OWMFUNN:94: 			if (sumD() < 6 ) {
+0OXPIOTB:95: 				System.out.println("딜러는 3번째 카드를 받습니다.");
+0MREOHYY:96: 			}else {
+0BLWTINC:97: 				System.out.println("바로 겨룹니다!");
+0ZIYPHLG:98: 				TotalPlayer = sumP();
+0UFPNADZ:99: 			}
+MLIRSSO:100: 		}
+ZFEGOOV:101: 		else if (sumD() == 7 ) {
+ZZHWOTD:102: 			if (sumP() < 6) {
+GNATHKL:103: 				System.out.println("3 번째 카드를 받습니다!");
+MKJIPYU:104: 				System.out.println("3 번째 카드 : " + cc.getCards().get(4));
+EBTZPTB:105: 				System.out.println("3 번째 카드 수 : " + num(4));
+COZNIZI:106: 				System.out.println("---------------------");
+QUJNPDW:107: 				System.out.println("플레이어의 총 카드 합 : " + total(sumP(), num(4)));
+KOHOSTX:108: 				TotalPlayer = total(sumP(), num(4));
+AOWLVQN:109: 			}else {
+JOLWVYD:110: 				System.out.println("바로 겨룹니다.");
+ECOJNRG:111: 				TotalPlayer = sumP();				
+CVBPZGG:112: 			}
+UFJGLGE:113: 		}
+VLQNOYG:114: 	 }
+FDJMRNK:115: 	 public void standPrintDl() {
+CJKYQOS:116: 		System.out.println("스탠드 입니다.");
+KSNAEFB:117: 		if (sumP() > 5 && sumP() < 8) {
+MFMKRTJ:118: 			if (sumD() < 6 ) {
+RLPBUXG:119: 				System.out.println("3 번째 카드를 받습니다!");
+MGCLAQZ:120: 				System.out.println("3 번째 카드 : " + cc.getCards().get(5));
+EPPXOKB:121: 				System.out.println("3 번째 카드 수 : " + num(5));
+PNBXTPG:122: 				System.out.println("---------------------");
+SPHUZSG:123: 				System.out.println("딜러의 총 카드 합 : " + total(sumD(), num(5)));
+ZSLLSZS:124: 				TotalDealer = total(sumD(), num(5));
+WNIRJNF:125: 			}	
+FRFBVMK:126: 			else {
+GSSGAXV:127: 				System.out.println("바로 겨룹니다!");
+ZDCQHWM:128: 				TotalDealer = sumD();
+SPXSEMO:129: 			}
+BLCXAIR:130: 		}
+AZHUGMS:131: 		else if (sumD() == 7 ) {
+QLLGRIL:132: 			if (sumP() < 6) {
+QSJYRGU:133: 				System.out.println("플레이어는 3번째 카드를 받습니다.");
+CBQJEOR:134: 			}
+NLWBPTF:135: 			else {
+ZFETMRK:136: 				System.out.println("바로 겨룹니다.");
+VNPUBJC:137: 				TotalDealer = sumD();
+OTRWIOB:138: 			}
+XRHEVCT:139: 		}
+AGWOZUU:140: 	 }
+UJZEURJ:141: 	
+FYZSJBP:142: 	 public int num(int n) {
+LNQKNGK:143: 		int num;
+DENCMPR:144: 		Card str = cc.getCards().get(n);
+AHCFWOF:145: 		char ch = str.getCardVal().charAt(1);//H3				
+QNOHTCT:146: 		switch (ch) {
+XUUHNYE:147: 			case 'A' : num = 1;break;
+PRBRRCU:148: 			case 'T' : 
+FVTAFJY:149: 			case 'J' : 
+HRWPSFR:150: 			case 'Q' : 
+HLHPQDB:151: 			case 'K' : num = 0; break;	//fall through
+BBPKAHE:152: 			default : num=ch-'0';break;//'9'-'0'
+DOROKKS:153: 		}
+CSMYWBX:154: 		return num;
+GGQUGHX:155: 	 }
+ZJNPBJD:156: 	 public int sumP() {
+LZPYLRD:157: 		int sumP = 0;
+YMOFEJO:158: 		for (int i = 0; i < 2; i++) {
+ZWPNKCM:159: 			sumP += num(i);
+KFAAKME:160: 			if (sumP > 9) {
+BGGZVBW:161: 				sumP -= 10;//1의 자리수
+VGVPBZS:162: 			}			
+WVSSYZB:163: 		}
+RKTKYFN:164: 		return sumP;
+DQRQKLV:165: 	 }
+TBXTZUL:166: 	 public int sumD() {
+XNAENWJ:167: 		int sumD = 0;
+BVVEOQE:168: 		for (int i = 2; i < 4; i++) {
+EWHJRCO:169: 			sumD += num(i);
+VAGLJDB:170: 		}
+QUCVFOO:171: 		return sumD%10;
+NJRNHZK:172: 	 }
+XSRQAUD:173: 	 public int total(int x, int y){
+EQRSNFQ:174: 		return (x+y)%10;
+RZFNZVF:175: 	 }
+AWXOVIR:176: 	 public int returnPlayer() {
+SHAEIRO:177: 		return TotalPlayer;
+YNNFFAS:178: 	 }
+PYLTJYL:179: 	 public int returnDealer() {
+RMSOTEF:180: 		return TotalDealer;
+SAPNUIH:181: 	 }
+TFQIESL:182: 	}

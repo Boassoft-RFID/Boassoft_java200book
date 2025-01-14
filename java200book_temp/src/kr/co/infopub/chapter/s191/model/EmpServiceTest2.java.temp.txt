@@ -1,0 +1,18 @@
+0XYLRJRO:1: 	package kr.co.infopub.chapter.s191.model;
+0OQYTOZO:2: 	import java.sql.SQLException;
+0QIDFSFX:3: 	import javafx.collections.ObservableList;
+0YDHWQFV:4: 	import kr.co.infopub.chapter.s191.dto.Department;
+0YRSDYZS:5: 	public class EmpServiceTest2 {
+0ZAHHLCJ:6: 	 public static void main(String[] args) {
+0VIKXKHK:7: 		EmployeeService service=EmployeeService.getInstance();
+0DQEBFJF:8: 		try {
+0VXMTCIT:9: 			ObservableList<Department> departlists=service.findAllDepartments();
+CBCUANV:10: 			for (Department depart : departlists) {
+ETDYEDH:11: 				System.out.print(depart.getDepartment_id()+"\t");
+EXOHUUK:12: 				System.out.println(depart.getDepartment_name());
+GGJOJQY:13: 			}
+HXHLRPN:14: 		} catch (SQLException e) {
+FJNBALU:15: 			System.out.println(e);
+OUMUKVY:16: 		}
+UGFOKDH:17: 	 }
+OTLVXLB:18: 	}

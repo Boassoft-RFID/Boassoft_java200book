@@ -1,0 +1,143 @@
+00LEWGVDO:1: 	package kr.co.infopub.chapter.s117;
+00FUTBOPV:2: 	public class SixMagicSquare {
+00HFILISU:3: 	 private int[][] magic;
+00UBQHAOU:4: 	 private int n;
+00OYYTHDU:5: 	
+00JRYLVWL:6: 	 public int[][] getMagic() {
+00EBYLRVI:7: 		return magic;
+00FUZKOPG:8: 	 }
+00OQGSCBY:9: 	 public SixMagicSquare(int n) {
+0GCYKHCE:10: 		magic=new int[n][n];
+0SYIOUCS:11: 		this.n = n;
+0IXPDQEL:12: 	 }
+0NYJSUEC:13: 	 public SixMagicSquare() {
+0GRSPHSS:14: 	    this(6);
+0EEYCBQF:15: 	 }
+0ZWUBOMY:16: 	 public void make(){
+0ODYXIUM:17: 		makeA();
+0LCOYZOZ:18: 		makeB();
+0SHHRBSG:19: 		makeCD();
+0NSUDXXF:20: 		makeMulti();
+0FPVQIXM:21: 		makeOdd();
+0PQSFZCU:22: 	 }//
+0FRIXXSU:23: 	 private void makeA() {
+0GJWGSNY:24: 		for (int i = 0; i <n/2 ; i++) {
+0DWIDYLJ:25: 			for (int j = 0; j <n/4 ; j++) {
+0DUOBTVZ:26: 				if(i==n/4){
+0BCLDJDW:27: 					magic[i][j+1]=3;
+0CFFQJTI:28: 				}else{
+0MOZLKVF:29: 					magic[i][j]=3;
+0NKLNXBL:30: 				}
+0GVCNLGG:31: 			}
+0SSKWEGB:32: 		}
+0FJBWSLS:33: 	 }
+0VETHIQI:34: 	 private void makeB() {
+0XGWIHZW:35: 		for (int i = 0; i <n/2; i++) {
+0PHIYNWK:36: 			for (int j = 0; j <n/2; j++) {
+0JVOPYAX:37: 				magic[i][j+n/2]=1;
+0OVBOOZL:38: 			}
+0FWWPLDF:39: 		}
+0AWRFDWR:40: 		for (int i = 0; i <n/2; i++) {
+0XMQOCZX:41: 			for (int j = 0; j <n/2-(n/4-1); j++) {
+0PBZSGYP:42: 				magic[i][j+n/2]=2;
+0MGGMVSX:43: 			}
+0NURZXCY:44: 		}
+0IPTXPQU:45: 	 }
+0PCXHAOX:46: 	 private void makeCD() {
+0HRROAQJ:47: 		for (int i = 0; i <n/2; i++) {
+0BVNRHOY:48: 			for (int j = 0; j <n/2; j++) {
+0AVZOYNO:49: 				if(magic[i][j]==0){
+0BNDOQLZ:50: 					magic[i+n/2][j]=3;
+0SMJXTWL:51: 				}else{
+0LJCPNFU:52: 					magic[i+n/2][j]=0;
+0ABVBTSM:53: 				}
+0QBVCIYG:54: 				
+0XXPFFTS:55: 				if(magic[i][j+n/2]==1){
+0OMPTJKF:56: 					magic[i+n/2][j+n/2]=2;
+0BIAWSWO:57: 				}else{
+0KAWQANL:58: 					magic[i+n/2][j+n/2]=1;
+0FIVTMSP:59: 				}
+0DKBAJNX:60: 			}
+0QZJKXXC:61: 		}
+0RLSBGVM:62: 	 }
+0GVYLJIJ:63: 	 private void makeMulti() {
+0ULPKZQK:64: 	   for (int i = 0; i < n; i++) {
+0IKYSRTF:65: 		   for (int j = 0; j < n; j++) {
+0NBETAII:66: 			    magic[i][j] *= (n/2*n/2);
+0QGBTLXX:67: 		   }
+0XDTRAIP:68: 	   }
+0BYHFPIH:69: 	 }
+0KXJBZSB:70: 	 private void makeOdd() {
+0GIZQIAU:71: 		// Create dependency 생성의존 
+0YAVSJIB:72: 		// 6 마방진은 3마방진을 필요로 한다.
+0TYHERAU:73: 		OddMagicSquare odd=new OddMagicSquare(n/2);
+0UVSVIEA:74: 		odd.make();    // 3 마방진을 만든다.
+0NRXAYGK:75: 		int[][] mm=odd.getMagic();
+0NWHSWOE:76: 		for (int i = 0; i < n/2; i++) {
+0RAUWJIM:77: 			for (int j = 0; j <n/2 ; j++) {
+0NUOLSTY:78: 				magic[i][j]+=mm[i][j];
+0JCSGGWC:79: 				magic[i][j+n/2]+=mm[i][j];
+0RASRSYA:80: 				magic[i+n/2][j]+=mm[i][j];
+0UTGCLLW:81: 				magic[i+n/2][j+n/2]+=mm[i][j];
+0GPPKOMK:82: 			}
+0COXLYBC:83: 		}
+0KSPIMEC:84: 	 }
+0AGCCPKL:85: 		public void print(){
+0KUUZWUH:86: 			System.out.println();
+0VYPKULD:87: 			System.out.println(n+" is magic : "+isMagic());
+0DVYNBBG:88: 			for (int i = 0; i < n; i++) {
+0ITHHHYM:89: 				for (int j = 0; j < n; j++) {
+0CDKGXUM:90: 					System.out.print(magic[i][j]+"\t");
+0FIUSVYL:91: 				}
+0KIGZOGA:92: 				System.out.println();
+0PJZPMBM:93: 			}
+0TOGQXWA:94: 		}
+0ZRDHJBL:95: 		//마방진이 잘 되었는가를 판단
+0XZHPDVG:96: 		private  boolean isMagic( ){
+0QLNRWHM:97: 			boolean isM=true;
+0JTUGMEB:98: 			int[ ]m=new int[2*n+2];
+0MIPPAIE:99: 			for (int i = 0; i < n; i++) {
+ZOLWEGH:100: 				m[i]=sumRow(i);
+FYADBKP:101: 				m[i+n]=sumCol(i);
+UGPQEBJ:102: 			}
+INVBGKD:103: 			m[2*n]=sumReverseDia();
+KSVLVFX:104: 			m[2*n+1]=sumDia();
+ONVRWMF:105: 			for (int i = 1; i < m.length; i++) {
+TIVGKOD:106: 				if(m[0]==0 || m[0]!=m[i]){
+HQGHBSP:107: 					isM=false;
+VWGWPWQ:108: 					break;
+IZQMWVO:109: 				}
+TVJKODK:110: 			}
+DTOTRHQ:111: 			return isM;
+WBDRGKB:112: 		}
+NBPQERN:113: 		//row 행의 열들의 합
+UZGHDON:114: 		private int sumRow(int row){
+HHRVZFA:115: 			int tot=0;
+ASIJOXM:116: 			for (int i = 0; i < n; i++) {
+MORHNWG:117: 				tot+=magic[row][i];
+QLQBSQK:118: 			}
+TKPHNID:119: 			return tot;
+BZRFJCN:120: 		}
+JCHTGUD:121: 		//col 열의(열 고정)  행들의 합
+JXGDDNV:122: 		private int sumCol(int col){
+NONCWQB:123: 			int tot=0;
+EYIIKYR:124: 			for (int i = 0; i < n; i++) {
+SJUZNNY:125: 				tot+=magic[i][col];
+COSKZJS:126: 			}
+JIXJFAI:127: 			return tot;
+KEQHRTV:128: 		}
+KDFBDTY:129: 		private int sumDia(){
+CBUWFHI:130: 			int tot=0;
+LEZSHYN:131: 			for (int i = 0; i < n ; i++) {
+VSSWRXH:132: 				tot+=magic[i][n-1-i];
+WXBCWHV:133: 			}
+HUDVETR:134: 			return tot;
+UZEFMYY:135: 		}
+TMRZAJQ:136: 		private int sumReverseDia(){
+CGHYNVJ:137: 			int tot=0;
+WUPECLZ:138: 			for (int i = 0; i < n ; i++) {
+BTXBYMR:139: 				tot+=magic[i][i];
+YNXEDLC:140: 			}
+PMSPPTY:141: 			return tot;
+UOQHKGG:142: 		}
+JJPFOMO:143: 	}

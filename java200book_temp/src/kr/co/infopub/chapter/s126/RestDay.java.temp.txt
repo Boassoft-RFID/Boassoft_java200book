@@ -1,0 +1,94 @@
+0UTBVNDG:1: 	package kr.co.infopub.chapter.s126;
+0VTGJRND:2: 	import java.text.ParseException;
+0EOUGOCW:3: 	import java.text.SimpleDateFormat;
+0VQPHJHV:4: 	import java.util.Calendar;
+0YIZGQVV:5: 	import java.util.Date;
+0CMKAEZP:6: 	// s075 RestDay 추가
+0XINDDLX:7: 	public class RestDay {
+0BITDDJA:8: 	 // 토, 일요일 인가?
+0WIGCBCH:9: 	 public static boolean isRest(Calendar tod){
+LESRFKD:10: 		boolean isRest=false;
+EWICXEM:11: 		if(tod.get(Calendar.DAY_OF_WEEK)==Calendar.SATURDAY || // 토요일
+YAGBJZC:12: 		    tod.get(Calendar.DAY_OF_WEEK)==Calendar.SUNDAY ){  //또는 일요일
+VAOUMNY:13: 			isRest=true;
+XSOYZMZ:14: 		}
+RNPLGUU:15: 		return isRest;
+IEAYPHH:16: 	 }
+HFUDHAK:17: 	 // Calendar를 문자열로
+JPWVJWI:18: 	 public static String toYMD(Calendar dd){
+AVOHOJD:19: 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+BEPGUMQ:20: 		return sdf.format(dd.getTime());
+RWUEDLT:21: 	 }	
+UARKFSB:22: 	 public static void main(String[] args) {
+HIEQXXO:23: 		Calendar cal=Calendar.getInstance();
+RSUHJEE:24: 		int lastDay=cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+YBJRXLH:25: 		for (int i= 1; i <=lastDay; i++) {
+XKHLBBZ:26: 			cal.set(Calendar.DAY_OF_MONTH, i);  // 1일부터 마지막날까지 
+JOQYUIM:27: 			if(isRest(cal)){                    // 휴일(토,일)확인
+CBNMKIA:28: 				System.out.println(toYMD(cal)+" is Rest Day.");
+BHJSEJX:29: 			}             
+VIELFMV:30: 		}
+VVVNSDS:31: 	 }
+JBBSERA:32: 	 public static Calendar todate(String ss){
+ZKSANYF:33: 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+UHNEROQ:34: 			Date dd=new Date();
+MWRVZGI:35: 			try {
+KESAVWL:36: 				dd=sdf.parse(ss);
+MAHJHOJ:37: 			} catch (ParseException e) {
+IIMIITE:38: 			}
+HPBUTGY:39: 			Calendar cal=Calendar.getInstance();
+YVAUDCG:40: 			cal.setTime(dd);
+CUTAVEW:41: 			return cal;
+PPPADMJ:42: 		 }
+LDBONEX:43: 	
+MPKVWNN:44: 		 public static String toYMD2(Calendar dd){
+MZFUFJD:45: 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+XOIBHTA:46: 			return sdf.format(dd.getTime());
+HQPQYQP:47: 		 }
+PLEPOBT:48: 		 public static String goGo(String ss,int day){
+GSOJASU:49: 			Calendar cal=todate(ss);
+SLEQYML:50: 			//-7일을 더하면 일주전
+ZTOVAPT:51: 			cal.add(Calendar.DAY_OF_YEAR, day);
+HUIMOLH:52: 			//칼렌더를 문자열로 
+EWNUHMC:53: 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+ZJQFJFB:54: 			return sdf.format(cal.getTime());
+PWDRODQ:55: 		 }
+TNBLWWG:56: 		// 휴일 구하기 113, 13일의 금요일 115, 파일 118, 빌보드 79
+XFYNGYL:57: 		public static boolean isRest(String day){
+HIIMOTL:58: 			//토, 일만 쉬도록 
+YTBJFVB:59: 			boolean isRest=false;
+BTMLFYA:60: 			Calendar tod= todate(day);
+HHDPGFZ:61: 			if(tod.get(Calendar.DAY_OF_WEEK)==Calendar.SATURDAY || 
+BQQWBHZ:62: 					tod.get(Calendar.DAY_OF_WEEK)==Calendar.SUNDAY ){ //토요일 또는 일요일
+HUIVGYU:63: 				isRest=true;
+DOQFRNA:64: 			}
+OJOQXGV:65: 			return isRest;
+TKGNCZL:66: 		}
+ZLSDQSU:67: 		public static String toWantedDay(String ss,int round){
+AKSSNNC:68: 			Calendar cal=todate(ss);
+WHHXZXO:69: 			//-7일을 더하면 일주전
+VAKVTOU:70: 			cal.add(Calendar.DAY_OF_YEAR, -(round*7));
+MAHIVKS:71: 			//칼렌더를 문자열로 
+HOGTSTW:72: 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+KXHHWZM:73: 			return sdf.format(cal.getTime());
+LJOWQZX:74: 		}
+QVSBVWV:75: 	
+NJYWBLJ:76: 		public static String toDay(String rs){  // 8월 16, 2017
+DGTMTZF:77: 			SimpleDateFormat sdfDesired = new SimpleDateFormat("MMMMM dd, yyyy");
+XWDVMRQ:78: 			Calendar ts=todate(rs);
+UCSUAMS:79: 			String sss=sdfDesired.format(ts.getTime());
+UCPLFGS:80: 			return sss;
+PHGLIIN:81: 		}
+VNNWTGP:82: 		public static Date toDate(int year, int month, int day){
+PLNFQTO:83: 			return toCalendar(year,month,day).getTime();
+FUPEHQY:84: 		}
+EWSBRYR:85: 		public static Calendar toCalendar(int year, int month, int day){
+QRIXACC:86: 			Calendar cal=Calendar.getInstance();
+HJREWHF:87: 			cal.set(year, month-1, day);
+LESLJLO:88: 			return cal;
+DJQLCMS:89: 		}
+XKSPUXU:90: 		public static String toStrDate(Date dd){
+LSGXZAG:91: 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+ZRFTLSG:92: 			return sdf.format(dd);
+OWJPXPQ:93: 		}
+OWHDADI:94: 	}

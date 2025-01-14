@@ -1,0 +1,55 @@
+0DQTEKWE:1: 	package kr.co.infopub.chapter.s198;
+0ZHATUQF:2: 	import java.io.BufferedReader;
+0DEPTIYE:3: 	import java.io.IOException;
+0IVCDWGJ:4: 	import java.io.InputStreamReader;
+0UEQIIBX:5: 	import java.io.OutputStreamWriter;
+0UUSSCET:6: 	import java.io.PrintWriter;
+0NWHYHKO:7: 	import java.net.Socket;
+0ZCESSDF:8: 	public class ServerThread extends Thread {
+0JMSUUJO:9: 	 private Socket s;
+NLKUXNY:10: 	 BufferedReader br;
+TLWGHJE:11: 	 PrintWriter pw;
+XOOCHSG:12: 	 HwiServer hserver;
+XWUPUYJ:13: 	 public ServerThread(Socket s,HwiServer hserver) {
+XRBTWLX:14: 		this.s = s;
+JSTPKMI:15: 		this.hserver=hserver;
+YINWRTW:16: 		System.out.println(s.getInetAddress());
+XDXHYTI:17: 		System.out.println(s.getLocalAddress());
+MMEDCIR:18: 		try {
+QLDENWL:19: 			// 소켓에서 메시지 가져오기
+UPGRUXU:20: 			br=new BufferedReader(
+IYVCHDJ:21: 					new InputStreamReader(
+PHMANXZ:22: 							s.getInputStream()));
+EKGSSTE:23: 			// 소켓에 메시지 보내기
+QRYMKEK:24: 			pw=new PrintWriter(
+ZPUVQRO:25: 					new OutputStreamWriter(
+AIAFFVJ:26: 							s.getOutputStream()), true);
+TTYZVJS:27: 		} catch (IOException e) {
+KJCPIHG:28: 			System.out.println(e);
+QWAYYLK:29: 		}
+DYPBCMH:30: 	 }
+FGVDIQC:31: 	 public void sendMessage(String msg){
+AIBXPWM:32: 		System.out.println("보냄"+msg);
+ZOYSPFX:33: 		pw.println(msg);
+PMXYUQI:34: 		//pw.flush();
+XWUEHOC:35: 	 }
+ATQONQG:36: 	 @Override
+ADKZZJD:37: 	 public void run() {
+PGCTDAP:38: 		String msg=null;
+HAMMJYG:39: 		try {
+CGZKDNQ:40: 			while((msg=br.readLine())!=null){
+DOPIMCY:41: 				System.out.println("broadCasting");
+FOBOCZS:42: 				hserver.broadCasting(msg);
+GHQIXWK:43: 			}
+JBLLTZV:44: 		} catch (IOException e) {
+SUKTQGI:45: 			System.out.println(s.getInetAddress()+"의 연결이 종료되었습니다.");
+GIRLTLE:46: 			hserver.remove(this); // 닫힌 소켓 List에서 제거
+TXQGNPO:47: 			try {
+EWHDJEG:48: 				s.close();
+XVBBWHK:49: 			} catch (IOException e1) {
+YYUBBXO:50: 			}
+TDAWGVF:51: 		}finally{
+PEVFYFW:52: 			pw.close();
+PQYATSN:53: 		}
+WJFYCKK:54: 	 }
+YCIDOMS:55: 	}

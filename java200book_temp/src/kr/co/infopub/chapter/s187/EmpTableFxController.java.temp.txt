@@ -1,0 +1,106 @@
+00ZUDUGNU:1: 	package kr.co.infopub.chapter.s187;
+00QDWNRGP:2: 	import java.sql.Date;
+00VJJYULB:3: 	import java.sql.SQLException;
+00UETNPMN:4: 	import java.util.List;
+00RAXPZFG:5: 	
+00LOJQDKT:6: 	import javafx.beans.value.ObservableValue;
+00CQPJYQJ:7: 	import javafx.collections.ObservableList;
+00EGQBIRF:8: 	import javafx.event.ActionEvent;
+00ZPKXVAK:9: 	import javafx.event.Event;
+0AEIDILU:10: 	import javafx.event.EventHandler;
+0ZHNPNPL:11: 	import javafx.fxml.FXML;
+0IANMVWX:12: 	import javafx.scene.control.Button;
+0GUENCMC:13: 	import javafx.scene.control.Label;
+0HGWQSHM:14: 	import javafx.scene.control.TableColumn;
+0MGBNSPA:15: 	import javafx.scene.control.TableView;
+0KNYYIWT:16: 	import javafx.scene.control.TableColumn.CellDataFeatures;
+0SWZREOD:17: 	import javafx.util.Callback;
+0OPWVZDJ:18: 	import kr.co.infopub.chapter.s185.dto.EmpConvert;
+0NMYZDRY:19: 	import kr.co.infopub.chapter.s185.dto.Employee;
+0DEFNGZJ:20: 	import kr.co.infopub.chapter.s185.dto.EmployeeDto;
+0BAKQIXU:21: 	import kr.co.infopub.chapter.s185.model.EmployeeDAO;
+0VWBVMWM:22: 	public class EmpTableFxController {
+0MSGWGNL:23: 	 @FXML
+0FZWEXIC:24: 	 private TableView<Employee> employeeTable;
+0FADQEXT:25: 	 @FXML
+0ITUOMSU:26: 	 private TableColumn<Employee, Integer>  empIdColumn;
+0IWAPFAV:27: 	 @FXML
+0FHNEKFG:28: 	 private TableColumn<Employee, String>  empNameColumn;
+0KTIUZLZ:29: 	 @FXML
+0KCQGPUS:30: 	 private TableColumn<Employee, String> empLastNameColumn;
+0DVDWQBJ:31: 	 @FXML
+0JZPFLAN:32: 	 private TableColumn<Employee, String> empEmailColumn;
+0IQVJXYA:33: 	 @FXML
+0BUANAHF:34: 	 private TableColumn<Employee, String> empPhoneNumberColumn;
+0CCKQKNV:35: 	 @FXML
+0ICEZUEM:36: 	 private TableColumn<Employee, Date> empHireDateColumn;
+0ITSMVJV:37: 	 @FXML
+0OIAJXUA:38: 	 private Button searchEmpsBtn;
+0XVXCNKD:39: 	 @FXML
+0EYJGVYR:40: 	 private Label lbhello;
+0FYCGBZY:41: 	
+0ZFKXUWK:42: 	 EmployeeDAO employeeDAO=new EmployeeDAO();
+0UIUVKKT:43: 	 
+0DRIFAUH:44: 	 void showLabel(String msg){
+0RPSKEPC:45: 		lbhello.setText(msg);
+0ELXJFRF:46: 		String value=
+0IOGJFXO:47: 		    	   "-fx-font-size: 12px;           "
+0CAIQGPD:48: 		    	   +"-fx-font-family: 'Arial Black';    "
+0ENLGAYM:49: 		    	   +"-fx-fill: #818181;                 "
+0RONWTFV:50: 		    	   +"-fx-effect: innershadow( three-pass-box ,"
+0NVHBCMI:51: 		    	   +" rgba(0,50,255,0.7) , 6, 0.0 , 0 , 2 );";
+0OPXLJOA:52: 		    	lbhello.setStyle("\t"+value);
+0MDJWTGT:53: 	 }
+0HBSVRXZ:54: 	 private void showToTableEmployees (ObservableList<Employee> empData)  {
+0XDFWKCO:55: 	    employeeTable.setItems(empData);
+0QYFQSOD:56: 	 }
+0DGSWEEI:57: 	 @FXML
+0PYJLDVK:58: 	 void initialize() {
+0OQZRLGP:59: 		// Mapping Columns to Columns, Callback -> call must be implemented
+0OMJTNGM:60: 	/*	empIdColumn.setCellValueFactory(
+0CWSXOJZ:61: 			      new Callback<TableColumn.CellDataFeatures<Employee,Integer>,
+0OFGDCQT:62: 				                                 ObservableValue<Integer>>() {
+0MYPUCRE:63: 			@Override
+0VLAGISS:64: 			public ObservableValue<Integer> call(
+0SKJYNQT:65: 					           CellDataFeatures<Employee, Integer> cellData) {
+0VFGPDPJ:66: 				return cellData.getValue().employeeIdProperty().asObject();
+0TNRKCKQ:67: 			}
+0CZGKJMP:68: 		});*/
+0SCWLOYY:69: 		empIdColumn.setCellValueFactory(
+0QDNNIRG:70: 		cellData -> cellData.getValue().employeeIdProperty().asObject());
+0TKBRRQV:71: 		empNameColumn.setCellValueFactory(
+0QNEEZUP:72: 				cellData -> cellData.getValue().firstNameProperty());
+0RRMCGDP:73: 		empLastNameColumn.setCellValueFactory(
+0CFMLBIG:74: 				cellData -> cellData.getValue().lastNameProperty());
+0QWCOBHF:75: 		empEmailColumn.setCellValueFactory(
+0WVLQIXA:76: 				cellData -> cellData.getValue().emailProperty());
+0TFWPDUT:77: 		empPhoneNumberColumn.setCellValueFactory(
+0NKBEQTL:78: 				cellData -> cellData.getValue().phoneNumberProperty());
+0BXGAYYL:79: 		empHireDateColumn.setCellValueFactory(
+0MXAODGD:80: 				cellData -> cellData.getValue().hireDateProperty());
+0WZFJLFS:81: 		// Selecting a row of tables will result in a one-line event.
+0GJOMHGF:82: 		employeeTable.setOnMouseClicked(e ->{
+0KPPMZFO:83: 		 if(employeeTable.getSelectionModel().getSelectedItem()!=null ){
+0VHGBAGD:84: 		  Employee user =
+0IKUGBIE:85: 			(Employee)employeeTable.getSelectionModel().getSelectedItem();
+0EXPBACM:86: 	      showLabel(
+0SELRCRZ:87: 	        user.getEmployeeId()+" "+user.getFirstName()+" "+user.getLastName());
+0KOJEPID:88: 		 }
+0SUZTHKB:89: 	    });
+0IGQHOLW:90: 	 }
+0BTZAKEP:91: 	 @FXML
+0SGBMXDK:92: 	 private void searchEmployees(ActionEvent actionEvent) throws SQLException {
+0KQCXMEC:93: 	    try {
+0SQJPNYW:94: 			// 모든 사원 가져오기
+0JRNPPMD:95: 			List<EmployeeDto> emplists=employeeDAO.findAllEmployees();
+0OSXWLGR:96: 			// JavaFX 테이블용 List로 변환
+0BMGWRJT:97: 			ObservableList<Employee> 
+0WAZMQGX:98: 			                  empData = EmpConvert.toObservProFromDto(emplists);
+0PBYBHTV:99: 			// 테이블에 보여주기
+FNLFKAH:100: 			showToTableEmployees(empData);
+UBIJETU:101: 	        showLabel("Employees Total :"+empData.size()+" people");
+ZGZEPKF:102: 	    } catch (SQLException e){
+OYGYJVJ:103: 	        System.out.println("employeeDAO.findAllEmployees() Exception\n" + e);
+KGWLAJG:104: 	    }
+KABZJTP:105: 	 }
+EZCDOJI:106: 	}

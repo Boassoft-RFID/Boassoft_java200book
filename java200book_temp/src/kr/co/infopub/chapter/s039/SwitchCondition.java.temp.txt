@@ -1,0 +1,21 @@
+0KFSABWE:1: 	package kr.co.infopub.chapter.s039;
+0ZYRCEDM:2: 	// char switch
+0XBUWRBC:3: 	public class SwitchCondition {
+0NHKYHZX:4: 		public static int toNum(char c){
+0DUIMACS:5: 			int tot=0;
+0HQHSQJB:6: 			switch(c){
+0ARCYDIC:7: 				case 'A': tot=1;break;
+0CJUBJDJ:8: 				case 'T': tot=10;break;
+0FIQHXEB:9: 				case 'J': tot=11;break;
+YVHPPCR:10: 				case 'Q': tot=12;break;
+BIKJIQG:11: 				case 'K': tot=13;break;
+SDCCSLD:12: 				default : tot=c-'0'; break; //'9'-'0'
+HURFRMX:13: 			}
+NDRRSTZ:14: 			return tot;
+NPSNCEV:15: 		}
+TLVTKEQ:16: 		public static void main(String[] args) {
+SWXDZQP:17: 			char c='J';
+AGKTBTQ:18: 			int result=toNum(c);
+GYVBQQJ:19: 			System.out.printf("%c=>%d\n",c,result);		
+VCSYWGK:20: 		}
+OPSYLVF:21: 	}

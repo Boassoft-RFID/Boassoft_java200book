@@ -1,0 +1,91 @@
+0ZRTIYWJ:1: 	package kr.co.infopub.chapter.s134;
+0WYJGDZO:2: 	public class JSort {
+0OTMYDSA:3: 		public static void BubbleSort(int[] n){
+0DPISSOC:4: 			for(int i=0; i<n.length-1; i++){
+0IZTYCEJ:5: 				for(int j=0; j<n.length-1-i; j++){
+0ZCUXKXP:6: 					if(n[j]>n[j+1]){
+0HAYBCZF:7: 						int temp=n[j];
+0YIZLFKA:8: 						n[j]=n[j+1];
+0LKJHJNQ:9: 						n[j+1]=temp;
+KOXUTPL:10: 					}
+FTTKSOH:11: 				}
+NZUHMAX:12: 			}
+XXVJCYL:13: 		}//버블정렬
+DEFHQMY:14: 		public static void InsertSort(int[] n){	
+SZUSJPW:15: 			for (int i = 0; i < n.length; i++) {
+VPSIJBF:16: 				int temp=n[i];
+PUHUTUW:17: 				int j=i-1;
+PMRFGCV:18: 				while(j>=0 && n[j]> temp){					//왼쪽 수가 더 클 동안 앞의 값을 바로 뒤의 위치에 넣어 준다.
+RIOWDZC:19: 					n[j+1]=n[j];
+SDXQZRX:20: 					j--;
+YJRBDVN:21: 				}
+YHDSRDT:22: 				n[j+1]=temp;
+QVPDMUM:23: 			}
+TSHALFZ:24: 		}//삽입 정렬
+EDAUIOG:25: 		public static void SelectSort(int n[]){
+QPIPKZW:26: 			for (int i = 0; i < n.length; i++) {
+LIZGVDH:27: 				int k = i;
+DSDADWY:28: 				for(int j = i+1;j<n.length;j++){
+VFIFCYX:29: 					 if(n[j] < n[k]){
+ZQHEARW:30: 						 k = j;
+PGLJJZV:31: 					 }
+WXDVPPP:32: 				}
+IWQDQXP:33: 				int temp=n[i];
+CYZIAMN:34: 				n[i]=n[k];
+CXQPQAB:35: 				n[k]=temp;	
+TOOERBS:36: 			}	
+TTPMFEC:37: 		}//셀렉 정렬 끝
+PRDWVEA:38: 		public static void QuickSort(int[] nn, int start, int end){
+AOKTOCA:39: 			int left =start; 
+QFZUBDU:40: 			int right=end;
+JOVYBWU:41: 			int mid=nn[(start+end)/2];
+LTFOXEN:42: 			do{
+ECGCLGA:43: 					//A
+OURGAJF:44: 				while((nn[left]<mid) && (left < end)){
+ZPYKGHE:45: 					left++;
+LCJLSHG:46: 					
+HNFNFVA:47: 				}
+EJHMWHP:48: 				while((mid<nn[right]) && (right>start)){
+LVUVVZA:49: 					right--;
+UBAXXOQ:50: 				}
+QNJBHVJ:51: 					//B
+ESMTJYX:52: 				if(left<=right){
+LUBNIWO:53: 					
+TSTFQZK:54: 					int temp=nn[left];			
+ACYHACQ:55: 					nn[left]=nn[right];
+TJBEQSN:56: 					nn[right]=temp;
+NBGPDNV:57: 					left++;
+XJMSGKS:58: 					right--;
+BKFKLBN:59: 				}
+FGLVFTC:60: 			}while(left<right);
+YGFXNRQ:61: 			//C
+GZGQQMY:62: 			if(start<right){
+NFNZDIU:63: 				QuickSort(nn,start,right);
+BBJEIVV:64: 			}
+DBZUSQU:65: 			//D
+UICFDQR:66: 			if(left<end){
+LTNFIHP:67: 				QuickSort(nn,left,end);
+STBKEFN:68: 			}
+FFORYZF:69: 		}
+TIFAZYJ:70: 		public static void QuickSort(int[] n){
+DQOYUTO:71: 			QuickSort(n,0,n.length-1);
+JGSVJIL:72: 		}
+JDTRXYJ:73: 		public static void ascSort(int [] n){
+MGXHAIP:74: 			int count = n.length;
+YNJCDDG:75: 			for(int i=0;i<count-1;i++){
+RQKYNNM:76: 				for(int j=0;j<count-1-i;j++){
+NOIPWJI:77: 					if(n[j] > n[j+1]){
+SFPARYZ:78: 						int temp = n[j];
+IKOKATZ:79: 						n[j] = n[j+1];
+KBVYBLD:80: 						n[j+1]=temp;
+ZDQEUTF:81: 					}
+QMVEHJJ:82: 				}
+GATRATC:83: 			}
+VOCEXNH:84: 		}
+NVQJQHN:85: 		public static void print(int []n){
+ZJSFYYT:86: 			for(int i=0;i<n.length;i++){
+ELDQUSY:87: 				System.out.print(n[i]+" ");
+WIOVRUS:88: 			}
+OOFMREY:89: 			System.out.println();
+HMEEDIZ:90: 		}	
+JIZSXHW:91: 	}

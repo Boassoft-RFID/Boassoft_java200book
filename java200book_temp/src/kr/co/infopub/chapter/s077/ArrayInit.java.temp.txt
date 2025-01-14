@@ -1,0 +1,34 @@
+0IKJBAET:1: 	package kr.co.infopub.chapter.s077;
+0EOPNUZW:2: 	import java.util.Arrays;
+0UBFUUNJ:3: 	public class ArrayInit {
+0IFTJNYN:4: 		public static void main(String[] args) {
+0PXHEWYL:5: 			//기본타입의 배열 사용 방법 1 선언
+0VVQUFPL:6: 			int [] a;      // 선언
+0SPUUWRM:7: 			// a={1,2,3};   //선언하면서 초기화 할때만 사용
+0UAZACLJ:8: 			//정의
+0BAAPGPA:9: 			a=new int[5];
+LYOOTEW:10: 			//초기화
+BXUFBPD:11: 			a[0]=2;	a[1]=5; a[2]=3; a[3]=9;	a[4]=8;
+UPZJWHT:12: 			//방법 2 선언 정의 초기화
+VLZXVSJ:13: 			int [] b=new int[]{2,5,3,9,8};
+CQNCECZ:14: 			//방법 3 선언 (정의)초기화
+WYHQDCF:15: 			int [] c={2,5,3,9,8};
+NCFFYVY:16: 			//불가 다시 대입 불가(다시 초기화)
+RAANFAP:17: 			//c={2,5,3,9};    
+BVPIXBS:18: 			int [] e=new int[5];
+MZGHLUF:19: 			Arrays.fill(e, -1);
+LMZNDRV:20: 			System.arraycopy(c,0,e,0,c.length);//Deep copy
+ZRIMNDC:21: 			Arrays.sort(e);
+LOQJVZE:22: 			print(e);
+EGRVHNR:23: 			e=new int[]{1,2,3,4,5,6};  //동적배열 다시 초기화가능
+PJHXXQR:24: 			print(e);
+WVIAETZ:25: 			int index=Arrays.binarySearch(e, 5);
+PKWUWBA:26: 			System.out.println(index);
+LATZTEK:27: 		}//
+XVFRMSW:28: 		public static void print(int[] a){
+FSSRNCN:29: 			for(int i=0;i<a.length;i++){
+KZSKFUN:30: 				System.out.print(a[i]+"\t");
+FEISPIN:31: 			}
+IGBFXHN:32: 			System.out.println();
+KYNMXKE:33: 		}
+WHRRRGM:34: 	}

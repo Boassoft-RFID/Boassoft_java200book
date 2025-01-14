@@ -1,0 +1,98 @@
+0IALVWNW:1: 	package kr.co.infopub.chapter.s102;
+0WSCHDFD:2: 	import java.util.ArrayList;
+0GROYNRI:3: 	import javafx.collections.ObservableList;
+0EKJMRPM:4: 	import javafx.event.ActionEvent;
+0XNITQXU:5: 	import javafx.fxml.FXML;  
+0ATASADO:6: 	import javafx.scene.control.Button;
+0QABERJG:7: 	import javafx.scene.control.Accordion;
+0VDWGQGN:8: 	import javafx.scene.control.Label;
+0XKYISTQ:9: 	import javafx.scene.control.TitledPane;
+THWZHNB:10: 	import javafx.scene.control.TreeItem;
+TDQCCXG:11: 	import javafx.scene.control.TreeView;
+WMDFKIV:12: 	import javafx.scene.web.WebEngine;
+LNZLGPX:13: 	import javafx.scene.web.WebView;
+LXNPKGP:14: 	public class BillboardAccordionFxController {
+VESCUQR:15: 	 @FXML
+HTIJLKP:16: 	 private Accordion baccordina;
+YRIQCTD:17: 	 @FXML
+LZDHJYG:18: 	 private TreeView<String> youtrv;
+CCPPXWZ:19: 	 @FXML
+YUTUKHB:20: 	 private WebView webview;
+EOQEUUZ:21: 	 ObservableList<BillbaordProperty> obsbills;
+AQBABFA:22: 	 @FXML
+ETMZXKD:23: 	 private Button btnAf;
+NKGCSDT:24: 	 @FXML
+ZIMXDQX:25: 	 private Button btnBf;
+MJTYXSC:26: 	 @FXML
+SCZZHSV:27: 	 private Label lbbill;
+NDRKTWE:28: 	 TreeItem<String> root = new TreeItem<String>("Singer ");
+TEFWMDF:29: 	 int count=0;
+CROMCOD:30: 	 @FXML
+WYOTWLM:31: 	 void onClickBtnBf(ActionEvent event) {
+LMASWUR:32: 		count++;
+FXUUCYY:33: 		baccordina.getPanes().clear(); //페인에 붙은 것들 제거 후
+SRABITB:34: 		getAllBillboard();  //다시 불러서
+YYSAIGZ:35: 		showAllBillboard(); //붙임
+YOYMXPE:36: 	 }
+QFOHVJR:37: 	 @FXML
+EDDEPPF:38: 	 void onClickBtnAf(ActionEvent event) {
+RMNDMPS:39: 		count=0;
+YJPCGRT:40: 		baccordina.getPanes().clear();//페인에 붙은 것들 제거 후
+NDSTJKO:41: 		getAllBillboard();  //다시 불러서
+ELVGSLG:42: 		showAllBillboard(); //붙임
+KTWZNWP:43: 	 }
+PTDWFTI:44: 	 @FXML
+WBBOPQM:45: 	 void initialize() {
+BQPLELH:46: 		getAllBillboard();
+JWDRGSU:47: 		showAllBillboard();
+HIXXEWU:48: 		youtrv.getSelectionModel().selectedItemProperty().addListener(
+SQMFONH:49: 			(observable, oldValue, newValue) -> {
+OAMOZOF:50: 				if(newValue!=null){
+ZTWVYKI:51: 					final WebEngine webEngine = webview.getEngine();
+WIBQCFW:52: 					//https://www.youtube.com/watch?v=%s 수정
+QOTEZXW:53: 					String ttt=String.format("https://www.youtube.com/results?search_query=%s",
+FAIJAGN:54: 							           ((TreeItem<String>)newValue).getValue());
+KKRFCVK:55: 					webEngine.load(ttt);
+IOAVDIM:56: 				}
+FGMPETT:57: 			});
+XHNQOTJ:58: 		youtrv.setRoot(root);
+YUOQMVO:59: 	 }
+MRUCZAX:60: 	 public void loadTreeItems(String key){
+RYZTOET:61: 		root.getChildren().clear();
+DGSDAMW:62: 		TreeItem<String> abs = new TreeItem<String>(key);
+PJSQTYP:63: 		root.getChildren().add(abs);
+DUZKUXA:64: 		root.setExpanded(true);
+DLURGBT:65: 	 }
+MHKMNZA:66: 	 public void getAllBillboard(){
+JNZIQKS:67: 		RequestFromBillboardHot rfw=new RequestFromBillboardHot();
+QGCDGVP:68: 		//RequestFromBillboard200 rfw=new RequestFromBillboard200();
+QDICCCR:69: 		//String a="https://www.billboard.com/charts/billboard-200/";
+UQSZGPT:70: 		String a="https://www.billboard.com/charts/hot-100/";
+SVRWDCW:71: 		String rs=rfw.getTimeDate(a);
+NPOOMTI:72: 		rs=RestDay.toWantedDay(rs, count); //count 주 이전
+UGHTSVL:73: 		rfw.getBillboardData(a+rs);
+BPKNGAM:74: 		ArrayList<Billbaord> bills=rfw.getBillboards();
+CALURQW:75: 	    obsbills= BillboardConvert.toObservBill(bills);
+RBWAEHM:76: 	    lbbill.setText("Billboard Chat HOT 100 "+rs);
+CCMGLSQ:77: 	 }
+IIQKJUK:78: 	 public String toP(String msg){
+SPZSSCV:79: 	    String ss=msg;
+SGXWVWZ:80: 	    ss=ss.replaceAll(" ", "+");
+PSFRHLK:81: 	    return ss.trim();
+UDKBEQL:82: 	 }
+UNOTPSM:83: 	 public void showAllBillboard(){
+QRIJGNQ:84: 		if(obsbills!=null){
+OTJBBWH:85: 			for(BillbaordProperty bp: obsbills){
+EJIBOYY:86: 				TitledPane mytitle = new TitledPane();
+QGKXDBD:87: 				mytitle.setText(bp.getSong());
+NHWRVCK:88: 	    		mytitle.setOnMouseClicked(event -> {
+HGASRYM:89: 	    			if(mytitle.getText()!=null || mytitle.getText().indexOf(".")!=-1 ){
+IDQKJPX:90: 	    				System.out.println(mytitle.getText()+"2----------------->>>");//ok
+EAGEMRY:91: 	        			loadTreeItems(toP(mytitle.getText()));
+LHJUMIK:92: 	    			}
+AYZPMHX:93: 	            });
+UHWPEUZ:94: 	    		baccordina.getPanes().add(mytitle);
+GBJEEDR:95: 			}
+UJIZYRG:96: 		}
+BGSOKDT:97: 	 }
+KFLCMKS:98: 	}

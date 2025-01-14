@@ -1,0 +1,98 @@
+0IWSKJIQ:1: 	package kr.co.infopub.chapter.s117;
+0MKEFYLH:2: 	public class FourMagicSquare{
+0BGNVPOU:3: 	 private int[][] magic;
+0UHHTWJJ:4: 	 private int n;
+0DNZUAED:5: 	 
+0MWUSBNG:6: 	 public int[][] getMagic() {
+0ZQLCBCL:7: 		return magic;
+0YNXCLXH:8: 	 }
+0IRBQKVU:9: 	 public FourMagicSquare(int n) {
+USCIHNN:10: 		magic=new int [n][ n ];  
+WFGSXIK:11: 		this.n=n;
+UHXJPKS:12: 	 }
+DUQEUKV:13: 	 public FourMagicSquare() {
+KXMIAXQ:14: 		this(4);
+ZDGJOIG:15: 	 }
+VHOXQRC:16: 	 private void makeR() {
+XVBJCED:17: 		for (int i = 0; i < n; i++) {
+ZRSXQUI:18: 			for (int j = 0; j < n; j++) {
+FPLDZIN:19: 				if ((i >= 0 && i < n / 4) || (i >= n / 4 * 3 && i < n)) {
+UCVXZGI:20: 					if (j >= n / 4 && j < n / 4 * 3) {
+VWWDEOB:21: 						magic[i][j] = n * n - (i * n + j);
+XJZLYAL:22: 					}
+IXXSXQZ:23: 				} else {// i가 중앙
+KFOJEKD:24: 					if ((j >= 0 && j < n / 4) || (j >= n / 4 * 3 && j < n)) {// 양쪽
+COXVLZT:25: 						magic[i][j] = n * n - (i * n + j);
+LANDQDO:26: 					}
+CYAKRHU:27: 				}
+FARZCQP:28: 			}
+RZHNAPW:29: 		}
+CJHZSMI:30: 	 }
+LECSUQQ:31: 	 private void makeA() {
+FBJFINU:32: 		for (int i = 0; i <n*n; i++) {
+WDJOGTV:33: 			magic[i/n][i%n]= i+1;
+ILKUQQE:34: 		}
+ZKQBPFR:35: 	 }
+SROJFEN:36: 	 public void make(){
+KBHSQUX:37: 		makeA();
+YMHJGNM:38: 		makeR();
+BSQWEAN:39: 	 }
+URLDGXC:40: 	 public void print(){
+OXDZTZZ:41: 		System.out.println();
+TIDFYMN:42: 		System.out.println(n+" is magic : "+isMagic());
+JGGAEOC:43: 		for (int i = 0; i < n; i++) {
+BIPQPDW:44: 			for (int j = 0; j < n; j++) {
+QCEUOVR:45: 				System.out.print(magic[i][j]+"\t");
+YDSVYAW:46: 			}
+UTLPAFU:47: 			System.out.println();
+GDAABST:48: 		}
+IEKGANG:49: 	 }
+DNUNIIM:50: 	 // row 행의 열들의 합
+NDGTHUS:51: 	 private int sumRow(int row){
+LPPCTIM:52: 		int tot=0;
+PACIUOD:53: 		for (int i = 0; i < n; i++) {
+KGCQZJB:54: 			tot+=magic[row][i];
+SGIMCFM:55: 		}
+RPTFHDI:56: 		return tot;
+SBCGKYH:57: 	 }
+CULUUMB:58: 	 // col 열의(열 고정)  행들의 합
+LLJXJGL:59: 	 private int sumCol(int col){
+GVXEXVF:60: 		int tot=0;
+WIWJABB:61: 		for (int i = 0; i < n; i++) {
+QSGZAFN:62: 			tot+=magic[i][col];
+BDKOAUN:63: 		}
+AGWZSPT:64: 		return tot;
+XPYZGDZ:65: 	 } 
+VGJXIDB:66: 	 private int sumDia(){
+JQEEZIM:67: 		int tot=0;
+NPDIICD:68: 		for (int i = 0; i < n ; i++) {
+CWBQAIL:69: 			tot+=magic[i][n-1-i];
+LSYUOVD:70: 		}
+OLNBLSS:71: 		return tot;
+UUGSNRO:72: 	 }
+FCLEWSL:73: 	 private int sumReverseDia(){
+SBDHKAQ:74: 		int tot=0;
+IUPUOVV:75: 		for (int i = 0; i < n ; i++) {
+KARIPBW:76: 			tot+=magic[i][i];
+QYOFHGW:77: 		}
+TMWZRJS:78: 		return tot;
+GWIGEAV:79: 	 }
+BARGFUA:80: 	 // 마방진이 잘 되었는가를 판단
+RMBCHJQ:81: 	 private  boolean isMagic( ){
+ZWUGGOV:82: 		boolean isM=true;
+ZNQMIHK:83: 		int[ ]m=new int[2*n+2];
+LBUPVZC:84: 		for (int i = 0; i < n; i++) {
+ATBECNN:85: 			m[i]=sumRow(i);
+FOQFWLB:86: 			m[i+n]=sumCol(i);
+AZIEJLJ:87: 		}
+NOLKVGL:88: 		m[2*n]=sumReverseDia();
+LWPQAUQ:89: 		m[2*n+1]=sumDia();
+QJLOSTJ:90: 		for (int i = 1; i < m.length; i++) {
+NRXBLWR:91: 			if(m[0]==0 || m[0]!=m[i]){
+FINKKOC:92: 				isM=false;
+PYGLQFE:93: 				break;
+JPLTNHV:94: 			}
+XKDNPGB:95: 		}
+JBFKQIB:96: 		return isM;
+DPRHDSS:97: 	 }
+DLIYUGM:98: 	}

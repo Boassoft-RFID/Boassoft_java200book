@@ -1,0 +1,69 @@
+0IFMPTES:1: 	package kr.co.infopub.chapter.s185;
+0LBVJNHC:2: 	import java.sql.SQLException;
+0CIOYBAP:3: 	import java.util.List;
+0ZWORQWJ:4: 	import javafx.application.Application;
+0REFDCEG:5: 	import javafx.beans.value.ChangeListener;
+0SXIFGKR:6: 	import javafx.geometry.Insets;
+0GYXSLSU:7: 	import javafx.scene.Scene;
+0QVJGKQW:8: 	import javafx.scene.control.Label;
+0OUBYRZU:9: 	import javafx.scene.control.TreeItem;
+FZIPAHB:10: 	import javafx.scene.control.TreeView;
+YFMAMPC:11: 	import javafx.scene.layout.BorderPane;
+TGEOXDP:12: 	import javafx.stage.Stage;
+UDJNAWU:13: 	import kr.co.infopub.chapter.s185.dto.DepConvert;
+SICDUEW:14: 	import kr.co.infopub.chapter.s185.dto.Department;
+EBGZKBZ:15: 	import kr.co.infopub.chapter.s185.dto.DepartmentDto;
+UBYMFZV:16: 	import kr.co.infopub.chapter.s185.model.EmployeeDAO;
+JILIKPA:17: 	import kr.co.infopub.chapter.s185.util.EmpUtil;
+FEPWAJJ:18: 	public class DepTreeFx extends Application {
+INNQJJZ:19: 	EmployeeDAO employeeDAO=new EmployeeDAO();
+QHVKPOF:20: 	
+RCVYVXM:21: 	public  void makeDepTree(TreeItem<String> front,List<Department> dlists){
+XVNORNL:22: 		for (Department dep: dlists) {
+WPCNVRF:23: 		          TreeItem<String> troots=new TreeItem<String>(EmpUtil.tname(dep));
+FZFHADP:24: 		          front.getChildren().add(troots);
+JCMHBWW:25: 		}
+TGXJSWK:26: 	}	
+OWKCXNX:27: 	@Override
+LPMIWYT:28: 	public void start(Stage stage) {
+FKGKKBN:29: 	  BorderPane vbox=new BorderPane();
+YEOJNAN:30: 	  vbox.setPadding(new Insets(10, 10, 10, 10));
+TUGFZHG:31: 	  try {	
+FXOIAXL:32: 		// The department where the employees are located and the employees are still appointed(NOTYET)
+JEULUZP:33: 		List<DepartmentDto> blist  = employeeDAO.findAllDepartments ();
+ACZOMOF:34: 		// Converting to a list for JavaFX TreeItem
+CODYIBD:35: 		List<Department> dlists=DepConvert.toObservProFromDto(blist);
+QTMWJPP:36: 		// department item
+LDYFSHH:37: 		TreeItem<String> root = new TreeItem<String>("부서");
+VFACBXG:38: 		// department item에 부서들 붙이기
+OWOOZUJ:39: 		makeDepTree(root,dlists);
+AXTJUAD:40: 		// Attaching tree items to a tree view
+QMURJCF:41: 		TreeView<String> treeView = new TreeView<String>(root);
+VPAZPDA:42: 		
+BYBSFMN:43: 		root.setExpanded(true);
+AAVJTCM:44: 		vbox.setCenter(treeView);
+TXVDPUM:45: 		Label label = new Label("                          ");
+LEYGEJD:46: 		vbox.setBottom(label);
+ZXARMDS:47: 		Scene scene = new Scene(vbox, 400, 800);
+FWJNCCM:48: 		stage.setScene(scene);
+NQBTUMA:49: 		stage.setTitle("Human Resouce Management System ver. 0.2");
+VWIGJYZ:50: 		stage.show();
+ZRZPWSR:51: 		// When you select an item in the tree view, information about the selected item is displayed at the bottom of the screen
+CYQXPMP:52: 		treeView.getSelectionModel().selectedItemProperty()
+EIVREHE:53: 		.addListener( (observable, oldValue, newValue) -> {
+FYVNBCQ:54: 			String name =newValue.getValue();
+RDBUZQC:55: 			label.setText(   EmpUtil.dep(name));
+OSPGNLG:56: 			});
+LYOOVRV:57: 	//	treeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TreeItem>() {
+KBSUBDO:58: 	//		public void changed(javafx.beans.value.ObservableValue<? extends TreeItem> observable, TreeItem oldValue, TreeItem newValue) {
+LQXFGLD:59: 	//			System.out.println(newValue.getValue());
+WXBPRDH:60: 	//		};
+IFQKRNJ:61: 	//	});
+UZYZKPT:62: 	   } catch (SQLException e) {
+AGIFAZZ:63: 			System.out.println(e);
+MZMAXWB:64: 	   }
+NGDNOMC:65: 	 }
+FYRMIHP:66: 	 public static void main(String[] args) {
+FVJXCPV:67: 	   launch(args);
+AYXBZPX:68: 	 }
+MJTTVHV:69: 	}

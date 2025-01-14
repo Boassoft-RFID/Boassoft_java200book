@@ -1,0 +1,15 @@
+0BTALIGW:1: 	package kr.co.infopub.chapter.s164;
+0EWGKYDG:2: 	// 변수와 상수
+0OVGLYSR:3: 	public class ExchangeRate {
+0ITVAOCQ:4: 		public static void main(String[] args) {
+0YRYXDMH:5: 			final double USD=1113.00;    // 상수값
+0DQKJUYV:6: 			final double JPY=10.0624;    // 상수값 
+0PKMNVWT:7: 			double krw=1000000;          // 변수값
+0GFAMFPN:8: 			double result=krw/USD;       // 연산 1000000.00/1113.00
+0NVFTCBX:9: 			System.out.printf(
+BOIMDFI:10: 			  "한화 %.2f원은 미국달러로 %.2f달러 입니다.\n",krw,result);
+IWVKELX:11: 			result=krw/(JPY);  // 일본100엔 1006.24원
+HNSGHNZ:12: 			System.out.printf(
+LKITXQH:13: 			  "한화 %.2f원은 일본엔화로 %.2f엔 입니다.\n",krw,result);
+ULKWZGD:14: 		}
+HSITLUK:15: 	}

@@ -1,0 +1,32 @@
+0INKKDIH:1: 	package kr.co.infopub.chapter.s152;
+0PBYDCMY:2: 	import java.util.Comparator;
+0CCUKHON:3: 	
+0XHYOLBN:4: 	public class CardRankComp implements Comparator<Card> {
+0AAWYWVK:5: 	
+0INYPUOM:6: 		@Override
+0MZWREDN:7: 		public int compare(Card o1, Card o2) {
+0JCVMSSP:8: 			int c1=toNum(o1.getCard().charAt(1));
+0GOVALWC:9: 			int c2=toNum(o2.getCard().charAt(1));
+GXOPCJM:10: 			if(c1-c2>0){
+LPKXIGB:11: 				return 1;//asc
+VYXRJHV:12: 			}else if(c1-c2<0){
+XRZZUPS:13: 				return -1;
+YMDVRRM:14: 			}else{
+FOJLVWV:15: 				return 0;
+HWEDWFJ:16: 			}
+XKDNCUC:17: 		}
+WHRNOET:18: 		
+SMCOROR:19: 		private int toNum(char c){
+PJYVSGB:20: 			int tot=0;
+VIBNKOX:21: 			switch(c){
+DWDJMXJ:22: 				case 'A': tot=1;break;
+WKOBYIV:23: 				case 'T': tot=10;break;
+WSSJFJT:24: 				case 'J': tot=11;break;
+HSQAQUF:25: 				case 'Q': tot=12;break;
+WQGVVIM:26: 				case 'K': tot=13;break;
+PKMXBHS:27: 				default : tot=c-'0'; break; //'9'-'0'
+PZLRQHU:28: 			}
+HVTQNFC:29: 			return tot;
+GYQXXIW:30: 		}
+WRHQOQC:31: 		
+INBWEYJ:32: 	}

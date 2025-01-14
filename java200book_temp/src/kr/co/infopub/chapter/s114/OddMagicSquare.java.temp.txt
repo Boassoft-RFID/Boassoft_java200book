@@ -1,0 +1,51 @@
+0CCGGCFI:1: 	package kr.co.infopub.chapter.s114;
+0LBXLINP:2: 	public class OddMagicSquare {
+0LQDRINI:3: 		private int [][] magic; // Two dimensions 배열 선언
+0BMPXHFR:4: 		private int n;          // 마방진 크기 n X n
+0SNWYHQY:5: 	
+0DLKDDLL:6: 		public int[][] getMagic() {
+0DLNCNNN:7: 			return magic;
+0WSICPVB:8: 		}
+0CZFIEZT:9: 		public OddMagicSquare(int n) {
+IJCXRMA:10: 			magic=new int[n][n]; // Two dimensions 배열 생성, 초기화
+GJINFIR:11: 			this.n=n;            // 마방진 크기 결정
+UHUGVKD:12: 		}
+DNSVLJF:13: 		public OddMagicSquare( ) {
+JZIGETD:14: 			this(3);    // 생성자 오버로딩 - OddMagicSquare(int n)을 이용
+FPPQCRI:15: 		}
+GUSHIDM:16: 		public void make( ){   // 홀수 마방진 만들기
+KHSVFWW:17: 			int x=0;           // 가장 윗줄
+NJUKDVX:18: 			int y=n/2;         // 중앙
+GYTYSFD:19: 			for (int i = 1; i <= n*n ; i++) {
+BDJSAJB:20: 				int temX=x;    // 옮기기전 위치 저장
+CWJMPSY:21: 				int temY=y;    
+YBXFNHC:22: 				System.out.printf("(%d,%d)\t",x,y);
+ATIMUYH:23: 				magic[x][y]=i; // 1~nxn 대입
+SDWRVBM:24: 				// 위로 이동
+YKMPWVC:25: 				if( x-1<0 ){ // 윗벽
+RZVNZGL:26: 					x=n-1;
+VATKVGG:27: 				}else{
+LRZWWLL:28: 					x--;     // 정상 x=x-1;
+XGIRRVX:29: 				}
+UXDXBEP:30: 				// 왼쪽으로 이동
+RTRNRSW:31: 				if( y-1<0 ){ // 왼쪽 벽
+FSJEAZL:32: 					y=n-1;
+KYVQNLH:33: 				}else{
+ZXOMKAC:34: 					y--;     // 정상 y=y-1;
+HSRCSHO:35: 				}
+CAYJCJR:36: 				if(magic[x][y]!=0){ // 이미 존재
+FMKJDBN:37: 					x=temX+1;  // x원위치+1
+IYDCZOJ:38: 					y=temY;    // y원위치
+HJVCYJD:39: 				}
+PWSCEVJ:40: 			}//for
+HBHMMLE:41: 		}
+RJTXPBQ:42: 		public void print(){
+YZNUPSL:43: 			System.out.println();
+UQBNLVV:44: 			for (int i = 0; i < n; i++) {
+IERQMDM:45: 				for (int j = 0; j < n; j++) {
+MIFWTIY:46: 					System.out.print(magic[i][j]+"\t");
+QEQSAAF:47: 				}
+NDOGLKJ:48: 				System.out.println();
+NGUHXSM:49: 			}
+GBPLDXR:50: 		}
+KCDRRHT:51: 	}//class 

@@ -1,0 +1,13 @@
+0AIFOMJD:1: 	package kr.co.infopub.chapter.s034;
+0SQYNWLC:2: 	// if condition
+0WSYPEUC:3: 	public class EvenOddIfCondition {
+0GFTQBRA:4: 		public static void main(String[] args) {
+0MCTXWTE:5: 			int temp=99;
+0UAKKCUR:6: 			if(temp%2==1){    // 홀수 
+0UOFAEAM:7: 				temp=temp*3+1;
+0GWHZUNO:8: 			}else{
+0NDWOONY:9: 				temp=temp/2;
+GHDJPAG:10: 			}
+FUCJRHL:11: 			System.out.printf("계산 후=%d\n",temp);
+UJCBYMO:12: 		}
+FFAYILH:13: 	}

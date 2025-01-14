@@ -1,0 +1,87 @@
+0UQPNNMK:1: 	package kr.co.infopub.chapter.s188;
+0TCNQVSM:2: 	import java.sql.SQLException;
+0XYLNJVE:3: 	import java.util.List;
+0PJSZUXK:4: 	import javafx.application.Application;
+0RMFENYU:5: 	import javafx.collections.FXCollections;
+0QEPPQWJ:6: 	import javafx.collections.ObservableList;
+0XIAVNII:7: 	import javafx.scene.Group;
+0NWMGVLY:8: 	import javafx.scene.Scene;
+0FVMICYX:9: 	import javafx.scene.chart.PieChart.Data;
+FAHAWWW:10: 	import javafx.scene.control.Label;
+GXBRQMO:11: 	import javafx.scene.input.MouseEvent;
+TMBJUTI:12: 	import javafx.stage.Stage;
+DGMZSRG:13: 	import kr.co.infopub.chapter.s185.dto.DepCount;
+AARJGVI:14: 	import kr.co.infopub.chapter.s185.dto.DepCountConvert;
+OYRKOMU:15: 	import kr.co.infopub.chapter.s185.dto.DepCountDto;
+QOVHWEN:16: 	import kr.co.infopub.chapter.s185.model.EmployeeDAO;
+UCSUJWM:17: 	import kr.co.infopub.chapter.s185.util.EmpUtil;
+NDMDAOC:18: 	import kr.co.infopub.chapter.s185.util.PTS;
+OKOVSJP:19: 	import javafx.scene.chart.PieChart;
+ESDARMG:20: 	public class DepChartFx extends Application {
+TMBVMHY:21: 	 int total=0;   // 전체 사원 수
+RPIAAHT:22: 	 private ObservableList<Data> getChartData(List<DepCount> dlists) {
+QNHIQLS:23: 	    ObservableList<Data> answer = FXCollections.observableArrayList();
+WFXZOND:24: 	    for (DepCount dc: dlists) {
+HHJAULC:25: 	    	// 부서 이름(부서 아이디), 부서원 수
+BCQLTBE:26: 	    	 answer.add(new PieChart.Data( dc.getDepartment_name()
+BNCBBGG:27: 	    			   +"("+dc.getDepartment_id()+")", dc.getCount()  ));
+GREHYCW:28: 		}
+ZUDWRNI:29: 	    return answer;
+TIWZGOT:30: 	 }
+FIPEMEU:31: 	 @Override
+SBQTYXW:32: 	 public void start(Stage stage) {
+QCHICXY:33: 	  EmployeeDAO employeeDAO=new EmployeeDAO();
+SEAYVEA:34: 	  try {
+DFBBYXS:35: 		List<DepCountDto> bdlists=employeeDAO.findAllDepCounts();
+IJOJGQF:36: 		List<DepCount> dlists =DepCountConvert.toObservProFromDto(bdlists);
+TXISQEH:37: 		// 부서별 인원을 더해서 전체 사원수를 구한다.
+KQAEOWW:38: 		for(DepCount dc: dlists){
+KFXSUMK:39: 		    total+=dc.getCount();
+FZUOAYE:40: 		}
+TFMZFSB:41: 		Scene scene = new Scene(new Group());
+TOHWIPJ:42: 		stage.setTitle("부서별 인원수 " +PTS.toDay());
+FNVQXZW:43: 		stage.setWidth(750);
+QHAQHZA:44: 		stage.setHeight(800);
+KYEGOEN:45: 		
+TBGUQGR:46: 		PieChart pieChart = new PieChart();
+GPEPJNV:47: 		pieChart.setTitle("부서별 인원수 총"+total+"(Person)");
+UOGBVWS:48: 		// 파이차트에  ObservableList를 대입한다
+NJCXMSK:49: 		// 부서별 부서원 수로 파이 넓이를 차지한다.
+BSATJJQ:50: 		pieChart.setData(getChartData(dlists));
+ZFHAUGL:51: 	    pieChart.setClockwise(true); 
+VDVRQQQ:52: 	    pieChart.setStartAngle(180);  
+VKNQSXH:53: 	    pieChart.setLabelsVisible(true); 
+SZSWPUB:54: 	    //레전드
+DPTGIJN:55: 	    //pieChart.setLabelLineLength(20);
+LRNFDPU:56: 	    //pieChart.setLegendSide(Side.LEFT);
+HSVZOJT:57: 	    pieChart.setPrefWidth(750);
+CZAPHGV:58: 	    pieChart.setPrefHeight(700); 
+LEQTRCP:59: 	    final Label caption = new Label("");
+WTZJLJY:60: 	    String value=
+QRUZDCH:61: 		    	   "-fx-font-size: 25px;           "
+VNECFDR:62: 		    	  +"-fx-font-family: 'Arial Black';    ";
+YTIGQUR:63: 	    caption.setStyle(value);
+FNGMYXO:64: 	    for (final PieChart.Data data : pieChart.getData()) {
+DNHGNLN:65: 	        data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+LZMFNDI:66: 	            e-> {
+PCYGNBK:67: 	                caption.setTranslateX(e.getSceneX());  // 마우스로 누른 X위치에
+IFRGSQJ:68: 	                caption.setTranslateY(e.getSceneY());  // 마우스로 누른 Y위치에
+JPRNCCL:69: 	                String sft=String.format("%s %.2f%%(%.0f명)", 
+CKZNELW:70: 	                		EmpUtil.dep(data.getName()),   // 부서이름
+UNQSNDO:71: 	                		100*data.getPieValue()/total,  // 부서인원 %비율
+QAXQJVF:72: 	                		data.getPieValue());           // 부서인원
+AJBOMID:73: 	                caption.setText(sft);
+HTNOVZR:74: 	            });
+PAXOFQI:75: 	    }
+TNPEFFS:76: 	    // 파이차트와 이벤트가 발생했을 때 보일 내용(라벨)
+VUCCWBZ:77: 	    ((Group) scene.getRoot()).getChildren().addAll(pieChart,caption);
+KSDRWWN:78: 	    stage.setScene(scene);
+KHLVWFF:79: 	    stage.show();
+HIYQVIB:80: 	  } catch (SQLException e) {
+GNNCCUO:81: 		System.out.println(e);
+SHNCRXZ:82: 	  }
+WYMSRUF:83: 	 }
+CSPPYXV:84: 	 public static void main(String[] args) {
+CMYFUOC:85: 	  launch(args);
+ZGHKCGB:86: 	 }
+KJLWFJH:87: 	}

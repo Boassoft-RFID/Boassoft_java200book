@@ -1,0 +1,167 @@
+00EFNMVNO:1: 	package kr.co.infopub.chapter.s149;
+00EDANUYO:2: 	import java.util.ArrayList;
+00IPOWESK:3: 	import java.util.Arrays;
+00KQJBNXC:4: 	import java.util.Collections;
+00TBDUUBF:5: 	// 연산자 오러로딩은 없다.
+00JJINYVQ:6: 	public class Sudoku {
+00TTZLLNL:7: 		boolean isShuffle=true;
+00EQDNOXF:8: 		double [][] sdoku;
+00BCXBAEF:9: 		double [][] basic;
+0XQCNERK:10: 		int n;
+0JCFWEJO:11: 		public Sudoku(int n) {
+0PWAQWAP:12: 			this.n=n;
+0XRFAUQG:13: 			sdoku=new double[n*n][n*n];
+0FIXXGIF:14: 			basic=new double[n][n];
+0WEFEHUP:15: 		}
+0JCZNULR:16: 		public Sudoku() {
+0CNPNGXP:17: 			this(3);
+0AYXFHWZ:18: 		}
+0QCNBWTT:19: 		private void clear(){
+0NWYXIVV:20: 			int m=sdoku.length;
+0PPOZCZJ:21: 			for (int i = 0; i < m; i++) {
+0FDJFBBR:22: 				Arrays.fill(sdoku[i], 0);
+0SQKXPIC:23: 			}
+0LNRFGMV:24: 		}
+0LLCWUEI:25: 		
+0XXSEDPP:26: 		public boolean isShuffle() {
+0VAWBGHA:27: 			return isShuffle;
+0GDAWSYZ:28: 		}
+0EOGMIGL:29: 		public void setShuffle(boolean isShuffle) {
+0UMJPAEV:30: 			this.isShuffle = isShuffle;
+0WPMUMVD:31: 		}
+0NVWQGHE:32: 		private void init(){
+0HCBINDO:33: 			for (int i = 0; i < n; i++) {
+0MRHMIUP:34: 				for (int j = 0; j <n; j++) {
+0INUEDOW:35: 					basic[i][j]=i*n+j+1;
+0GKGOYEO:36: 					sdoku[i][j]=basic[i][j];
+0WOPENTM:37: 				}
+0SKULFWV:38: 			}
+0IDZZEGT:39: 		}
+0OCECPUT:40: 		public void print2(){
+0VIYTZJU:41: 			System.out.println(new Matrix(sdoku));
+0ROPHBSO:42: 		}
+0WFBWPUM:43: 		public void print(){
+0VBVZOIN:44: 			StringBuffer sb=new StringBuffer();
+0IDLXTTX:45: 			for (int i = 0; i < sdoku.length; i++) {
+0PTUKEKH:46: 				sb.append("[\t");
+0SZWSDQG:47: 				for (int j = 0; j < sdoku[i].length; j++) {
+0QQFREMU:48: 					sb.append((int)sdoku[i][j]+"\t");
+0RFAUODS:49: 				}
+0RFROBIY:50: 				sb.append("]");
+0PAQDIQP:51: 				sb.append("\n");
+0IRCBIDJ:52: 			}
+0BQTYLVJ:53: 			System.out.println(sb.toString());
+0KAIGMPU:54: 		}
+0CDWLUHY:55: 		private void shuffle(){
+0JXKQSMM:56: 			if(isShuffle()){
+0WXBPLKS:57: 				Matrix msdo=MatrixUtil.toTwoOne(new Matrix(basic));
+0FOUYKPE:58: 				double[][]mms=msdo.getMatrix();//1x9
+0ZCMDRJS:59: 				ArrayList<Double> list=new ArrayList<Double>();
+0WMMUISP:60: 				for (int i = 0; i < mms[0].length; i++) {
+0SBFUGYM:61: 					list.add(mms[0][i]);
+0RICIVOG:62: 				}
+0PPWGWVJ:63: 				Collections.shuffle(list);
+0PURCGSD:64: 				for (int i = 0; i < mms[0].length; i++) {
+0ICGOMMY:65: 					mms[0][i]=list.get(i);
+0VXMDLTM:66: 				}
+0IPNPOFN:67: 				msdo=MatrixUtil.toOneTwo(new Matrix(mms),n,n);
+0QWXLMLG:68: 				basic=msdo.getMatrix();
+0PYEIIXY:69: 				for (int i = 0; i < n; i++) {
+0IXYMPAR:70: 					for (int j = 0; j <n; j++) {
+0DJMRODY:71: 						sdoku[i][j]=basic[i][j];
+0ESIEODX:72: 					}
+0WBXLIZF:73: 				}
+0XFCXFPD:74: 			}
+0PTWECEN:75: 		}
+0CMXDNAC:76: 		public void make(){
+0TKPNHCB:77: 			clear();
+0OXCPHFL:78: 			init();
+0XWVUVBW:79: 			shuffle();
+0RTDZEVU:80: 			makeS1();
+0AEBODYH:81: 			makeS2();
+0FKOUPVF:82: 			makeS3();
+0OAGRDQF:83: 			makeS4();
+0PIQHKWB:84: 			makeS5();
+0AEJYSFN:85: 			makeS6();
+0EYBSUFL:86: 			makeS7();
+0WPGRLKH:87: 			makeS8();
+0LUUBRCW:88: 		}
+0JWQIWTJ:89: 		private double [][] x2={{0,1,0},{0,0,1},{1,0,0}};
+0QXQJCXU:90: 		private double [][] x1={{0,0,1},{1,0,0},{0,1,0}};
+0GBAAIZP:91: 		public void makeS1(){
+0QZILJCK:92: 			Matrix s0=new Matrix(basic);
+0KXKJQEF:93: 			Matrix s1=MatrixUtil.mulMatrix( new Matrix(x2),s0);
+0DNRGVVE:94: 			for (int i = 0; i < n; i++) {
+0OVGMDFT:95: 				for (int j =0; j <n; j++) {
+0KNMWZPU:96: 					sdoku[i][j+n]=s1.getMatrix()[i][j];
+0EHPPQLP:97: 				}
+0QVBRSID:98: 			}
+0RQJTHVH:99: 		}
+JXYVGGY:100: 		public void makeS2(){
+GDMZLCN:101: 			Matrix s0=new Matrix(basic);
+VPMDVUN:102: 			Matrix s2=MatrixUtil.mulMatrix( new Matrix(x1),s0);
+UPXYZOW:103: 			for (int i = 0; i < n; i++) {
+JNCXGJV:104: 				for (int j =0; j <n; j++) {
+DLODRQV:105: 					sdoku[i][j+2*n]=s2.getMatrix()[i][j];
+UQZWNUT:106: 				}
+CIYGHEF:107: 			}
+OHJSUZJ:108: 		}
+XCQNZOM:109: 		public void makeS3(){
+BEBVSUR:110: 			Matrix s0=new Matrix(basic);
+ESCQITI:111: 			Matrix s3=MatrixUtil.mulMatrix( s0,new Matrix(x1));
+SEVOFVL:112: 			for (int i = 0; i < n; i++) {
+PJKQKQI:113: 				for (int j =0; j <n; j++) {
+VPKJKGF:114: 					sdoku[i+n][j]=s3.getMatrix()[i][j];
+AFQKRTR:115: 				}
+RIYASGK:116: 			}
+CWZRRGD:117: 		}
+PUECLYW:118: 		public void makeS4(){
+FGTJSHN:119: 			Matrix s0=new Matrix(basic);
+RHYXMHU:120: 			Matrix s1=MatrixUtil.mulMatrix( new Matrix(x2),s0);
+JSUXEQB:121: 			Matrix s4=MatrixUtil.mulMatrix( s1,new Matrix(x1));
+CTLQHVX:122: 			for (int i = 0; i < n; i++) {
+UMPIFVC:123: 				for (int j =0; j <n; j++) {
+BCGDQQE:124: 					sdoku[i+n][j+n]=s4.getMatrix()[i][j];
+ATVSNYX:125: 				}
+VAXMKZZ:126: 			}
+AJSCWIY:127: 		}
+ANBMXYY:128: 		public void makeS5(){
+KDKVWYB:129: 			Matrix s0=new Matrix(basic);
+UUBBKJX:130: 			Matrix s1=MatrixUtil.mulMatrix( new Matrix(x1),s0);
+HEHIWSX:131: 			Matrix s5=MatrixUtil.mulMatrix( s1,new Matrix(x1));
+ZLFKFGG:132: 			for (int i = 0; i < n; i++) {
+KYWUPQY:133: 				for (int j =0; j <n; j++) {
+AQPWVZX:134: 					sdoku[i+n][j+2*n]=s5.getMatrix()[i][j];
+SNRZDED:135: 				}
+BSXXBJS:136: 			}
+PPTBYFN:137: 		}
+CIZVAZS:138: 		public void makeS6(){
+USVOHAV:139: 			Matrix s0=new Matrix(basic);
+VNTXMLY:140: 			Matrix s6=MatrixUtil.mulMatrix( s0,new Matrix(x2));
+TBCEADR:141: 			for (int i = 0; i < n; i++) {
+MNWSYVC:142: 				for (int j =0; j <n; j++) {
+PQZPFTW:143: 					sdoku[i+2*n][j]=s6.getMatrix()[i][j];
+GVMQSQS:144: 				}
+UTGBZNK:145: 			}
+WQNXNHN:146: 		}
+AWHWWKO:147: 		public void makeS7(){
+ITYYSEA:148: 			Matrix s0=new Matrix(basic);
+TYOMEHJ:149: 			Matrix s1=MatrixUtil.mulMatrix( new Matrix(x2),s0);
+BIVNBNK:150: 			Matrix s7=MatrixUtil.mulMatrix( s1,new Matrix(x2));
+JABOQHV:151: 			for (int i = 0; i < n; i++) {
+UNPMLBF:152: 				for (int j =0; j <n; j++) {
+CMOIHFU:153: 					sdoku[i+2*n][j+n]=s7.getMatrix()[i][j];
+TIOTODN:154: 				}
+UDNMOQD:155: 			}
+FJJYGXC:156: 		}
+SYBWVIJ:157: 		public void makeS8(){
+HFUEYUG:158: 			Matrix s0=new Matrix(basic);
+YVKRHIJ:159: 			Matrix s1=MatrixUtil.mulMatrix( new Matrix(x1),s0);
+WKNGKKF:160: 			Matrix s8=MatrixUtil.mulMatrix( s1,new Matrix(x2));
+VCJWWMM:161: 			for (int i = 0; i < n; i++) {
+TMAUDFF:162: 				for (int j =0; j <n; j++) {
+SFXDKIA:163: 					sdoku[i+2*n][j+2*n]=s8.getMatrix()[i][j];
+MPECPUJ:164: 				}
+BTWQHDM:165: 			}
+HYRNLSS:166: 		}
+TIYJMIM:167: 	}

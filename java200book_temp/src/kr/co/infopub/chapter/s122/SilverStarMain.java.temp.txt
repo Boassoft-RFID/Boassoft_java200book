@@ -1,0 +1,6 @@
+GVRIATV:1: 	package kr.co.infopub.chapter.s122;
+OAAPJPM:2: 	public class SilverStarMain {
+ZIMARNU:3: 		public static void main(String[] args) {
+UEESVQP:4: 			 SilverStar.stepDia(15);
+GEDRLAD:5: 		}
+PHDMASM:6: 	}

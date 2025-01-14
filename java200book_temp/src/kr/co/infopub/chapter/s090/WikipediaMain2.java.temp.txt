@@ -1,0 +1,31 @@
+0YHLXFSF:1: 	package kr.co.infopub.chapter.s090;
+0JXNNUCK:2: 	import java.io.BufferedReader;
+0NOGWAYX:3: 	import java.io.InputStreamReader;
+0UPZCEDH:4: 	import java.net.URL;
+0DRLIYVH:5: 	import java.util.ArrayList;
+0KAMNVVV:6: 	
+0ELJIFVI:7: 	public class WikipediaMain2 {
+0SAQVHIP:8: 	 public static void main(String[] args) {
+0QZPIZDL:9: 		ArrayList<String> htmls=new ArrayList<String>();
+QCHIDYY:10: 		String newUrls="https://ko.wikipedia.org/wiki/ISO_3166-1";
+QQLOSTU:11: 		URL url=null;
+RJEIMLJ:12: 		try {
+KQSOGGY:13: 	    	url=new URL(newUrls);  //주소 찾기
+RNOZJIB:14: 	    	// 주소지에 빨대 꽂기
+DIJXVKO:15: 	 		BufferedReader reader = new BufferedReader(  
+IRJENLC:16: 	 				              new InputStreamReader(url.openStream(),"utf-8"),8);
+BJPYPIH:17: 	 		String line = null;
+BZIAPRT:18: 	 		while ((line = reader.readLine()) != null){  // 한줄씩 읽어서 
+GYDQBBI:19: 	 			if(!line.trim().equals("")){             // 공백이 아니면 출력한다.
+DWZSEDU:20: 	 				htmls.add(line.trim());              // ArrayList 한줄씩 저장
+WJJEXDO:21: 	 			}
+DFAHYXN:22: 	 		}
+BTWPYXA:23: 	 	} catch (Exception e) {
+ZDODBJF:24: 	 		System.out.println("Wiki Flag Parsing error !!! ");
+NDAEFVG:25: 	    } 
+EXKKPMK:26: 		// ArrayList에 저장된 문자열을 출력
+BIREWZY:27: 		for (String str : htmls) {
+UNLFRIP:28: 			System.out.println(str);
+WKHVIPY:29: 		}
+QICDBBO:30: 	 }
+QQQTFQU:31: 	}

@@ -1,0 +1,12 @@
+0NWOTVLD:1: 	package kr.co.infopub.chapter.s115;
+0XKXHXQJ:2: 	import java.util.Scanner;
+0XCSEMRB:3: 	public class OddMagicSquareMain {
+0XFZLEAA:4: 		public static void main(String[] args) {
+0XZGZDPZ:5: 			Scanner scann=new Scanner(System.in);
+0FRFZPIJ:6: 			System.out.println("홀수 정수를 입력하세요.");
+0NZRLATU:7: 			int n=scann.nextInt();
+0OAAIKWW:8: 			OddMagicSquare odd=new OddMagicSquare(n);
+0SAYHNOJ:9: 			odd.make();
+UJVUERX:10: 			odd.print();
+NZNUYKV:11: 		}
+KKGLWDF:12: 	}

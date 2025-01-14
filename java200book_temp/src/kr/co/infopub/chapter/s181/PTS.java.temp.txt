@@ -1,0 +1,77 @@
+0RVLCMNE:1: 	package kr.co.infopub.chapter.s181;
+0UBTTJRD:2: 	import java.sql.Date;
+0BTXCTDC:3: 	import java.text.ParseException;
+0RLLRSID:4: 	import java.text.SimpleDateFormat;
+0IGEKTQX:5: 	public class PTS {
+0QUJDYZR:6: 	 // java.sql.Date -> "yyyy. MM. dd" 
+0GULFIQY:7: 	 public static String toSDate(Date msg){
+0CHMSGXM:8: 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy. MM. dd");
+0QUBKAGW:9: 		return sdf.format(msg);
+EIYLISR:10: 	 }
+XRLIDJF:11: 	 // "yyyy. MM. dd" -> java.sql.Date
+IKEJQOW:12: 	 public static Date toDaeS(String msg){
+JAHISUQ:13: 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy. MM. dd");
+JTKKDKY:14: 		java.util.Date ud=new java.util.Date();
+WCCHJRM:15: 		try {
+KMZVFJV:16: 			ud=sdf.parse(msg);
+RDDSFKM:17: 		} catch (ParseException e) {
+ZSNXAPD:18: 		}
+EIULSQI:19: 	   return new Date(ud.getTime());
+JDWCXQJ:20: 	 }
+PNQHOUH:21: 	 // java.sql.Date -> "yyyy-MM-dd" 
+CJYCQFS:22: 	 public static String toSDate2(Date msg){
+PRXJLGF:23: 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+FXBZLLE:24: 		return sdf.format(msg);
+ZIHSJXU:25: 	 }
+XJMGQCU:26: 	 // java.util.Date -> "yyyy-MM-dd" 
+LQSTUKL:27: 	 public static String toDate3(java.util.Date msg){
+JZILHAE:28: 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+UBAZTFU:29: 		return sdf.format(msg);
+RHMLCPJ:30: 	 }
+EIVPRFO:31: 	 // today -> "yyyy-MM-dd" 
+QFOEHWK:32: 	 public static String toDay(){
+SVINKSP:33: 		return toDate3(new java.util.Date());
+DFINQUB:34: 	 }
+NWDULKN:35: 	 // "yyyy-MM-dd" -> java.sql.Date
+OCGVPXF:36: 	 public static Date toDaeS2(String msg){
+ZXPSWIO:37: 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+TEXVNGV:38: 		java.util.Date ud=new java.util.Date();
+NVFFAAC:39: 		try {
+DNFGTMJ:40: 			ud=sdf.parse(msg);
+MLEYWVI:41: 		} catch (ParseException e) {
+JISZACF:42: 			
+HYKIKJC:43: 		}
+SYTOZTU:44: 	   return new Date(ud.getTime());
+CRDPAZW:45: 	 }
+LMRYDRL:46: 	 // "     " -> \n 10칸 공백 -> 다음 줄
+NZMIQIF:47: 	 public static  void log(String msg){
+GRIHTUO:48: 		String[] mmm=msg.split("     ");
+NANUUIO:49: 		String ss="";
+GRZMJSE:50: 		for (int i = 0; i < mmm.length; i++) {
+YJPDBUB:51: 			if(mmm[i]!=null && !mmm[i].trim().equals("")){
+WWCKORW:52: 				ss+= ""+mmm[i].trim()+" \n ";
+OQXTGHI:53: 			}
+ABMONRZ:54: 		}
+UPWPITJ:55: 		System.out.println("--------------");
+RVSYIUY:56: 		System.out.println(ss.trim());
+VVZVWNR:57: 		System.out.println("-------------");
+UQUKJCR:58: 	 }//
+JURQJWG:59: 	 // id=? -> id='101'
+SOALJLP:60: 	 public static String  log2(String msg, String id){
+DZLKOCG:61: 		String sms=msg.replace("?", "%s");
+WIBAHEU:62: 		String ss=String.format(sms, "'"+id+"'");
+XXDZXDB:63: 		return ss;
+ZFGEVIT:64: 	 }
+UWQIMHV:65: 	 public static void main(String[] args) {
+VNXEHAR:66: 		Date s=toDaeS("2017. 5. 12");
+PQWWVFJ:67: 		String t=toSDate2(s);
+CCBIZJW:68: 		System.out.println(t);
+IOVTVJQ:69: 	    String SQL = ""
+TLEXPXR:70: 	    		+" SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME,                "
+OXNJADS:71: 	    		+" EMAIL,PHONE_NUMBER,HIRE_DATE FROM EMPLOYEES               "
+QMYQERW:72: 	    		+" START WITH  EMPLOYEE_ID =?                                "
+JKEICVM:73: 	    		+" CONNECT BY PRIOR EMPLOYEE_ID = MANAGER_ID";
+GKLKQZL:74: 		log(SQL);
+SMOBCKD:75: 		log(log2(SQL,"100"));
+XRBCYRK:76: 	 }
+WGFJYBS:77: 	}

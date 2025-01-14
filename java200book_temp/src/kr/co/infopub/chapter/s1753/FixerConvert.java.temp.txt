@@ -1,0 +1,109 @@
+00STUUCLC:1: 	package kr.co.infopub.chapter.s1753;
+00QJFMXXD:2: 	import org.json.JSONArray;
+00JNUFUJI:3: 	import org.json.JSONObject;
+00OMELGTU:4: 	import java.io.InputStreamReader;
+00MHZWXPQ:5: 	import java.net.URL;
+00XDGBXPH:6: 	import java.io.BufferedReader;
+00KMUXNCW:7: 	import java.io.FileWriter;
+00XZQPICX:8: 	import java.io.IOException;
+00JZCZNRO:9: 	// 1. FixerConvert를 실행시켜 오늘까지의 주식을 저장한다.
+0RVSWJZY:10: 	public class FixerConvert {
+0KPRJLKK:11: 		public static FixerRate convert(String date,String base) {
+0CMLQBSJ:12: 			BufferedReader br=null;
+0PJLZEKT:13: 			String newUrls1 = "http://api.fixer.io/%s?base=%s";
+0JJXKOQQ:14: 			String newUrls=String.format(newUrls1, date,base);
+0YEAJGXK:15: 			FixerRate fixerrate=null;
+0RWEOEGO:16: 			URL url=null;
+0CAWBNIQ:17: 			try {
+0WZYEPZO:18: 				url=new URL(newUrls); // http://api.fixer.io
+0MJFDEYZ:19: 				System.out.println(newUrls);
+0XDTWMFS:20: 				br=new BufferedReader(new InputStreamReader(url.openStream(),"utf-8"));
+0BILMMRU:21: 				StringBuffer sb=new StringBuffer();
+0ISULMJA:22: 				String msg="";
+0GQZMMLD:23: 				// http://api.fixer.io/2017-06-09?base=USD를 읽어 들인다.
+0ERLYOUZ:24: 				while((msg=br.readLine())!=null){
+0AZSVTXK:25: 					sb.append(msg);
+0UEODBDM:26: 				}
+0MYDQOIR:27: 				// json으로 바꾼 후 객체에 담는다.
+0QNVQLXO:28: 				fixerrate=parseJSON(sb.toString(), base);
+0ETJQOTX:29: 				//System.out.println(fixerrate);
+0FYBPYQJ:30: 			} catch (Exception e) {
+0ZUTWZZV:31: 				
+0OXMBKPK:32: 			}
+0WNMCGTX:33: 			return fixerrate;
+0DRFLMVF:34: 		}
+0EPNPACT:35: 		public static FixerRate  parseJSON(String  data,String base) throws Exception{
+0HXXKXFD:36: 			JSONObject jObject = new JSONObject(data);
+0KBRRPKN:37: 			JSONObject rates=jObject.getJSONObject("rates");
+0UESKLDI:38: 			FixerRate fixerrate=new FixerRate();
+0QBQSVHN:39: 			fixerrate.date=jObject.getString("date");
+0LJNOLTW:40: 			fixerrate.base=jObject.getString("base");
+0QGFOEIV:41: 			if(base.equals("USD")){
+0QWNGMNK:42: 				fixerrate.usd=1.0;
+0TLUGOVH:43: 				fixerrate.krw=rates.getDouble("KRW");
+0IXBSYJZ:44: 				fixerrate.jpy=rates.getDouble("JPY");
+0YWYXIUI:45: 				fixerrate.eur=rates.getDouble("EUR");
+0LVHWCPN:46: 				fixerrate.cny=rates.getDouble("CNY");
+0CESUHIZ:47: 			}else if(base.equals("KRW")){
+0MUELZRG:48: 				fixerrate.usd=rates.getDouble("USD");
+0XTEUFOB:49: 				fixerrate.krw=1.0;
+0LTQDXOV:50: 				fixerrate.jpy=rates.getDouble("JPY");
+0JYBQKDS:51: 				fixerrate.eur=rates.getDouble("EUR");
+0IKZXJNX:52: 				fixerrate.cny=rates.getDouble("CNY");
+0CLGQPOQ:53: 			}else if(base.equals("JPY")){
+0UXJUEGB:54: 				fixerrate.usd=rates.getDouble("USD");
+0PCFUGQJ:55: 				fixerrate.krw=rates.getDouble("KRW");
+0EVVCKJG:56: 				fixerrate.jpy=1.0;
+0GYPRVXL:57: 				fixerrate.eur=rates.getDouble("EUR");
+0BKUIKGL:58: 				fixerrate.cny=rates.getDouble("CNY");
+0VUEDHRG:59: 			}  else if(base.equals("EUR")){
+0DBZTAPG:60: 				fixerrate.usd=rates.getDouble("USD");
+0KZYZPIX:61: 				fixerrate.krw=rates.getDouble("KRW");
+0BBEMOTA:62: 				fixerrate.jpy=rates.getDouble("JPY");
+0PWMYVQD:63: 				fixerrate.eur=1.0;
+0XTCUONS:64: 				fixerrate.cny=rates.getDouble("CNY");
+0JGWJZUE:65: 			} else if(base.equals("CNY")){
+0OXYJRVV:66: 				fixerrate.usd=rates.getDouble("USD");
+0XRMYKBV:67: 				fixerrate.krw=rates.getDouble("KRW");
+0LRDPELF:68: 				fixerrate.jpy=rates.getDouble("JPY");
+0WJKZSZK:69: 				fixerrate.eur=rates.getDouble("EUR");
+0NKNVDJA:70: 				fixerrate.cny=1.0;
+0PMOMIMC:71: 			}	
+0WXEJFOH:72: 			return fixerrate;
+0BLVTPTJ:73: 		}
+0ZVGKRDX:74: 		public static JSONObject toJson(FixerRate fixerrate){
+0IICYNZY:75: 			JSONObject obj = new JSONObject();
+0DPBXZRV:76: 	        obj.put("USD", fixerrate.usd);
+0CAAVOTO:77: 	        obj.put("KRW", fixerrate.krw);
+0QQNQQQO:78: 	        obj.put("JPY", fixerrate.jpy);
+0OTFXJFI:79: 	        obj.put("CNY", fixerrate.cny);
+0BUYADNP:80: 	        obj.put("EUR", fixerrate.eur);
+0GDJVIFN:81: 	        return obj;
+0RIPFINT:82: 		}
+0SQCIKZL:83: 		// JSON으로 만든 후 파일로 저장한다.
+0BIALWTW:84: 		public static void main(String[] args) {
+0GGRTVRJ:85: 			String date=RestDay.todates();  // 오늘
+0IWAEGBA:86: 			String base="USD";              // 1달러당 환율       
+0PSIWCST:87: 			JSONObject obj = new JSONObject();
+0FOXIHIU:88: 	        obj.put("base", base);
+0FBJRMUH:89: 	        obj.put("date",date);
+0FWEFODC:90: 	       
+0FZDQCJI:91: 			JSONArray fixerrate2s=new JSONArray();
+0MEKGKBU:92: 			int j=0;
+0IIVOZQW:93: 			for (int i = -365; i < 1; i++) {
+0KTQVVVY:94: 		    	String todays=RestDay.toWantedDay(date,i);
+0LCSIDCU:95: 		    	if(! RestDay.isRest(todays)){
+0BENDBXM:96: 		    		FixerRate fixerrate2=FixerConvert.convert(todays,base);
+0BONLVDC:97: 		    		fixerrate2s.put(j++, toJson(fixerrate2));
+0ICOZQMP:98: 		    	}
+0FTUQYXV:99: 		    }
+VKCPURD:100: 			obj.put("rates",fixerrate2s);
+EWRZTQG:101: 			try (FileWriter file = new FileWriter(date+""+base+".json")) {
+ZHZZGQR:102: 	            file.write(obj.toString());
+XJEEZBM:103: 	            file.flush();
+PJECODO:104: 	        } catch (IOException e) {
+YLEHUYD:105: 	           System.out.println(e);
+QPKUIAC:106: 	        }
+XKXUNTP:107: 		}
+ZCGYTLM:108: 	}
+WELBDXG:109: 		  

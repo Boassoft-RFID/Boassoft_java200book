@@ -1,0 +1,102 @@
+00BULLGFP:1: 	package kr.co.infopub.chapter.s163;
+00RDYHNUV:2: 	import java.time.LocalDate;
+00AKYBNFV:3: 	import java.time.format.DateTimeFormatter;
+00RLMUCZK:4: 	import java.util.Calendar;
+00DCVFOXV:5: 	import javafx.event.ActionEvent;
+00QPTWVMR:6: 	import javafx.fxml.FXML;
+00BUNUKIA:7: 	import javafx.scene.chart.CategoryAxis;
+00NNJKOTG:8: 	import javafx.scene.chart.LineChart;
+00SLWIAKC:9: 	import javafx.scene.chart.NumberAxis;
+0UJMZYRV:10: 	import javafx.scene.chart.XYChart;
+0CUNAGBK:11: 	import javafx.scene.control.DatePicker;
+0KUZOQJR:12: 	
+0MYSJVDD:13: 	public class BioCharController {
+0FZZJCNW:14: 	 @FXML
+0FPQXABH:15: 	 private DatePicker dateTime;
+0FISPWRC:16: 	 @FXML
+0SECPWWL:17: 	 LineChart<String, Number> lineChart;
+0GTTKLJT:18: 	 @FXML
+0WROQNHD:19: 	 CategoryAxis xAxis;
+0HCRSPHJ:20: 	 @FXML
+0YWPXIXY:21: 	 NumberAxis yAxis;
+0TNPNSCW:22: 	 int daywidth=50;  // 양옆 날짜 수
+0TUSQACK:23: 	 @FXML
+0XKPIFYB:24: 	 void onDateTimeClick(ActionEvent event) {
+0ZSPZEEK:25: 		lineChart.getData().clear();
+0PHSTPAX:26: 		LocalDate date = dateTime.getValue();
+0ZGOHLUM:27: 	    String ldStr = date.format(DateTimeFormatter.ISO_DATE);
+0FYJPGEJ:28: 	    System.out.println("Local  Date: " + ldStr);
+0UFMPYJP:29: 	    // 생일부터 오늘까지 경과일
+0KCPPAMJ:30: 		long live=BioCalendar.days(
+0CWXGXBV:31: 				date.getYear(), date.getMonthValue(), date.getDayOfMonth())  ; 
+0RWJRVTS:32: 		yAxis.setLabel("Bio Power");
+0HTLLBWI:33: 		xAxis.setLabel("Date");
+0FLUHBKI:34: 		lineChart.setTitle("My Biorhythm");
+0KPDCMQD:35: 		//lineChart.setLegendVisible(false);   // 레전드(보기 표시) 제거
+0FVELKXP:36: 		lineChart.setCreateSymbols(false);     // dot 제거
+0GACSSGP:37: 		xAxis.setTickLabelsVisible(true);
+0BWCKDUV:38: 		XYChart.Series<String, Number> series1 = new XYChart.Series<String, Number>();
+0PYVTBGT:39: 		XYChart.Series<String, Number> series2 = new XYChart.Series<String, Number>();
+0JTUECQC:40: 		XYChart.Series<String, Number> series3 = new XYChart.Series<String, Number>();
+0RTXTSSE:41: 		XYChart.Series<String, Number> series4 = new XYChart.Series<String, Number>();
+0MNEVOOG:42: 		// 오늘 표시
+0XFENOOZ:43: 		XYChart.Series<String, Number> series5 = new XYChart.Series<String, Number>();
+0GVZQZQJ:44: 	
+0RIBALKI:45: 		physicalChartData(series1,live);
+0KCHTIFN:46: 		emotionalChartData(series2,live);
+0YJRWDER:47: 		intellectualChartData(series3,live);
+0PWBZQWY:48: 		compositeChartData(series4,live);
+0MKTNTUE:49: 		vertical(series5);
+0OAZMZVL:50: 		lineChart.getData().addAll(series1, series2, series3,series4,series5);
+0TMGKIMB:51: 	 }
+0GGWZLSQ:52: 	  public  void vertical(XYChart.Series<String, Number> series ) {
+0DUOJCAR:53: 		Calendar todayCal=Calendar.getInstance();
+0TULGTLR:54: 	    series.setName("Today");
+0OFROHON:55: 	    series.getData().add(
+0XSYMSNT:56: 	    		new XYChart.Data<String, Number>(RestDay.toStrDate(todayCal), 125));
+0ILSIASP:57: 	    series.getData().add(
+0APMRSOC:58: 	    		new XYChart.Data<String, Number>(RestDay.toStrDate(todayCal), -125));
+0WRVUPGX:59: 	  }
+0MRUUQFX:60: 	  public  void physicalChartData(XYChart.Series<String, Number> series, long live ) {
+0ENLKRWX:61: 		Calendar todayCal=Calendar.getInstance();
+0LDLDDMP:62: 	    series.setName("PHYSICAL");
+0LXFDCQP:63: 	    for (int i = -daywidth; i < daywidth+1; i++) {
+0BXTZTSG:64: 	    	 Calendar bf15day=RestDay.dateAfOrBf(todayCal,i);
+0STHETRB:65: 	    	 double value=BioCalendar.getPhysical(live+i,100);
+0EBRFUKA:66: 	    	 series.getData().add(
+0ILPXMQM:67: 	    			 new XYChart.Data<String, Number>(RestDay.toStrDate(bf15day), value));
+0ZMBDMIF:68: 	    }
+0MCYEYNG:69: 	  }
+0QYTQITZ:70: 	  public  void emotionalChartData(XYChart.Series<String, Number> series, long live ) {
+0KEMMYPW:71: 		Calendar todayCal=Calendar.getInstance();
+0CMQTTNX:72: 	    series.setName("EMOTIONAL");
+0YLFFHOC:73: 	    for (int i = -daywidth; i < daywidth+1; i++) {
+0VCHXCZJ:74: 	    	 Calendar bf15day=RestDay.dateAfOrBf(todayCal,i);
+0MXRPTXL:75: 	    	 double value=BioCalendar.getEmotional(live+i,100);
+0LHUSBBJ:76: 	    	 series.getData().add(
+0OKABSRU:77: 	    			 new XYChart.Data<String, Number>(RestDay.toStrDate(bf15day), value));
+0IPRLDOQ:78: 	    }
+0SYXLTDJ:79: 	  }
+0EFKBCWN:80: 	  public  void intellectualChartData(XYChart.Series<String, Number> series, long live ) {
+0OVJMXRU:81: 		Calendar todayCal=Calendar.getInstance();
+0OMBGQNS:82: 	    series.setName("INTELLECTUAL");
+0USNWKML:83: 	    for (int i = -daywidth; i < daywidth+1; i++) {
+0ZQAQRLB:84: 	    	 Calendar bf15day=RestDay.dateAfOrBf(todayCal,i);
+0LAVINJG:85: 	    	 double value=BioCalendar.getIntellectual(live+i,100);
+0HEGDOUD:86: 	    	 series.getData().add(
+0XNKXWWH:87: 	    			 new XYChart.Data<String, Number>(RestDay.toStrDate(bf15day), value));
+0QYWQKMT:88: 	    }
+0XYXSZJP:89: 	  }
+0WKJPDWR:90: 	  public  void compositeChartData(XYChart.Series<String, Number> series, long live ) {
+0RZMLGMV:91: 		Calendar todayCal=Calendar.getInstance();
+0NQUJYJE:92: 	    series.setName("COMPOSITE");
+0TQQCBFN:93: 	    for (int i = -daywidth; i < daywidth+1; i++) {
+0ZVLEVMD:94: 	    	 Calendar bf15day=RestDay.dateAfOrBf(todayCal,i);
+0CHQQSUD:95: 	    	 double value=BioCalendar.getIntellectual(live+i,100)
+0SPGKECB:96: 	    			 +BioCalendar.getEmotional(live+i,100)
+0YFEBPMD:97: 	    			 +BioCalendar.getPhysical(live+i,100); 
+0WQHHWSG:98: 	    	 series.getData().add(
+0BJGNCVE:99: 	    			 new XYChart.Data<String, Number>(RestDay.toStrDate(bf15day), value/3.0));
+CRWJTAF:100: 	    }
+KXCRJGT:101: 	  }
+UTNXKNQ:102: 	}

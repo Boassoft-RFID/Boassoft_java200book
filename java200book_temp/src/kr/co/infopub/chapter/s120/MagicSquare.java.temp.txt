@@ -1,0 +1,84 @@
+0RCJOXFE:1: 	package kr.co.infopub.chapter.s120;
+0WHUNXBV:2: 	
+0YCBOFRM:3: 	public abstract class MagicSquare implements IMagicSquare{
+0JLQNPWY:4: 		
+0TFXRVDR:5: 		protected int [][] magic;     // 자식이 public처럼 사용
+0GMDGTMK:6: 		protected int n;              // 자식이 public처럼 사용
+0FOQUSVY:7: 	
+0AYRFRLH:8: 		public int[][] getMagic() {
+0QPZRCEA:9: 			return magic;
+WNCLGQM:10: 		}
+ARBZDVX:11: 		// 반드시 int를 입력 받아야 하는 생성자
+WCFSGKA:12: 		public MagicSquare(int n) {
+QMSDZUU:13: 			magic=new int[n][n];
+NBHALEE:14: 			this.n=n;
+FVBCWAF:15: 		}
+TMOTSYP:16: 	    // 기본 생성자 제거
+VFETLEB:17: 		//public MagicSquare() {}
+BALXQZQ:18: 		// 아래는 abstract가 되는 예 3가지
+ONOJNDC:19: 		//                             // 인터페이스 구현 안 함
+MRGNBTH:20: 		//public void make( ){ }       // 상속 강요
+LWIYXYI:21: 		//public abstract void make(); // 구현 안 했다.
+FMRMPDX:22: 		
+GGEGDTH:23: 		public void print(){
+PCPJFDS:24: 			System.out.println();
+QQUPHBN:25: 			System.out.println(n+" is magic : "+isMagic());
+VPGHQWQ:26: 			for (int i = 0; i < n; i++) {
+FFMWHJT:27: 				for (int j = 0; j < n; j++) {
+PNXFLUT:28: 					System.out.print(magic[i][j]+"\t");
+FWSKIBE:29: 				}
+FRIVNEX:30: 				System.out.println();
+CBUXJCI:31: 			}
+LGWFAZC:32: 		}
+AGDSAPM:33: 		//마방진이 잘 되었는가를 판단
+KLMZHCD:34: 		protected  boolean isMagic( ){  // 자식이 public처럼 사용
+FDDJJRR:35: 			boolean isM=true;
+VTRFOLR:36: 			int[ ]m=new int[2*n+2];
+AOUYGYH:37: 			for (int i = 0; i < n; i++) {
+MIJGCAN:38: 				m[i]=sumRow(i);
+YYLAMHI:39: 				m[i+n]=sumCol(i);
+KGOODBB:40: 			}
+DNKEJOG:41: 			m[2*n]=sumReverseDia();
+TQPOQHE:42: 			m[2*n+1]=sumDia();
+UAJZDKU:43: 			for (int i = 1; i < m.length; i++) {
+NNQGZFU:44: 				if(m[0]==0 || m[0]!=m[i]){
+LZFESGQ:45: 					isM=false;
+XDEVDQE:46: 					break;
+FVOCXEG:47: 				}
+FEAWQGY:48: 			}
+AAYGDJQ:49: 			return isM;
+LICUWKI:50: 		}
+CAQJZAE:51: 		//row 행의 열들의 합
+JICYJMM:52: 		private int sumRow(int row){
+FKUYOEO:53: 			int tot=0;
+NDJMGMJ:54: 			for (int i = 0; i < n; i++) {
+GSXHJNT:55: 				tot+=magic[row][i];
+TQBMQOP:56: 			}
+SRGJDPJ:57: 			return tot;
+HUYEXOJ:58: 		}
+YNHXDMK:59: 		
+XALSMBV:60: 		//col 열의(열 고정)  행들의 합
+TBDJLEK:61: 		private int sumCol(int col){
+LNQSHWA:62: 			int tot=0;
+NEEBSIY:63: 			for (int i = 0; i < n; i++) {
+SIZHBYM:64: 				tot+=magic[i][col];
+PSVGLNG:65: 			}
+JZKXPET:66: 			return tot;
+RDCREWX:67: 		}
+XNVCWVV:68: 		
+LOGWYGR:69: 		private int sumDia(){
+TTXZALF:70: 			int tot=0;
+RDTMPVB:71: 			for (int i = 0; i < n ; i++) {
+NNCVGMS:72: 				tot+=magic[i][n-1-i];
+DAUHSVI:73: 			}
+LNECMJT:74: 			return tot;
+BITLIEX:75: 		}
+GZYBRWA:76: 		
+WLFIPKR:77: 		private int sumReverseDia(){
+UIWHAOQ:78: 			int tot=0;
+PYEOIND:79: 			for (int i = 0; i < n ; i++) {
+XVASFTZ:80: 				tot+=magic[i][i];
+VWASGMJ:81: 			}
+DQSDKTF:82: 			return tot;
+QJHKTRH:83: 		}
+AFNYYKG:84: 	}

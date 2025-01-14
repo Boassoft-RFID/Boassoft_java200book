@@ -1,0 +1,8 @@
+TRCUYAX:1: 	package kr.co.infopub.chapter.s154;
+XZIHTSG:2: 	public class MyThread extends Thread{
+HRLSLYV:3: 		public void run(){
+MJPBECC:4: 			for(int i=0;i<500;i++){
+PEEJOXB:5: 				System.out.print("T");
+GPNJJTU:6: 			}
+LDVZZOQ:7: 		}
+MMNAUSR:8: 	}

@@ -1,0 +1,111 @@
+00UYACZXY:1: 	package kr.co.infopub.chapter.s109;
+00NIJIBSK:2: 	import java.util.ArrayList;
+00DMYXFJZ:3: 	import java.util.Collections;
+00BTDYQXF:4: 	import java.util.Comparator;
+00AKJPQGV:5: 	import java.util.List;
+00YFMUXTC:6: 	public class CardCase {
+00NGCNDSX:7: 	 // aggregation : CardCase는 Card로 구성된다.
+00CHFGAZF:8: 	 private List<Card> cards=new ArrayList<Card>();
+00TFRNCEB:9: 	 public CardCase() {
+0KTMQRNT:10: 		cards.clear(); // 내용 지우기
+0DWHFBRO:11: 	 }
+0QTVAGLS:12: 	 // List 반환
+0NOSGAAR:13: 	 public List<Card> getCards() { 
+0CKVETLV:14: 		return cards;
+0RYYREDF:15: 	 }
+0GUQKHAU:16: 	 // List에 저장된 Card의 개수
+0RHSXGRO:17: 	 public int count(){ 
+0QPXANNC:18: 		return cards.size(); // 저장된 Card 개수
+0KMTLQJC:19: 	 }
+0YYYQZNX:20: 	 // List의 index번째 Card
+0XPNDSWD:21: 	 public Card getCard(int index){
+0BFRMUIN:22: 		return cards.get(index);  // index번째 Card
+0RJRZDKK:23: 	 }
+0WPQFGEW:24: 	 // 서로 다른 카드 20장 만들기
+0JKUVJVJ:25: 	 public void make(){
+0JXLWVPV:26: 		cards.clear(); // 내용 지우기
+0XDKCATK:27: 		int suit=CardUtil.SUIT.length; // 0~3
+0MACEZCY:28: 		int valu=CardUtil.VALU.length; // 0~12
+0YPOPCCA:29: 		int count=0;
+0JBXHZAF:30: 		//서로 다른 20개의 카드를 만든다.
+0HQMKAPP:31: 		while(count!=valu*suit){    // 20장이 될때까지
+0YNSXZPU:32: 			Card c=new Card();      // 임의의 카드를 만든다
+0ZHTRKAI:33: 			if(!cards.contains(c)){ // contains -> equals()를 이용해 비교
+0HPVJENS:34: 				cards.add(c);       // 같은 객체가 아니라면 저장
+0AEYKSXW:35: 				count++;
+0DXJAPSK:36: 			}
+0AYVQAGH:37: 		}
+0VMWWKUV:38: 	 }
+0BENDOOM:39: 	 public void shuffle(){
+0BVSOUGZ:40: 		Collections.shuffle(cards); // 카드 섞기
+0IZUVKOP:41: 	 }
+0IMZXDFS:42: 	 public void print(){
+0MLCFFTN:43: 		int valu=CardUtil.VALU.length;
+0HNBYNUN:44: 		for (int i = 0; i < cards.size(); i++) {
+0KHRAXKW:45: 			Card c=cards.get(i);
+0DQHIOXO:46: 			System.out.printf("%s ",c.toString());
+0PDTYASP:47: 			if((i+1)%valu==0){
+0WPQDMIN:48: 				System.out.println();
+0JZKYWVF:49: 			}
+0CGDVPUB:50: 		}
+0LTTKCYG:51: 	 }
+0LUQYPMJ:52: 	 // CardComp 클래스가 없다.
+0HMJYTOO:53: 	 public void sort(){
+0TXQGVUC:54: 		Comparator<Card> cmp=new Comparator<Card>() {
+0EMBIYCV:55: 			@Override
+0MZSDKEY:56: 			public int compare (Card c1, Card c2) {
+0LRNLETZ:57: 				return c1.getCardVal().compareTo(c2.getCardVal());
+0XGWFOCS:58: 			}
+0BNECRXG:59: 		};
+0HUBYITW:60: 		cards.sort(cmp); 
+0VOWOAZS:61: 	 }
+0LOWPUZS:62: 	 // CardRomp 클래스가 없다.
+0KYZBYYI:63: 	 public void rsort(){
+0PAYRQRD:64: 		// 익명 -anonymous 
+0FDPXHYH:65: 		cards.sort(new Comparator<Card>() {
+0CJCYJFG:66: 			@Override
+0HTYMVBX:67: 			public int compare (Card c1, Card c2) {
+0NIZULYK:68: 				return - c1.getCardVal().compareTo(c2.getCardVal());
+0HKWJZLH:69: 			}
+0BFHKYIL:70: 		});
+0OXTBNOH:71: 	}
+0YPGFJHK:72: 	 // sort를 lambda로 구현
+0CFOXPKW:73: 	 public void rambdasort(){
+0KTEBQNA:74: 	    Comparator<Card> cmp=(c1, c2)->{return c1.getCardVal().compareTo(c2.getCardVal());};
+0CDECQPF:75: 		cards.sort(cmp);
+0SJLKZPP:76: 		//cards.sort((c1, c2) ->{return c1.getCardVal().compareTo(c2.getCardVal());});
+0BOOAYJY:77: 	 }
+0VKMGYJI:78: 	 public void lambdasort2(){
+0HEPFMHX:79: 		Comparator<Card> cmp=Comparator.comparing(Card::getCardVal);
+0TLIGKKV:80: 		cards.sort(cmp); 
+0LIECPBP:81: 		//cards.sort(Comparator.comparing(Card::getCardVal)); 
+0YONLTQZ:82: 	 }
+0CLGRSSN:83: 	 public void lambdasort3(){
+0VIFKIFV:84: 		Comparator<Card> cmp=Card::compareCard;
+0WNOMVTH:85: 		cards.sort(cmp);  // static 
+0JFHOIMU:86: 		//cards.sort(Card::compareCard);  // static 
+0SGGDJJX:87: 	 }
+0UUAEYSG:88: 	 // rsort를 lambda로 구현
+0YPARPLE:89: 	 public void lambdarsort(){
+0QSUTYTW:90: 		cards.sort(
+0FTHDSTZ:91: 		(c1, c2) ->{return - c1.getCardVal().compareTo(c2.getCardVal());});
+0YZURIBB:92: 	 }
+0LFZQDEF:93: 	 public void lambdarsort2(){
+0DDUFEFN:94: 		Comparator<Card> mycard =(c1, c2)->{return c1.getCardVal().compareTo(c2.getCardVal());};
+0VQQJPGW:95: 		cards.sort( mycard.reversed() );
+0WRFEQPB:96: 	 }
+0BSHFQWH:97: 	 public void lambdarsort3(){
+0TYUPANV:98: 		cards.sort(Card::compareRCard);  //static 
+0DZYYAJY:99: 	 }
+ONHECJF:100: 	}
+QDTHTEG:101: 	
+DPCHTIM:102: 	
+JLWCPGK:103: 	/*
+CKZCDVL:104: 	Comparator<Card> cmp=new Comparator<Card>() {
+WJEMKVB:105: 		@Override
+JFIEVIK:106: 		public int compare (Card c1, Card c2) {
+PBQGDHK:107: 			return c1.getCardVal().compareTo(c2.getCardVal());
+RNFUYQH:108: 		}
+MMOUUYW:109: 	};
+ZYYJKNH:110: 	cards.sort(cmp); 
+XZXCLWT:111: 	*/

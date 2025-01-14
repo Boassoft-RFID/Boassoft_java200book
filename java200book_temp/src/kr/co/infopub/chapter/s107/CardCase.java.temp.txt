@@ -1,0 +1,61 @@
+0SRZZAGZ:1: 	package kr.co.infopub.chapter.s107;
+0NATVJPC:2: 	import java.util.ArrayList;
+0CTPYKFE:3: 	import java.util.Collections;
+0OCIQLKN:4: 	import java.util.List;
+0NTPSHQI:5: 	public class CardCase {
+0EUDITAQ:6: 		// aggregation : CardCase는 Card로 구성된다.
+0SFVRRFU:7: 		private List<Card> cards=new ArrayList<Card>();
+0KKZJSPR:8: 		public CardCase() {
+0SHCKDEQ:9: 			cards.clear(); // 내용 지우기
+LEAIEVA:10: 		}
+NBAODKJ:11: 		// List 반환
+SOWMMZG:12: 		public List<Card> getCards() {
+ZKWPQGW:13: 			return cards;
+FKREYVB:14: 		}
+JKDIDBR:15: 		// List에 저장된 Card의 개수
+KKDUKHY:16: 		public int count(){
+SIMODYC:17: 			return cards.size(); // 저장된 Card 개수
+WHDOSBP:18: 		}
+NYUPZXI:19: 		// List의 index번째 Card
+YLGTOZU:20: 		public Card getCard(int index){
+WEKCWDB:21: 			return cards.get(index);  // index번째 Card
+NWWZXVT:22: 		}
+RSLQLEN:23: 		// 서로 다른 카드 20장 만들기
+MPZSGUW:24: 		public void make(){
+MAGLXEN:25: 			cards.clear(); // 내용 지우기
+NXECOXD:26: 			int suit=CardUtil.SUIT.length; // 0~1
+GVUVDQF:27: 			int valu=CardUtil.VALU.length; // 0~9
+YHZQPQO:28: 			int count=0;
+VREHBND:29: 			//서로 다른 20개의 카드를 만든다.
+CHTTNZI:30: 			while(count!=valu*suit){    // 20장이 될 때까지
+BUZRBPJ:31: 				Card c=new Card();      // 임의의 카드를 만든다
+GHOLHQK:32: 				if(!cards.contains(c)){ // contains -> equals()를 이용해 비교
+UIHGBZE:33: 					cards.add(c);       // 같은 객체가 아니라면 저장
+AXFQFAX:34: 					count++;
+VUDBMAW:35: 				}
+XAFNBCO:36: 			}
+BDFJUGL:37: 		}
+CTBCFLA:38: 		
+KQOFTQX:39: 		public void shuffle(){
+DDUBNWU:40: 			Collections.shuffle(cards); // 카드 섞기
+SRSHSEW:41: 		}
+TEZYFZH:42: 		
+RYGPZRZ:43: 		public void print(){
+IHQATHS:44: 			int valu=CardUtil.VALU.length;
+TOBXQKJ:45: 			for (int i = 0; i < cards.size(); i++) {
+GDGNOVR:46: 				Card c=cards.get(i);
+YRSSVRJ:47: 				System.out.printf("%s ",c.toString());
+MFAEVEK:48: 				if((i+1)%valu==0){
+PWKBAFL:49: 					System.out.println();
+KCDVNXM:50: 				}
+WHEZWUY:51: 			}
+ANASXVF:52: 		}
+NRMRTEE:53: 		public void sort(){
+ANLBHAC:54: 			cards.sort(new CardComp());
+BACYJBV:55: 			//Collections.sort(cards,new CardComp());
+HTPTOAF:56: 		}
+ULIUCRA:57: 		public void rsort(){
+MJRUZCJ:58: 			cards.sort(new CardRomp());
+QHIUBVM:59: 			//Collections.sort(cards,new CardRomp());
+WKDEEOC:60: 		}
+BPDXMEM:61: 	}

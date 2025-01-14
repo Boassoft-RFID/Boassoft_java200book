@@ -1,0 +1,35 @@
+0GGRWRER:1: 	package kr.co.infopub.chapter.s074;
+0VENHJEG:2: 	import java.util.Calendar;
+0MEGPSCS:3: 	import java.util.Date;
+0GSSDAGN:4: 	public class CalendarTest {
+0KOLCLXY:5: 		public static void main(String[] args) {
+0EWDSYSD:6: 			long millis=System.currentTimeMillis();  // 1970.1.1부터 경과시간 msec
+0FIGFMAO:7: 			System.out.println(millis/1000/24/60/60);// 몇일 경과
+0JMFASLV:8: 			
+0TPNLKPM:9: 			Date d=new Date();          // 오늘
+WUTYFEY:10: 			System.out.println(d);
+PRDTIDV:11: 			Date dd=new Date(d.getTime()+24*60*60*1000); //하루후
+CUFZJBT:12: 			System.out.println(dd);
+LZMWCHI:13: 			
+AOBBUST:14: 			Calendar cal1970=Calendar.getInstance(); 
+YYMHPSB:15: 			cal1970.set(1970, 1-1 ,1);  // 0월 ~11월 , 1970.1.1
+LJIYNKU:16: 			
+HHFSWBT:17: 			Calendar today=Calendar.getInstance();   // 오늘 
+CREUTRH:18: 			printCalendar(today);
+QEZLDUZ:19: 			long minus=today.getTimeInMillis()-cal1970.getTimeInMillis();
+WYBDGKK:20: 			System.out.println(minus); //1970.1.1~오늘 msec
+ARAUYFQ:21: 			System.out.println(minus/1000/24/60/60); // 1970년 부터 몇일 지났는가?
+ADDPWZC:22: 		}
+XXHFGFD:23: 		// 칼렌더 정보
+JUFTKRN:24: 		public static void printCalendar(Calendar c){
+DZGZCXO:25: 			System.out.println("-------------------------------------");
+YXZNKUP:26: 			System.out.println(c.get(Calendar.YEAR));         // 몇 년
+JPTWGQD:27: 			System.out.println(c.get(Calendar.MONTH)+1);      // 몇 월
+DNKSMEG:28: 			System.out.println(c.get(Calendar.DAY_OF_MONTH)); // 몇 일
+GKXXXZV:29: 			System.out.println(c.get(Calendar.AM_PM));        // 1 PM, 0 AM
+UPDHUAM:30: 			System.out.println(c.get(Calendar.HOUR_OF_DAY));  // 몇 시 Calendar.HOUR
+EILXOXR:31: 			System.out.println(c.get(Calendar.MINUTE));       // 몇 분
+EZJWSKG:32: 			System.out.println(c.get(Calendar.SECOND));       // 몇 초
+MMMUUBM:33: 		}
+ZTOPURT:34: 	}
+SQAYWBL:35: 	

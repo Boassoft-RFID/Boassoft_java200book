@@ -1,0 +1,26 @@
+0VOVGQLE:1: 	package kr.co.infopub.chapter.s089;
+0AJLMZLU:2: 	import java.io.BufferedReader;
+0WLHCRLT:3: 	import java.io.InputStreamReader;
+0ALRAIRW:4: 	import java.net.URL;
+0OEECXJM:5: 	
+0PNJQMCR:6: 	public class WikipediaMain {
+0JNEMVBN:7: 	 public static void main(String[] args) {
+0DOXNTXR:8: 		 String newUrls="https://ko.wikipedia.org/wiki/ISO_3166-1";
+0RBLNNRA:9: 		 URL url=null;
+XNVRSED:10: 	     try {
+DFEYVXX:11: 	    	url=new URL(newUrls);  //주소 찾기
+KCUWRLY:12: 	    	// 주소지에 빨대 꽂기
+RBOLADE:13: 	 		BufferedReader reader = new BufferedReader(  
+USCDMGR:14: 	 				    new InputStreamReader(url.openStream(),"utf-8"),8);
+DSNKHDP:15: 	 		String line = null;
+GWRNBIJ:16: 	 		while ((line = reader.readLine()) != null){  // 한줄씩 읽어서 
+LEXLEVC:17: 	 			if(!line.trim().equals("")){             // 공백이 아니면 출력한다.
+COPXBEC:18: 	 				
+PYJBCFB:19: 	 				System.out.println(line.trim());
+YOLPRNJ:20: 	 			}
+KJOMUPK:21: 	 		}
+PTZSOZW:22: 	 	} catch (Exception e) {
+TGRHKAR:23: 	 		System.out.println("Wiki Flag Parsing error !!! ");
+VYYHXKK:24: 	    } 
+XXVOTFJ:25: 	 }
+LRUYXII:26: 	}

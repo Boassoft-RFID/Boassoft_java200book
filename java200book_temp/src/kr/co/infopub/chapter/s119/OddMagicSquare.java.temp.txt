@@ -1,0 +1,41 @@
+0ASNEWAL:1: 	package kr.co.infopub.chapter.s119;
+0CHMKEYR:2: 	
+0NJBUQMM:3: 	public class OddMagicSquare extends MagicSquare{
+0VZSPJAW:4: 	
+0JACSTLW:5: 		public OddMagicSquare(int n) {
+0NOLEQFB:6: 			super(n);    // 중요 -> 부모로 넘긴다.
+0FQHBSED:7: 		}
+0LWNVGOQ:8: 		public OddMagicSquare( ) {
+0YKWHXYG:9: 			this(3);
+YQCWBML:10: 		}
+VJGNCBC:11: 		@Override
+YIUKHIH:12: 		public void make( ){
+TKGVFIX:13: 			int x=0;
+LKBVINP:14: 			int y=n/2;
+QGUZIVW:15: 			magic[x][y]=1;
+ATETNOX:16: 			//System.out.printf("(%d,%d)\t",x,y);
+QGZCFGY:17: 			for (int i = 2; i <= n*n ; i++) {
+NHPQAES:18: 				int temX=x;
+QYCEXSE:19: 				int temY=y;
+DUCDZPS:20: 				
+FLCZJLH:21: 				if( x-1<0 ){
+ZSQKTAS:22: 					x=n-1;
+ZSGVEHS:23: 				}else{
+DCBGTGL:24: 					x--;
+NQXLVHL:25: 				}
+LCKOWJC:26: 				
+GUYLQVZ:27: 				if( y-1<0 ){
+GMFJDXI:28: 					y=n-1;
+ZDAIKEQ:29: 				}else{
+AYRSBVH:30: 					y--;
+GADGBUP:31: 				}
+NXZGYYN:32: 				
+QXCRWIV:33: 				if(magic[x][y]!=0){
+VRQJBOF:34: 					x=temX+1;
+GJIDGDW:35: 					y=temY;
+NRLOBSV:36: 				}
+CJXTYJQ:37: 				//System.out.printf("(%d,%d)\t",x,y);
+VNRXECE:38: 				magic[x][y]=i;
+MGBQJXM:39: 			}//for
+WOHLBZH:40: 		}
+MEBQYWD:41: 	}//class 

@@ -1,0 +1,67 @@
+0MUCMGGD:1: 	package kr.co.infopub.chapter.s200.client;
+0IKJYSDO:2: 	import java.util.List;
+0HXRZKVH:3: 	import java.util.Scanner;
+0POCYCXY:4: 	
+0EAZRRWE:5: 	import kr.co.infopub.chapter.s199.common.DepartmentDto;
+0BTCROEZ:6: 	import kr.co.infopub.chapter.s199.common.EmployeeDto;
+0DZMKVSY:7: 	public class RequestTest {
+0FTLQLYO:8: 	
+0EMIBGFW:9: 		public static void main(String[] args) {
+VBSLAWT:10: 			Scanner scann=new Scanner(System.in);
+KQVYGJT:11: 			System.out.println("----------HRM Service Protocol------------");
+FZJWTSO:12: 			kinds();
+WAXDXRC:13: 			int n=scann.nextInt();
+IDRBMXM:14: 			switch(n){
+DOGRHHB:15: 			case 1: findAllEmployees(); break;
+LBYBGXB:16: 			case 2: findAllDepartments(); break;
+URCNKCP:17: 			default: break;
+DYBNMZR:18: 			}
+DFSDRMB:19: 		}
+SAOTGKH:20: 		public static void findAllEmployees(){
+CMSVKIP:21: 			try {
+KKRSPRR:22: 				HRMProtocol pro=new HRMProtocol("127.0.0.1");
+FIHDZJS:23: 				List<EmployeeDto> emps= pro.findAllEmployees();
+GUTAGSU:24: 				for (EmployeeDto emp:emps) {
+PJNPYEO:25: 					System.out.println(emp);
+TFJJLXU:26: 				}
+YHVZXXB:27: 			} catch (Exception e) {
+ICGGKKK:28: 				System.out.println(e);
+ZNXQOXA:29: 			}
+SUCVQSN:30: 		}
+MWJNSNB:31: 		public static void findAllDepartments(){
+WMXXKMS:32: 			try {
+QUMKXFN:33: 				HRMProtocol pro=new HRMProtocol("127.0.0.1");
+ULVDMTJ:34: 				List<DepartmentDto> emps= pro.findAllDepartments();
+MZAACVE:35: 				for (DepartmentDto emp:emps) {
+LGMYXNR:36: 					System.out.println(emp);
+HRJMJKV:37: 				}
+MDSUVOH:38: 			} catch (Exception e) {
+FFSZTCQ:39: 				System.out.println(e);
+HFPDGCA:40: 			}
+RCCHGRY:41: 		}
+CAIREEK:42: 		public static void kinds(){
+MWJTRLY:43: 			String [] s={
+RIXUYWG:44: 		    "public static final int findAllEmployees=2010;           // 1",
+UYRWBQS:45: 		    "public static final int findAllDepartments=2020;         // 2",
+DYAJZVP:46: 		    "public static final int findTreeManagerInEmployee=2030;  // 3",
+GEZPGOA:47: 		    "public static final int findEmployeesByDepartName=2040;  // 4",
+INWYKJG:48: 		    "public static final int getEmployeesTotal=2510;          // 5",
+PZNODTA:49: 		    "public static final int findAllDepartments2=2050;        // 6",
+IDPCUHQ:50: 		    "public static final int findAllDepCounts=2060;           // 7",
+JUAHFDM:51: 		    "public static final int findAllJobs=2070;                // 8",
+FIOHGUE:52: 		    "public static final int findEmployeesByManagerId=2080;   // 9",
+CZSANFF:53: 		    "public static final int findEmployeesByEmpId=2090;       // 10",
+JENYTQT:54: 		    "public static final int findManagersByName=2100;         // 11",
+JVFRZLJ:55: 		    "public static final int getTreeMaxLevel=2520;            // 12",
+VIXRCDU:56: 		    "public static final int findAfterAdd=2530;               // 13",
+ICQAFCX:57: 		    "public static final int addEmployee=1010;                // 14",
+HBXUZAT:58: 		    "public static final int updateEmployee=3010;             // 15",
+JFECEET:59: 		    "public static final int updateJobHistory=3020;           // 16",
+DALHPFW:60: 		    "public static final int deleteEmployee=4010;             // 17",
+WPRAPMB:61: 		    "public static final int findEmployeeById=2110;           // 18"
+ANYETJZ:62: 			};
+CKMOXGD:63: 			for (int i = 0; i < s.length; i++) {
+HYFPZGV:64: 				System.out.println(s[i]);
+COXDAFH:65: 			}
+ERSICLI:66: 		}
+WDWWBNW:67: 	}

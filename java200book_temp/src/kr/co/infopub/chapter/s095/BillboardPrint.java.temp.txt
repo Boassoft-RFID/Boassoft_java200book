@@ -1,0 +1,98 @@
+0YUJFNKE:1: 	package kr.co.infopub.chapter.s095;
+0GSXINFU:2: 	import java.io.FileWriter;
+0FYAKQTK:3: 	import java.io.IOException;
+0NRVTIGU:4: 	import java.io.PrintWriter;
+0URNEMAY:5: 	import java.util.List;
+0XMGYNSS:6: 	public class BillboardPrint {
+0MKTDKZE:7: 	/*	public static void printToHTML(List<String> slist, String fname){
+0HKXAJML:8: 			try (PrintWriter pw=new PrintWriter(new FileWriter(fname,false),true)){
+0FOWJEBA:9: 					for(String sts : slist){
+UBTPSJN:10: 						pw.println(sts);
+HESSZOT:11: 					}
+GRDWKXH:12: 			} catch (IOException e) {
+QPJUCVT:13: 			}
+QNBHRWH:14: 		}
+IUHFVMH:15: 		public static void printToCSV(List<Billbaord> bblist, String fname) {
+LUIHCUL:16: 			try (PrintWriter pw=new PrintWriter(new FileWriter(fname,false),true)){
+DRZJTSP:17: 				for(Billbaord bb : bblist){
+NSIUJDY:18: 					pw.println(bb);
+ILPJEWO:19: 				}
+LZCLEBA:20: 			} catch (IOException e) {
+JACPPVR:21: 			}
+WODSQEY:22: 		}*/
+IHLNSQA:23: 		public static void printToJSON(List<Billbaord> bblist, String fname){
+PNYEFNA:24: 			try (PrintWriter pw=new PrintWriter(new FileWriter(fname,false),true)){
+LTJBQLT:25: 				pw.println("{\"billboard\": [");
+ULXYLNM:26: 				for(int i=0; i<bblist.size()-1 ;i++){
+NDWGLCY:27: 					Billbaord bb=bblist.get(i);
+PWWWYST:28: 					pw.println(pair(bb)+",");
+VVVPIYY:29: 				}
+VXFSHEN:30: 				pw.println(pair(bblist.get(bblist.size()-1 )));
+XJNCFLK:31: 				pw.println("]}");
+IUXNWSE:32: 			} catch (IOException e) {
+OLWACSM:33: 			}
+IHRHHKL:34: 		}/*
+QGNWKOT:35: 		public static void printToObject(List<Billbaord> bblist, String fname) {
+ZYIKGCL:36: 			try (PrintWriter pw=new PrintWriter(new FileWriter(fname,false),true)){
+YEYEZSE:37: 				for(Billbaord bb : bblist){
+UMFLXOF:38: 						pw.println(String.format("Billbaord b%d =new Billbaord(%d,\"%s\","
+LQIRHKF:39: 								+ "%d,\"%s\",\"%s\");", 
+YKHUBLF:40: 						bb.getRank(), bb.getRank(), bb.getSong(),
+XVBFWWG:41: 						bb.getLastweek(),bb.getImagesrc(),bb.getArtist()));
+EVMBBTW:42: 					}
+GYMFAOI:43: 			} catch (IOException e) {
+GCPXATL:44: 			}
+ABKAVFR:45: 		}
+IQNNECR:46: 		public static void printToXML(List<Billbaord> bblist, String fname){
+QURAJVW:47: 			try (PrintWriter pw=new PrintWriter(new FileWriter(fname,false),true)){
+ULCHCCJ:48: 				pw.println("<?xml version='1.0' encoding='utf-8'?>");
+MYRYIPP:49: 				pw.println("<billboards>");
+BIZXCMO:50: 				for(Billbaord bb : bblist){
+PKZYANQ:51: 						pw.println(pairxs(bb));
+CYWEXAP:52: 				}
+RHKHSZW:53: 				pw.println("</billboards>");
+JIYURWL:54: 			} catch (IOException e) {
+NRCVEOA:55: 			}
+FOXKDTH:56: 		}
+YFXWSJP:57: 		private static String rp(String msg){
+RYNFPZE:58: 			String st=msg;
+UUHIXPU:59: 			st=st.replaceAll("&", "&amp;");
+HRAOZTS:60: 			st=st.replaceAll(">", "&gt;");
+HEODIMN:61: 			st=st.replaceAll("<", "&lt;");
+XADIADH:62: 			st=st.replaceAll("\'", "&apos;");
+GYESJTO:63: 			st=st.replaceAll("\"", "&quot;");
+ISUSVGL:64: 			return st;
+JCAJKQI:65: 		}
+OAAVFCG:66: 		// <key>value</key>
+PWHDSTB:67: 		private static String pairx(String key, String value){
+AYCFCVL:68: 			String ss=String.format("<%s>%s</%s>", key,value,key);
+DOLDYSU:69: 			return ss;
+NSQMWGQ:70: 		}
+OIPHUGO:71: 		private static String pairxs(Billbaord bb){
+MFQPCGB:72: 			String rank=pairx("rank",rp(bb.getRank()+""));
+KBHXNUC:73: 			String song=pairx("song",rp(bb.getSong()+""));
+IVEBKTE:74: 			String lastweek=pairx("lastweek",rp(bb.getLastweek()+""));
+XIKDAJZ:75: 			String imagesrc=pairx("imagesrc",rp(bb.getImagesrc()+""));
+EULGTHP:76: 			String artist=pairx("artist",rp(bb.getArtist()+""));
+FMDKADF:77: 			return String.format("<billboard>\n%s %s %s %s %s\n</billboard>",
+SKOPQPH:78: 					rank, song,lastweek,imagesrc,artist);
+UKLOFCE:79: 		}*/
+QSCZDXI:80: 		private static String pair(Billbaord bb){
+WOPKBFD:81: 			String rank=pair("rank",bb.getRank()+"");
+FMREOFW:82: 			String song=pair("song",bb.getSong()+"");
+BJDLOQG:83: 			String lastweek=pair("lastweek",bb.getLastweek()+"");
+JXKIUGG:84: 			String imagesrc=pair("imagesrc",bb.getImagesrc()+"");
+DCFKIYI:85: 			String artist=pair("artist",bb.getArtist()+"");
+FPHFNZV:86: 			return String.format("{%s,%s,%s,%s,%s}",rank, song,lastweek,imagesrc,artist);
+UCKHZFL:87: 		}
+PFQQEFT:88: 		// "key":"value"
+NVTYTRO:89: 		private static String pair(String key, String value){
+IVDKBUD:90: 			String ss=String.format("\"%s\":\"%s\"", key,value);
+PVAPMOH:91: 			return ss;
+QODTAZW:92: 		}
+KSDAHMR:93: 		// {"key":"value"}
+BXEMSOW:94: 		private static String pairs(String key, String value){
+UXQRPIA:95: 			String ss=String.format("{\"%s\":\"%s\"}", key,value);
+BYCNYGD:96: 			return ss;
+MIVKOUS:97: 		}
+LDVLNIQ:98: 	}

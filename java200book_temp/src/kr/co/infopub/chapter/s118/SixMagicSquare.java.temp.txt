@@ -1,0 +1,84 @@
+0UFJXRLV:1: 	package kr.co.infopub.chapter.s118;
+0XXRGRQZ:2: 	public class SixMagicSquare extends MagicSquare{
+0GAJVSCT:3: 	
+0BGJSHOB:4: 		public SixMagicSquare(int n) {
+0LUFJVNL:5: 			super(n);
+0EBOCDCG:6: 		}
+0QUHFOJQ:7: 		public SixMagicSquare() {
+0ILDIZKT:8: 		    this(6);
+0TOAGQUL:9: 		}
+XXBJYWU:10: 		public void make(){
+GKMLUMI:11: 			makeA();
+DRMUMKC:12: 			makeB();
+NCHSVEB:13: 			makeCD();
+FQIKKND:14: 			makeMulti();
+SHMWNIB:15: 			makeOdd();
+AUCBMQT:16: 		}//
+ZJTYDBT:17: 		private void makeOdd() {
+UMVJGPG:18: 			// Create dependency 생성 의존 
+VHSJHHN:19: 			// 6 마방진은 3마방진을 필요로 한다.
+QHQAOQH:20: 			OddMagicSquare odd=new OddMagicSquare(n/2);
+DKVUASD:21: 			odd.make();    // 3 마방진을 만든다.
+LFWIELC:22: 			int[][] mm=odd.getMagic();
+SXQSEZK:23: 			for (int i = 0; i < n/2; i++) {
+FVSPQQM:24: 				for (int j = 0; j <n/2 ; j++) {
+IACQAER:25: 					magic[i][j]+=mm[i][j];
+IVKDKCA:26: 					magic[i][j+n/2]+=mm[i][j];
+WTHXBNB:27: 					magic[i+n/2][j]+=mm[i][j];
+EMDPHTI:28: 					magic[i+n/2][j+n/2]+=mm[i][j];
+VNOYBBK:29: 				}
+CZPWHVU:30: 			}
+MBKBICU:31: 		}
+OHBRNDR:32: 		private void makeMulti() {
+OUEUFHU:33: 		   for (int i = 0; i < n; i++) {
+POMNEJE:34: 			   for (int j = 0; j < n; j++) {
+JQNNAYV:35: 				    magic[i][j] *= (n/2*n/2);
+MWMPIZC:36: 			   }
+TYXOMSJ:37: 		   }
+VBAKFPO:38: 		}
+XRZIUZD:39: 		private void makeCD() {
+ECSDFJY:40: 			for (int i = 0; i <n/2; i++) {
+SEMUMMG:41: 				for (int j = 0; j <n/2; j++) {
+OPLWIHI:42: 					if(magic[i][j]==0){
+JGWRNJW:43: 						magic[i+n/2][j]=3;
+AQEZKRP:44: 					}else{
+KRXSJVZ:45: 						magic[i+n/2][j]=0;
+YWFCNGM:46: 					}
+QJVXRPR:47: 					
+MVOBWUK:48: 					if(magic[i][j+n/2]==1){
+VEZJXEU:49: 						magic[i+n/2][j+n/2]=2;
+OHGSXXD:50: 					}else{
+IJAEVUV:51: 						magic[i+n/2][j+n/2]=1;
+UJYSQDB:52: 					}
+CIDBAHF:53: 					
+DBZJCUC:54: 				}
+XNPYJAV:55: 			}
+PUXRJQE:56: 			
+GIVJSXH:57: 		}
+KCXXQGJ:58: 		private void makeB() {
+WHGUKUN:59: 			for (int i = 0; i <n/2; i++) {
+QXWJIWF:60: 				for (int j = 0; j <n/2; j++) {
+GCIBEGS:61: 					magic[i][j+n/2]=1;
+KHYDODQ:62: 				}
+PEUKAJR:63: 			}
+EKANOYY:64: 			
+RRNZKRS:65: 			for (int i = 0; i <n/2; i++) {
+QFEYQUO:66: 				for (int j = 0; j <n/2-(n/4-1); j++) {
+ECVHJBN:67: 					magic[i][j+n/2]=2;
+FVYGRSC:68: 				}
+MREKNEC:69: 			}
+RIDMVMS:70: 			
+QEUNBRX:71: 			
+ZKLNMBP:72: 		}
+UIDRSBI:73: 		private void makeA() {
+NZWAHSN:74: 			for (int i = 0; i <n/2 ; i++) {
+JWAZFMQ:75: 				for (int j = 0; j <n/4 ; j++) {
+QEPYTSE:76: 					if(i==n/4){
+QHHTRUS:77: 						magic[i][j+1]=3;
+ARFPDAH:78: 					}else{
+SQFZUNT:79: 						magic[i][j]=3;
+FHUGIEH:80: 					}
+VNCEJDW:81: 				}
+YTSOLOH:82: 			}
+MCGBGOU:83: 		}
+HNCQPYW:84: 	}

@@ -1,0 +1,23 @@
+0WKOTAZH:1: 	package kr.co.infopub.chapter.s072;
+0MYQOCPA:2: 	import java.util.Iterator;
+0VHRHBPB:3: 	import java.util.Map;
+0ZJPVRKL:4: 	public class SystemPropertyTest {
+0RPUTVTT:5: 		public static void main(String[] args) {
+0XICLOLT:6: 			long namotime=System.nanoTime();
+0ZFEASAG:7: 			for(int i=0;i<100000;i++){
+0PSDWYKY:8: 				System.out.print("");
+0OCZGPOX:9: 			}
+VPZCUNN:10: 			long namotime2=System.nanoTime();//10^-9 nano java5 추가
+TMGSIAV:11: 			System.out.println((namotime2-namotime));//1/1000000000초			
+GYTXIAM:12: 			System.out.println(System.getenv("JAVA_HOME")); // 환경변수
+AUINJRJ:13: 			//모든 env구하기
+ZAFCYGU:14: 			Map<String, String> map=System.getenv();  // 환경변수
+GTXRBND:15: 			Iterator<String> iter= map.keySet().iterator(); // Map에서 키 얻기
+KFLIEUP:16: 			int j=0;
+BINQQCK:17: 			while(iter.hasNext()){
+QKZCYSS:18: 				String keys=iter.next();
+DKUMNVO:19: 				System.out.println((++j+" ")+keys+" : "+map.get(keys));
+AFUMZDY:20: 			}
+DTSVIFH:21: 		}//main
+VJIYEVZ:22: 	}
+AWMAETI:23: 	

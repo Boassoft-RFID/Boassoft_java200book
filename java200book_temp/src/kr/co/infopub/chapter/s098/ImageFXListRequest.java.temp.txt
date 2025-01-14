@@ -1,0 +1,67 @@
+0PMUAAJO:1: 	package kr.co.infopub.chapter.s098;
+0LKZKAHI:2: 	import java.util.ArrayList;
+0ZJKURGT:3: 	import java.util.Collections;
+0BIBHPNX:4: 	import java.util.Iterator;
+0GBDNRAP:5: 	import java.util.LinkedHashMap;
+0FLXQMUY:6: 	import java.util.List;
+0UPVCJHT:7: 	import java.util.Map;
+0MFIRZFS:8: 	import javafx.scene.image.Image;
+0ZDRXQSS:9: 	
+IFDTDIA:10: 	public class ImageFXListRequest {
+XTJKQCG:11: 	private Map<String, Image> images;
+TMVSOQS:12: 	 public ImageFXListRequest() {
+RJCYVGN:13: 		images= Collections
+TMDUTIN:14: 		  .synchronizedMap(new LinkedHashMap<String, Image>(10, 1.53f, true));
+MZSCVJI:15: 	 }
+AKOQFYN:16: 	 public synchronized Image loadImage(String imagesrc) {
+ZPWBLNC:17: 		Image mimage=null;
+DMEZAYM:18: 		if (images.containsKey(imagesrc)) {
+EPNEVFS:19: 			mimage= images.get(imagesrc);
+LIELIVF:20: 		} else {
+BHLJVQN:21: 			if(imagesrc!=null && !imagesrc.contains("q_____")){
+KLPCZEG:22: 				try{
+PELPSQI:23: 					mimage= new Image(imagesrc,50,55,true,true);
+TRNWREB:24: 				}catch (Exception e) {
+BGMLIQL:25: 					mimage=null;;
+YGZPMUU:26: 				}
+OTMHCTC:27: 			}
+RLLCVCC:28: 		}
+AEFBTNU:29: 		return mimage==null ? new Image(getClass()
+NOKZENO:30: 				              .getResourceAsStream("wiki.jpg")):mimage;
+GNOZYYI:31: 	 } 
+ZKXRSTZ:32: 	 public synchronized void getAllImages(ArrayList<SovereignFlag> bills){
+TNBPXTH:33: 		images.clear(); 
+HPYTABK:34: 		List<SovereignFlag> newbills=Collections.synchronizedList(bills);
+XYFPYUG:35: 		for(SovereignFlag bb: newbills){
+AYYYBYZ:36: 			new Thread(() ->{
+BVAHBDK:37: 				if(!images.containsKey(bb.getFlag())){
+WYARFFH:38: 					images.put(bb.getFlag(),loadImage(bb.getFlag()));
+OGCXVOY:39: 					System.out.println(bb.getFlag()+
+GENAIAA:40: 							        "\t\t\t---Map에  Image저장----->>>>>>");  
+GLUFFQI:41: 				}
+KCCNTRL:42: 			}).start();
+EMYCUEV:43: 		}
+BSMAYVO:44: 	 }
+ZQFZETO:45: 	 public synchronized void printImage(){
+PVBPGKF:46: 		 System.out.println(images.size());
+NYUDIGE:47: 		 Iterator<String> imagekeys=images.keySet().iterator();
+ROSBTOY:48: 		 while(imagekeys.hasNext()){
+LJFIIFZ:49: 			 String key=imagekeys.next();
+ESIBHPZ:50: 			 //Image val=images.get(key);
+KSZACDR:51: 			 System.out.printf("key=%s\n",key); // 키만 출력
+MVCUVPC:52: 		 }
+SGGSBAC:53: 	 }
+ZZVJWEF:54: 	 public static void main(String[] args) {
+VLFZDSC:55: 		    ImageFXListRequest  request=new ImageFXListRequest();
+HQBQZWX:56: 		    RequestFromWikipedai rfw=new RequestFromWikipedai();
+WKWJQDA:57: 			String a="https://ko.wikipedia.org/wiki/ISO_3166-1";
+KKRQHKR:58: 			String msg="srcset=\"//upload.wikimedia.org/wikipedia";
+CTAXLRD:59: 			rfw.getAllHtml(a);   
+TJOBWHX:60: 			//rfw.printHtml();
+GZQJSKA:61: 			rfw.getSevereign(msg);
+RJLNCEE:62: 			//rfw.printFlags();
+VTWJJMV:63: 			
+SHDQZZG:64: 			request.getAllImages(rfw.getFlags());  //image를 맵에 저장
+GZDDIZH:65: 			request.printImage();
+RCIFEDO:66: 	 }
+BUSXUSW:67: 	}

@@ -1,0 +1,100 @@
+00ZAOAXWZ:1: 	package kr.co.infopub.chapter.s098;
+00GCBFPQM:2: 	
+00CJCAGCI:3: 	import java.io.Serializable;
+00WHXRBQN:4: 	
+00UQPZDUA:5: 	public class SovereignFlag implements Serializable{
+00OUOXLCS:6: 	
+00JZAXODM:7: 		private String name;
+00PJTZJUU:8: 		private String shortname;
+00VKNGCUW:9: 		private String code;
+0QZRJJAC:10: 		private String flag;
+0PFAYUDR:11: 		private String korname;
+0PJPKDKS:12: 		//for android
+0GUNUSWC:13: 		private int rid;
+0RPCLQWK:14: 		
+0BAIQZEL:15: 		
+0NLRXNVE:16: 	
+0VEUEXYP:17: 		public SovereignFlag() {
+0VGLPCML:18: 		}
+0GDZNEQC:19: 		
+0KLBDCYH:20: 		public SovereignFlag(String name, String shortname, String code,
+0UHOACOC:21: 				String korname, int rid) {
+0BBNWDOZ:22: 			super();
+0OZWYWZI:23: 			this.name = name;
+0GCQTACD:24: 			this.shortname = shortname;
+0LQZUVKB:25: 			this.code = code;
+0WOKFWYH:26: 			this.korname = korname;
+0YERZBEA:27: 			this.rid = rid;
+0QDLCKMR:28: 		}
+0CSZTYAA:29: 	
+0CTTVHKA:30: 		public SovereignFlag(String name, String shortname, String code,
+0PBARAEP:31: 				String flag, String korname) {
+0PPBQNEN:32: 			super();
+0EIDXKBY:33: 			this.name = name;
+0MTEJABR:34: 			this.shortname = shortname;
+0KOQXOUQ:35: 			this.code = code;
+0DWUVZHD:36: 			this.flag = flag;
+0CCZQYNI:37: 			this.korname = korname;
+0PRWAIUV:38: 		}
+0XRQZFTA:39: 	
+0VQUVPZN:40: 		public SovereignFlag(String name, String shortname, String code, String flag) {
+0GIUSRDA:41: 			super();
+0FWALCUK:42: 			this.name = name;
+0AWBEVIU:43: 			this.shortname = shortname;
+0MNIKAUK:44: 			this.code = code;
+0VDOMWZG:45: 			this.flag = flag;
+0HZYTFWQ:46: 		}
+0JEXWUIC:47: 		public SovereignFlag(String name, String shortname, String code) {
+0AMWGNEE:48: 			super();
+0SOJUOMN:49: 			this.name = name;
+0HKFXBLJ:50: 			this.shortname = shortname;
+0AQOREPI:51: 			this.code = code;
+0KVRIWSK:52: 		}
+0RYVPFIC:53: 	
+0ONMALNX:54: 		public String getKorname() {
+0EEXDPAA:55: 			return korname;
+0MCMIAZN:56: 		}
+0TFAJVVR:57: 	
+0HKRTEIR:58: 		public void setKorname(String korname) {
+0ERQUDYA:59: 			this.korname = korname;
+0FCXOHUV:60: 		}
+0TYUTBZV:61: 	
+0OQNTRRB:62: 		@Override
+0QCMQJSF:63: 		public String toString() {
+0EAMRZMJ:64: 			return "SovereignFlag [name=" + name + ", shortname=" + shortname
+0HPVUOBB:65: 					+ ", code=" + code + ", flag=" + flag + ", korname=" + korname
+0KDLWPPN:66: 					+ "]";
+0NHUTIXR:67: 		}
+0JZOMEYZ:68: 	
+0HRWUXPI:69: 		public String getName() {
+0ZVQFCDH:70: 			return name;
+0WHWYEMJ:71: 		}
+0EELIEUJ:72: 		public void setName(String name) {
+0RCBTGNZ:73: 			this.name = name;
+0XEKNZEL:74: 		}
+0EWIXVAR:75: 		public String getShortname() {
+0UOBHBMP:76: 			return shortname;
+0FFGVGMN:77: 		}
+0YMMHSHV:78: 		public void setShortname(String shortname) {
+0GNGSQDM:79: 			this.shortname = shortname;
+0VRAJAVQ:80: 		}
+0HCIRPEA:81: 		public String getCode() {
+0NCOULNN:82: 			return code;
+0JPWMSTC:83: 		}
+0QWKFJEO:84: 		public void setCode(String code) {
+0NRKGRHV:85: 			this.code = code;
+0OFRVQZI:86: 		}
+0XWTHGLJ:87: 		public String getFlag() {
+0NQAZHQZ:88: 			return flag;
+0OVHMPFJ:89: 		}
+0DWVBWWB:90: 		public void setFlag(String flag) {
+0ZIEFAIP:91: 			this.flag = flag;
+0IDOFIDI:92: 		}
+0JQUXANQ:93: 		public int getRid() {
+0MZEHQJJ:94: 			return rid;
+0XNXONFT:95: 		}
+0PXKZZWQ:96: 	
+0SHHBIJM:97: 		public void setRid(int rid) {
+0UFOWWJO:98: 			this.rid = rid;
+0KQFVPDO:99: 		}
+SJOPYCE:100: 	}

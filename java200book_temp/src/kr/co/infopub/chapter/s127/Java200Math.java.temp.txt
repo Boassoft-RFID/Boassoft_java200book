@@ -1,0 +1,144 @@
+00XWKFXDX:1: 	package kr.co.infopub.chapter.s127;
+00LRECUVA:2: 	public class Java200Math {
+00OJGPKXX:3: 	 // 축약 s35
+00HTXBPJP:4: 	 public static int sumEach(int n){
+00UQNDUFN:5: 		int tot=0;
+00QCTWXKI:6: 		while(n!=0){
+00QUEDVNR:7: 			tot+=n%10; // 3 -> 2-> 1
+00DZHBFYW:8: 			n/=10;     // 123-> 12-> 1->0
+00ZZJLMHQ:9: 		}
+0MWSFOLN:10: 		return tot;
+0VSRIYKE:11: 	 }
+0SSEJANV:12: 	 // s36
+0EIMRCKS:13: 	 public static boolean isPrime(int n){
+0WVHADLV:14: 		boolean isS=true;
+0AFINGJC:15: 		for (int i = 2; i <=(int)Math.sqrt(n); i++) {
+0DUNJIII:16: 			if(n%i==0){
+0UDSGVMO:17: 				isS=false;
+0NKVODIO:18: 				break;
+0HSNQGPX:19: 			}
+0YCUJUDN:20: 		}
+0HTMDFMW:21: 		return isS;
+0UTKUMGM:22: 	 }
+0SYNKUYY:23: 	 public static int sumSmith(int n){
+0HFDVDMP:24: 		int tot=0;
+0BEXVLHO:25: 		int a=2;
+0DWLQZUQ:26: 		while(n!=1){
+0VJUOWAT:27: 			if(n%a==0){
+0AJYKHPQ:28: 				tot+=sumEach(a);
+0NRGTOUN:29: 				n/=a;
+0KBCIWWR:30: 			}else{
+0GDRLWMT:31: 				a++;
+0WEJXZZY:32: 			}
+0YGMCYYI:33: 		}
+0HHNAMXB:34: 		return tot;
+0FCYJVAM:35: 	 }
+0GFYJLUG:36: 		//recursion 재귀
+0EGAAFOH:37: 		public static int gcd(int m, int n){
+0BROEMBA:38: 			if(m==1 || n==1 ){
+0MVTDTLD:39: 				return 1;
+0THHIWWW:40: 			}else if( m==n){
+0LEJMSFL:41: 				return m;
+0EFMTWNZ:42: 			}else if(m>n){
+0LOIYPKF:43: 				return gcd(m-n,n);
+0ZMDASJH:44: 			}else{
+0TMJZAYP:45: 				return gcd(m,n-m);
+0KHUSCYM:46: 			}
+0WAKYQYL:47: 		}
+0QBVPWTX:48: 	
+0ROYKWYP:49: 		public static void printPrime(){
+0SHQRPFP:50: 			for (int i = 10000; i < 20000; i++) {
+0JTRXDZK:51: 				if(isPrime(i)){
+0SSRINGD:52: 					System.out.println(i);
+0JHQAJOQ:53: 				}
+0TPLPKQN:54: 			}
+0BRHEGNO:55: 		}
+0VHYOKTQ:56: 		public static void printDivide(int n){
+0RLMDXRH:57: 			if(n==1){
+0IDFEZWH:58: 				System.out.println("[1]");
+0YZQSDXO:59: 			}else{
+0LXTVNTA:60: 				System.out.printf("[1,");
+0NDRSESC:61: 				for (int i = 2; i <n; i++) {
+0NHWHWZA:62: 					if(n%i==0){
+0MONOTMI:63: 						System.out.printf("%d,",i);
+0AAFVRZE:64: 					}
+0XQISWUX:65: 				}
+0SFNNHLV:66: 				System.out.println(n+"]");
+0GRHXSCX:67: 			}
+0HWGMHID:68: 		}
+0HIJLRDM:69: 		public static void printSmith(int t1, int t2){
+0HGVDAFV:70: 			for (int i = t1; i < t2; i++) {
+0ONLCDGT:71: 				if(!isPrime(i) && sumEach(i)==sumSmith(i)){//스미스
+0QRIBKBA:72: 					System.out.printf("%d는 스미스 수: ",i);
+0XBIDESZ:73: 					printPrimeDivide(i);
+0IHNQUDG:74: 				}
+0RSYENYP:75: 			}
+0CXEGPCW:76: 		}
+0GSAEDIZ:77: 		
+0ERHRMRB:78: 		public static void printPrimeDivide(int n){
+0LUBJMZP:79: 			int a=2;
+0JAPDZNX:80: 			while(n!=1){
+0EQMRKQL:81: 				if(n%a==0){
+0KGMYRLR:82: 					if(n/a==1){
+0OXBYJKV:83: 						System.out.println(a);
+0SQSWVTE:84: 					}else{
+0CBIFRLC:85: 						System.out.print(a+"x");
+0HISVSFT:86: 					}
+0CVYZTEO:87: 					n/=a;
+0FQFKOKM:88: 				}else{
+0WYVVCPM:89: 					a++;
+0BOWVWPY:90: 				}
+0WFPACHO:91: 			}
+0ZHZCVYB:92: 		}
+0LKCEADR:93: 	    //자신을 제외한 약수의 합 divide(6)=1+2+3
+0AIMMQDX:94: 		public static int divide(int num){
+0FYCHCDG:95: 			int tot=1;
+0FDJVRBW:96: 			for(int i=2; i<num ; i++){
+0GNSKUPB:97: 				if(num%i==0){
+0JLQUYOZ:98: 					tot+=i;
+0UBQVXMO:99: 				}
+VGJXDNW:100: 			}
+JRJCYEU:101: 			return tot;
+BLZRBTI:102: 		}
+RCDTGTJ:103: 		public static void printPerfect(int t1, int t2){
+PUITNLI:104: 			for (int i = t1; i < t2; i++) {
+CVSQMYD:105: 				if(i==divide(i)){//완전수
+MLRAIDS:106: 					System.out.printf("%d는 완전 수: ",i);
+FILKYLN:107: 					printDivide(i);
+KUDAGJT:108: 				}
+PSBSSJT:109: 			}
+ECOVTPO:110: 		}
+ZPNQYJC:111: 		public static void printAmicable(int t1, int t2){
+NEQKVGT:112: 			for (int i = t1; i < t2; i++) {
+TABQACK:113: 				int a=i;
+NHPWAPS:114: 				int b=divide(a);
+GCJSKQP:115: 				int c=divide(b);
+QEFWEUY:116: 				//System.out.println(i);
+URUAHNX:117: 				if(a<b && a==c){//같은 수 반복 금지
+NSQRDMM:118: 					System.out.printf("(%d,%d)는 친화 수: ",a,b);
+QSYDIHH:119: 					printDivide(a);
+HIUAYTQ:120: 					printDivide(b);
+LWYUWAR:121: 				}
+CUMUSJC:122: 			}
+NBTEUNL:123: 		}
+FTZFUPF:124: 		public static void printSociable5(int t1, int t2){
+ULMUNFW:125: 			for (int i = t1; i < t2; i++) {
+BCBCEFE:126: 				int a=i;
+NJKFHCJ:127: 				int b=divide(a);
+ZLLGZRW:128: 				int c=divide(b);
+GGLDKIE:129: 				int d=divide(c);
+QXYYIJE:130: 				int e=divide(d);
+ZSODBLM:131: 				int f=divide(e);
+RQCHPBJ:132: 				if(a<b && a<e && a!=c && b!=d && a==f){
+NHICAUI:133: 					System.out.printf("(%d,%d, %d,%d, %d)는 Sociable수\n",a,b,c,d,e);
+JLATEXY:134: 					System.out.println(b);
+KKXSGLO:135: 					System.out.println(c);
+UUZDONF:136: 					System.out.println(d);
+DCDMLJT:137: 					System.out.println(e);
+YLORATF:138: 					System.out.println(f);
+UVURLQD:139: 					//printDivide(a);
+MJECHKY:140: 					//printDivide(b);
+KBQNHMK:141: 				}
+NGZPYZX:142: 			}
+IVUXAKD:143: 		}
+XPPJJNK:144: 	}

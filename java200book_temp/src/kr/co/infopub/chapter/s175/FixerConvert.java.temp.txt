@@ -1,0 +1,122 @@
+00HGVRREI:1: 	package kr.co.infopub.chapter.s175;
+00FGHCMOY:2: 	import java.io.InputStreamReader;
+00MKAFXFA:3: 	import java.net.URL;
+00JWUMJIH:4: 	
+00IGLBCCB:5: 	import org.json.JSONArray;
+00WYTBMHZ:6: 	import org.json.JSONObject;
+00TPAXGAV:7: 	
+00PIXKCFR:8: 	import java.io.BufferedReader;
+00PYKZSXP:9: 	import java.io.FileWriter;
+0PRNABBK:10: 	import java.io.IOException;
+0KPIFIAH:11: 	public class FixerConvert {
+0ALCXZPQ:12: 		public static String conversion(String date,String base) {
+0QNDEXYM:13: 			BufferedReader br=null;
+0HJCWFHL:14: 			String newUrls1="http://data.fixer.io/api/%s?access_key=97042483f2b64c6bfe1dbfbf4a2bd1b3&symbols=KRW,JPY,CNY,USD,EUR";
+0VFRRTNI:15: 			String newUrls=String.format(newUrls1, date,base);
+0BJBKNNQ:16: 			URL url=null;
+0WJJDCQF:17: 			StringBuffer sb=new StringBuffer();
+0MMGDRPF:18: 			try {
+0GAPXMOY:19: 				url=new URL(newUrls); // http://api.fixer.io
+0LGNMPFX:20: 				System.out.println(newUrls);
+0CIPGGHD:21: 				br=new BufferedReader(new InputStreamReader(url.openStream(),"utf-8"));
+0UXNORJE:22: 				String msg="";
+0VVGFBPN:23: 				// http://api.fixer.io/2017-06-09?base=USD를 읽어 들인다.
+0IUMIVPD:24: 				while((msg=br.readLine())!=null){
+0ABINYJR:25: 					sb.append(msg);
+0BPRNOHL:26: 				}
+0GNQIYLP:27: 			} catch (Exception e) {
+0MHQZBKI:28: 				
+0AHQLNTL:29: 			}
+0WJEMCWL:30: 			return sb.toString();
+0IAERHRK:31: 		}
+0DQEPLMG:32: 		public static FixerRate  convert2(String  data,String base) throws Exception{
+0XLIZJFL:33: 			JSONObject jObject = new JSONObject(data);
+0YVHMFVM:34: 			JSONObject rates=jObject.getJSONObject("rates");
+0WWZJFBE:35: 	
+0PNQHHCB:36: 			FixerRate fixerrate=new FixerRate();
+0VQIBVFU:37: 			fixerrate.date=jObject.getString("date");
+0EMDBBTT:38: 			fixerrate.base=base;//jObject.getString("base");
+0GFRJWTI:39: 			if(base.equals("USD")){
+0CUSVPAI:40: 				double fixbase=rates.getDouble("USD");
+0TAYPXYC:41: 				fixerrate.usd=rates.getDouble("USD")/fixbase;
+0RCFZTYA:42: 				fixerrate.krw=rates.getDouble("KRW")/fixbase;
+0SAVIFHF:43: 				fixerrate.jpy=rates.getDouble("JPY")/fixbase;
+0SQOGYIM:44: 				fixerrate.eur=rates.getDouble("EUR")/fixbase;
+0IFUHUMG:45: 				fixerrate.cny=rates.getDouble("CNY")/fixbase;
+0NCDWZWF:46: 			}else if(base.equals("KRW")){
+0GEAVTSS:47: 				double fixbase=rates.getDouble("KRW");
+0LBFZDXX:48: 				fixerrate.usd=rates.getDouble("USD")/fixbase;
+0KJUSQJQ:49: 				fixerrate.krw=rates.getDouble("KRW")/fixbase;
+0HYMLHYI:50: 				fixerrate.jpy=rates.getDouble("JPY")/fixbase;
+0TYXCQZO:51: 				fixerrate.eur=rates.getDouble("EUR")/fixbase;
+0IJOAVGH:52: 				fixerrate.cny=rates.getDouble("CNY")/fixbase;
+0FFMKRET:53: 			}else if(base.equals("JPY")){
+0JALQXZI:54: 				double fixbase=rates.getDouble("JPY");
+0TKGAMHO:55: 				fixerrate.usd=rates.getDouble("USD")/fixbase;
+0YHZZOUY:56: 				fixerrate.krw=rates.getDouble("KRW")/fixbase;
+0NPSLPNR:57: 				fixerrate.jpy=rates.getDouble("JPY")/fixbase;
+0WYRVFCB:58: 				fixerrate.eur=rates.getDouble("EUR")/fixbase;
+0YRIGRQS:59: 				fixerrate.cny=rates.getDouble("CNY")/fixbase;
+0TTHDJLX:60: 			}  else if(base.equals("EUR")){
+0RTGJFSE:61: 				double fixbase=rates.getDouble("EUR");
+0BALCMZF:62: 				fixerrate.usd=rates.getDouble("USD")/fixbase;
+0YYMPWGG:63: 				fixerrate.krw=rates.getDouble("KRW")/fixbase;
+0XAWSYFC:64: 				fixerrate.jpy=rates.getDouble("JPY")/fixbase;
+0XHYGYGO:65: 				fixerrate.eur=rates.getDouble("EUR")/fixbase;
+0TJOZQCN:66: 				fixerrate.cny=rates.getDouble("CNY")/fixbase;
+0QOBBMDH:67: 			} else if(base.equals("CNY")){
+0TTCSYVZ:68: 				double fixbase=rates.getDouble("CNY");
+0POFTFTJ:69: 				fixerrate.usd=rates.getDouble("USD")/fixbase;
+0KBDRCCQ:70: 				fixerrate.krw=rates.getDouble("KRW")/fixbase;
+0BDUMXJS:71: 				fixerrate.jpy=rates.getDouble("JPY")/fixbase;
+0YORWVVM:72: 				fixerrate.eur=rates.getDouble("EUR")/fixbase;
+0SSZGJZO:73: 				fixerrate.cny=rates.getDouble("CNY")/fixbase;
+0ZSPFARC:74: 			}	
+0BNHVMOI:75: 			return fixerrate;
+0RUGFNCX:76: 		}
+0IORGJTH:77: 		public static FixerRate  convert(String  date,String base){
+0DAGHMTW:78: 			String conversions=conversion(date, base);
+0NEMRNRP:79: 			FixerRate fixerRate=null;
+0BEZJUBB:80: 			try {
+0NWBUACM:81: 				fixerRate= convert2(conversions, base);
+0NQGKHMO:82: 			} catch (Exception e) {
+0SPAYLCC:83: 				System.out.println(e);
+0OQSQXLU:84: 			}
+0MAGJWIW:85: 			return fixerRate;
+0KBOTYOS:86: 		}
+0WPZCFCG:87: 		public static JSONObject toJson(FixerRate fixerrate){
+0QTQWJTU:88: 			JSONObject obj = new JSONObject();
+0GBCPVDS:89: 	        obj.put("USD", fixerrate.usd);
+0QVAUHFJ:90: 	        obj.put("KRW", fixerrate.krw);
+0LACNKOO:91: 	        obj.put("JPY", fixerrate.jpy);
+0USRPCIR:92: 	        obj.put("CNY", fixerrate.cny);
+0JHHGYTA:93: 	        obj.put("EUR", fixerrate.eur);
+0KIBFOQT:94: 	        return obj;
+0VRITAHW:95: 		}
+0SRLTNEF:96: 		// JSON으로 만든 후 파일로 저장한다.
+0HUIVNBV:97: 		public static void main(String[] args) {
+0TNAIMZV:98: 			String date=RestDay.todates();  // 오늘
+0VBOLFRQ:99: 			String base="USD";              // 1달러당 환율       
+WHFOSDR:100: 			JSONObject obj = new JSONObject();
+BGFCDCK:101: 	        obj.put("base", base);
+DEUSJJP:102: 	        obj.put("date",date);
+DVTMXFV:103: 	       
+ICNVXWM:104: 			JSONArray fixerrate2s=new JSONArray();
+CIWBDZM:105: 			int j=0; int start=60; // 365  1년 
+OIXWUJK:106: 			for (int i = -start; i < 1; i++) {
+WGRMPJW:107: 		    	String todays=RestDay.toWantedDay(date,i);
+JIADZCS:108: 		    	if(! RestDay.isRest(todays)){
+JYTHYDC:109: 		    		FixerRate fixerrate2=FixerConvert.convert(todays,base);
+SAUPHMS:110: 		    		fixerrate2s.put(j++, toJson(fixerrate2));
+KJZTLWT:111: 		    	}
+UMAYEPK:112: 		    }
+VYMCBEE:113: 			obj.put("rates",fixerrate2s);
+RWLNSND:114: 			try (FileWriter file = new FileWriter(date+""+base+".json")) {
+VUHLLBA:115: 	            file.write(obj.toString());
+LJUJAVH:116: 	            file.flush();
+CSVLQJY:117: 	        } catch (IOException e) {
+UAKZLCP:118: 	           System.out.println(e);
+BTWDWNY:119: 	        }
+XFQCIXK:120: 		}
+GQADHHS:121: 	}
+DUHDNMH:122: 		  

@@ -1,0 +1,7 @@
+WBTJQWC:1: 	package kr.co.infopub.chapter.s118;
+LXSNGRA:2: 	public class MagicPrint {
+YOWDTUA:3: 		public static void print(MagicSquare magic){
+FRQHSLC:4: 			magic.make();
+TDKLUTG:5: 			magic.print();
+LBWYPMJ:6: 		}
+RCRQNHO:7: 	}

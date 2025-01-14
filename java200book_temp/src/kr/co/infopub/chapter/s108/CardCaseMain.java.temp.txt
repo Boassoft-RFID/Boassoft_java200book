@@ -1,0 +1,26 @@
+0JVGUQHV:1: 	package kr.co.infopub.chapter.s108;
+0SMUDLPX:2: 	public class CardCaseMain {
+0TOXMUDW:3: 		public static void main(String[] args) {
+0QLGMHJZ:4: 			CardCase cc=new CardCase();
+0BBJCMCV:5: 			cc.make();
+0LVPCCPT:6: 			cc.print();
+0PCXEZEQ:7: 			System.out.println("--------------------------");
+0MPZAYPJ:8: 			cc.shuffle();   // 카드 섞기
+0RGYLCBM:9: 			cc.print();
+QNFLRGK:10: 			System.out.println("--------------------------");
+MFCXCLH:11: 			cc.shuffle();   // 카드 섞기
+HKSRJOX:12: 			cc.print();
+CHDKGLI:13: 			System.out.println("--------------------------");
+QYBDNBL:14: 			cc.sort();
+QOZHLBT:15: 			cc.print();
+HEFVOZG:16: 			System.out.println("--------------------------");
+VWKVNQH:17: 			cc.rsort();
+XLDYZKU:18: 			cc.print();
+IVDFKQJ:19: 			System.out.println("--------------------------");
+TTPJEKO:20: 			cc.lambdasort();
+PMXFNFY:21: 			cc.print();
+NUJQLJJ:22: 			System.out.println("--------------------------");
+IPLYXGU:23: 			cc.lambdarsort();
+OWNMZHK:24: 			cc.print();
+KQPBJRG:25: 		}
+GTAHDHO:26: 	}

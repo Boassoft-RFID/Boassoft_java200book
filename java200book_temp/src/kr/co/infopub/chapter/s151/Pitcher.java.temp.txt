@@ -1,0 +1,52 @@
+0XOQCRQP:1: 	package kr.co.infopub.chapter.s151;
+0BLEWOLO:2: 	import java.util.Arrays;
+0TECNVFD:3: 	public class Pitcher {
+0HRIFIKM:4: 		private int [] gong;
+0RMTAJCJ:5: 		private int n;//3
+0LQCQXWY:6: 		private int num=10;
+0ULLVVFN:7: 		public Pitcher() {
+0KBVQAOK:8: 			this(10,3);
+0HJXAZQJ:9: 		}
+NVRXQLB:10: 		public Pitcher(int num,int n ) {
+TDRKXUQ:11: 			super();
+XNMKQOG:12: 			this.n = n;
+BOPIQPI:13: 			this.num = num;
+QORTLRB:14: 			gong=new int[n]; //gong 3개
+CYEBBXK:15: 			Arrays.fill(gong, -1);
+NBWVQXE:16: 		}
+ZETGFKV:17: 		public int[] getGong() {
+ZYOIRPH:18: 			return gong;
+VUNXLTM:19: 		}
+HRQZZYI:20: 		//0~9
+TJVLXPN:21: 		public int makeOne(){
+OPIAUOH:22: 			return (int)(Math.random()*num);
+AJKIRFB:23: 		}
+KUAZTXF:24: 		
+BTESFAV:25: 		public boolean contains(int gn){
+OQZRMTW:26: 			boolean isC=false;
+ZTDIALQ:27: 			for (int i = 0; i < n; i++) {
+WIZAZEY:28: 				if(gn==gong[i]){
+QIHNVCG:29: 					isC=true;
+QLOVJFZ:30: 					break;
+WUSHIMT:31: 				}
+YKMRGWH:32: 			}
+CHZSCIM:33: 			return isC;
+WTXNZZW:34: 		}
+PMTJPWY:35: 		public void make(){
+ATXELNY:36: 			Arrays.fill(gong, -1);
+DGWSTZS:37: 			int count=0;
+PKNGPFH:38: 			while(count!=n){
+FJZYXZQ:39: 				int temp=makeOne();
+OVPWJCI:40: 				if( !contains(temp) ){
+CKYPCSE:41: 					gong[count++]=temp;
+QKRNWOS:42: 				}
+WJEZQOW:43: 			}
+BYBFWUN:44: 		}
+KDSMSVF:45: 		public void print(){
+YDKQFEV:46: 			System.out.println("Pitcher");
+MMVZUZJ:47: 			for (int i = 0; i < n; i++) {
+IDVJNCM:48: 				System.out.printf("%d\t",gong[i]);
+IFORPOC:49: 			}
+KWPJDYY:50: 			System.out.println();
+YPXVOWV:51: 		}
+UZTHLCI:52: 	}

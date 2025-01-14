@@ -1,0 +1,112 @@
+00WUEWAJS:1: 	package kr.co.infopub.chapter.s102;
+00GRMBRHU:2: 	import java.io.IOException;
+00LJQEBJP:3: 	import java.util.ArrayList;
+00VBKQCCF:4: 	import org.apache.http.HttpEntity;
+00QTRKDTV:5: 	import org.apache.http.client.methods.CloseableHttpResponse;
+00NPVZWUP:6: 	import org.apache.http.client.methods.HttpGet;
+00JBENNXA:7: 	import org.apache.http.impl.client.CloseableHttpClient;
+00HHBIIHH:8: 	import org.apache.http.impl.client.HttpClients;
+00ZTPNMWW:9: 	import org.apache.http.util.EntityUtils;
+0EHJUWMG:10: 	import org.jsoup.Jsoup;
+0UGRADYJ:11: 	import org.jsoup.nodes.Document;
+0NXWJTEJ:12: 	import org.jsoup.nodes.Element;
+0DLXKEES:13: 	import org.jsoup.select.Elements;
+0YWWFJWN:14: 	
+0BBLNPOJ:15: 	public class RequestFromBillboard200 {
+0CLFIMRX:16: 	
+0SJNYPPV:17: 		ArrayList<Billbaord> billboards=new ArrayList<Billbaord>();
+0KDEEETF:18: 		
+0GKVCRJR:19: 		public ArrayList<Billbaord> getBillboards() {
+0SKTGNEH:20: 			return billboards;
+0UAMDYZB:21: 		}
+0IHZHKGD:22: 		public RequestFromBillboard200(){
+0YMRHAOO:23: 			billboards.clear();
+0SZNJALU:24: 		}
+0WGQAXJH:25: 		public  void getBillboardData(String newUrls){
+0YUMKCRE:26: 		billboards.clear();
+0VDQQELA:27: 		HttpGet request = new HttpGet(newUrls);  // HttpGet 생성
+0QSGATMS:28: 		Document doc = null;  
+0JGMZHQX:29: 	    // 자동 finally 처리용 
+0FNIOWHE:30: 	    try (CloseableHttpClient httpClient = HttpClients.createDefault(); 
+0HOWLZWE:31: 	   	  CloseableHttpResponse response = httpClient.execute(request)){
+0ZZXXASE:32: 	    	StringBuffer sb=new StringBuffer();
+0YCZSLUO:33: 	        HttpEntity entity = response.getEntity();
+0SNXAARD:34: 	        if (entity != null) {
+0VUUPFXS:35: 	            String result = EntityUtils.toString(entity);
+0SQFBWPO:36: 	            sb.append(result);                // 모든 내용을 읽어온다.
+0ZGAYWTN:37: 	        }
+0HSLWOVC:38: 	        doc=Jsoup.parse(sb.toString());      // 읽은 내용을 Document로 만든다.
+0WGQIDQI:39: 	
+0IMLDRZV:40: 	        String r1="flex--column.flex--xy-center.";
+0FYUYMRM:41: 	        String r2="flex--no-shrink > span.chart-element__rank__number";
+0HDSNIFI:42: 	        String o1="span.chart-element__information__song.";
+0RZZGUVA:43: 	        String o2="text--truncate.color--primary";
+0NWRITIC:44: 	        String i1="span.chart-element__information__artist.";
+0XHVINWT:45: 	        String i2="text--truncate.color--secondary";
+0XOSDWOW:46: 	        String rank="li > button > span.chart-element__rank."+r1+r2;
+0WNBZVNP:47: 	        String song="li > button > span.chart-element__information > "+o1+o2;
+0ZJBRPDJ:48: 	        String singer="li > button > span.chart-element__information > "+i1+i2;
+0WEMQJTJ:49: 	        //String image="li > button > span.chart-element__image.flex--no-shrink";
+0FXLGAOD:50: 	        Elements ranks = doc.select(rank);     // 랭킹 : 모든 내용에서 랭킹 찾기
+0WGWVSWC:51: 	        Elements songs = doc.select(song);     // 노래 : 모든 내용에서 노래  찾기
+0YXLEJGG:52: 	        Elements singers = doc.select(singer); // 가수 : 모든 내용에서 가수 찾기
+0EFFOGTS:53: 	        //Elements images = doc.select(image); // 이미지 : 모든 내용에서 이미지 찾기
+0VEWGSWQ:54: 	        // 빌보드 객체에 랭킹, 노래, 가수를 저장, 빌보드 객체를 List에 저장
+0ZJBUUZQ:55: 	        for (int i = 0; i < ranks.size(); i++) {
+0DJWECIK:56: 	        	Billbaord board=new Billbaord();
+0KNKQFXV:57: 	        	board.setRank(Integer.parseInt(ranks.get(i).text()));
+0VXFKUZV:58: 	        	board.setSong(songs.get(i).text());
+0TEPSHSK:59: 	        	board.setArtist(singers.get(i).text());
+0HDZLXFI:60: 	/*          String ss=images.get(i).attr("style");
+0LUCLDYH:61: 	        	if(ss!=null && !ss.trim().equals("") && ss.indexOf("https")!=-1) {
+0ZULZDBR:62: 	        		ss=ss.substring(ss.indexOf("https"));
+0XLMDZLI:63: 	        		ss=ss.substring(0,ss.length()-3);
+0YPXARBV:64: 	        	}
+0BJVQFHV:65: 	        	board.setImagesrc(ss);*/
+0QELMXTB:66: 	        	billboards.add(board);   // 빌보드 객체를 List에 저장
+0UVYHCXD:67: 			}
+0VPDDNZC:68: 	    } catch (IOException e) {
+0XAJYNXP:69: 			System.out.println("Billboard Parsing error !!! ");
+0QCVVCWG:70: 		}
+0NVHHPHD:71: 	 }
+0FIZNGUN:72: 	 public void printBillboard(){
+0LUYUPFT:73: 		for (Billbaord ss : billboards) {
+0XHQWNKD:74: 			System.out.println(ss);
+0BQMCQWJ:75: 		}
+0AYYFTKK:76: 	 }
+0TKWBMKB:77: 	 public String getTimeDate(String newUrls) {  //s091에서 설명
+0QYRFYOQ:78: 	     HttpGet request = new HttpGet(newUrls); // HttpClient를 이용하여
+0DELTLGR:79: 	     CloseableHttpClient httpClient=null;
+0ZTAYVTT:80: 	     CloseableHttpResponse response=null;
+0UKSLLEU:81: 	     Document doc = null;  
+0ZPQNNMI:82: 	     String sdate="";
+0XKTFALC:83: 	     try {
+0XNDNMDV:84: 	     	 httpClient = HttpClients.createDefault(); // 웹에 연결
+0YZQHFDW:85: 	     	 response = httpClient.execute(request);   // 결과 얻기
+0OHVTFBF:86: 	     	 StringBuffer sb=new StringBuffer();       // 5000줄정도 저장
+0HKFQZDT:87: 	         HttpEntity entity = response.getEntity(); 
+0CMSOAWG:88: 	         if (entity != null) {  // 결과가 있다면 결과에서 한줄씩
+0APAYQOP:89: 	             String result = EntityUtils.toString(entity); 
+0FWJKEQS:90: 	             sb.append(result); // 한줄씩 저장
+0ANSJSLC:91: 	         }
+0KJYEOMS:92: 	         doc=Jsoup.parse(sb.toString()); // 전체 내용을 HTML 파싱
+0XYLTMFV:93: 	         String id="charts";  
+0KVTNRHF:94: 	         // <div id="charts" data-chart-date="2020-07-11"
+0YPGMAJJ:95: 	         Element eid=doc.getElementById(id);    // 고유한 charts를 찾음
+0FFOGOKD:96: 	         sdate=eid.attr("data-chart-date"); // 속성 값 
+0GTMEUHE:97: 	     } catch (IOException e) {
+0HGDUDYH:98: 	 		 System.out.println("Billboard Parsing error !!! ");
+0IHHPTWH:99: 		 }		
+ARXGBRV:100: 	     return sdate!=null?
+QBATAQU:101: 	    			RestDay.saturday(sdate): RestDay.saturday();
+CYLTIQG:102: 	 }
+ZCWERSG:103: 	/* public static void main(String[] args) {
+VFZYFKF:104: 		RequestFromBillboard200 rfw=new RequestFromBillboard200();
+FQIEIFM:105: 		String a="https://www.billboard.com/charts/billboard-200/";
+GZUHEZK:106: 		String rs=rfw.getTimeDate(a);
+HTMPJQV:107: 		System.out.println("이번 주 "+rs);
+AFRLDAZ:108: 		//rs=RestDay.toWantedDay(rs, 1);  //1주전
+MGMZMQE:109: 		rfw.getBillboardData(a+rs);  // List에 빌보드 객체들을 저장
+BSXQTMQ:110: 		rfw.printBillboard();       //  List에 저장한 빌보드 객체들 출력
+TKOTWPO:111: 	 }*/
+YUZACEW:112: 	}

@@ -1,0 +1,21 @@
+0SKHNGRI:1: 	package kr.co.infopub.chapter.s107;
+0RGLMTMW:2: 	import java.util.Comparator;
+0CIJOPFH:3: 	public class CardRomp implements Comparator<Card>{
+0NHOGGGB:4: 	 @Override
+0UUDQWYF:5: 	 public int compare(Card c1, Card c2) {
+0TUQJMNU:6: 		// 문자열 compareTo()  - 사전식 비교
+0YWEURMI:7: 		if(c1.getCardVal().charAt(0)>c2.getCardVal().charAt(0) ){
+0GXJKRBE:8: 			return -1;
+0CPNCXXE:9: 		}else if(c1.getCardVal().charAt(0)<c2.getCardVal().charAt(0) ){
+UXOSJML:10: 			return 1;
+PDKIJBJ:11: 		}else{
+INSEIHB:12: 			if(CardUtil.toVal(c1.getCardVal().charAt(1)) > 
+JFPPDDQ:13: 			                CardUtil.toVal(c2.getCardVal().charAt(1))){
+JXBUVLF:14: 				return -1;
+YPDMQQD:15: 			}else if(CardUtil.toVal(c1.getCardVal().charAt(1)) < 
+YPMHHYE:16: 					        CardUtil.toVal(c2.getCardVal().charAt(1))){
+XUEHPGB:17: 				return 1;
+SXFCRWV:18: 			}else return 0;
+RLGWIAU:19: 		}
+WZUMNQX:20: 	 }
+NVJLGYI:21: 	}

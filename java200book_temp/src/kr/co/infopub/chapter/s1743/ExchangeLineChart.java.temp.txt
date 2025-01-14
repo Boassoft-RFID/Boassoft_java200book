@@ -1,0 +1,53 @@
+0FKTOXIL:1: 	package kr.co.infopub.chapter.s1743;
+0OOWPMUK:2: 	
+0TRHWANS:3: 	import javafx.application.Application;
+0BGAGMTI:4: 	import javafx.scene.Scene;
+0EGLBVMB:5: 	import javafx.scene.chart.CategoryAxis;
+0JNJYMRO:6: 	import javafx.scene.chart.LineChart;
+0ZKYKDGI:7: 	import javafx.scene.chart.NumberAxis;
+0MOIYXEG:8: 	import javafx.scene.chart.XYChart;
+0BYKLTDM:9: 	import javafx.stage.Stage;
+ZCRANUA:10: 	
+YZSEEGV:11: 	public class ExchangeLineChart extends Application{
+VEYUGYK:12: 	  public static void main(String[] args) {
+ZJBBLJI:13: 	    launch(args);
+TAOBZSB:14: 	  }
+PQJESOU:15: 	  int range=50;
+MABUSRW:16: 	  @Override
+ONITTTB:17: 	  public void start(Stage primaryStage) {
+FMGUZTN:18: 		primaryStage.setTitle("Exchange Rate");  
+QFUBBAY:19: 		String date=RestDay.todates();  // 오늘
+OWHAFAQ:20: 		String base="USD";              // 1달러당 환율
+ZPNDOLW:21: 		
+KRJFTQT:22: 		CategoryAxis xAxis = new CategoryAxis();         // X축-날짜
+FEKXOII:23: 		NumberAxis yAxis = new NumberAxis(1100,1300,10); // Y축-환율    환률범위가 벗어나면 1100~1300수정하세요.
+LGSTLQU:24: 		yAxis.setLabel("KRW / 1 "+base);   // Y축 라벨
+RNNTPVL:25: 		xAxis.setLabel("Date");                          // X축 라벨
+XXESYRU:26: 		LineChart<String, Number> lineChart = 
+ZVGPBZK:27: 				new LineChart<String, Number>(xAxis, yAxis); // 좌표
+IKWDBCL:28: 		lineChart.setTitle("Exchange Rate "+date);
+KNSGVAY:29: 	
+SEWMLSI:30: 		XYChart.Series<String, Number> series1 = 
+TITNANZ:31: 				   new XYChart.Series<String, Number>(); //(X, Y) 점들
+QAFNSMK:32: 		physicalChartData(series1,base, date);
+TPWOUVM:33: 		
+WHWQGQS:34: 		Scene scene = new Scene(lineChart, 1400, 800);
+VBBMTLD:35: 	    lineChart.getData().addAll(series1);    // 좌표에  (X, y)점 붙일준비 
+JLJLTWX:36: 	    primaryStage.setScene(scene);
+PYAJBPX:37: 	    primaryStage.show();
+YQHEJGT:38: 	  }
+ZFZBWRV:39: 	  public  void physicalChartData(
+GLRBVFL:40: 			  XYChart.Series<String, Number> series1, 
+RFZOCWL:41: 			  String base,String date ) {
+FVIRMCS:42: 	    series1.setName("KRW");
+VOYWFFZ:43: 	    for (int i = -range; i < 1; i++) {
+WLCBARM:44: 	    	String todays=RestDay.toWantedDay(date,i);  // 오늘에서 i일 전 날
+YUNRFGD:45: 	    	if(!RestDay.isRest(todays)){     //토, 일요일 제외
+QAQRQMQ:46: 	    		// 날짜별 환율 정보 객체 얻기
+NPRRUOI:47: 	    		FixerRate fixerrate=FixerConvert.convert(todays,base);
+IYPLADN:48: 		    	series1.getData().add(  // (X,Y)->(날짜, 환율) 점 붙이기
+MNODTJO:49: 		    	new XYChart.Data<String, Number>(todays, fixerrate.krw));
+ZWFQKEV:50: 	    	}
+FCMXWBE:51: 	    }
+PZOVOGW:52: 	  }
+QUFNHZT:53: 	}

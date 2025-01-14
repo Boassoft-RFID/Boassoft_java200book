@@ -1,0 +1,107 @@
+00IYERVHY:1: 	package kr.co.infopub.chapter.s189;
+00MPQOXGX:2: 	import java.util.Date;
+00YQHKQWB:3: 	import java.util.Optional;
+00IMKTESQ:4: 	import javafx.application.Platform;
+00YXVFXDU:5: 	import javafx.event.ActionEvent;
+00NFWBGMO:6: 	import javafx.fxml.FXML;
+00HJEASCY:7: 	import javafx.scene.control.Alert;
+00LXQCKNE:8: 	import javafx.scene.control.Alert.AlertType;
+00UCOODMK:9: 	import javafx.scene.control.ButtonType;
+0GECJPPF:10: 	import javafx.scene.control.MenuItem;
+0GAXXIGB:11: 	import javafx.scene.control.Tab;
+0AMCIFWE:12: 	import javafx.scene.control.TabPane;
+0JUDVEAK:13: 	import javafx.scene.layout.BorderPane;
+0HKAUEWZ:14: 	import kr.co.infopub.chapter.s189.util.PTS;
+0PPQMGPR:15: 	public class MainHrFXController {
+0PEYQNUW:16: 	 @FXML
+0KKRZKTO:17: 	 private MenuItem menuDepart;
+0GFLSLFB:18: 	 @FXML
+0POYVZBJ:19: 	 private MenuItem menuManage;
+0UOSLJAF:20: 	 @FXML
+0RFTGUBQ:21: 	 private MenuItem menuSearch;
+0VANVQME:22: 	 @FXML
+0DZBBAXS:23: 	 private MenuItem menuUpdate;
+0FZRBNAF:24: 	 @FXML
+0YXJLHRG:25: 	 private MenuItem menuChart;
+0GEAPEYT:26: 	 @FXML
+0JLIMATD:27: 	 private TabPane mainTabPane;
+0DZPLLTE:28: 	 @FXML
+0VIOVWQQ:29: 	 private Tab tab3;
+0UPSWASS:30: 	 @FXML
+0LXFTBBG:31: 	 private Tab tab1;
+0KIZLQAU:32: 	 @FXML
+0YMVAIHK:33: 	 private Tab tab2;
+0RNEFKXR:34: 	 @FXML
+0TILEJIT:35: 	 private Tab tab4;
+0XPIMUEM:36: 	 @FXML
+0OZOOJFA:37: 	 private Tab tab5;
+0JRAIJEI:38: 	 @FXML
+0COSVWQR:39: 	 private BorderPane searchTabBorder;
+0ANTIVGZ:40: 	 @FXML
+0GEFRLCH:41: 	 private BorderPane empTabBorder;
+0IRWERCA:42: 	 @FXML
+0NBDOXYX:43: 	 private BorderPane depChartBorder;
+0MAMXXHU:44: 	 @FXML
+0HMDUQZZ:45: 	 private BorderPane debTabBorder;
+0IDXAHVH:46: 	 @FXML
+0LCTKWZE:47: 	 private BorderPane updateTabBorder;
+0KWMZNJL:48: 	 String systemver="HR Information Syste ver.0.2";
+0VLDGAUQ:49: 	 // s182에 추가
+0UMXWTSH:50: 	 @FXML
+0MIUDYBH:51: 	 public void initialize () {
+0XBTCCHN:52: 	    tab1.setOnSelectionChanged(eee->{
+0JZXEKWB:53: 		if(tab1.isSelected()){
+0ZBWSGQJ:54: 			System.out.println("tab1------>"+((Tab)eee.getSource()).getId());
+0ODTBXIC:55: 			debTabBorder.setCenter(departView);  
+0YOWNVPT:56: 		}});
+0MXOXCEI:57: 	 }
+0YYRCUNR:58: 	 @FXML
+0XJLYOOL:59: 	 void onStartAction(ActionEvent event) {
+0ERVCHAE:60: 	  Alert alert = new Alert (Alert.AlertType.INFORMATION);
+0UQRLFBD:61: 	  alert.setTitle(systemver);
+0TUQQSCS:62: 	  alert.setHeaderText("HR Management System "+PTS.toDate3(new Date()));
+0ULDABNT:63: 	  alert.setContentText(
+0ICGEGPC:64: 			  "The HR Management System is a system that makes input/modification related to department management, manager management, and personnel.");
+0KSYFZWJ:65: 	  alert.show();
+0IMEXFPE:66: 	  mainTabPane.setVisible(true);    
+0YABKJNP:67: 	 }
+0UZPXLIS:68: 	 @FXML
+0CBWQCOL:69: 	 void onExitAction(ActionEvent event) {
+0NLOKSTW:70: 		Alert alert = new Alert(AlertType.CONFIRMATION);
+0AAGHVBE:71: 		alert.setTitle(systemver);
+0JXADYEG:72: 	    alert.setHeaderText(
+0CRMLPPL:73: 	    		   "Are you sure you want to finish HR Management System("+PTS.toDate3(new Date())+")?");
+0SQVHPMU:74: 		alert.setContentText("Are you sure you want to finish it?");
+0YQZXWXK:75: 		Optional<ButtonType> result = alert.showAndWait();
+0KPLWZLW:76: 		if (result.get() == ButtonType.OK){
+0KAVGYNO:77: 			Platform.exit();
+0UQWUGKG:78: 			//System.exit(0);
+0TRJGZMD:79: 		} else return;
+0FGUSSLY:80: 	 }
+0QFTSKGO:81: 	 @FXML
+0VHSCEDS:82: 	 void onHelpAction(ActionEvent event) {
+0ITCCDCY:83: 	  Alert alert = new Alert (Alert.AlertType.INFORMATION);
+0IGSZBKY:84: 	  alert.setTitle(systemver);
+0IVGAICS:85: 	  alert.setHeaderText("HR Management System "+PTS.toDate3(new Date()));
+0ZJTABZU:86: 	  alert.setContentText("Hello. This is "+systemver+". "
+0RDLYOAM:87: 		+ "\n The HR Management System is a system that makes input/modification related to department management, manager management, and personnel."
+0FIWRYRN:88: 		+ "\n Select the Start menu for Start.");
+0ZUNSSOH:89: 	  alert.show();
+0NNDZXNQ:90: 	 }
+0REYWVTN:91: 	 // Add to s182, select the department menu item and you will see the department screen.
+0KDJHPTO:92: 	 @FXML
+0SVESORD:93: 	 void onMenuction(ActionEvent event) {
+0YPKTBJJ:94: 		if(event.getSource()==menuDepart){
+0PVDCOPC:95: 			System.out.println("tab1------------------------->");
+0MWKYJJV:96: 			mainTabPane.getSelectionModel().select(tab1);
+0XJUWMRL:97: 			debTabBorder.setCenter(departView);  
+0VTSZLDH:98: 		}
+0RYFSNUT:99: 	 }
+EYYMYXD:100: 	 // Attach each view to the main menu.
+QIRJWEU:101: 	 BorderPane departView;
+XUYGEMO:102: 	 public void setView1(BorderPane departView) {
+APTMSOW:103: 		this.departView=departView;
+LVQBDBL:104: 		//Reflects the first screen.
+JSGGIHS:105: 		debTabBorder.setCenter(departView);  
+UKDHQZM:106: 	 }
+GNBJOYA:107: 	}

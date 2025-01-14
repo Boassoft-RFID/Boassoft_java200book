@@ -1,0 +1,24 @@
+0BCFTCGD:1: 	package kr.co.infopub.chapter.s168;
+0NVYPJKQ:2: 	public class ExchangeRate {
+0DFJUPXR:3: 		public static void main(String[] args) {
+0NKVQCSF:4: 			// 환율 정보를 객체에 저장
+0MSQBBMC:5: 			FixerRate finance =new FixerRate();
+0TNITAUT:6: 			finance.base="USD";
+0YLBQEZI:7: 			finance.date="2017-06-08";
+0PBUTNPZ:8: 			finance.usd=1;
+0TFUEHAJ:9: 			finance.jpy=110.22;
+YUJIGDM:10: 			finance.cny=6.7978;
+KIRVERL:11: 			finance.krw=1123.3;
+FUAXETY:12: 			finance.eur=0.89055;
+PDRILEW:13: 			System.out.println( finance);
+RLNCWKJ:14: 			//환율 정보를 이용하여 계산
+AMXCALG:15: 			double krw=1000000;
+LQQKRSH:16: 			double ratio=finance.krw;
+GRAKHCK:17: 			double result=ExchangeRate.calculate(krw,ratio);
+TDHIGQG:18: 			System.out.printf("%.2fKRW은 %.2f%s입니다.\n",krw, result,finance.base);
+CHNEIIN:19: 		}
+CKMNPPC:20: 		//나누는 행위를 반복 -> 메서드로 만든다.
+GPGHACN:21: 		public static double calculate(double krwMoney, double exchangeRatio){
+MPNCYFK:22: 			return krwMoney/exchangeRatio;
+VLTQDPU:23: 		}
+KYOIGOC:24: 	}

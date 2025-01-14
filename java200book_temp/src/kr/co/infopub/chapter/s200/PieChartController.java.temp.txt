@@ -1,0 +1,136 @@
+00JTJXUXU:1: 	package kr.co.infopub.chapter.s200;
+00AJRLTDR:2: 	
+00XEDSOQW:3: 	import java.sql.Date;
+00VTZZWML:4: 	import java.sql.SQLException;
+00FALONJA:5: 	
+00KSVXOAS:6: 	import javafx.collections.FXCollections;
+00TFCGMXV:7: 	import javafx.collections.ObservableList;
+00DAGSZMO:8: 	import javafx.fxml.FXML;
+00FOZCHGR:9: 	import javafx.fxml.FXMLLoader;
+0GPBGLNX:10: 	import javafx.scene.chart.PieChart;
+0XHJMJDT:11: 	import javafx.scene.chart.PieChart.Data;
+0BZKCTXV:12: 	import javafx.scene.control.Label;
+0UCIROMU:13: 	import javafx.scene.control.TableColumn;
+0WYJHSND:14: 	import javafx.scene.control.TableView;
+0NOVSVFM:15: 	import javafx.scene.input.MouseEvent;
+0ONWJXNY:16: 	import javafx.scene.layout.AnchorPane;
+0JEWBNLD:17: 	import javafx.scene.layout.BorderPane;
+0DNPHAKU:18: 	import kr.co.infopub.chapter.s200.client.EmployeeService;
+0YSMVWKY:19: 	import kr.co.infopub.chapter.s200.dto.DepCount;
+0UPCMURM:20: 	import kr.co.infopub.chapter.s200.dto.Employee;
+0BPNNPGR:21: 	import kr.co.infopub.chapter.s200.util.EmpUtil;
+0DXEBUQW:22: 	import kr.co.infopub.chapter.s200.util.PTS;
+0EFJCBUR:23: 	
+0SSTVLJR:24: 	public class PieChartController extends BorderPane{
+0FGZIOAB:25: 	
+0ONEHDPH:26: 	    @FXML
+0TNRMWRY:27: 	    private AnchorPane pieAnchor;
+0BCYEMAY:28: 	    
+0UJRBEEW:29: 	    @FXML
+0NUESROV:30: 	    private TableView<Employee> employeeTable;
+0JNGCGNY:31: 	    @FXML
+0BAHPHYT:32: 	    private TableColumn<Employee, Integer>  empIdColumn;
+0GLPAIJI:33: 	    @FXML
+0JVPFWLH:34: 	    private TableColumn<Employee, String>  empNameColumn;
+0PAPIDYU:35: 	    @FXML
+0UUOGUME:36: 	    private TableColumn<Employee, String> empLastNameColumn;
+0YTMJJMJ:37: 	    @FXML
+0AFLOOBX:38: 	    private TableColumn<Employee, String> empEmailColumn;
+0EVWJLGF:39: 	    @FXML
+0UDBUUDT:40: 	    private TableColumn<Employee, String> empPhoneNumberColumn;
+0YTHXMQH:41: 	    @FXML
+0OMKWNSP:42: 	    private TableColumn<Employee, Date> empHireDateColumn;
+0FNTWDSN:43: 	     
+0JQLVZHX:44: 	    EmployeeService service;
+0BFBXNIA:45: 	    
+0DLPUTYI:46: 		public PieChartController(EmployeeService service) {
+0XZVNPEC:47: 			this.service=service;
+0VTEWIJD:48: 			FXMLLoader loader4 = new FXMLLoader();
+0YIZXHKO:49: 	        loader4.setLocation(Main.class.getResource("view/DepChartView.fxml"));
+0LNFOYGE:50: 	        loader4.setRoot(this);
+0QYKUCER:51: 	        loader4.setController(this);
+0EQWTDUU:52: 	        try {
+0JTPGQCN:53: 	        	loader4.load();
+0BQNBAHW:54: 	        } catch (Exception exception) {
+0ZGDDDFS:55: 	            throw new RuntimeException(exception);
+0HUIHADB:56: 	        }
+0ZGBUTFK:57: 		}
+0WQBJIAW:58: 	   
+0GQPGUYC:59: 	    public void refresh(){
+0GZHTYIV:60: 	    	pieAnchor.getChildren().clear();
+0ESMSRXQ:61: 	    	initialize();
+0AGIKGJT:62: 	    }
+0PKXHAHH:63: 	    @FXML
+0PHBLYLE:64: 	    void initialize() {
+0GOBLNYB:65: 	
+0OFZLXYW:66: 	    	empIdColumn.setCellValueFactory(cellData -> cellData.getValue().employeeIdProperty().asObject());
+0FCMPCUJ:67: 	        empNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+0ILHHAES:68: 	        empLastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
+0ELUEBHU:69: 	        empEmailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
+0IXJGWOB:70: 	        empPhoneNumberColumn.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
+0RMWHRRE:71: 	        empHireDateColumn.setCellValueFactory(cellData -> cellData.getValue().hireDateProperty());
+0KXUEYPS:72: 	    	
+0WCPILZP:73: 	    	try {
+0BTEVNHZ:74: 	    	   ObservableList<DepCount> dlists =service.findAllDepCounts();
+0SNTQRAI:75: 	 		   int total=service.getEmployeesTotal();
+0ZMABQMP:76: 	 		   //System.out.println("test chart ====================="+dlists.size() +"   "+total);
+0CFTPWYA:77: 	
+0RWEKGPK:78: 	 		   //final int  ftotal=total;   
+0NXMJNEN:79: 	 			
+0BXUBGMU:80: 	 			PieChart pieChart = new PieChart();
+0UGSQVOC:81: 	 			pieChart.setTitle("부서별 인원수 총"+total+"명 " +PTS.toDay());
+0RJMBAZC:82: 	 	        pieChart.setData(getChartData(dlists));
+0PHIXHSP:83: 	 	        pieChart.setClockwise(true); 
+0VEEGEUI:84: 	 	        pieChart.setStartAngle(180);  
+0XRBPNBY:85: 	 	        pieChart.setLabelsVisible(true); 
+0DACBWNR:86: 	 	        pieChart.setPrefWidth(800);
+0OOWOAEN:87: 	 	        pieChart.setPrefHeight(600); 
+0IMQIUJA:88: 	 	        final Label caption = new Label("");
+0MVLEBIQ:89: 	 	        String value=
+0VTPUXJO:90: 	 	    	    	   "-fx-font-size: 25px;           "
+0ENWIKAP:91: 	 	    	    	  +"-fx-font-family: 'Arial Black';    ";
+0IVFTHEY:92: 	
+0EPIHOPD:93: 	 	        caption.setStyle(value);
+0RJVXBMY:94: 	 	        
+0ISTETLA:95: 	 	        for (final PieChart.Data data : pieChart.getData()) {
+0GRVHUKT:96: 	 	            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+0TYKYRNY:97: 	 	                    e-> {
+0AOAVJSA:98: 	 	                    	    ObservableList<Employee> populateEmploye=null;
+0TRSRWWS:99: 									try {
+IVGPIOO:100: 										populateEmploye = service.findEmployeesByDepartName( EmpUtil.dep(data.getName() ));
+HOIDFNU:101: 										showEmployeeTable(populateEmploye);
+BLCBSKR:102: 									} catch (SQLException e1) {
+GVQOBGM:103: 										
+YIKGYNV:104: 									}
+GBMUDGH:105: 	 	                    	   
+KRIUVXB:106: 	 	                            caption.setTranslateX(e.getSceneX());
+KANYFJU:107: 	 	                            caption.setTranslateY(e.getSceneY());
+XTSWIMX:108: 	 	                            String sft=String.format("%s %.2f%%(%.0f명)", 
+SJPFACA:109: 	 	                            		EmpUtil.dep(data.getName()),
+UTJGDOX:110: 	 	                            		100*data.getPieValue()/total,
+EJIMNDM:111: 	 	                            		data.getPieValue());
+LUJHMJF:112: 	 	                            caption.setText(sft);
+BSUTJYE:113: 	 	                           
+SCJAQQV:114: 	 	                        }
+SLKGNZL:115: 	 	                    );
+AAIJGZB:116: 	 	        }
+HIVMDIN:117: 	 	       pieAnchor.getChildren().addAll(pieChart,caption);
+FVPMGTQ:118: 	 	       
+ETAIRVH:119: 	 		} catch (SQLException e) {
+IAXFEFH:120: 	 			System.out.println(e);
+ZLMBJLZ:121: 	 		}
+ISNUTVB:122: 	
+QBANGNA:123: 	    }
+KKOZTNP:124: 	    
+FVYFYWO:125: 	    @FXML
+HHDTPVA:126: 	    private void showEmployeeTable (ObservableList<Employee> empData)  {
+PCUDLPS:127: 	        employeeTable.setItems(empData);
+FKDWETY:128: 	    }
+WTKYAOZ:129: 	    private ObservableList<Data> getChartData(ObservableList<DepCount> dlists) {
+AAFAUHU:130: 	        ObservableList<Data> answer = FXCollections.observableArrayList();
+APSYUAS:131: 	        for (DepCount dc: dlists) {
+UIDYRTQ:132: 	        	 answer.add(new PieChart.Data( dc.getDepartment_name()+"("+dc.getDepartment_id()+")", dc.getCount()  ));
+YPUXERI:133: 	    	}
+NZMUBGF:134: 	        return answer;
+VUFEBCL:135: 	    }
+PZRGJEC:136: 	}

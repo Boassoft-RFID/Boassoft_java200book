@@ -1,0 +1,64 @@
+0WQCRBAA:1: 	package kr.co.infopub.chapter.s150.swing;
+0KAULBPM:2: 	public class Tiles {
+0GRXWTTE:3: 	
+0EESVTPJ:4: 		private int n=4; //nxn 퍼즐 만들기
+0TEOXDXO:5: 		private Tile[][] tile;
+0BAVZNOI:6: 		private FifteenPuzzle puzzle;
+0UKZOPLX:7: 		//테스트용
+0HTOVAIN:8: 		private boolean isTest=false;
+0POWIPIP:9: 		public void setTest(boolean isTest) {
+JUJSPPY:10: 			this.isTest = isTest;
+SZAGCSW:11: 		}
+QBIFAJL:12: 	
+RSLDERQ:13: 		public int getN() {
+ENMFTAF:14: 			return n;
+CILAHPY:15: 		}
+TQNRWRI:16: 		
+DYNCOHW:17: 		public void setN(int n) {
+KBXOLTM:18: 			this.n = n;
+IUMNCUZ:19: 		}
+TWBHUPW:20: 	
+CBLFNLU:21: 		public Tiles() {
+NJGYNMG:22: 			this(4);
+LVFROUQ:23: 		}
+RBQWYOM:24: 		public Tiles(int n) {
+VMCPQUO:25: 			this.n=n;
+EZOXGZU:26: 		}
+ZYVGQMT:27: 	
+TNKZZVB:28: 		public void make(){
+ZPSXCSK:29: 			tile=new Tile[n][n];
+SJRLSMV:30: 			puzzle=new FifteenPuzzle(n);
+LQYOVMH:31: 			//puzzle.init(n);//0~15
+GYMPTUE:32: 			puzzle.makePuzzle(isTest);
+PHAZPDU:33: 			for (int i = 0; i <n; i++) {
+DKSFUAI:34: 				for (int j = 0; j < n; j++) {
+OGRIKVO:35: 					int num=puzzle.getPuzzle(i, j);
+EXFPTCK:36: 					tile[i][j]=new Tile(num,i,j);
+UUGOEFT:37: 				}
+BXOSUCJ:38: 			}
+CCSUEUA:39: 		}
+KTOPTFH:40: 		
+LYJLKGE:41: 		public Tile getTile(int r, int c){
+CHVJMGY:42: 			return tile[r][c];
+ZPQDPFJ:43: 		}
+FFKFPJF:44: 	
+KZWBSPZ:45: 		public Tile[][] getTile() {
+LHQBDBS:46: 			return tile;
+HBXRMAX:47: 		}
+IJWVHZJ:48: 		public void print(){
+DUATFZK:49: 			System.out.println("in tiles");
+KCHFWPG:50: 			for (int i = 0; i < n; i++) {
+ZRFXLMS:51: 				for (int j = 0; j < n; j++) {
+CBBSVSD:52: 					 System.out.printf("%s\t",tile[i][j]);
+VNCLKJQ:53: 				}
+JXJCOOY:54: 				System.out.println();
+SXFAMGH:55: 			}
+SNDSBXV:56: 			System.out.println();
+YVBRUMS:57: 		}
+CGFNDBU:58: 		public static void main(String[] args) {
+THXKVPJ:59: 			Tiles tiles =new Tiles(4);
+QBOEIGE:60: 			tiles.setTest(true);
+WBYKVIO:61: 			tiles.make();
+TRLDRNU:62: 			tiles.print();
+WFTRHMW:63: 		}
+GCJAUYP:64: 	}

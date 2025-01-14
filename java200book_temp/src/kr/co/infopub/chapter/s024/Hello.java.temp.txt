@@ -1,0 +1,14 @@
+0MWFMWZC:1: 	package kr.co.infopub.chapter.s024;
+0OTVXQOA:2: 	// 메서드
+0WHZPXGX:3: 	public class Hello {
+0RTRDXMQ:4: 		// 메서드 선언
+0AWAXFTF:5: 		public static void showHello() {
+0NQOIBBG:6: 			System.out.println("**********************************************");
+0FYHOIAG:7: 			System.out.println("*        이 프로그래밍은 Java200이 만들었습니다.      *");
+0AJDSRFX:8: 			System.out.println("**********************************************");
+0HLRCKBL:9: 		}
+TVSZVFI:10: 		//메서드 호출
+GSJDCTY:11: 		public static void main(String[] args) {
+ZUGELHW:12: 			showHello();        // '메서드 이름()'
+YJDYPVD:13: 		}
+ZMKMSQM:14: 	}

@@ -1,0 +1,44 @@
+0MIYCECH:1: 	package kr.co.infopub.chapter.s152;
+0BXSHSHB:2: 	
+0LFJNYNT:3: 	public class Card {
+0XVXHDIJ:4: 		private String card; //H8
+0BJAWIRE:5: 		public String getCard() {
+0JPAWOLO:6: 			return card;
+0TUJVEPG:7: 		}
+0GXPOQON:8: 		public Card() {
+0RMGWCVW:9: 			//0~3
+DUUSFGZ:10: 			int suit=(int)(Math.random()*CardUtil.SUIT.length);
+ZCFNFZP:11: 			//0~12
+TRHOSVS:12: 			int rank=(int)(Math.random()*CardUtil.RANK.length);
+QSQWCLF:13: 			//������ ī�� ���� ���´�. H6
+QZGZGLG:14: 			card=CardUtil.SUIT[suit]+CardUtil.RANK[rank];
+SAYZBCG:15: 		}
+ZZEHVDY:16: 		//�׽�Ʈ�� �� ���
+JAEEGRK:17: 		public Card(String s) {
+RJKKXIV:18: 			this.card=s;
+WKOKXYT:19: 		}
+SWJNVQO:20: 		//���� ������  �׽�Ʈ�� �� ���
+DMMZXHX:21: 		public Card(Card s) {
+DHEZYMV:22: 			this(s.getCard());
+DKNBULN:23: 		}
+LRWMMDI:24: 		@Override
+FROVQSJ:25: 		public String toString() {
+PUCKROR:26: 			return "[" + card + "]";
+BUHYJJO:27: 		}
+KGHPAWV:28: 		@Override
+VWJYWTB:29: 		public int hashCode() {
+BOHQRQM:30: 			final int prime = 31;
+WKYUUDX:31: 			int result = 1;
+ZMWSSUX:32: 			result = prime * result + ((card == null) ? 0 : card.hashCode());
+WHGIFSP:33: 			return result;
+LZUBFMY:34: 		}
+XOTGXJO:35: 		@Override
+EGYESOW:36: 		public boolean equals(Object obj) {
+LSFHGAK:37: 			Card cb=(Card)obj;
+MAHRUAC:38: 			if(card.equals(cb.getCard())){
+HGTLOVY:39: 				return true;
+BHBFTMY:40: 			}else{
+KWZSCQH:41: 				return false;
+EYMSAFX:42: 			}
+HOVTRKV:43: 		}
+ZYSIUFD:44: 	}//

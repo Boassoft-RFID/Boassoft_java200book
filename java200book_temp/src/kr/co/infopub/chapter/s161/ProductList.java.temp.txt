@@ -1,0 +1,52 @@
+0JDMIRFH:1: 	package kr.co.infopub.chapter.s161;
+0HWJBLCR:2: 	import java.util.*;
+0ATUKLAI:3: 	import java.util.stream.Collectors;
+0ETBDBSE:4: 	public class ProductList {
+0GXLNNAL:5: 		private int[] catg={6,1,4,3,3,1,1,3,3,3,1};
+0CSQESVB:6: 		public String [] splist(String str){
+0TGQANUS:7: 			String[] ss=new String[catgLength()];
+0NLQUSDD:8: 			ss[0]=str.substring(0,catNumTo(catg,0)).trim();
+0IZUVQGH:9: 			for(int i=1;i<ss.length;i++){
+YZYVVNS:10: 				ss[i]=str.substring(catNumTo(catg,i-1),
+JEPQTBJ:11: 				               catNumTo(catg,i)).trim();
+WCFVDEU:12: 			}
+COYAXYP:13: 			return ss;
+SYJOQQT:14: 		}
+VDUVXWB:15: 		public Product splistP(String str){
+FNQHTOO:16: 			Product p=new Product();
+PGWYIQJ:17: 			String[] ss=splist(str);
+ASPOYZJ:18: 			p.setProduct(ss);
+QTCPUXL:19: 			return p;
+VICPLTU:20: 		}
+OKTLEES:21: 		public List<Product> getAllProducts(List<String> v){
+FFQENAN:22: 			List<Product>products =v.stream().map(
+SYDPAEA:23: 				str->splistP(str)).collect(Collectors.toList());
+PAVFLDJ:24: 			return products;
+EBJCSTH:25: 		}
+RKAFYVR:26: 	    public List<Product> getAllProdInGrade(String []ss1, List<Product> v){
+OEUVFVV:27: 	    	List<Product> products=new ArrayList<>();
+HTKCBGO:28: 	    	for (String s: ss1) {
+ASKHTFR:29: 	    		List<Product> pro=v.stream()
+BLSQLQY:30: 	    				.filter(p->{ return p.getPGrade().equals(s);})
+BAVZQOY:31: 	    				.collect(Collectors.toList());
+NRNJUGB:32: 	    		products.addAll(pro);
+UDZBNDC:33: 			}
+LKVYUJF:34: 			return products;
+EFDDLVD:35: 		}
+RBIYYHP:36: 		// 배열의 크기 {6,1,4,3,3,1,1,3,3,3,1} 11
+EJEZIGN:37: 		private int catgLength(){
+AMXXDRH:38: 			return this.catg.length;
+DVMJQIC:39: 		}
+GHOYVFE:40: 		// a번째까지의 합 (aa,3) -> 6+1+4+3
+SBMFISM:41: 		private int catNumTo(int [] aa,int a){
+PCLPVWP:42: 			int toto=0;
+MZIWNCH:43: 			if(aa.length<a){
+UXGAPLZ:44: 				toto=0;
+ROBVUPA:45: 			}else{
+MQHVFAL:46: 				for(int i=0;i<=a;i++){
+LFVNFDI:47: 					toto+=aa[i];
+ENXSPFH:48: 				}
+ZLOVWID:49: 			}
+BAOEYER:50: 			return toto;
+OMPVJFT:51: 		}
+WNRDTRO:52: 	}

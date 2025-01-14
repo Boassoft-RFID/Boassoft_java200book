@@ -1,0 +1,32 @@
+0ANUTRHT:1: 	package kr.co.infopub.chapter.s160;
+0IGEMBXF:2: 	import java.util.Comparator;
+0ARBOYTX:3: 	public class ProductComp implements Comparator<Product>{
+0VPSAKEW:4: 		@Override
+0SBENYKG:5: 		public int compare(Product sg1, Product sg2) {
+0WGMYPQZ:6: 			int pMoney1=sg1.getPMoney();
+0TBMGFGG:7: 			int pMoney2=sg2.getPMoney();
+0JXTJBDJ:8: 			int pPoint1=sg1.getPPoint();
+0MVJQZKT:9: 			int pPoint2=sg2.getPPoint();
+LQFVUDO:10: 			int prodNum1=sg1.getProdNum();
+VTTWTER:11: 			int prodNum2=sg2.getProdNum();
+DUJIVNR:12: 			if(pMoney1>pMoney2){   //Comparable을 구현안함
+PNIYFYI:13: 				return -1;  //내림차순
+JOSSMKO:14: 			}else if(pMoney1==pMoney2){
+WDVBHXE:15: 				if(pPoint1>pPoint2){
+ZKBCTAR:16: 					return -1;//내림차순
+KNVPHRZ:17: 				}else if(pPoint1==pPoint2){
+EXWVCPQ:18: 					if(prodNum1>prodNum2){
+HXBWMYX:19: 						return 1;//오름차순
+VVAJSNW:20: 					}else if(prodNum1==prodNum2){
+ELCHURO:21: 						return 0;//프라이머리키니깐 이런 일은 없을 것
+OPQGSGP:22: 					}else{
+PKIZEQJ:23: 						return -1;//내림차순
+SJMVBYT:24: 					}
+VLHTCIP:25: 				}else{
+VVIPJKS:26: 					return 1;//오름차순
+KIKDLEX:27: 				}
+MBUMSJY:28: 			}else {
+GTCWWKJ:29: 				return 1;//오름차순
+XVMPQPC:30: 			}
+TMKLXLT:31: 		}
+XDVPEOC:32: 	}

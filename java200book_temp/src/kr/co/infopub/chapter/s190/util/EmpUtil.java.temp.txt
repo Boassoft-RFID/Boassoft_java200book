@@ -1,0 +1,71 @@
+0MUAONRD:1: 	package kr.co.infopub.chapter.s190.util;
+0CRTIAUK:2: 	
+0LDFYZFW:3: 	import kr.co.infopub.chapter.s190.dto.DepartmentDto;
+0DTEPSSH:4: 	import kr.co.infopub.chapter.s190.dto.EmployeeDto;
+0UNHWIGR:5: 	import kr.co.infopub.chapter.s190.dto.Department;
+0MKZEMKV:6: 	import kr.co.infopub.chapter.s190.dto.Employee;
+0CFZXOHC:7: 	
+0JDILYUI:8: 	public class EmpUtil {
+0WZWGAHL:9: 		public static String name(EmployeeDto ee){
+ZBHJPYL:10: 			return q(ee.getFirstName()+" "+ee.getLastName());
+KBGTSDT:11: 		}
+CAQRSKN:12: 		public static String name(Employee ee){
+DKPHRJY:13: 			return q(ee.getFirstName()+" "+ee.getLastName());
+EFROIZT:14: 		}
+WFFIOSZ:15: 		public static String q(String msg){
+PAIZNOJ:16: 			return "("+msg+")";
+OPBPPXA:17: 		}
+FHORFEB:18: 		public static   int level(String msg){
+HRWQWTG:19: 			String [] sp=msg.split("/");
+FBAHJJU:20: 			return sp.length-1;
+ZYWIEHK:21: 		}
+TOCFTSH:22: 		public static String level(String msg, int index){
+NQIKUSC:23: 			String [] sp=msg.split("/");
+PGVEMLG:24: 			return sp[index];
+AWPQJPJ:25: 		}
+XNMWZKY:26: 		public static int  level(EmployeeDto emp){
+RYLTFBM:27: 			return level(emp.getOrder2());
+RBOWITC:28: 		}
+OVTYWVP:29: 		public static String level(EmployeeDto emp, int index){
+GNGETHW:30: 			return level(emp.getOrder2(),index);
+UVRMQEK:31: 		}
+NCBQDNT:32: 		public static int  level(Employee emp){
+VPHQKQE:33: 			return level(emp.getOrder2());
+QNOUUFK:34: 		}
+BJXHDKM:35: 		public static String level(Employee emp, int index){
+AUIUBEU:36: 			return level(emp.getOrder2(),index);
+VLUIYPP:37: 		}
+GGTGSMA:38: 		public static  String str(String msg){
+NXTLGWI:39: 			return msg.substring(3);
+ARVTLOV:40: 		}
+WODZXIO:41: 		public  static String bfstr(String msg){
+NAQSKEX:42: 			return msg.substring(0,3);
+EIBIASG:43: 		}
+VLNEIWU:44: 		//001100(sdfs sfsfs asdfasdf)->100(sdfs sfsfs asdfasdf)
+TQDHRVC:45: 		public static String tname(EmployeeDto emp, int index){
+IIBGBDA:46: 			return str(level(emp.getOrder2(),index)+name(emp));
+HDQBSLI:47: 		}
+TQFBDHZ:48: 		public static String tname(Employee emp, int index){
+PECPDYN:49: 			return str(level(emp.getOrder2(),index)+name(emp));
+KPHWQIW:50: 		}
+DCXPTPB:51: 		//100(sdfs sfsfs asdfasdf)-> 100
+XMBOTIT:52: 		public static String sname(String emp){
+PIDLXID:53: 			return bfstr(emp);
+TFGBUSR:54: 		}
+AMCGIRI:55: 	    public static String dep(String msg){
+QTHKTEP:56: 	    	String ss="";
+KIIVYAL:57: 	    	if(msg.indexOf("(")!=-1){
+BHUUTSM:58: 	    		ss=msg.substring(0, msg.indexOf("("));
+JPASAWM:59: 	    	}else{
+PKIEIOV:60: 	    		ss=msg.trim();
+REROGBZ:61: 	    	}
+ZUGOYDX:62: 	    	return ss.trim();
+GLDSSXH:63: 	    }
+DLILDCK:64: 	    public static String tname(DepartmentDto ee){
+MBHAMBH:65: 	  		return ee.getDepartment_name()+q(ee.getDepartment_id()+"");
+SMXDYJG:66: 	  	}
+UTOGGAA:67: 	    public static String tname(Department ee){
+BOKWCZF:68: 	  		return ee.getDepartment_name()+q(ee.getDepartment_id()+"");
+GJTYTXV:69: 	  	}
+MDDVBSV:70: 	    
+QAYAGEA:71: 	}

@@ -1,0 +1,28 @@
+0DIYQSTV:1: 	package kr.co.infopub.chapter.s080;
+0OPRPQUC:2: 	import java.util.ArrayList;
+0ZIBUTCN:3: 	// Boxing/Unboxing
+0IOWWOWB:4: 	public class  EasyBoxingMain{
+0TORGBBG:5: 		public static void main(String[] args) {
+0ILZVOTM:6: 			int intNm1=123;
+0KGFLOMA:7: 			long longNum1=345L;
+0VZXQCJO:8: 			double doubleNum=123.123;
+0FPHIMEI:9: 			Integer intWrap1=intNm1;       //new Integer(intNm1);
+BJLZTXV:10: 			Long    longWrap1=longNum1;    //new Long(longNum1);
+VQJGVIP:11: 			Double  doubleWrap1=doubleNum; //new Double(longNum1);
+CRTWZPL:12: 			double dd=doubleWrap1;
+WIBCXKZ:13: 			// 기본타입 <--> Wrapper는 캐스팅없이 사용
+ADZJZQH:14: 			Integer intWrap2=intNm1;  // Boxing
+GGRFAMW:15: 			intNm1=intWrap2;          // UnBoxing
+JSORDNA:16: 			System.out.println(intNm1);
+UHKUNKA:17: 			
+EAKFVSF:18: 			ArrayList<Integer> ilists=new ArrayList<>();
+YEWRXEV:19: 			ilists.add(new Integer(3));
+CJFTTXB:20: 			ilists.add(5);
+LCCXGIX:21: 			int a=ilists.get(0);  // <Integer>
+NDQLXJN:22: 			System.out.println(a);
+OCZXCQF:23: 			
+PXHCJDK:24: 			int b=Integer.parseInt("123");
+XZSJYCA:25: 			System.out.println(b);
+LLKXEDA:26: 		}
+ZYFYANC:27: 	}
+FAFOPJK:28: 	 

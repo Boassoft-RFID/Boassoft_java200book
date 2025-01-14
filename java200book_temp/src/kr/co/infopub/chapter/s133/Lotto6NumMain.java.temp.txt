@@ -1,0 +1,8 @@
+PQBXJFW:1: 	package kr.co.infopub.chapter.s133;
+FKNSREA:2: 	public class Lotto6NumMain {
+RBTKRAZ:3: 		public static void main(String[] args) {
+BBJLRWW:4: 			Lotto6Num lot=new Lotto6Num(45,6);
+EUNUOVG:5: 			lot.make();
+BNHAPRO:6: 			lot.print();
+XJQLQSD:7: 		}
+PDAAEZF:8: 	}

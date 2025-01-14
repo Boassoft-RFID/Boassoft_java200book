@@ -1,0 +1,31 @@
+0OWUIDUQ:1: 	package kr.co.infopub.chapter.s154;
+0TAMSHHS:2: 	public class   MyRunMain{
+0VAMMNVV:3: 		public static void main(String[] args) {
+0XFHHBQO:4: 			MyRun mr1=new MyRun();      // Runnable implements
+0TPNBMSE:5: 			Thread t1=new Thread(mr1);  
+0IOFSXTJ:6: 			MyThread t2=new MyThread(); // Thread extends
+0JAUYCHX:7: 			// 익명 내부 
+0GVAJEZB:8: 			Thread t3=new Thread(new Runnable() {
+0FFWWACX:9: 				@Override
+JFSOPLC:10: 				public void run() {
+ZYWPHUX:11: 					for(int i=0;i<500;i++){
+LEQAIRA:12: 						System.out.print("R");
+YZWKENY:13: 					}
+MTIKYPE:14: 				}
+OFIYOXI:15: 			});
+TXUJMMJ:16: 			// lambda
+YWCWPYO:17: 			new Thread( ()-> {
+MIGBIIG:18: 					for(int i=0;i<500;i++){
+DHDDPRA:19: 						System.out.print("U");
+WXVRWRY:20: 					}
+YHGUIAF:21: 				}
+WYMXLYT:22: 			).start();
+MIPQILK:23: 			t1.start();
+EPPOAIC:24: 			t2.start();
+ZSIKCFU:25: 			t3.start();
+NJQHVXR:26: 			
+BACVZTK:27: 			for(int i=0;i<500;i++){
+SLXSITT:28: 				System.out.print("M");
+IZCDPVO:29: 			}
+HEZKDIU:30: 		}
+MDYMOGE:31: 	}

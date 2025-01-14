@@ -1,0 +1,44 @@
+0YLYHJMZ:1: 	package kr.co.infopub.chapter.s185.dto;
+0ZEZYLDN:2: 	
+0HZHODNL:3: 	import java.util.ArrayList;
+0KVWDIQQ:4: 	import java.util.List;
+0TXKMRJQ:5: 	
+0TPBHGVQ:6: 	import javafx.collections.FXCollections;
+0AXTTYJQ:7: 	import javafx.collections.ObservableList;
+0ZNOAMMC:8: 	
+0AEHYSRK:9: 	public class EmpConvert {
+LVVZJYS:10: 	
+NAZOJLX:11: 		public static Employee toPro(EmployeeDto b){
+GJXPSCK:12: 			Employee bp=new Employee();
+XKLXUNE:13: 			bp.setCommissionPct(b.getCommissionPct());
+VUUPWCA:14: 			bp.setDepartmantId(b.getDepartmantId());
+OORLKCQ:15: 			bp.setEmail(b.getEmail());
+TYVEUXN:16: 			bp.setEmployeeId(b.getEmployeeId());
+ITILHOP:17: 			bp.setFirstName(b.getFirstName());
+OGKQEAZ:18: 			bp.setHireDate(b.getHireDate());
+ABXFHGE:19: 			bp.setJobId(b.getJobId());
+SDLMSZM:20: 			bp.setLastName(b.getLastName());
+UBNHZNG:21: 			bp.setManagerId(b.getManagerId());
+HEPYTXY:22: 			bp.setOrder2(b.getOrder2());
+OIAWMYT:23: 			bp.setPhoneNumber(b.getPhoneNumber());
+MGDTMKS:24: 			bp.setSalary(b.getSalary());
+PILCZDK:25: 			return bp;
+JKVJBUM:26: 		}
+JCTLTMV:27: 		
+NFLBMKE:28: 		public static List<Employee> toPro(List<EmployeeDto> blist){
+MJESRKR:29: 			List<Employee> bplists=new ArrayList<>();
+ROABLRG:30: 			for(EmployeeDto b:blist){
+RYNQBEF:31: 				bplists.add(toPro(b));
+IOUNKND:32: 			}
+FYIBJTK:33: 			return bplists;
+HQEBZSI:34: 		}
+HHBOHGR:35: 		public static ObservableList<Employee> toObservPro(List<Employee> alists){
+NCILCIS:36: 			ObservableList<Employee> bList = FXCollections.observableArrayList(alists);
+CNMQQPR:37: 			return bList;
+JXTSSLF:38: 		}
+ADEZIIA:39: 		
+KPGKASK:40: 		public static ObservableList<Employee> toObservProFromDto(List<EmployeeDto> alists){
+PXJXORE:41: 			return toObservPro(toPro(alists));
+CLECLWH:42: 		}
+HBKJQRL:43: 		
+GKBKAZA:44: 	}

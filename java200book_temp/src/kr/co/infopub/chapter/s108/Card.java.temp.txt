@@ -1,0 +1,54 @@
+0MXVGQMO:1: 	package kr.co.infopub.chapter.s108;
+0SUNQVUT:2: 	
+0BLWQDBY:3: 	import kr.co.infopub.chapter.s107.CardUtil;
+0JYKXWSJ:4: 	
+0UJQQGUR:5: 	public class Card {
+0FXUAGJQ:6: 	 private String cardVal; //H8
+0XIJRDTY:7: 	 public String getCardVal() {
+0DLCVRHY:8: 		return cardVal;
+0ZIUTBXA:9: 	 }
+RCUPSXW:10: 	 public Card() {
+OVXNTYA:11: 		int deck=(int)(Math.random()*CardUtil.SUIT.length); // 0~3
+PGAGUMQ:12: 		int suit=(int)(Math.random()*CardUtil.VALU.length); // 0~12
+AQCRFAV:13: 		//임의의 카드 값을 갖는다. H6
+UCSEZVQ:14: 		cardVal=CardUtil.SUIT[deck]+CardUtil.VALU[suit];
+UKZCOXD:15: 	 }
+FGYXRYM:16: 	 // 테스트용
+VIJFBXX:17: 	 public Card(String s) {
+LLWUDYQ:18: 		this.cardVal=s;  // 문자열은 값 복사
+VRHKSLF:19: 	 }
+VUXKLDS:20: 	 // 복사 생성자
+XSCXVAT:21: 	 public Card(Card c) {
+OCPBAEL:22: 		this(c.getCardVal());  // 문자열은 값 복사
+BFGTSGZ:23: 		// this.cardVal=c.getCardVal(); //동일
+RMHVOMG:24: 	 }
+OWEUYKH:25: 	 @Override
+IUREWTK:26: 	 public String toString() {
+HHQFHOJ:27: 		return "[" + cardVal + "]";
+OYDMXGD:28: 	 }
+CZYQXIX:29: 	 // Eclipse-Source-Generate hashCode() and equals()를 이용하여 자동으로 만들자
+CZTPHOF:30: 	 @Override
+MYVQDGQ:31: 	 public int hashCode() {
+RUCOCNG:32: 		final int prime = 31;
+OGXEJQY:33: 		int result = 1;
+AOFQYWE:34: 		result = prime * result + ((cardVal == null) ? 0 : cardVal.hashCode());
+KSJIAWH:35: 		return result;
+VSLQDGS:36: 	 }
+RNFLRKU:37: 	 // 소스를 정리하면  카드값과 카드값을 일대일로 비교한다.
+JTONBGL:38: 	 @Override
+ISYHDLJ:39: 	 public boolean equals(Object obj) {
+AGEYVII:40: 		Card cb=(Card)obj; 
+ZRXHCFK:41: 		if(cardVal.equals(cb.getCardVal())){
+EUJCROH:42: 			return true;
+KMFNADV:43: 		}else{
+CTJROKE:44: 			return false;
+BCWGVIQ:45: 		}
+QBXVBDR:46: 	 } 
+QXYQEMG:47: 	 // 추가된 static 비교 기준 메서드
+TBIDJIS:48: 	 public static int compareCard(Card c1, Card c2){
+OIUDFOT:49: 		return c1.getCardVal().compareTo(c2.getCardVal());
+JTYPAPK:50: 	 }
+CJBSVVB:51: 	 public static int compareRCard(Card c1, Card c2){
+OPWFWXI:52: 		return -c1.getCardVal().compareTo(c2.getCardVal());
+YGDUMTV:53: 	 }
+WOYOOSV:54: 	}

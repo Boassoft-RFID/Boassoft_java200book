@@ -1,0 +1,26 @@
+0KKPIQYQ:1: 	package kr.co.infopub.chapter.s111;
+0JPZESUX:2: 	
+0LUVVPSR:3: 	public class CardUtil {
+0CDFPJQK:4: 		public static final int SUTDA=2;
+0ZLKUTQG:5: 		public static final String[] SUIT={"H","C"};
+0XANXMXG:6: 		public static final String[] VALU={"A","2","3","4","5","6","7","8","9","T"};    
+0HMZKBYJ:7: 		 
+0JUIVFIF:8: 		public static int toVal(Card c){
+0VAVTQCN:9: 			 return toVal(c.getCardVal().charAt(1));
+EIXBOAE:10: 		}
+MMHJXFM:11: 		public static int toVal(Card c, int index){
+IWTMPHA:12: 			 return toVal(c.getCardVal().charAt(index));
+HJTBFSI:13: 		}
+XVYGYJH:14: 		public static int toVal(char cc){
+BPWSMBL:15: 			int tot=0;
+QDTYJPW:16: 			switch (cc) {
+CYQTUNX:17: 			 	case 'A':tot=1;break;
+QIVUJVZ:18: 			 	case 'T':tot=10;break;
+ENKZKQT:19: 			 	case 'J':tot=11;break;
+FCZOKGC:20: 			 	case 'Q':tot=12;break;
+YLFDJFS:21: 			 	case 'K':tot=13;break;
+WKPRZMP:22: 			 	default: tot=cc-'0';break;
+GPWDTRG:23: 			}
+FRFTCDW:24: 			 return tot;
+RZUEOWA:25: 		 }
+RAMAUCX:26: 	}

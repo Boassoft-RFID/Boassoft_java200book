@@ -1,0 +1,98 @@
+0ROBDCVV:1: 	package kr.co.infopub.chapter.s162;
+0SNLUKWJ:2: 	import java.util.Calendar;
+0OERGEWB:3: 	import javafx.application.Application;
+0SNUQGLJ:4: 	import javafx.scene.Scene;
+0VXYOHRO:5: 	import javafx.scene.chart.CategoryAxis;
+0QPVOTZZ:6: 	import javafx.scene.chart.LineChart;
+0JNDDAWW:7: 	import javafx.scene.chart.NumberAxis;
+0UPPIPDN:8: 	import javafx.scene.chart.XYChart;
+0AOQMFMF:9: 	import javafx.stage.Stage;
+DQXVGIN:10: 	public class Biorythms2 extends Application{
+SGKXTHH:11: 	 public static void main(String[] args) {
+BMQZUWL:12: 	    launch(args);
+RKESNTI:13: 	  }
+VLWQAIJ:14: 	  int dayWith=25;   // 기준일에 대하여 앞뒤로 25일 보이기
+GNXMCJZ:15: 	  @Override
+IZZBPBP:16: 	  public void start(Stage primaryStage) {
+GDVAMUA:17: 		// 생일  
+JYRZODG:18: 		int year=191;
+LOAMHVH:19: 		int month=9;
+EMYLKOH:20: 		int day=28;
+VFJOIAD:21: 		// 생일부터 오늘까지 몇일 살았는가?
+VXGCCHG:22: 		long live=BioCalendar.days(year, month, day)  ;  //오늘까지
+EAHBMVE:23: 		
+CZPIXBL:24: 		CategoryAxis xAxis = new CategoryAxis(); // X축
+OBVXCLI:25: 		NumberAxis yAxis = new NumberAxis();     // Y축
+JJAQPFF:26: 		yAxis.setLabel("Bio Power");
+LBEWYPN:27: 		xAxis.setLabel("Date");
+PDZXHRW:28: 		// XY 평면 준비
+RVGCZEV:29: 		LineChart<String, Number> lineChart = new LineChart<String, Number>(xAxis, yAxis);
+YPTXUUR:30: 		lineChart.setTitle("My Biorhythm");
+BOSLPOI:31: 	    // 1. 신체, 2. 감정, 3. 지능, 4. (1+2+3)/3 복합, 5. 오늘
+HHSBWTC:32: 		XYChart.Series<String, Number> series1 = new XYChart.Series<String, Number>(); // 1
+ACVCEYA:33: 		XYChart.Series<String, Number> series2 = new XYChart.Series<String, Number>(); // 2
+PXWWYYB:34: 		XYChart.Series<String, Number> series3 = new XYChart.Series<String, Number>(); // 3
+BLODWLC:35: 		XYChart.Series<String, Number> series4 = new XYChart.Series<String, Number>(); // 4
+PQISZCS:36: 		XYChart.Series<String, Number> series5 = new XYChart.Series<String, Number>(); // 5
+HWFLCHY:37: 		physicalChartData(series1,live);
+YQXHQEN:38: 		emotionalChartData(series2,live);
+ASABDNC:39: 		intellectualChartData(series3,live);
+WXQYPOO:40: 		compositeChartData(series4,live);
+WEKTPET:41: 		vertical(series5);
+ZDOTAVS:42: 		
+IBHKXRQ:43: 		Scene scene = new Scene(lineChart, 1200, 600);
+PKMKZHF:44: 	    lineChart.getData().addAll(series1, series2, series3,series4,series5);
+FQLVPIX:45: 	    
+NNORRDV:46: 	    primaryStage.setScene(scene);
+SUBHWFA:47: 	    primaryStage.show();
+RCTXWRV:48: 	  }
+UOTSWMI:49: 	  // 오늘 수직선
+ZRLIPGY:50: 	  public  void vertical(XYChart.Series<String, Number> series ) {
+UZBDJXF:51: 		Calendar todayCal=Calendar.getInstance();
+ZHNVDJF:52: 	    series.setName("Today");
+CDCOFUG:53: 	    series.getData().add(new XYChart.Data<String, Number>(RestDay.toStrDate(todayCal), 125));
+MNGCTNL:54: 	    series.getData().add(new XYChart.Data<String, Number>(RestDay.toStrDate(todayCal), -125));
+XLZJVWA:55: 	  }
+JIGNIIE:56: 	  // 신체 지수 그리기 - 점들연결
+GCESVNV:57: 	  public  void physicalChartData(XYChart.Series<String, Number> series, long live ) {
+EQLTIWH:58: 		Calendar todayCal=Calendar.getInstance();
+ACIJHMF:59: 	    series.setName("PHYSICAL");
+IEIREQD:60: 	    for (int i = -dayWith; i < dayWith+1; i++) {
+IFLLARR:61: 	    	 Calendar bf15day=RestDay.dateAfOrBf(todayCal,i);
+NNUUZQO:62: 	    	 double value=BioCalendar.getPhysical(live+i,100);
+ITCPKCM:63: 	    	 series.getData().add(new XYChart.Data<String, Number>(RestDay.toStrDate(bf15day), value));
+DASTYMW:64: 	    }
+AMHFPYU:65: 	  }
+HRDWUSF:66: 	  // 감정 지수 그리기
+FNSCMTC:67: 	  public  void emotionalChartData(XYChart.Series<String, Number> series, long live ) {
+VPMBRAK:68: 		Calendar todayCal=Calendar.getInstance();
+AECAEBK:69: 	    series.setName("EMOTIONAL");
+DJOQTKY:70: 	    for (int i = -dayWith; i < dayWith+1; i++) {
+BMXKXKO:71: 	    	 Calendar bf15day=RestDay.dateAfOrBf(todayCal,i);
+NVUYRIU:72: 	    	 double value=BioCalendar.getEmotional(live+i,100);
+GEAJWYY:73: 	    	 series.getData().add(new XYChart.Data<String, Number>(RestDay.toStrDate(bf15day), value));
+UZANAPE:74: 	    }
+QFIRCHT:75: 	  }
+PSKUNJF:76: 	  // 지능 지수 그리기
+NULIEEP:77: 	  public  void intellectualChartData(XYChart.Series<String, Number> series, long live ) {
+GYIOUWT:78: 		Calendar todayCal=Calendar.getInstance();
+ONVXIZP:79: 	    series.setName("INTELLECTUAL");
+XOHVHSD:80: 	    for (int i = -dayWith; i < dayWith+1; i++) {
+ZLJBMMG:81: 	    	 Calendar bf15day=RestDay.dateAfOrBf(todayCal,i);
+RNZTYYZ:82: 	    	 double value=BioCalendar.getIntellectual(live+i,100);
+RHDEZOI:83: 	    	 series.getData().add(new XYChart.Data<String, Number>(RestDay.toStrDate(bf15day), value));
+RZHPFOS:84: 	    }
+HDYWFTH:85: 	  }
+AKHEBMZ:86: 	  // 복합 (신체+감정+지능)/3
+QSZSSWK:87: 	  public  void compositeChartData(XYChart.Series<String, Number> series, long live ) {
+KKVRIPP:88: 		Calendar todayCal=Calendar.getInstance();
+MDTTRGZ:89: 	    series.setName("COMPOSITE");
+UXNIVJV:90: 	    for (int i = -dayWith; i < dayWith+1; i++) {
+ZFPLZND:91: 	    	 Calendar bf15day=RestDay.dateAfOrBf(todayCal,i);
+QVEGDZH:92: 	    	 double value=BioCalendar.getIntellectual(live+i,100)
+FOHIZUC:93: 	    			 +BioCalendar.getEmotional(live+i,100)
+DFPOPIQ:94: 	    			 +BioCalendar.getPhysical(live+i,100);
+DVRNZDB:95: 	    	 series.getData().add(new XYChart.Data<String, Number>(RestDay.toStrDate(bf15day), value/3.0));
+ZIFOUSC:96: 	    }
+MQMKUCH:97: 	  }
+FFHFGSA:98: 	}

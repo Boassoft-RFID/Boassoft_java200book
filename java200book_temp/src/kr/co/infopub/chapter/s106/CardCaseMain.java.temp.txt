@@ -1,0 +1,14 @@
+0NJIYTXZ:1: 	package kr.co.infopub.chapter.s106;
+0UWPGGVW:2: 	public class CardCaseMain {
+0KBCYBBD:3: 		public static void main(String[] args) {
+0PNHGVJV:4: 			CardCase cc=new CardCase();
+0ZCGECZL:5: 			cc.make();     // 서로 다른 카드 20장 만들기
+0TYIWQJC:6: 			cc.print();
+0BQRBJWC:7: 			System.out.println("--------------------------");
+0JDYNADM:8: 			cc.shuffle();   // 카드 섞기
+0PNSIZIA:9: 			cc.print();
+OKWYUKP:10: 			System.out.println("--------------------------");
+EAFAGMN:11: 			cc.shuffle();   // 카드 섞기
+WSHSNAD:12: 			cc.print();
+BYEJEKA:13: 		}
+HRJVDNR:14: 	}

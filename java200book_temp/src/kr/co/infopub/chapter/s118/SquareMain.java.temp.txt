@@ -1,0 +1,21 @@
+0SRODJBX:1: 	package kr.co.infopub.chapter.s118;
+0SWHKIPC:2: 	import java.util.Scanner;
+0ESUGVYA:3: 	public class SquareMain {
+0MYZMDWP:4: 	 public static void main(String[] args) {
+0MKAHUSJ:5: 		System.out.println("3이상의 정수 마방진을 입력하세요.");
+0RMJGKCG:6: 		Scanner scann=new Scanner(System.in);
+0ICFYZBY:7: 		int n=scann.nextInt();
+0LDTIVRK:8: 		MagicSquare magic=null;
+0SWYDMGF:9: 		if(n>2 && n%2==1){        // 홀수 
+DWZCGLH:10: 			magic=new OddMagicSquare(n);  // 다형성 - 부모 타입으로 자식을 생성할 수 있다.
+SMRYMKC:11: 		}else if(n>2 && n%4==0){
+WBPHWRQ:12: 			magic=new FourMagicSquare(n); // 다형성 - 부모 타입으로 자식을 생성할 수 있다.
+TKKTZJX:13: 		}else if(n>2 && n%4==2){
+DGZFCSK:14: 			magic=new SixMagicSquare(n);  // 다형성 - 부모 타입으로 자식을 생성할 수 있다.
+URYLLZM:15: 		}else{
+RWSLQSB:16: 			System.out.println("만들수 없는 마방진입니다.");
+XIMCTWZ:17: 			return ;
+GUCLGYQ:18: 		}
+ZXTVEXU:19: 		MagicPrint.print(magic);     // 다형성- 부모 타입으로 자식을 받을 수 있다.
+AYRJEPX:20: 	 }
+VHYMXVA:21: 	}

@@ -1,0 +1,56 @@
+0UYIBURH:1: 	package kr.co.infopub.chapter.s159;
+0YDZGTIL:2: 	import java.util.*;
+0GKHCDRZ:3: 	public class ProductList {
+0WDQDGDZ:4: 		private int[] catg={6,1,4,3,3,1,1,3,3,3,1};
+0GMDCGIY:5: 		public String [] splist(String str){
+0GUDULVI:6: 			String[] ss=new String[catgLength()];
+0VGGRBSY:7: 			ss[0]=str.substring(0,catNumTo(catg,0)).trim();
+0LEDOVIX:8: 			for(int i=1;i<ss.length;i++){
+0GVASZRQ:9: 				ss[i]=str.substring(catNumTo(catg,i-1),
+XPTGHDU:10: 				               catNumTo(catg,i)).trim();
+HEGZZVO:11: 			}
+BQLYTKJ:12: 			return ss;
+QHSOLLF:13: 		}
+FAXEMUO:14: 		public Product splistP(String str){
+ZDMMIBN:15: 			Product p=new Product();
+IAWOAUF:16: 			String[] ss=splist(str);
+HRRWOBY:17: 			p.setProduct(ss);
+WQPQLIG:18: 			return p;
+BWXTLTB:19: 		}
+XQHVJNJ:20: 		public List<Product> getAllProducts(List<String> v){
+WBZBJFQ:21: 			List<Product> products=new ArrayList<Product>();
+DFJZFBM:22: 			for(int i=0;i<v.size();i++){
+XPBAPBT:23: 				String str=v.get(i);
+NPGSZOE:24: 				Product p=splistP(str);
+YJFDYRR:25: 				products.add(p);
+RLIBAOX:26: 			}
+LYYIIIU:27: 			return products;
+JJUGXYZ:28: 		}
+KCHRDPJ:29: 	    public List<Product> getAllProdInGrade(String []ss1, List<Product> v){
+PVPFDCJ:30: 	    	List<Product> products=new ArrayList<Product>();
+ONPJOVA:31: 			for(int i=0;i<v.size();i++){
+EXGLGUQ:32: 				Product p=v.get(i);
+FUSKLAU:33: 				for(int j=0;j<ss1.length;j++){
+RQRTZUW:34: 					if(p.getPGrade().equals(ss1[j])){
+VJQAONA:35: 						products.add(p);
+EJYWIKK:36: 					}
+ENSOKLH:37: 				}
+BBKOTNH:38: 			}
+KCRZJCD:39: 			return products;
+JOAYZCQ:40: 		}
+ZTNUHEM:41: 		private int catgLength(){
+YIBVNKT:42: 			return this.catg.length;
+HFEGTYD:43: 		}
+QPGZCJZ:44: 		private int catNumTo(int [] aa,int a){
+MWLGCIZ:45: 			int toto=0;
+VQFJBSH:46: 			if(aa.length<a){
+AVMXHBM:47: 				toto=0;
+PHQWRPA:48: 			}else{
+CPRTSCB:49: 				for(int i=0;i<=a;i++){
+JUXAKLK:50: 					toto+=aa[i];
+BENKDIM:51: 				}
+GQWHQAF:52: 			}
+IPJJJGX:53: 			return toto;
+LMSUWNQ:54: 		}
+AVGBLVT:55: 			
+KVCVFAW:56: 	}

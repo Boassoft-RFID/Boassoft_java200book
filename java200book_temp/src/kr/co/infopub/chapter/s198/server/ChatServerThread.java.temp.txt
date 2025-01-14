@@ -1,0 +1,79 @@
+0QDMSHBH:1: 	package kr.co.infopub.chapter.s198.server;
+0MSBSXIF:2: 	import   java.io.*;
+0GEJIDMM:3: 	import java.net.Socket;
+0KLHYYNN:4: 	import   java.util.*;
+0WDKYEGJ:5: 	
+0HECDICM:6: 	import kr.co.infopub.chapter.s198.common.Message;
+0ZFDGYJD:7: 	public class ChatServerThread implements Runnable{
+0DWSBGST:8: 	   Vector<Message>   buffer;   
+0PGHPQPI:9: 	   ObjectInputStream  ois;
+RIQQVSX:10: 	   ObjectOutputStream oos;
+KKFSYGL:11: 	   Message  mess;
+TXWGXWW:12: 	   boolean  exit;
+PWRXFCO:13: 	   String   name;
+EXQQXGU:14: 	   public ChatServerThread(Vector<Message> v,Socket socket){
+CGXHYTW:15: 	     buffer=v;
+KRHGJNP:16: 	     try {
+PGCVTKG:17: 			ois=new ObjectInputStream(socket.getInputStream());
+HNAXCZB:18: 			oos=new ObjectOutputStream(socket.getOutputStream());
+QEFYVKL:19: 		} catch (IOException e) {
+YRQRDHW:20: 			
+ILUPTTA:21: 		}
+IEDGZNW:22: 	    
+AWNBIOK:23: 	     exit=false;
+RDHBMAQ:24: 	   }
+QZNXVGQ:25: 	   public void run(){
+TZULFIE:26: 	     while(!exit){
+QLLHUEU:27: 	       try{
+FDTDLKJ:28: 	            mess=(Message)ois.readObject();
+WFVMIGI:29: 	        }catch(Exception e){
+LUXTEQS:30: 	            e.printStackTrace();
+NBGRBLZ:31: 	            System.out.println("Exception이 발생");
+JVMYYVW:32: 	       }
+OYEVCAQ:33: 	       int state=mess.getState();
+YOLZCXV:34: 	       if(state==Message.END){
+LJRFUFR:35: 	             mess.setMessage("님이 종료하셨습니다.");
+GYEJCKA:36: 	             name=mess.getName();
+GOFMZWS:37: 	             broadCasting();
+SUGCPSV:38: 	             for (int i = 0; i < buffer.size(); i++) {
+SDSIBTH:39: 	               if ( ( (Message) buffer.get(i)).getName().equals(name)) {
+AQJZFOV:40: 	                 buffer.remove(i);
+HEIJVXU:41: 	               }
+MQEVFEL:42: 	             }
+ECKRYRA:43: 	             try {
+CXPCLCM:44: 	               ois.close();
+CENJSPT:45: 	               oos.close();
+MKKTUYN:46: 	             }
+AHUGJAY:47: 	             catch (Exception x) {}
+UXVTHRT:48: 	             exit = true;
+IPSNEVV:49: 				 System.out.println(name+"님이 종료하셨습니다.");
+RQBRMWJ:50: 	       }else if(state==Message.INITCONTACT){
+VGUAQLR:51: 	
+KFSZZQO:52: 	           Vector<String> userName=new Vector<>(5,1);
+GHFREAZ:53: 	           mess.setObjectStream(oos);
+DHUSPBV:54: 	           buffer.add(mess);
+AQEHFLF:55: 	           for(int i=0;i<buffer.size();i++){
+JPBHOKR:56: 	             userName.add(((Message)buffer.get(i)).getName());
+MTHFHIS:57: 	           }
+HTFOHZP:58: 	           mess.setUserName(userName);
+IFEZNRD:59: 	           System.out.println("broadCasting 시작");
+VADVKMO:60: 	           broadCasting();
+QRJGJZZ:61: 	        }else{
+KFGBLBY:62: 	           broadCasting();
+FMTLEEG:63: 	        }//
+OMVFZKU:64: 	      }
+ZJTARLL:65: 	    }
+GFODQBW:66: 	    public synchronized void broadCasting(){
+AYGRJKV:67: 	       for(int i=0;i<buffer.size();i++){
+MUWJPQA:68: 	          try{
+YDYLJDO:69: 	           ((Message)buffer.get(i)).getObjectStream().writeObject(mess);
+PMLVHSW:70: 	          }catch(IOException e){
+XHUVJZA:71: 	             System.out.println("broadCasting method에서 IOException.");
+ZFPJCDW:72: 	           e.printStackTrace();
+DANIZJA:73: 	          }
+JFMNSAZ:74: 	        }
+CFYUSGY:75: 	    }
+TPUNEEA:76: 	}//class
+IHWMPZC:77: 	
+FRAMVTD:78: 	
+XQYMCIV:79: 	

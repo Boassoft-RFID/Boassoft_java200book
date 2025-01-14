@@ -1,0 +1,28 @@
+0YYNKEEP:1: 	package kr.co.infopub.chapter.s069;
+0AVNDOUS:2: 	public class StringBufferMain {
+0DDAHLYV:3: 		public static void main(String[] args) {
+0NTXDXHO:4: 			// StringBuffer 생성
+0ADMTOGM:5: 			StringBuffer sb1=new StringBuffer();
+0GLKKGKX:6: 			//1 계속 붙이는 함수 mutable 
+0CVBBOFV:7: 			sb1.append("안녕하세요.")
+0DXKPHBY:8: 			  .append("또 만나요.")
+0BZCCUWK:9: 			  .append("모두를 사랑해요. 기다려봐.");
+ZQKYNHR:10: 			System.out.println(sb1.toString()+sb1.hashCode());
+QIQJVSR:11: 			//2 replace
+ICZBPSN:12: 			sb1.replace(0,2,"나 보기가 역거워");
+VOSXVLX:13: 			System.out.println(sb1.toString()+sb1.hashCode());
+YMAODWW:14: 			//3 reverse
+MNHIIDU:15: 			sb1.reverse();
+FNUOWMV:16: 			System.out.println(sb1.toString());
+RLCNSVP:17: 			//4 delete
+HSIKRDE:18: 			sb1.delete(10,15);
+XNFWUGJ:19: 			System.out.println(sb1.toString());
+WZAULED:20: 			//5 cal by reference, shallow copy
+MSAVDWL:21: 			replaces(sb1);
+WGFDWGK:22: 			System.out.println(sb1.toString());
+DXURAGG:23: 		}
+JHAKFHK:24: 		public static void replaces(StringBuffer sb){
+KXWMPJE:25: 			sb.reverse();
+IHUWJMI:26: 			sb.replace(0,3,"GoGo");//0부터 2까지 를 GoGo로
+XCLRUDE:27: 		}
+GTREEIM:28: 	}

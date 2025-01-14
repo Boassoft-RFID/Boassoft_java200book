@@ -1,0 +1,260 @@
+00GSEECWZ:1: 	package kr.co.infopub.chapter.s191;
+00ADGUFVO:2: 	import java.sql.Date;
+00GBJDTJU:3: 	import java.sql.SQLException;
+00PSARNFM:4: 	import java.util.List;
+00GFCTTTZ:5: 	import java.util.concurrent.Executor;
+00AQYLSQZ:6: 	import java.util.concurrent.Executors;
+00UZURLGC:7: 	
+00HWYEJTH:8: 	import javafx.beans.value.ObservableValue;
+00OBDQUVC:9: 	import javafx.collections.ObservableList;
+0OSIHRYE:10: 	import javafx.event.ActionEvent;
+0OEMOGQP:11: 	import javafx.fxml.FXML;
+0GXFWSGU:12: 	import javafx.fxml.FXMLLoader;
+0AXIPRTZ:13: 	import javafx.scene.Node;
+0RLYEXEQ:14: 	import javafx.scene.control.Button;
+0ZAEPPDF:15: 	import javafx.scene.control.Label;
+0URTOVKC:16: 	import javafx.scene.control.TableColumn;
+0KMUEGDJ:17: 	import javafx.scene.control.TableView;
+0ZZXTISU:18: 	import javafx.scene.control.TreeItem;
+0SAZTVWB:19: 	import javafx.scene.image.Image;
+0NIJIDJC:20: 	import javafx.scene.image.ImageView;
+0BUEWFJA:21: 	import javafx.scene.layout.BorderPane;
+0INYOVRA:22: 	import javafx.util.Callback;
+0VSJTOVC:23: 	import javafx.scene.control.TreeView;
+0PLCJVGQ:24: 	import javafx.scene.control.TableColumn.CellDataFeatures;
+0ZKYIQIY:25: 	import kr.co.infopub.chapter.s191.dto.EmpConvert;
+0AZJPORE:26: 	import kr.co.infopub.chapter.s191.dto.Employee;
+0IGBUYHA:27: 	import kr.co.infopub.chapter.s191.dto.EmployeeDto;
+0ECLQWJT:28: 	import kr.co.infopub.chapter.s191.model.EmployeeDAO;
+0FCIAOSW:29: 	import kr.co.infopub.chapter.s191.model.EmployeeService;
+0TOARHUN:30: 	import kr.co.infopub.chapter.s191.util.EmpUtil;
+0KRCTCNF:31: 	
+0HYBOBZQ:32: 	
+0YUQPNGR:33: 	public class ManagerFxController extends BorderPane{
+0EBTGXKS:34: 	
+0RKEJVHA:35: 	    @FXML
+0FFWPVAY:36: 	    private Button searchEmpsBtn;
+0DHMYBAQ:37: 	    @FXML
+0UAPAPHD:38: 	    private Label lbhello;
+0LXJYVLY:39: 	    
+0MDEDTFW:40: 	    @FXML
+0SNNOINZ:41: 	    private TableView<Employee> employeeTable;
+0AVYYMIB:42: 	    @FXML
+0ALXAWPS:43: 	    private TableColumn<Employee, Integer>  empIdColumn;
+0DEPLOZV:44: 	    @FXML
+0SDRCROP:45: 	    private TableColumn<Employee, String>  empNameColumn;
+0LSZKEFF:46: 	    @FXML
+0PRRURFG:47: 	    private TableColumn<Employee, String> empLastNameColumn;
+0XMDXUYD:48: 	    @FXML
+0CRRJFFI:49: 	    private TableColumn<Employee, String> empEmailColumn;
+0DTFPKNH:50: 	    @FXML
+0NJVUKOY:51: 	    private TableColumn<Employee, String> empPhoneNumberColumn;
+0KPDSTIQ:52: 	    @FXML
+0LKJWZTT:53: 	    private TableColumn<Employee, Date> empHireDateColumn;
+0DNATNUB:54: 	    @FXML
+0IXEETHN:55: 	    private TreeView tvEmp;
+0NQGPHUH:56: 	    
+0MVEHLKP:57: 	    @FXML
+0QABSLIF:58: 	    private Button latesEmpsBtn;
+0ACKSJOU:59: 	    
+0XRRIYLU:60: 	    private final Node rootIcon2 = new ImageView(
+0UMALXAK:61: 	            new Image(getClass().getResourceAsStream("image/book2.png"))
+0HJALUEU:62: 	        );
+0UZRVFPG:63: 	    private final Node rootIcon3 = new ImageView(
+0EOUXONO:64: 	            new Image(getClass().getResourceAsStream("image/book3.png"))
+0OFCUNEU:65: 	        );
+0MYIKLLR:66: 	    //private Executor exec;
+0ZTAYGVG:67: 	    
+0JPJLSQF:68: 	    //EmployeeDAO employeeDAO=new EmployeeDAO();
+0MFZOIGM:69: 	    EmployeeService service;
+0VBZZNJT:70: 	    
+0UQYUTEH:71: 	   	public ManagerFxController(EmployeeService service) {
+0YJEDFQD:72: 	   		this.service=service;
+0JBSUPMD:73: 	   		
+0HOCVURW:74: 	   		FXMLLoader loader4 = new FXMLLoader();
+0IQSZPZZ:75: 	           loader4.setLocation(Main.class.getResource("view/ManagerFx.fxml"));
+0YJXNXGQ:76: 	           loader4.setRoot(this);
+0NZSXLCV:77: 	           loader4.setController(this);
+0OYRKYKT:78: 	           try {
+0RQMUFNR:79: 	           	loader4.load();
+0UPMWZWE:80: 	           } catch (Exception exception) {
+0VJYUNXB:81: 	               throw new RuntimeException(exception);
+0ADDTZNS:82: 	           }
+0QRPXUKT:83: 	   	}
+0FBKWXNC:84: 	    
+0VPYENKD:85: 	    
+0UJKDKCO:86: 	    @FXML
+0SQPBPCJ:87: 	    private void initialize () {
+0FHOYTQE:88: 	    	loadTreeItems();
+0XDVWOSW:89: 	    	
+0JNTVSPM:90: 	//        exec = Executors.newCachedThreadPool((runnable) -> {
+0YCSNOCE:91: 	//            Thread t = new Thread (runnable);
+0NAEKRUO:92: 	//            t.setDaemon(true);
+0DQNPXXG:93: 	//            return t;
+0XJGXGSK:94: 	//        });
+0DIRYDQR:95: 	        
+0AJASFGU:96: 	        empIdColumn.setCellValueFactory(cellData -> cellData.getValue().employeeIdProperty().asObject());
+0JBTVUOY:97: 	        empNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+0CKYKQRS:98: 	        empLastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
+0UAOJBIA:99: 	        empEmailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
+KFZHYAS:100: 	        empPhoneNumberColumn.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
+INZSSNE:101: 	
+DGBOBUQ:102: 	        empHireDateColumn.setCellValueFactory(new Callback<CellDataFeatures<Employee, Date>, ObservableValue<Date>>() {
+AOOUWAP:103: 	            public ObservableValue<Date> call(CellDataFeatures<Employee, Date> cellData) {
+UXSAXYQ:104: 	                return cellData.getValue().hireDateProperty();
+UHAATTJ:105: 	            }
+VFEQOOB:106: 	         });
+PHRDVZH:107: 	        
+KYWFZVI:108: 	
+KIIRVRH:109: 	        employeeTable.setOnMouseClicked(e ->{
+RHWORZT:110: 	        	if(employeeTable.getSelectionModel().getSelectedItem()!=null ){
+BBJAIGD:111: 	        		Employee user = (Employee)employeeTable.getSelectionModel().getSelectedItem();
+OYPTXPJ:112: 	            	System.out.println(user.getEmployeeId()+"  "+user.getFirstName()+" "+user.getLastName());
+ECSKQGU:113: 	            	lbhello.setText(user.getEmployeeId()+"  "+user.getFirstName()+" "+user.getLastName());
+MMISDQH:114: 	        	}
+NKEZYZT:115: 	        	
+SSXFIZY:116: 	            }
+SNCUXFE:117: 	        );
+LWRZKPG:118: 	    }
+JBJHFPA:119: 	
+ITIFCRB:120: 	    @FXML
+SYWKOQN:121: 	    private void onLatesEmpsBtn(ActionEvent actionEvent) throws SQLException {
+CUFVUZH:122: 	    	loadTreeItems();
+ODSAYVZ:123: 	    }
+GROCDYV:124: 	    
+COSZPLR:125: 	
+VJSFITL:126: 		
+IHXFDDN:127: 	
+EKZGSWT:128: 		
+OYPDQVJ:129: 		/*
+HSNQEVO:130: 		/001100/002101/003108             index 3     mainitem
+EWFLYXA:131: 		/001100/002101/003108/004109
+STFZRKQ:132: 		/001100/002101/003108/004110
+NLQFKXE:133: 		/001100/002101/003108/004111
+QGXWMVA:134: 		/001100/002101/003108/004112
+AZSRSTK:135: 		/001100/002101/003108/004113
+IIULELK:136: 		 */
+FYYVTEK:137: 	
+SBHKPQI:138: 	    
+TOYSHEC:139: 	    
+FIIMIMN:140: 	    //TreeItem<String> one;
+JQXNJBF:141: 	   	@SuppressWarnings("unchecked")
+VKTHNAD:142: 		public void loadTreeItems() {
+UVDYHEP:143: 	   	 TreeItem<String> root = new TreeItem<String>("managers and staff",rootIcon2);
+MSSGYGP:144: 	   	 root.setExpanded(true);
+YWGETVH:145: 	  		try {
+HKIVAWG:146: 	  			 
+GFWMUJA:147: 	  			 
+RQSJAGG:148: 	  		    List<Employee> dlists=service.findTreeManagerInEmployee();
+LTJQBWP:149: 				  int max=0;
+SOZFFLQ:150: 				  max=service.getTreeMaxLevel();
+ZVIBCYM:151: 				  System.out.println("11111111111111111111111111111111111111-----------------------"+max);
+OBKVKDR:152: 				  makeEmpTree(root,dlists,"",1,max);   
+DQMLHEG:153: 	
+QPNPBZY:154: 	  	          tvEmp.setRoot(root);
+JBAPNAX:155: 	 	          tvEmp.getSelectionModel().selectedItemProperty().addListener(
+WHXMMPF:156: 	 	        		(observable, oldValue, newValue) -> {
+VTBQOYH:157: 	 	              ObservableList<Employee> empData=null;
+UFJUSFB:158: 	 	            // System.out.println("Selected Department_id : "+ ((TreeItem<String>)newValue).getValue()); 
+EKUTIOP:159: 	 				try {
+WDCHEVG:160: 	 					String val="";
+OBTMAHK:161: 	  					 if(newValue !=null && newValue instanceof TreeItem<?>){
+MCZDOQC:162: 	  						 val=EmpUtil.bfstr(((TreeItem<String>)newValue).getValue());
+LYQINGQ:163: 	  					 }
+MDPFYIS:164: 	 					 System.out.println("Selected Manager_id : "+ val); 
+QXIUWHB:165: 	 					 empData=service.findEmployeesByEmpId(val);
+POOEHYH:166: 	 					//----단순 인원을 구하기 위한것.
+MMINDRH:167: 	 					 String stsf=val+"와(과) 직원: ";
+ELZQVZU:168: 	 					showLabel(stsf+ empData.size()+" 명");
+BIKRIBV:169: 	 					 //----------------------------
+XUBQILM:170: 	 					showToTableEmployees(empData);
+MWSZXNU:171: 	 					
+LQKIRLA:172: 	 				} catch (SQLException e) {
+TFMFSQL:173: 	 				}
+EDHNDQW:174: 	 	        });
+RHWQFHS:175: 	 	        
+KXQOWBC:176: 	  	        root.addEventHandler(TreeItem.branchExpandedEvent(),eh->{
+CYEZAKY:177: 	  	        	System.out.println("expanded----------------------------------------->");
+SLFFBEH:178: 	  	        	root.setGraphic(rootIcon2);
+BFTIHZI:179: 	  	        	tvEmp.refresh();
+GUKCKXF:180: 	  	        	
+JSBWUWF:181: 	  	        	//loadTreeItems2(); //무한루프 
+FVHMDTS:182: 	  	        });
+HTMREYJ:183: 	  	        root.addEventHandler(TreeItem.childrenModificationEvent(), eh->{
+HKIZTOT:184: 	  	        	System.out.println("-------------childrenModificationEvent-------------->");
+KUAOSNB:185: 	  	        	
+NTBEHDK:186: 	  	        });
+YOLJFOU:187: 	  	        root.addEventHandler(TreeItem.branchCollapsedEvent(),eh->{
+KGXLRPO:188: 	  	        	System.out.println("collapsed=========================================>");
+HGGHUMN:189: 	  	        	root.setGraphic(rootIcon3);
+MQUXTEZ:190: 	  	        });
+PXCDIPC:191: 	  		} catch (SQLException e) {
+BQFDQHW:192: 	  			System.out.println(" emp tv :"+e);
+MMCOCVJ:193: 	  		}
+XBYOLKN:194: 	  		
+OZWGFUK:195: 	  		 empIdColumn.setCellValueFactory(cellData -> cellData.getValue().employeeIdProperty().asObject());
+MSDIJSE:196: 	         empNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+ZUGCBKX:197: 	         empLastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
+RCAXAAP:198: 	         empEmailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
+VEFECZJ:199: 	         empPhoneNumberColumn.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
+PPGRABA:200: 	         empHireDateColumn.setCellValueFactory(cellData -> cellData.getValue().hireDateProperty());
+HVIRHFD:201: 	
+CBWDZQI:202: 	         employeeTable.setOnMouseClicked(e ->{
+IHGILNE:203: 	         	if(employeeTable.getSelectionModel().getSelectedItem()!=null ){
+DADODYN:204: 	         		Employee user = (Employee)employeeTable.getSelectionModel().getSelectedItem();
+SIGBPST:205: 	             	System.out.println(user.getEmployeeId()+"  "+user.getFirstName()+" "+user.getLastName());
+GWKQUJL:206: 	             	showLabel(user.getEmployeeId()+"  "+user.getFirstName()+" "+user.getLastName());
+WKDCZWJ:207: 	         	}
+PZBNWBZ:208: 	         	
+APVBLZG:209: 	             }
+DDJGLCC:210: 	         );
+ZUCTGOK:211: 	    }
+CFSGGLJ:212: 	   	
+RVQEVMF:213: 	   	public  void makeEmpTree(TreeItem<String> front,List<Employee> dlists, String key, int index,int max){
+BTEIMOF:214: 	   		if(index>max){return ; }  //If it goes over max, it's over
+MAIUKLM:215: 	   		for (Employee emp: dlists) {  //There's a number, so it'll be over.
+QPULGPF:216: 	   			if(EmpUtil.level(emp)!=index){   //Find only the desired level
+OTEWSXL:217: 	   				continue;
+QUVKWOG:218: 	   			}else if(index>1 && EmpUtil.level(emp)==index){   //From 2 to 1 compared to the key value of 1
+WPZYHDC:219: 	   				if(EmpUtil.level(emp,index-1).equals(key)){
+TRYFSMV:220: 	   					TreeItem<String> aa=new TreeItem<String>(EmpUtil.tname(emp, index));
+VEHUXVS:221: 	   					front.getChildren().add(aa);
+PVZNOGZ:222: 	   					makeEmpTree(aa,dlists,EmpUtil.level(emp,index),index+1,max);
+NZFJBCG:223: 	   				}else{
+NANALEV:224: 	   					continue;
+BIYHVYZ:225: 	   				}
+IQZRRWS:226: 	   			}else if(EmpUtil.level(emp)==1){  //Because there is no key value of 1
+FOXABLB:227: 	   				TreeItem<String> aa=new TreeItem<String>(EmpUtil.tname(emp, 1));
+WKSOZZU:228: 	   				front.getChildren().add(aa);
+JUZKOMF:229: 	   				makeEmpTree(aa,dlists,EmpUtil.level(emp,1),2,max);
+AXPELUT:230: 	   			}
+XOLPOIW:231: 	   		}
+GXUXAWW:232: 	   	}	
+NCJBLJN:233: 	   	
+CBCTEYR:234: 	   	void showLabel(String msg){
+UUGNASF:235: 	    	lbhello.setText(msg);
+NJPIXUN:236: 	    	String value=
+MAGEBHR:237: 	    	    	   "-fx-font-size: 12px;           "
+WLIHSXL:238: 	    	    	   +"-fx-font-family: 'Arial Black';    "
+DBXKPNH:239: 	    	    	   +"-fx-fill: #818181;                 "
+LCRPMVI:240: 	    	    	   +"-fx-effect: innershadow( three-pass-box ,"
+IRTRBAD:241: 	    	    	   +" rgba(0,50,255,0.7) , 6, 0.0 , 0 , 2 );";
+QEUHOXL:242: 	    	lbhello.setStyle("\t"+value);
+SQXLPKC:243: 	    }
+ATKMVIP:244: 	
+RKYRUGY:245: 	   	@FXML
+KNVLBVD:246: 	    private void showToTableEmployees (ObservableList<Employee> empData)  {
+MXAOCIV:247: 	        employeeTable.setItems(empData);
+EYLCHDJ:248: 	    }
+LHMFUGZ:249: 	    @FXML
+BVPKLMJ:250: 	    private void searchEmployees(ActionEvent actionEvent) throws SQLException {
+SXQTUTD:251: 	        try {
+GPUWLYT:252: 	            ObservableList<Employee> empData =service.findAllEmployees();
+EZQDSYP:253: 	            showToTableEmployees(empData);
+IMLZFIN:254: 	            showLabel("인원 "+empData.size()+"(Person)");
+WXPPXJE:255: 	        } catch (SQLException e){
+PKWUZZE:256: 	            System.out.println("Error occurred while getting employees information from DB.\n" + e);
+BNNTCHY:257: 	            throw e;
+WWNEPJE:258: 	        }
+ALRSFFV:259: 	    }
+KXKPQBF:260: 	}

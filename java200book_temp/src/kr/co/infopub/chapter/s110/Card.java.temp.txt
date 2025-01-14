@@ -1,0 +1,52 @@
+0UYPUEFS:1: 	package kr.co.infopub.chapter.s110;
+0NAIFUAC:2: 	import kr.co.infopub.chapter.s107.CardUtil;
+0UMBDFGE:3: 	public class Card {
+0SWJWDWG:4: 	 private String cardVal; //H8
+0WCDYLRI:5: 	 public String getCardVal() {
+0IQHNVBD:6: 		return cardVal;
+0FHCDPHM:7: 	 }
+0TSEDXPD:8: 	 public Card() {
+0FMUDFGK:9: 		int deck=(int)(Math.random()*CardUtil.SUIT.length); // 0~1
+BQLNPUK:10: 		int suit=(int)(Math.random()*CardUtil.VALU.length); // 0~9
+UTDVYOX:11: 		//임의의 카드 값을 갖는다. H6
+JWGARSW:12: 		cardVal=CardUtil.SUIT[deck]+CardUtil.VALU[suit];
+UPWETIA:13: 	 }
+RPTWOFB:14: 	 // 테스트용
+QNWBNPE:15: 	 public Card(String s) {
+IHPDMXO:16: 		this.cardVal=s;  // 문자열은 값 복사
+TKDSZAC:17: 	 }
+CMKGSNC:18: 	 // 복사 생성자
+CXYPQGQ:19: 	 public Card(Card c) {
+HZLIXMM:20: 		this(c.getCardVal());  // 문자열은 값 복사
+UAYGCWS:21: 		// this.cardVal=c.getCardVal(); //동일
+ZMYBPCQ:22: 	 }
+IAZWIDT:23: 	 @Override
+KLWLNIC:24: 	 public String toString() {
+LAYHEEA:25: 		return "[" + cardVal + "]";
+YCBFIXH:26: 	 }
+RTZFEPU:27: 	 // Eclipse-Source-Generate hashCode() and equals()를 이용하여 자동으로 만들자
+OXGJROT:28: 	 @Override
+FYUXCPA:29: 	 public int hashCode() {
+PEKKQIL:30: 		final int prime = 31;
+ZDLIDAC:31: 		int result = 1;
+JWJNMEJ:32: 		result = prime * result + ((cardVal == null) ? 0 : cardVal.hashCode());
+DJNZZNA:33: 		return result;
+CTMEMQJ:34: 	 }
+CDDRMGQ:35: 	 // 소스를 정리하면  카드값과 카드값을 일대일로 비교한다.
+RFLSZJB:36: 	 @Override
+ZHHQJBZ:37: 	 public boolean equals(Object obj) {
+TWGDFHZ:38: 		Card cb=(Card)obj; 
+WVUIDYQ:39: 		if(cardVal.equals(cb.getCardVal())){
+GOGQJFM:40: 			return true;
+XKGDCPY:41: 		}else{
+RGDNZZK:42: 			return false;
+NGVELQK:43: 		}
+FAMLGJF:44: 	 } 
+NHPMQPT:45: 	 // 추가된 static 비교 기준 메서드
+QKGISIA:46: 	 public static int compareCard(Card c1, Card c2){
+HIMMVRV:47: 		return c1.getCardVal().compareTo(c2.getCardVal());
+AVPBMCR:48: 	 }
+RNMQEAQ:49: 	 public static int compareRCard(Card c1, Card c2){
+UQEZAQJ:50: 		return -c1.getCardVal().compareTo(c2.getCardVal());
+JASWUEE:51: 	 }
+YFJLFCE:52: 	}

@@ -1,0 +1,69 @@
+0SRTDSVF:1: 	package kr.co.infopub.chapter.s151.swing;
+0CJLGWEE:2: 	
+0CZJFAAO:3: 	public class BallData {
+0NGDPOJV:4: 	
+0DZJZSRQ:5: 		private int round;
+0QDOIAWS:6: 		private int ball1;
+0QCKVFLV:7: 		private int ball2;
+0NVKYCJE:8: 		private int ball3;
+0SWYVTGG:9: 		private int strike;
+BLUCDHL:10: 		private int ball;
+QYYZCEM:11: 		public BallData() {
+EGFOZCW:12: 	
+CQCTQGO:13: 		}
+YCHJBQB:14: 		public BallData(int round, int ball1, int ball2, int ball3, int strike,
+NLVGXCB:15: 				int ball) {
+LQHQDVU:16: 			super();
+GIABQUI:17: 			this.round = round;
+PHKPZLN:18: 			this.ball1 = ball1;
+KGDPCAB:19: 			this.ball2 = ball2;
+ENNUTKE:20: 			this.ball3 = ball3;
+PGVDZBS:21: 			this.strike = strike;
+EDQVECW:22: 			this.ball = ball;
+TJYETER:23: 		}
+LLGSOJC:24: 		public int getRound() {
+LZJPVCQ:25: 			return round;
+ZRHQFZL:26: 		}
+DSNJDZM:27: 		public void setRound(int round) {
+PKRNDBT:28: 			this.round = round;
+BSWQDFG:29: 		}
+KYSQJKC:30: 		public int getBall1() {
+GRSOKPL:31: 			return ball1;
+QDWRRJX:32: 		}
+JMIQICT:33: 		public void setBall1(int ball1) {
+FKAREPP:34: 			this.ball1 = ball1;
+XVZIROR:35: 		}
+HQTHJPS:36: 		public int getBall2() {
+CHUIPJB:37: 			return ball2;
+JUNNWMC:38: 		}
+WYYDAUV:39: 		public void setBall2(int ball2) {
+DNPUVEI:40: 			this.ball2 = ball2;
+XIPIXAA:41: 		}
+PCJINCN:42: 		public int getBall3() {
+WUWOMEC:43: 			return ball3;
+UQLPXZI:44: 		}
+MMQRPPR:45: 		public void setBall3(int ball3) {
+RJDZYTR:46: 			this.ball3 = ball3;
+QBOHFDZ:47: 		}
+KAKPPPB:48: 		public int getStrike() {
+PTMDCKO:49: 			return strike;
+IOMWSZW:50: 		}
+OYOCIUX:51: 		public void setStrike(int strike) {
+NRPDXQG:52: 			this.strike = strike;
+HVYKKJV:53: 		}
+IEYGCSN:54: 		public int getBall() {
+CYXGCOD:55: 			return ball;
+SPZHLDX:56: 		}
+JXDHKPJ:57: 		public void setBall(int ball) {
+JWENWAM:58: 			this.ball = ball;
+XDTIMYR:59: 		}
+ZESZYOH:60: 		@Override
+BYUOPWR:61: 		public String toString() {
+NZKHHVW:62: 			return "BallData [round=" + round + ", ball1=" + ball1 + ", ball2="
+GSNZVJA:63: 					+ ball2 + ", ball3=" + ball3 + ", strike=" + strike + ", ball="
+FBJARPV:64: 					+ ball + "]";
+RJCVBFR:65: 		}
+KPSOMSJ:66: 		
+XEKRXAW:67: 		
+GEOCRIY:68: 	
+HZDXNNA:69: 	}

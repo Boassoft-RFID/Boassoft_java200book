@@ -1,0 +1,8 @@
+YRFJKIA:1: 	package kr.co.infopub.chapter.s129;
+TMEEYHO:2: 	public class JCalendarMain {
+JYJOAAS:3: 		public static void main(String[] args) {
+ZMAVNDJ:4: 			JCalendar cal=new JCalendar();
+DPKGSZD:5: 			//cal.showCal(2017, 2);
+ADXALXS:6: 			cal.showCal(2017);
+HBILWUG:7: 		}
+SMHUFRR:8: 	}

@@ -1,0 +1,59 @@
+0EESFWLJ:1: 	package kr.co.infopub.chapter.s162;
+0CRBCRQN:2: 	import java.util.Calendar;
+0AIXSEJS:3: 	import javafx.application.Application;
+0DPWQEDF:4: 	import javafx.scene.Scene;
+0JEEHMQT:5: 	import javafx.scene.chart.CategoryAxis;
+0KQWZLRF:6: 	import javafx.scene.chart.LineChart;
+0GBFSZTC:7: 	import javafx.scene.chart.NumberAxis;
+0NSLLACS:8: 	import javafx.scene.chart.XYChart;
+0DOQSGWU:9: 	import javafx.stage.Stage;
+DJFPVUQ:10: 	public class Biorythms extends Application{
+JGYXCKE:11: 	 public static void main(String[] args) {
+WRRKABT:12: 	    launch(args);
+OOXAXYG:13: 	  }
+AZBRNIE:14: 	  int dayWith=25;   // 기준일에 대하여 앞뒤로 25일 보이기
+ACZDYMQ:15: 	  @Override
+FYAGWIX:16: 	  public void start(Stage primaryStage) {
+IMAKTEJ:17: 		// 생일  
+HZQMZOI:18: 		int year=1971;
+HHLXACO:19: 		int month=9;
+JURYWYV:20: 		int day=28;
+SYQZPMR:21: 		long live=BioCalendar.days(year, month, day)  ;  // 오늘까지 살아온 날
+VEUCUEG:22: 		
+GMLZTIS:23: 		CategoryAxis xAxis = new CategoryAxis();
+BAOMYXO:24: 		NumberAxis yAxis = new NumberAxis();
+RGFSTEM:25: 		yAxis.setLabel("Bio Power");
+GSSSUJS:26: 		xAxis.setLabel("Date");
+EKBSUMU:27: 		LineChart<String, Number> lineChart = new LineChart<String, Number>(xAxis, yAxis);
+WZIFWJD:28: 		lineChart.setTitle("My Biorhythm");
+YGBGONX:29: 	    // 신체지수 
+EHFCPVS:30: 		XYChart.Series<String, Number> series1 = new XYChart.Series<String, Number>();
+KEFPYSB:31: 		XYChart.Series<String, Number> series5 = new XYChart.Series<String, Number>();
+PIYELTM:32: 		physicalChartData(series1,live);  // 신체지수 그리기
+XZFWYHN:33: 		vertical(series5);                // 수직선 그리기
+BTCIAVR:34: 		
+ULTNGNX:35: 		Scene scene = new Scene(lineChart, 1200, 600);
+AVXUSXG:36: 	    lineChart.getData().addAll(series1,series5); // 점들을 선으로 연결
+VEKAXYK:37: 	    primaryStage.setScene(scene);
+VTWKQXK:38: 	    primaryStage.show();
+FFCEOBJ:39: 	  }
+KUHWGZJ:40: 	  // 오늘 수직선
+YRJBXOP:41: 	  public  void vertical(XYChart.Series<String, Number> series ) {
+ECEUNIO:42: 		Calendar todayCal=Calendar.getInstance();
+XYVWBTM:43: 	    series.setName("Today");
+IAOQQFP:44: 	    // 오늘- 최대값, 최소값을 수직연결
+CDXSJZK:45: 	    series.getData().add(new XYChart.Data<String, Number>(RestDay.toStrDate(todayCal), 125));
+MLXPJBO:46: 	    series.getData().add(new XYChart.Data<String, Number>(RestDay.toStrDate(todayCal), -125));
+RQLCHOG:47: 	  }
+FWHNHES:48: 	  // 신체 지수 그리기 - 점들연결
+XFJMJXM:49: 	  public  void physicalChartData(XYChart.Series<String, Number> series, long live ) {
+SGTAQKE:50: 		Calendar todayCal=Calendar.getInstance();
+VNWZINT:51: 	    series.setName("PHYSICAL");
+JPBNSYP:52: 	    for (int i = -dayWith; i < dayWith+1; i++) {
+XUXIFEH:53: 	    	 Calendar bf15day=RestDay.dateAfOrBf(todayCal,i);  // 살아온 날
+WGJUSRR:54: 	    	 double value=BioCalendar.getPhysical(live+i,100); // 신체지수 값
+INAFAOE:55: 	    	 // 날짜에 대하여 신체지수 값을 XY로 점을 찍고 연결
+PUWSIAN:56: 	    	 series.getData().add(new XYChart.Data<String, Number>(RestDay.toStrDate(bf15day), value));
+AZUFYJN:57: 	    }
+QEGCXZJ:58: 	  }
+VIAVTVV:59: 	}

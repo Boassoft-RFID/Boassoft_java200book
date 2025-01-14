@@ -1,0 +1,73 @@
+0DJXNZVI:1: 	package kr.co.infopub.chapter.s129;
+0DZXYZEV:2: 	public class JCalendar {
+0LHWJWHA:3: 	 public int [] 	LEAPY={31,29,31,30,31,30,31,31,30,31,30,31};
+0CMSUPJB:4: 	 public int [] 	PLAIN={31,28,31,30,31,30,31,31,30,31,30,31};
+0VXXMYKF:5: 	
+0LTMFSYB:6: 	 public boolean isLeapYear(int year){
+0ILJMTHI:7: 		boolean isS=false;
+0PTWJILM:8: 		if( ((year%4==0)&&(year%100!=0)) || (year%400==0)){
+0ZXXNFEH:9: 			isS=true;
+KUZVATY:10: 		}
+XTJATEO:11: 		return isS;
+LEVXZLK:12: 	 }
+IHTQALC:13: 	 public int total(int year){
+WVCNCWZ:14: 		int tot=0;
+NFLMLMO:15: 		for (int i = 1; i < year; i++) {
+NSXGDQA:16: 			if(isLeapYear(i)){
+VRTALHG:17: 				tot+=366;
+EUHHWUY:18: 			}else{
+UNJAWIR:19: 				tot+=365;
+OROAGMP:20: 			}
+UVDJSYB:21: 		}
+FVHYWOW:22: 		return tot;
+PMJUOPX:23: 	 }
+SBZAKMO:24: 	 // 2017 2 ->2016 1
+IHXADMB:25: 	 public int total(int year,int month){
+CSESVTZ:26: 		int tot=total(year);
+JZONFEU:27: 		for (int i = 1; i < month; i++) {
+ORGAHPW:28: 			if(isLeapYear(year)){
+YXTMJES:29: 				tot+=LEAPY[i-1];
+SCTWCLC:30: 			}else{
+YSOGXZC:31: 				tot+=PLAIN[i-1];
+BRGEGHM:32: 			}
+AGBEBIG:33: 		}
+ATRTDCW:34: 		return tot;
+FZOCHYI:35: 	 }//
+RGLTRBA:36: 	 public int total(int year,int month,int date){
+TOHKVEW:37: 		int tot=total(year, month);
+CQRXBKN:38: 		return tot+date;
+FWECZXI:39: 	 }
+OVCTFXV:40: 	 public int lastDay(int year,int month){
+UMTUCXP:41: 		int tot=0;
+FHZPBJZ:42: 		if(isLeapYear(year)){
+PACAWUX:43: 			tot=LEAPY[month-1];
+FZOCZAH:44: 		}else{
+BCBRFJR:45: 			tot=PLAIN[month-1];
+YDMEZFV:46: 		}
+TXZMCIF:47: 		return tot;
+YOHQSPH:48: 	 }
+FSCMQEC:49: 	 public void showCal(int year, int month){
+TTTHQCC:50: 		String s1=String.format("\t\t%d년\t%d월",year,month);
+KCJVANL:51: 		String t1=String.format("일\t월\t화\t수\t목\t금\t토");
+QSWAMBJ:52: 		System.out.println(s1);
+ZAHALGT:53: 		System.out.println(t1);
+CGMXCRP:54: 		int dateOfMonth=(1+total(year,month,1)-1)%7;//요일
+ILBTANY:55: 		for (int i = 0; i < dateOfMonth; i++) {
+ARFKSTD:56: 			System.out.print("\t");
+WHLTZYQ:57: 		}
+DBATMVR:58: 		for (int i = 1; i <= lastDay(year, month); i++) {
+NPSVXWJ:59: 			System.out.printf("%d\t",i);
+NSCBDYR:60: 			if((i+dateOfMonth)%7==0){
+HJGKLFM:61: 				System.out.println();
+YYSCOLF:62: 			}
+TVGTGJJ:63: 		}
+PBYGLQL:64: 		System.out.println("\n---------------------");
+KQJRYJF:65: 	 }
+QJHJTIK:66: 	 public void showCal(int year){
+SXGDIAU:67: 		String s1=String.format("\t\t\t%d년",year);
+UYSSRRV:68: 		System.out.println(s1);
+KUSACHI:69: 		for (int i = 1; i < 13; i++) {
+MTHFPRD:70: 			showCal(year,i);
+TQUCOGK:71: 		}
+IOVVJOZ:72: 	 }
+COEFKYT:73: 	}

@@ -1,0 +1,59 @@
+0XGDAQJO:1: 	package kr.co.infopub.chapter.s096;
+0HWPMYDL:2: 	import java.io.File;
+0GCJBNYE:3: 	import java.io.IOException;
+0IMALYTA:4: 	import javax.xml.parsers.DocumentBuilder;
+0VOBUALN:5: 	import javax.xml.parsers.DocumentBuilderFactory;
+0UQBHZVE:6: 	import javax.xml.parsers.ParserConfigurationException;
+0DKGJAAY:7: 	import org.w3c.dom.Document;
+0QBYSACA:8: 	import org.w3c.dom.Element;
+0HSFMSGQ:9: 	import org.w3c.dom.Node;
+KYRIFKA:10: 	import org.w3c.dom.NodeList;
+IEQXWJM:11: 	import org.xml.sax.SAXException;
+SULELRK:12: 	
+DTEQYMY:13: 	// xerces jse
+CUFGAZR:14: 	public class BillboardMain10 {
+XFLGIIO:15: 	 public static void main(String[] args) {
+LSEWBSN:16: 		 //2018-01-15 세줄 추가 /이번주 빌보드
+DTOJYDS:17: 			RequestFromBillboardHot rfw=new RequestFromBillboardHot();
+DKCYWAB:18: 			String a="https://www.billboard.com/charts/hot-100/";
+JPEEHTD:19: 			String rs=rfw.getTimeDate(a);
+MUAXGMA:20: 		DocumentBuilder db;
+WMCHRHF:21: 		try {
+IEJCOWP:22: 			db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+SHXNWHJ:23: 			Document doc = db.parse(new File("billboard\\"+rs+".xml"));
+RKTPHTK:24: 			Element root = (Element) doc.getDocumentElement();
+CNUPTEY:25: 			System.out.println(root.getTagName()); // billboards
+JWCBHSY:26: 		    NodeList nodes = doc.getElementsByTagName("billboard");
+GLNSUWV:27: 		    for (int i = 0; i < nodes.getLength(); i++) {
+TGPGLQM:28: 		      Element element = (Element) nodes.item(i);
+VCCIBQH:29: 		      NodeList ranklist = element.getElementsByTagName("rank");
+JJRAQEY:30: 		      Element rank = (Element) ranklist.item(0);
+SQZPGJU:31: 		      NodeList songlist = element.getElementsByTagName("song");
+DOWCIKC:32: 		      Element song = (Element) songlist.item(0);
+KPJQHPL:33: 		      NodeList lastweeklist = element.getElementsByTagName("lastweek");
+AABCMGC:34: 		      Element lastweek = (Element) lastweeklist.item(0);
+BWCPZMP:35: 		      NodeList imagesrclist = element.getElementsByTagName("imagesrc");
+AUQFOPO:36: 		      Element imagesrc = (Element) imagesrclist.item(0);
+BTZLAEZ:37: 		      NodeList artistlist = element.getElementsByTagName("artist");
+HUOJLXQ:38: 		      Element artist = (Element) artistlist.item(0);
+KFRLTBN:39: 		      System.out.println(element.getTagName()+"---------------------");
+VZULETD:40: 		      System.out.println("rank: " + getCharacterDataFromElement(rank));
+AWJARES:41: 		      System.out.println("song: " + getCharacterDataFromElement(song));
+ETJFXSZ:42: 		      System.out.println("lastweek: " + getCharacterDataFromElement(lastweek));
+SNIGBYF:43: 		      System.out.println("imagesrc: " + getCharacterDataFromElement(imagesrc));
+AGLPGSL:44: 		      System.out.println("artist: " + getCharacterDataFromElement(artist));
+XZQTSKO:45: 			}
+JYHPSJJ:46: 		} catch (ParserConfigurationException | SAXException | IOException e) {
+FLSMZVD:47: 			System.out.println( e);
+JWCLDYA:48: 		}
+HRRBZDU:49: 	 }
+NUAWTZQ:50: 	 //<tag>tag사이의 내용</tag>
+KGLWSJM:51: 	 public static String getCharacterDataFromElement(Element e) {
+TTFMYCI:52: 	    Node child = e.getFirstChild();
+HASQHWX:53: 	    if (child instanceof org.w3c.dom.CharacterData) {
+FHJVHZP:54: 	      org.w3c.dom.CharacterData cd = (org.w3c.dom.CharacterData) child;
+TGFLGKR:55: 	      return cd.getData();
+HIWKUJD:56: 	    }
+BHKESGJ:57: 	    return "";
+ARIWCJN:58: 	  }
+FZWNSVI:59: 	}

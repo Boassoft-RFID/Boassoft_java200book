@@ -1,0 +1,60 @@
+0VYXCJUC:1: 	package kr.co.infopub.chapter.s151.swing;
+0YLHJAMB:2: 	
+0IZOEBEB:3: 	import java.util.Arrays;
+0KSVYPWZ:4: 	
+0YQQXKSN:5: 	public class Pitcher {
+0JFVABEY:6: 	
+0XCNHPWU:7: 		private int [] gong;
+0MYSCHFC:8: 		private int n;//3
+0FWCDABR:9: 		private int num=10;
+YWGXSXJ:10: 		public Pitcher() {
+BVWWQIF:11: 			this(10,3);
+HSCGUWZ:12: 		}
+SRXTIEX:13: 		public Pitcher(int num,int n ) {
+OUENDUQ:14: 			super();
+GPGJXLN:15: 			this.n = n;
+OWCNKUN:16: 			this.num = num;
+ESJLWYF:17: 			gong=new int[n]; //gong 3개
+JASTLMO:18: 			Arrays.fill(gong, -1);
+YSHESXR:19: 		}
+GPNOLKL:20: 		public int[] getGong() {
+UWNWQED:21: 			return gong;
+VUXSMMF:22: 		}
+KLIYCCS:23: 		//0~9
+QMXCKSG:24: 		public int makeOne(){
+UYRCQNB:25: 			return (int)(Math.random()*num);
+FWLVICO:26: 		}
+JVKQFOW:27: 		
+DNSXXZE:28: 		public boolean contains(int gn){
+QAGCYVR:29: 			boolean isC=false;
+EGAHEQY:30: 			for (int i = 0; i < n; i++) {
+EMMTOZR:31: 				if(gn==gong[i]){
+IDEPKNF:32: 					isC=true;
+RZZOBJF:33: 					break;
+UICBFJY:34: 				}
+UQBVECF:35: 			}
+NFEOZSI:36: 			return isC;
+SYSKQCP:37: 		}
+WNTMEMM:38: 		
+LNIDIPP:39: 		public void make(){
+CNAKECQ:40: 			Arrays.fill(gong, -1);
+LDTBJNR:41: 			int count=0;
+SXJWESY:42: 			while(count!=n){
+HPWUBEN:43: 				int temp=makeOne();
+LOMMQBV:44: 				if( !contains(temp) ){
+IAWKQPD:45: 					gong[count++]=temp;
+FOEUZIQ:46: 				}
+IWMWKJL:47: 			}
+FXLZATG:48: 		}
+DELMZOE:49: 		
+WEQCRKH:50: 		public void print(){
+XZQECFY:51: 			System.out.println("Pitcher");
+NMCKVTS:52: 			for (int i = 0; i < n; i++) {
+DYWCNXS:53: 				System.out.printf("%d\t",gong[i]);
+GETTEGI:54: 			}
+SKPZKTN:55: 			System.out.println();
+HUTDTFU:56: 		}
+NQINXBF:57: 		
+RRBNQQZ:58: 		
+PAEZDMO:59: 		
+KEZQKEK:60: 	}

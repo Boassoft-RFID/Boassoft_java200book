@@ -1,0 +1,24 @@
+0KHERGGD:1: 	package kr.co.infopub.chapter.s066;
+0KJCYMHD:2: 	public class StringMain {
+0YFXWZDW:3: 		public static void main(String[] args) {
+0FTYIOQT:4: 	        String city1="Asia";
+0VZYPDXH:5: 	        String city2="Europe";
+0MLDZXMJ:6: 	        String city3=new String("Asia");
+0IKPODQS:7: 	        String city7="Asia";
+0MGEHMVB:8: 	        System.out.println(city1);
+0PSBRZVD:9: 	        System.out.println(city1.length());
+GWFBISZ:10: 	        System.out.println(city1==city2);
+CRJEILH:11: 	        System.out.println(city1.equals(city2));
+LXIJYIT:12: 	        System.out.println(city1==city3);
+FKFHXDB:13: 	        System.out.println(city1==city7);
+OBQTDCG:14: 	        System.out.println(city1.equals(city3));
+WECESLN:15: 	        System.out.println(city1.equals(city7));
+BFXUIJC:16: 	        
+NMZJVCX:17: 	        String city4=String.format("%s-%s", city1,city2);
+ZKWQFIL:18: 	        System.out.println(city4);
+ZEPEAVH:19: 	        String city5=city1+"-"+city2+1+2;
+KUMWAMB:20: 	        System.out.println(city5);
+VICMSKZ:21: 	        String city6=1+2+city1+"-"+city2;
+YUIVKJJ:22: 	        System.out.println(city6);
+PHSUPHZ:23: 		}
+BPVWJAX:24: 	}

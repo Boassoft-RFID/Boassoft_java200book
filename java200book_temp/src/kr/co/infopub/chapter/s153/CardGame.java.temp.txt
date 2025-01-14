@@ -1,0 +1,29 @@
+0NSNHVRD:1: 	package kr.co.infopub.chapter.s153;
+0DVNAJCE:2: 	public class CardGame {
+0YSTULMA:3: 		public static void main(String[] args) {
+0IQZVSKO:4: 			CardCase deck=new CardCase();
+0FVKVTHV:5: 			deck.make();
+0YHAAQYK:6: 			deck.print();
+0PKOCZCQ:7: 			Card[] one=deck.makeFiveCards(0);
+0EAYCOOW:8: 			Card[] two=deck.makeFiveCards(1);		
+0STSSGXB:9: 			
+EEGJBLF:10: 			CardUtil.printFive(one);
+XKANRLZ:11: 			CardUtil.printFive(two);
+RSIAZPN:12: 			
+QCLKCOZ:13: 			CardValue cv=new CardValue();
+NFAIDJN:14: 			
+LJQECLJ:15: 			int n1=cv.toVal(one);
+NIXKTST:16: 			int n2=cv.toVal(two);
+CCOLENT:17: 			
+MNTEVZO:18: 			if(n1>n2){
+XTKQYHY:19: 				System.out.println("You Win!  "+n1+"  "+n2);
+VFCXVOR:20: 			}else if(n1<n2) {
+JROUFQF:21: 				System.out.println("You Lose!  "+n1+"  "+n2);
+UVXEYFC:22: 			}else{
+TQRNCJL:23: 				System.out.println("You Same!  "+n1+"  "+n2);
+RZLORHV:24: 			}
+XDLEIEZ:25: 			System.out.println(CardRanking.toRankName(one));
+DDXSFBK:26: 			System.out.println("-------------------");
+PVYKDMH:27: 			System.out.println(CardRanking.toRankName(two));
+KOZBWUF:28: 		}
+JJZHTIP:29: 	}

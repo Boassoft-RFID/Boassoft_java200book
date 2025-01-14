@@ -1,0 +1,9 @@
+LVPAFDM:1: 	package kr.co.infopub.chapter.s133;
+WAWTHET:2: 	// 1~1000 사이의 서로 다른 100개
+NIEYJKL:3: 	public class Lotto6NumMain2 {
+VDUIZRK:4: 		public static void main(String[] args) {
+KDKKQLG:5: 			Lotto6Num lot=new Lotto6Num(1000,100);
+LARTRXX:6: 			lot.randomMake();
+QDXYPKK:7: 			lot.print();
+KRBWLIT:8: 		}
+YNCTJSS:9: 	}

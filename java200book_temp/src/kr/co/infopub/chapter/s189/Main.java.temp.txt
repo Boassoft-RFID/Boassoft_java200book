@@ -1,0 +1,49 @@
+0BUYQKPU:1: 	package kr.co.infopub.chapter.s189;
+0VYTEJXX:2: 	import javafx.application.Application;
+0EFKDMQN:3: 	import javafx.stage.Stage;
+0EFPVKPX:4: 	import javafx.scene.Scene;
+0SIFCFQD:5: 	import javafx.scene.layout.BorderPane;
+0JFPUZAZ:6: 	import javafx.fxml.FXMLLoader;
+0QQRGWRK:7: 	public class Main extends Application {
+0ZWIDSPN:8: 	 private Stage primaryStage;
+0XYBKSPZ:9: 	 private BorderPane root;
+DTVCYMN:10: 	 @Override
+OKQLIAY:11: 	 public void start(Stage primaryStage) {
+QVVPGBA:12: 		primaryStage.setTitle("Human Resouce Management System ver. 0.6");
+SSTIREJ:13: 		this.primaryStage=primaryStage;
+KIOQSCX:14: 	    //---------------Separate the source code
+SJZYLIO:15: 		showHR();
+NJJNNAW:16: 	 }
+TXINQST:17: 	 public void showHR() {
+NWFXHEN:18: 	   try {
+BHQEDRA:19: 		FXMLLoader loader = new FXMLLoader();
+TOQNUAB:20: 	    loader.setLocation(Main.class.getResource("view/MainHrFX.fxml"));
+ZLBYWWL:21: 	    root = (BorderPane) loader.load();
+NBUXLXO:22: 	    //------>>-Add source code between here
+IFMKJOD:23: 	    // Default skeleton screen s182
+BFEVTNF:24: 	    MainHrFXController empcon=loader.getController();
+MEDQMZY:25: 	    // Department screen s185
+KLTVZHQ:26: 	    FXMLLoader loader4 = new FXMLLoader();
+OLGKSOQ:27: 	    loader4.setLocation(Main.class.getResource("view/DepTabView.fxml"));
+DLDBBVI:28: 	    BorderPane departView = (BorderPane) loader4.load();
+ROLEQLA:29: 	    // Attach a departmental screen to the main skeleton
+RKMBETW:30: 	    empcon.setView1(departView);
+GFDESHK:31: 	    //<<------Add source code between here
+HOKZBUT:32: 		Scene scene = new Scene(root,1200,880);
+MTZXVLO:33: 		scene.getStylesheets().add(
+CLXGTSS:34: 		   Main.class.getResource("view/application.css").toExternalForm());
+TGMMMII:35: 		primaryStage.setScene(scene);
+EGXRTAD:36: 		primaryStage.show();
+ZSFHWEC:37: 		primaryStage.setResizable(false);
+QBIPIZY:38: 		// Show close at the end of the screen
+DLVYMPO:39: 		primaryStage.setOnCloseRequest(e -> {
+JTWZIRY:40: 	    	System.out.println("Close primaryStage !!!");
+UXAFXNH:41: 	    });
+WJFUPBD:42: 	   } catch(Exception e) {
+ICZBMMP:43: 			e.printStackTrace();
+KPVQZHH:44: 	   }
+WAWSZQY:45: 	 }
+BHWDWIG:46: 	 public static void main(String[] args) {
+XIRWTZV:47: 		launch(args);
+HGPUNKF:48: 	 }
+YZSEPRA:49: 	}

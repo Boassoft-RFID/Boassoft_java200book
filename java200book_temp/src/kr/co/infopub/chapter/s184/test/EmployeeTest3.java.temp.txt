@@ -1,0 +1,28 @@
+0SCEZSKX:1: 	package kr.co.infopub.chapter.s184.test;
+0QNTIVMD:2: 	
+0TKHWFYI:3: 	import java.sql.SQLException;
+0CAJKUNA:4: 	import kr.co.infopub.chapter.s184.model.EmployeeDAO;
+0TSKSUJO:5: 	// getTreeMaxLevel : Highest level of hierarchical query
+0FLGKXTQ:6: 	public class EmployeeTest3 {
+0KXWEAVA:7: 	
+0VEJMWJD:8: 		public static void main(String[] args) {
+0GAASUZY:9: 			EmployeeDAO employeeDAO=new EmployeeDAO();
+MCDPRBQ:10: 			int max=-1;;
+AQOJCLW:11: 			try {
+TMQCSXU:12: 				max = employeeDAO.getTreeMaxLevel();
+QKELJKE:13: 				System.out.println(max);
+HGDPXAS:14: 			} catch (SQLException e) {
+SSXLUDP:15: 				System.out.println(e);
+OTWOCBB:16: 			}
+VYTFMNF:17: 			 
+BPGPWLY:18: 		}
+KDQGFMX:19: 	}
+ZYNERXL:20: 	/*
+LQKYAII:21: 	CRUD-------------------------------class sample.model.EmployeeDAO.getTreeMaxLevel()
+MPKXMQT:22: 	SELECT MAX(LEVEL) 
+XTLJUEY:23: 	  FROM EMPLOYEES 
+BIUIPLT:24: 	  START WITH  MANAGER_ID  IS NULL 
+ALSOXZM:25: 	  CONNECT BY PRIOR  EMPLOYEE_ID = MANAGER_ID
+ICCMKLC:26: 	CRUD--------------------------------------2017-05-13 20:50
+AUFSKVC:27: 	5
+DYWNVZS:28: 	*/

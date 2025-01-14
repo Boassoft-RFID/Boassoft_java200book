@@ -1,0 +1,18 @@
+0YACTFWP:1: 	package kr.co.infopub.chapter.s124;
+0BQQYXNO:2: 	public class MoneyDeposit {
+0JFFHDJS:3: 		//적금
+0BZITHVH:4: 		public static double saveUs(int money, int month, double ratio){
+0ZCJHFOJ:5: 			double tot=0.0;
+0DUCDZIG:6: 			double r=ratio/100/12;
+0THIOWSE:7: 			double a=money;
+0GUEJPEV:8: 			for (int i = 0; i < month; i++) {
+0UROMMHQ:9: 				a=a*(1+r);
+FKHZWRU:10: 				tot+=a;
+BKIEBHH:11: 			}
+RUBWSHH:12: 			return tot;
+NASTEDC:13: 		}
+MKURNFB:14: 		public static void main(String[] args) {
+JHVRFSA:15: 			double tot=MoneyDeposit.saveUs(800000, 36 , 1.5);
+ZGSBCFA:16: 			System.out.printf("적금 :%.0f \n",tot);
+DOXVKWJ:17: 		}
+FNPTHDY:18: 	}

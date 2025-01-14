@@ -1,0 +1,29 @@
+0EMHNNZW:1: 	package kr.co.infopub.chapter.s198;
+0NVGJCIN:2: 	import java.io.BufferedReader;
+0VSBNPMW:3: 	import java.io.IOException;
+0SXDFTOR:4: 	import java.io.InputStreamReader;
+0YSATSLH:5: 	import java.net.Socket;
+0UDVVRUE:6: 	public class CientThread extends Thread{
+0XUFEBHU:7: 		private Socket s;
+0VTATKBQ:8: 		BufferedReader sbr=null;
+0QRFNEBI:9: 		public CientThread(Socket s) {
+APCAQCS:10: 			this.s = s;
+DAHNJZO:11: 			try {
+JTSMOGA:12: 				sbr=new BufferedReader(
+QYJJXFL:13: 						new InputStreamReader(s.getInputStream()));
+UJEVAGN:14: 			} catch (IOException e) {
+ZQCCKAV:15: 				System.out.println(e);
+BLOTSYB:16: 			}
+RUMHWCA:17: 		}
+FNXLOWZ:18: 		@Override
+KWLSOXH:19: 		public void run() {
+CZHNAVK:20: 			String str="";
+GGANFEM:21: 			try{
+HFJQLPB:22: 				while ( ( str = sbr.readLine() ) != null){
+DHCZFFA:23: 					System.out.println(str);
+WICUTXO:24: 				}
+WYONEYQ:25: 			}catch (IOException e){
+UYONOFG:26: 				System.out.println(e.getMessage());
+ICFUQPP:27: 			}
+IEVQEEI:28: 		}
+MKYHDWJ:29: 	}

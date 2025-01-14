@@ -1,0 +1,10 @@
+0QSHYLHY:1: 	package kr.co.infopub.chapter.s122;
+0KVTNYQR:2: 	public class SilverStarMain2 {
+0HYHOPAK:3: 		public static void main(String[] args) {
+0XECJUDA:4: 			 SilverStar.stepDown(7);
+0HGNLIZQ:5: 			 SilverStar.stepUp(7);
+0CEULMVH:6: 			 SilverStar.stepTri(7);
+0DVXXTQT:7: 			 SilverStar.stepRevTri(7);
+0XVCRNZE:8: 			 SilverStar.stepDia(15);
+0SMNOGRP:9: 		}
+ZKRNAYP:10: 	}

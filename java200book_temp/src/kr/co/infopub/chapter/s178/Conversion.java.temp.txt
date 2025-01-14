@@ -1,0 +1,44 @@
+0CYQZANH:1: 	package kr.co.infopub.chapter.s178;
+0ZNJVPDL:2: 	// Two dimensions arrays and methods
+0ISRLOKZ:3: 	public class Conversion {
+0JRDLOVG:4: 	 public static final String [] names={"Cm","M","Inch","Feet","Yard","Mile"};
+0LNANYKT:5: 	 public static final double []distance={1,0.01,0.3937007874015748,
+0CTNOHNQ:6: 			0.03280839895013123,0.010936132983377079,0.00000621371192237334};
+0JGQEPYP:7: 	 //How to dynamically (new) a Two dimensions array
+0SYPMKIN:8: 	 public static double [][] convert(){
+0CTXRYBM:9: 		double [][] mm=new double [distance.length][distance.length];
+IUBMNHN:10: 		for(int i=0; i<distance.length; i++){
+OGENUVG:11: 			for (int j = 0; j < distance.length; j++) {
+LBSMXEB:12: 				mm[i][j]=distance[j]/distance[i];
+XPLOPSD:13: 			}
+UPWVKUV:14: 		}
+WAFHOMB:15: 		return mm;
+FSLSYEM:16: 	 }
+XSTFRYQ:17: 	 public static void main(String[] args) {
+MJCJRGD:18: 		//Creating a Two dimensions exchange rate table
+ZZUXQBF:19: 		double [][] convDistance=convert() ;
+LCQMGQQ:20: 		System.out.printf("\t\t");
+QNGAGYC:21: 		for(int i=0; i<names.length; i++){
+NNXXANK:22: 			System.out.printf("%s\t\t\t",names[i]);
+KRYXLHG:23: 		}
+WSMECXE:24: 		System.out.println();
+JUSMRVF:25: 		for(int i=0; i<convDistance.length; i++){
+TZYHGNG:26: 			System.out.printf("%s\t",names[i]);
+GHHOXQO:27: 			for (int j = 0; j < convDistance[i].length; j++) {
+UPGPYRO:28: 				System.out.printf("%19.12f\t",convDistance[i][j]);
+VOVSRNQ:29: 			}
+JXYMYNY:30: 			System.out.println();
+NYGPEVC:31: 		}
+BYPVHSL:32: 		//Check the calculation
+PSBMEYY:33: 		double value=100000; 
+BCRZUKU:34: 		int selectIndex=0; //cm
+JWVHIBP:35: 		double   cm=value*convDistance[selectIndex][0];
+IDKSLAB:36: 		double    m=value*convDistance[selectIndex][1];
+VHYNQCQ:37: 		double inch=value*convDistance[selectIndex][2];
+SPRMZZM:38: 		double feet=value*convDistance[selectIndex][3];
+JTPRQCF:39: 		double yard=value*convDistance[selectIndex][4];
+BWJZEWY:40: 		double mile=value*convDistance[selectIndex][5];
+WLNOZWW:41: 		System.out.printf("%fcm=\t%fm=\t%finch=\t%ffeet=\t%fyard=\t%fmile\n",
+FZZMSSE:42: 				cm,m,inch,feet,yard,mile);
+OOREMYK:43: 	 }
+YFDRKEL:44: 	}

@@ -1,0 +1,10 @@
+0VYQLKNK:1: 	package kr.co.infopub.chapter.s149;
+0BERWVSH:2: 	public class SudokuMain {
+0GCAGYQD:3: 		public static void main(String[] args) {
+0FGKRSTT:4: 			Sudoku sd=new Sudoku(3);
+0FIGNSLN:5: 			sd.setShuffle(false);    // 섞지 말고 보인다.
+0WFAGLZI:6: 			//sd.setShuffle(true);    // 섞는다.
+0IHKJZDX:7: 			sd.make();
+0WUSJQXO:8: 			sd.print();
+0DSIAJRI:9: 		}
+EKQCZYN:10: 	}

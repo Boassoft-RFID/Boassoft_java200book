@@ -1,0 +1,68 @@
+0OARVFDY:1: 	package kr.co.infopub.chapter.s092;
+0FYGCIPP:2: 	import java.io.IOException;
+0KVKLYPB:3: 	import org.apache.http.HttpEntity;
+0DVKUQWB:4: 	import org.apache.http.client.methods.CloseableHttpResponse;
+0ODIHEND:5: 	import org.apache.http.client.methods.HttpGet;
+0LROSPPJ:6: 	import org.apache.http.impl.client.CloseableHttpClient;
+0QLHBHJN:7: 	import org.apache.http.impl.client.HttpClients;
+0NWHECGL:8: 	import org.apache.http.util.EntityUtils;
+0XEWEDKM:9: 	import org.jsoup.Jsoup;
+MRLGAGZ:10: 	import org.jsoup.nodes.Document;
+GLXOZUM:11: 	import org.jsoup.nodes.Element;
+QYNVRFG:12: 	public class RequestFromBillboardHot {
+RFTCBHF:13: 	
+AKCDKXF:14: 	 String result;
+TGVCPHI:15: 	 public void getAllHtml(String newUrls){   
+RAIPZCM:16: 		HttpGet request = new HttpGet(newUrls);  // HttpGet 생성
+MANVWZL:17: 	    // 자동 finally 처리용 
+LDRXYNN:18: 	    try (CloseableHttpClient httpClient = HttpClients.createDefault(); 
+FGIBZGS:19: 	   	    CloseableHttpResponse response = httpClient.execute(request)){
+SJFPQNS:20: 	        HttpEntity entity = response.getEntity();
+PAEYVVR:21: 	        if (entity != null) {
+UAEOCBT:22: 	            result = EntityUtils.toString(entity);
+ESWCZVV:23: 	        }
+RYQZQNR:24: 	    } catch (IOException e) {
+IPYUKDS:25: 			System.out.println("Billboard Parsing error !!! ");
+SLZOJOX:26: 		 }
+GGBWDWD:27: 	 }
+TGZTBVY:28: 	 public void printHtml(){
+NBRGVSZ:29: 		 System.out.println(result);
+JBWPQMN:30: 	 }
+OFJHOAS:31: 	 public String getTimeDate(String aurl) {  //s091에서 설명
+SDUMJSF:32: 		String newUrls = "https://www.billboard.com/charts/hot-100/";
+VXQBALH:33: 	     HttpGet request = new HttpGet(newUrls); // HttpClient를 이용하여
+UJXJHFT:34: 	     CloseableHttpClient httpClient=null;
+CQNXMZM:35: 	     CloseableHttpResponse response=null;
+HGFWUOS:36: 	     Document doc = null;  
+ZBYNRKQ:37: 	     String sdate="";
+OYCWKLS:38: 	     try {
+BPIOWTB:39: 	     	 httpClient = HttpClients.createDefault(); // 웹에 연결
+HDQHQFR:40: 	     	 response = httpClient.execute(request);   // 결과 얻기
+KMWMTAO:41: 	     	 StringBuffer sb=new StringBuffer();       // 5000줄정도 저장
+SXABWME:42: 	         HttpEntity entity = response.getEntity(); 
+WPMGXWK:43: 	         if (entity != null) {  // 결과가 있다면 결과에서 한줄씩
+BUVZSRJ:44: 	             String result = EntityUtils.toString(entity); 
+EUNCWDL:45: 	             sb.append(result); // 한줄씩 저장
+MFSRIFP:46: 	         }
+QNTFHHZ:47: 	         doc=Jsoup.parse(sb.toString()); // 전체 내용을 HTML 파싱
+MWAMDPE:48: 	         String id="charts";  
+IYFLJIA:49: 	         // <div id="charts" data-chart-date="2020-07-11"
+MOZWCRC:50: 	         Element eid=doc.getElementById(id);    // 고유한 charts를 찾음
+KZMJAIQ:51: 	         sdate=eid.attr("data-chart-date"); // 속성 값 
+ZJCZHJM:52: 	     } catch (IOException e) {
+ZJFMPQY:53: 	 		 System.out.println("Billboard Parsing error !!! ");
+ZQTOETF:54: 		 }		
+EESIPVY:55: 	     return sdate!=null?
+IJJRJSC:56: 	    			RestDay.saturday(sdate): RestDay.saturday();
+HTHTABT:57: 	 }
+FHMZFJQ:58: 	 public static void main(String[] args) {
+WGTIUEL:59: 		RequestFromBillboardHot rfw=new RequestFromBillboardHot();
+VUWDWZG:60: 		String a="https://www.billboard.com/charts/hot-100/";
+XVMQCWN:61: 		String rs=rfw.getTimeDate(a);
+MQSNBVF:62: 		System.out.println("이번 주 "+rs);
+PPJXETI:63: 		//rs=RestDay.toWantedDay(rs, 1);  //1주전
+KHQWATE:64: 		//System.out.println("일주일 주 "+rs);
+WNJULXQ:65: 		rfw.getAllHtml(a+rs);  // hot-100 html 읽어 문자열로 저장
+TDUFOWQ:66: 		rfw.printHtml();       // 저장한 내용 출력
+XRDKAWJ:67: 	 }
+ONTBLSB:68: 	}

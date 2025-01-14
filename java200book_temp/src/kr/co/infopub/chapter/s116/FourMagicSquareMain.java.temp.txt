@@ -1,0 +1,12 @@
+0LUOGLWF:1: 	package kr.co.infopub.chapter.s116;
+0CUOQLMX:2: 	import java.util.Scanner;
+0XPMULYF:3: 	public class FourMagicSquareMain {
+0DDFGBLI:4: 		public static void main(String[] args) {
+0ZKNZPVM:5: 			Scanner scann=new Scanner(System.in);
+0OUXGHUJ:6: 			System.out.println("4의배수 정수를 입력하세요.");
+0SZYFLPE:7: 			int n=scann.nextInt();
+0ZHIHBRD:8: 			FourMagicSquare fms=new FourMagicSquare(n);
+0APAAOFF:9: 			fms.make();
+KNUHUGJ:10: 			fms.print();
+YZCSAPO:11: 		}
+QSMHVBO:12: 	}

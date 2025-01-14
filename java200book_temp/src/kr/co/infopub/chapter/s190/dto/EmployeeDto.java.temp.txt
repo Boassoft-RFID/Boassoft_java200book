@@ -1,0 +1,166 @@
+00UGLOZTQ:1: 	package kr.co.infopub.chapter.s190.dto;
+00QRLATLY:2: 	
+00OCDFYQD:3: 	import java.sql.Date;
+00WMAKHNA:4: 	
+00UYASTUO:5: 	public class EmployeeDto {
+00FWNLZOW:6: 		private int employee_id;
+00HAOOCGZ:7: 	    private String first_name;
+00RNSGVWW:8: 	    private String last_name;
+00HNLETOX:9: 	    private String email;
+0KCAGYSB:10: 	    private String phone_number;
+0XACDMRP:11: 	    private Date hire_date;
+0UTISPNR:12: 	    private String job_id;
+0IXSRJZN:13: 	    private double salary;
+0LJGYZOM:14: 	    private double commission_pct;
+0VOBUTQC:15: 	    private int manager_id;
+0EMCDZNX:16: 	    private int department_id;
+0SYDGUJF:17: 	
+0UWCMFII:18: 	    private String order2;
+0EUDOSXY:19: 	
+0KXAAAZC:20: 		public EmployeeDto() {
+0GMOOCAU:21: 			super();
+0ETDBKMB:22: 		}
+0KOHTKKJ:23: 	
+0GPDXJXO:24: 		public EmployeeDto(int employee_id, String first_name, String last_name, String email, String phone_number,
+0CFJXIKI:25: 				Date hire_date, String job_id, double salary, double commission_pct, int manager_id, int department_id) {
+0LHUDDWA:26: 			super();
+0UONZCHY:27: 			this.employee_id = employee_id;
+0JFPTVQX:28: 			this.first_name = first_name;
+0WPMIMXP:29: 			this.last_name = last_name;
+0PLPHTAU:30: 			this.email = email;
+0UFVSYWK:31: 			this.phone_number = phone_number;
+0RKNHUSN:32: 			this.hire_date = hire_date;
+0HQHHAMI:33: 			this.job_id = job_id;
+0BPFJDAB:34: 			this.salary = salary;
+0KDLFKCG:35: 			this.commission_pct = commission_pct;
+0WEXOOMW:36: 			this.manager_id = manager_id;
+0YCXMCCF:37: 			this.department_id = department_id;
+0AGOANKO:38: 		}
+0OSNHOUL:39: 	
+0WULUHSN:40: 		public EmployeeDto(int employee_id, String first_name, String last_name, String email, String phone_number,
+0UAICSJB:41: 				Date hire_date) {
+0OPIHYOW:42: 			super();
+0BJQAZOT:43: 			this.employee_id = employee_id;
+0ULVYKHE:44: 			this.first_name = first_name;
+0MWIBNJL:45: 			this.last_name = last_name;
+0YQVLJUS:46: 			this.email = email;
+0JIWRYSZ:47: 			this.phone_number = phone_number;
+0AELGGDD:48: 			this.hire_date = hire_date;
+0KCSCCRN:49: 		}
+0FTZYSEH:50: 	
+0HGTKROK:51: 		@Override
+0KILUVEG:52: 		public String toString() {
+0QHWQTOA:53: 			return "EmployeeDto [employee_id=" + employee_id + ", first_name=" + first_name + ", last_name=" + last_name
+0JLLTCXO:54: 					+ ", email=" + email + ", phone_number=" + phone_number + ", hire_date=" + hire_date + ", job_id="
+0BAXXCMI:55: 					+ job_id + ", salary=" + salary + ", commission_pct=" + commission_pct + ", manager_id=" + manager_id
+0MMLTKGR:56: 					+ ", department_id=" + department_id + "]";
+0RXVWSCB:57: 		}
+0NGQHONY:58: 	    
+0PHXIXEA:59: 	   
+0XJWTBIJ:60: 	    public String getOrder2() {
+0TJXPIHM:61: 			return order2;
+0PTUDCHU:62: 		}
+0YNYSKIK:63: 	
+0GXGESWO:64: 		public void setOrder2(String order2) {
+0MADITCC:65: 			this.order2=order2;
+0NFMZYZA:66: 		}
+0AMYJIIQ:67: 	
+0HSZKKTP:68: 	
+0DDCPQBA:69: 		//employee_id
+0ZOFFQMO:70: 	    public int getEmployeeId() {
+0WZORCQD:71: 	        return this.employee_id;
+0RRDJHGW:72: 	    }
+0BKZUITC:73: 	
+0YZPDLRW:74: 	    public void setEmployeeId(int employeeId){
+0UPSWZPK:75: 	        this.employee_id=employeeId;
+0SKFPANJ:76: 	    }
+0KOSCHTD:77: 	
+0ZROGNHP:78: 	    //first_name
+0WKVBYBD:79: 	    public String getFirstName () {
+0ORBZNNL:80: 	        return first_name;
+0UFBORXJ:81: 	    }
+0FZXBIIE:82: 	
+0YNPNQDU:83: 	    public void setFirstName(String firstName){
+0QIBFLRR:84: 	        this.first_name=firstName;
+0MDMDWVE:85: 	    }
+0MTGOKYH:86: 	
+0JYOYGYW:87: 	    //last_name
+0VLZISCQ:88: 	    public String getLastName () {
+0KGYRILP:89: 	        return last_name;
+0YEFVVMD:90: 	    }
+0TKYPHMQ:91: 	
+0QSCKFWY:92: 	    public void setLastName(String lastName){
+0BKRONDK:93: 	        this.last_name=lastName;
+0WQVDCTX:94: 	    }
+0WYFFUDP:95: 	    //email
+0QPVYQBZ:96: 	    public String getEmail () {
+0YSUENCN:97: 	        return email;
+0NTNVIMU:98: 	    }
+0HHJAKGB:99: 	
+BVSMVMM:100: 	    public void setEmail (String email){
+TMABZCC:101: 	        this.email=email;
+WLLZZEF:102: 	    }
+MIVVERW:103: 	
+MAJBMKE:104: 	    //phone_number
+HDRXPOM:105: 	    public String getPhoneNumber () {
+ZKSDZXX:106: 	        return phone_number;
+GNEVBPR:107: 	    }
+QLFMUMV:108: 	
+OGYQYNA:109: 	    public void setPhoneNumber (String phoneNumber){
+XLASHIW:110: 	        this.phone_number=phoneNumber;
+VXIPDUW:111: 	    }
+ENGNXGY:112: 	
+KSABHRQ:113: 	    //hire_date
+WEAPGHL:114: 	    public Date getHireDate(){
+NPRIFLG:115: 	        return hire_date;
+KQQKUKW:116: 	    }
+UBJQNUN:117: 	
+XCMYSQT:118: 	    public void setHireDate(Date hireDate){
+UCUCRQK:119: 	        this.hire_date=hireDate;
+IBVUULK:120: 	    }
+GSRKMAN:121: 	
+YIUDZYI:122: 	    //job_id
+WAFJTGC:123: 	    public String getJobId () {
+IZZEUSH:124: 	        return job_id;
+QSGDSCR:125: 	    }
+OQNKWDS:126: 	
+YKGSXYO:127: 	    public void setJobId (String jobId){
+IJMXPCU:128: 	        this.job_id=jobId;
+WQZBBKF:129: 	    }
+VGUZSQB:130: 	
+ALECCXE:131: 	    //salary
+WFYQWTS:132: 	    public double getSalary() {
+YMOYJNH:133: 	        return salary;
+RJDYAZM:134: 	    }
+PIOBEQD:135: 	
+TJEBVEY:136: 	    public void setSalary(double salary){
+EXQYPJC:137: 	        this.salary=salary;
+ZLTSHCB:138: 	    }
+VDFVOWX:139: 	    
+FQNNNNC:140: 	    //commission_pct
+MGQQXUG:141: 	    public double getCommissionPct() {
+GEUMACG:142: 	        return commission_pct;
+SNUKICK:143: 	    }
+QPJHSBU:144: 	
+PLKTXNJ:145: 	    public void setCommissionPct(double commissionPct){
+ZFWPXCU:146: 	        this.commission_pct=commissionPct;
+XPDFMPQ:147: 	    }
+OSPLPUZ:148: 	    
+DFXTRZQ:149: 	    //manager_id
+TRSQIOO:150: 	    public int getManagerId() {
+OEARIYP:151: 	        return manager_id;
+QERASOB:152: 	    }
+NLUPIQB:153: 	
+XMOAULS:154: 	    public void setManagerId(int managerId){
+IXYOLGM:155: 	        this.manager_id=managerId;
+QACLBXD:156: 	    }
+NQDTEFP:157: 	
+XRAWLCP:158: 	    //department_id
+XFJZHUO:159: 	    public int getDepartmantId() {
+AGUEWOQ:160: 	        return department_id;
+VGDVYER:161: 	    }
+SVORQOI:162: 	
+KEVVHOU:163: 	    public void setDepartmantId(int departmentId){
+FROOKRJ:164: 	        this.department_id=departmentId;
+COLEVQN:165: 	    }
+KVGRSOA:166: 	}

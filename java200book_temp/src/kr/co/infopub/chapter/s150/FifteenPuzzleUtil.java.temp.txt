@@ -1,0 +1,21 @@
+0CDYSCNS:1: 	package kr.co.infopub.chapter.s150;
+0GTSLDRR:2: 	public class FifteenPuzzleUtil {
+0RQSOFOA:3: 		//Two dimensions 배열을 1차원 배열로 바꾸기
+0TOOHRIB:4: 		public static void toTwoOne(int[][] org, int[] tar ){
+0AAZLYJJ:5: 			int row=org.length;
+0RNPSMTQ:6: 			int col=org[0].length;
+0KYOCOEM:7: 			for (int i = 0; i < row; i++) {
+0URKNQEF:8: 				for (int j = 0; j < col; j++) {
+0OOIUTNS:9: 					tar[i*col+j]=org[i][j];
+WBPMGMZ:10: 				}
+MMHSAPR:11: 			}
+RMCOZTA:12: 		}
+CIJGKTB:13: 		//1차원 배열을 Two dimensions 배열로 바꾸기
+HYETIFA:14: 		public static void toOneTwo(int[] org, int[][] tar ){
+CFBTBWE:15: 			int n=org.length;
+KOMBGHT:16: 			int col=tar[0].length;
+WNFXIVY:17: 			for (int i = 0; i < n; i++) {
+BKMBNVB:18: 				tar[i/col][i%col]=org[i];
+GCCYBVE:19: 			}
+ZAGGYSC:20: 		}
+BSZNOMX:21: 	}

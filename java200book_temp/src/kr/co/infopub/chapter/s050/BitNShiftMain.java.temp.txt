@@ -1,0 +1,20 @@
+0SMGKVBX:1: 	package kr.co.infopub.chapter.s050;
+0PGWVJLJ:2: 	// >> shift ? 삼항 연산자
+0ZGPEYBB:3: 	public class BitNShiftMain {
+0GZGVFZI:4: 		// 10진법 수를 2진수 스트링으로 변환
+0HNJXNYY:5: 		public static String shifts(int a){
+0PFXFKQW:6: 			String s="";
+0WPUDUEW:7: 			for(int i=0;i<=31;i++){
+0BQIMUWV:8: 				int aa=a%2;                
+0SZLUGZH:9: 				s=(aa>=0)? aa+s : (-aa)+s;
+XICYDFQ:10: 				a>>=1;                     //  a/=2;
+HFJMTKS:11: 			}
+BECTVHH:12: 			return s;
+HFNOZKK:13: 		}
+RACDFFG:14: 		public static void main(String[] args) {
+AYVEHXM:15: 			int intNums1=123;
+XLNJHPV:16: 			int intNums2=-123;
+SCNZMLP:17: 			System.out.printf("%d  : %s%n",intNums1,shifts(intNums1));
+EDAPCPI:18: 			System.out.printf("%d : %s%n",intNums2,shifts(intNums2));
+FHYPQFI:19: 		}
+OEVUOFW:20: 	}

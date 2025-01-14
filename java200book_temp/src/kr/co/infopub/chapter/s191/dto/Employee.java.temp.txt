@@ -1,0 +1,204 @@
+00JFDTAYO:1: 	package kr.co.infopub.chapter.s191.dto;
+00OHUAXYE:2: 	
+00KZDCZLJ:3: 	import javafx.beans.property.*;
+00WBGSJSM:4: 	import java.sql.Date;
+00WZHHISI:5: 	
+00THWGYDC:6: 	public class Employee {
+00ULPUSDA:7: 	    //Declare Employees Table Columns
+00XZMXPYL:8: 	    private IntegerProperty employee_id;
+00KHMOGRL:9: 	    private StringProperty first_name;
+0HHFSHAZ:10: 	    private StringProperty last_name;
+0HODCTUG:11: 	    private StringProperty email;
+0VWHKPJD:12: 	    private StringProperty phone_number;
+0JQWSBXU:13: 	    private SimpleObjectProperty<Date> hire_date;
+0RRAMTEI:14: 	    private StringProperty job_id;
+0FJETCUJ:15: 	    private DoubleProperty salary;
+0KURTKWS:16: 	    private DoubleProperty commission_pct;
+0IRUHFDE:17: 	    private IntegerProperty manager_id;
+0XVGZFCE:18: 	    private IntegerProperty department_id;
+0DPLEMWG:19: 	
+0LKFKYWN:20: 	    private StringProperty order2;
+0WDKDAHV:21: 	    
+0WWOWHFZ:22: 	    
+0VBSNOSE:23: 	    //Constructor
+0QMHPQCJ:24: 	    public Employee() {
+0VZPRBXF:25: 	        this.employee_id = new SimpleIntegerProperty();
+0OMWTYNH:26: 	        this.first_name = new SimpleStringProperty();
+0NENQOIJ:27: 	        this.last_name = new SimpleStringProperty();
+0LZLMODB:28: 	        this.email = new SimpleStringProperty();
+0RQGMEIJ:29: 	        this.phone_number = new SimpleStringProperty();
+0CDNRVWW:30: 	        this.hire_date = new SimpleObjectProperty<>();
+0CNFTNBQ:31: 	        this.job_id = new SimpleStringProperty();
+0RHEUBMZ:32: 	        this.salary = new SimpleDoubleProperty();
+0WLFLWRN:33: 	        this.commission_pct = new SimpleDoubleProperty();
+0SMWPRNQ:34: 	        this.manager_id = new SimpleIntegerProperty();
+0SCKKCHI:35: 	        this.department_id = new SimpleIntegerProperty();
+0WSTARUV:36: 	        this.order2= new SimpleStringProperty();
+0TCVGXDC:37: 	    }
+0GAQGMYE:38: 	    
+0XUVAFPE:39: 	    public StringProperty order2Property() {
+0NFMPYLU:40: 			return order2;
+0QDSJHPE:41: 		}
+0AOSBAOK:42: 	   
+0XPTCJYW:43: 	    public String getOrder2() {
+0QDSAAFV:44: 			return order2.get();
+0VIMKNOZ:45: 		}
+0SWDYVPR:46: 	
+0ZROVHEL:47: 		public void setOrder2(String order2) {
+0OPZEDNV:48: 			this.order2.set(order2);
+0UOOKMOK:49: 		}
+0KCKAUJB:50: 	
+0KFVUPSG:51: 	
+0EVEKUPN:52: 		//employee_id
+0MUFPAFN:53: 	    public int getEmployeeId() {
+0UGNIRKS:54: 	        return employee_id.get();
+0IXFCSCH:55: 	    }
+0PVQXGZT:56: 	
+0GSFLQCZ:57: 	    public void setEmployeeId(int employeeId){
+0VPDTQBN:58: 	        this.employee_id.set(employeeId);
+0TEPBYBO:59: 	    }
+0BZHYIJN:60: 	
+0XCEQTHR:61: 	    public IntegerProperty employeeIdProperty(){
+0XSNABWU:62: 	        return employee_id;
+0IIVPTRH:63: 	    }
+0SKVTSMN:64: 	
+0HCRRYLU:65: 	    //first_name
+0DBIDVPF:66: 	    public String getFirstName () {
+0CQIEEGU:67: 	        return first_name.get();
+0NRJQRVF:68: 	    }
+0DSAEHDU:69: 	
+0GPYGLLB:70: 	    public void setFirstName(String firstName){
+0TGUOWFS:71: 	        this.first_name.set(firstName);
+0TEOJPZD:72: 	    }
+0SLVTSEU:73: 	
+0NAORCIU:74: 	    public StringProperty firstNameProperty() {
+0HMGPRSI:75: 	        return first_name;
+0IPZDHZA:76: 	    }
+0WMQWZRH:77: 	
+0UHWVCCB:78: 	    //last_name
+0NXZDEUY:79: 	    public String getLastName () {
+0RCKIKGB:80: 	        return last_name.get();
+0HRNKCJD:81: 	    }
+0TBQFAMK:82: 	
+0GIDSRRO:83: 	    public void setLastName(String lastName){
+0TKRFHRI:84: 	        this.last_name.set(lastName);
+0RLKQHDB:85: 	    }
+0GRAIXAE:86: 	
+0DDSEBMT:87: 	    public StringProperty lastNameProperty() {
+0BFPJNZW:88: 	        return last_name;
+0DGRRKQJ:89: 	    }
+0NPNKBIP:90: 	
+0NESHPAO:91: 	    //email
+0WGYPJQP:92: 	    public String getEmail () {
+0MMWLZKL:93: 	        return email.get();
+0ADSNRHW:94: 	    }
+0KDKPRRT:95: 	
+0FQIXFOI:96: 	    public void setEmail (String email){
+0WPBQVIN:97: 	        this.email.set(email);
+0JSTZXHE:98: 	    }
+0GLVKNLD:99: 	
+COBAGXW:100: 	    public StringProperty emailProperty() {
+FOTGYKF:101: 	        return email;
+YBMFLAB:102: 	    }
+WCCVAWZ:103: 	
+MDQTYZP:104: 	    //phone_number
+KRBCCNY:105: 	    public String getPhoneNumber () {
+DQFSTJV:106: 	        return phone_number.get();
+SSWWTPP:107: 	    }
+PIPIAWK:108: 	
+VUIIOBS:109: 	    public void setPhoneNumber (String phoneNumber){
+JQAYULI:110: 	        this.phone_number.set(phoneNumber);
+SYBDHDX:111: 	    }
+OVZPGMB:112: 	
+JEHKJLB:113: 	    public StringProperty phoneNumberProperty() {
+KFQYFOT:114: 	        return phone_number;
+OYLHDFP:115: 	    }
+DWJXLVS:116: 	
+CIJPNJU:117: 	    //hire_date
+AQVUSUS:118: 	    public Object getHireDate(){
+LXOUBEE:119: 	        return hire_date.get();
+DMMLELN:120: 	    }
+QAKZOHR:121: 	
+HOOMVAX:122: 	    public void setHireDate(Date hireDate){
+NYYWDMK:123: 	        this.hire_date.set(hireDate);
+CRTLFZD:124: 	    }
+TZIFTGZ:125: 	
+ECIUFMG:126: 	    public SimpleObjectProperty<Date> hireDateProperty(){
+ZLBLUSS:127: 	        return hire_date;
+KVVLXYG:128: 	    }
+ZPQKNSN:129: 	
+PUXKRYJ:130: 	    //job_id
+CJAZPHC:131: 	    public String getJobId () {
+OUIRVUN:132: 	        return job_id.get();
+FGRWYOA:133: 	    }
+GAZAJGG:134: 	
+UYSCWOZ:135: 	    public void setJobId (String jobId){
+ASHJATW:136: 	        this.job_id.set(jobId);
+SVJCRUY:137: 	    }
+MJFFQCB:138: 	
+SQYTKBX:139: 	    public StringProperty jobIdProperty() {
+GQEBAWQ:140: 	        return job_id;
+RIIUYRR:141: 	    }
+KHEYJDN:142: 	
+QBCBBVY:143: 	    //salary
+JLQDGYD:144: 	    public double getSalary() {
+JMYOAGT:145: 	        return salary.get();
+SVNPIJX:146: 	    }
+TJIZOAM:147: 	
+EDUHNGG:148: 	    public void setSalary(double salary){
+NINSAOU:149: 	        this.salary.set(salary);
+EZMTVTJ:150: 	    }
+CGZVLBD:151: 	
+HNTPMTV:152: 	    public DoubleProperty salaryProperty(){
+BKLAQWM:153: 	        return salary;
+TMLSGOM:154: 	    }
+XBCGYQF:155: 	
+KCRKSER:156: 	    //commission_pct
+CLEQUMQ:157: 	    public double getCommissionPct() {
+WXZZWRP:158: 	        return commission_pct.get();
+OMHLAFD:159: 	    }
+TYAOEFM:160: 	
+AMELNFM:161: 	    public void setCommissionPct(double commissionPct){
+JLNXASP:162: 	        this.commission_pct.set(commissionPct);
+TEGWPCV:163: 	    }
+GCVEOVF:164: 	
+HNYEUDT:165: 	    public DoubleProperty commissionPctProperty(){
+RITERCL:166: 	        return commission_pct;
+DARVMGQ:167: 	    }
+CLCGCJU:168: 	
+FIMDXCA:169: 	    //manager_id
+YZKZZMS:170: 	    public int getManagerId() {
+ATWYSWI:171: 	        return manager_id.get();
+GRKDIKY:172: 	    }
+BNYACFB:173: 	
+AWNUJFY:174: 	    public void setManagerId(int managerId){
+XUCDMOK:175: 	        this.manager_id.set(managerId);
+HKUTCRJ:176: 	    }
+XVOJDFY:177: 	
+YHPLPJY:178: 	    public IntegerProperty managerIdProperty(){
+OUCCSYC:179: 	        return manager_id;
+MCKIPSN:180: 	    }
+DVFOSPP:181: 	
+KTBAYNT:182: 	    //department_id
+BNPOVMV:183: 	    public int getDepartmanId() {
+QCOCCMT:184: 	        return department_id.get();
+YTDVCMA:185: 	    }
+WEQQDXH:186: 	
+WKOBFNS:187: 	    public void setDepartmantId(int departmentId){
+ZBRFXIL:188: 	        this.department_id.set(departmentId);
+ESLNHJA:189: 	    }
+URXDXVZ:190: 	
+PFQLJGY:191: 	    public IntegerProperty departmentIdProperty(){
+SSXYKGV:192: 	        return department_id;
+TQUXJQE:193: 	    }
+JXXXTQX:194: 	
+UZEGONZ:195: 		@Override
+FSIGSOR:196: 		public String toString() {
+PNPTNZM:197: 			return "[employee_id=" + employee_id + ", first_name=" + first_name + ", last_name=" + last_name
+IPZZEAH:198: 					+ ", email=" + email + ", phone_number=" + phone_number + ", hire_date=" + hire_date + ", job_id="
+WQVODXV:199: 					+ job_id + ", salary=" + salary + ", commission_pct=" + commission_pct + ", manager_id=" + manager_id
+BBRWYZS:200: 					+ ", department_id=" + department_id + "]";
+ZUHVHXC:201: 		}
+QBZUMQH:202: 	    
+LIJFRRM:203: 	
+STYLYMH:204: 	}

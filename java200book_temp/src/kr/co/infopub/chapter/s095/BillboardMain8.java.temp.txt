@@ -1,0 +1,40 @@
+0ZWKOGYK:1: 	package kr.co.infopub.chapter.s095;
+0BLXPTNS:2: 	import org.json.JSONArray;
+0NJHBZDJ:3: 	import org.json.JSONObject;
+0AZNRPQJ:4: 	import java.io.FileReader;
+0NZDHOWA:5: 	import java.io.BufferedReader;
+0MUEZHAC:6: 	// json-20160818.jar
+0CFBSIXP:7: 	public class BillboardMain8 {
+0GOSAZIN:8: 		public static void main(String[] args) {
+0TACKKRE:9: 			 //2018-01-15 세줄 추가 /이번주 빌보드
+BXBLYHC:10: 			RequestFromBillboardHot rfw=new RequestFromBillboardHot();
+NWVVOYZ:11: 			String a="https://www.billboard.com/charts/hot-100/";
+CXYFYMB:12: 			String rs=rfw.getTimeDate(a);
+VKSUQOE:13: 			BufferedReader br=null;
+ANXRULH:14: 			try {
+PMKJZXJ:15: 				br=new BufferedReader(new FileReader("billboard\\"+rs+".json"));
+ZGQWLGG:16: 				StringBuffer sb=new StringBuffer();
+YICFHDA:17: 				String msg="";
+OTRRFYQ:18: 				while((msg=br.readLine())!=null){
+NQTPOKJ:19: 					sb.append(msg);
+WXPRDCS:20: 				}
+QZRAHZI:21: 				JSONObject billboards=new JSONObject(sb.toString());
+XDMTBVZ:22: 				JSONArray bills=billboards.getJSONArray("billboard");
+AUPMYZK:23: 				for(int i=0; i< bills.length() ;i++){
+FQYJIAQ:24: 					System.out.println("------------------------------------");
+OAQOEGE:25: 					JSONObject bill=bills.getJSONObject(i);
+CZFNGZU:26: 					String rank=bill.getString("rank");
+FOTKIEK:27: 	    			String song=bill.getString("song");
+TFNLIEG:28: 	    			String lastweek=bill.getString("lastweek");
+FMEBAYF:29: 	    			String imagesrc=bill.getString("imagesrc");
+YRKRXSW:30: 	    			String artist=bill.getString("artist");
+ZKCPTAI:31: 	    			String sf=String.format("%s, %s, %s, %s, %s",
+RBNYVRY:32: 	    					                rank, song,lastweek,imagesrc,artist);
+AAMIWZL:33: 	    			System.out.println(sf);
+IXQCGCM:34: 				}
+DVTJNOD:35: 			} catch (Exception e) {
+EPENXZJ:36: 				System.out.println(e);
+DFORQVC:37: 			}
+UUKJOTY:38: 		}
+KLVYVDX:39: 	}
+HOEFYLI:40: 		  

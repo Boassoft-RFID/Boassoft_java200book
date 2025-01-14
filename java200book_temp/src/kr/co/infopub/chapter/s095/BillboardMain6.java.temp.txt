@@ -1,0 +1,14 @@
+0CGVCKBV:1: 	package kr.co.infopub.chapter.s095;
+0NXBBBUC:2: 	
+0ASFSMIW:3: 	public class BillboardMain6 {
+0VPQLXIC:4: 		public static void main(String[] args) {
+0XBLKJUL:5: 			RequestFromBillboardHot rfw=new RequestFromBillboardHot();
+0RQZFEOA:6: 			String a="https://www.billboard.com/charts/hot-100/";
+0YSDCRWH:7: 			String rs=rfw.getTimeDate(a);
+0QZAKZEK:8: 			rfw.getBillboardData(a+rs);
+0UKMYNDM:9: 			rfw.printBillboard();
+BHCHUFB:10: 			//BillboardPrint.printToCSV(rfw.getBillboards(), "billboard\\"+rs+".csv");
+CYABQLB:11: 			BillboardPrint.printToJSON(rfw.getBillboards(), "billboard\\"+rs+".json");
+PDCKVXI:12: 			//BillboardPrint.printToXML(rfw.getBillboards(), "billboard\\"+rs+".xml");
+SNWHOLL:13: 		}
+RUWNTLJ:14: 	}

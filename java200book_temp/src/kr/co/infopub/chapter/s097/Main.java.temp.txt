@@ -1,0 +1,31 @@
+0BFNWYQT:1: 	package kr.co.infopub.chapter.s097;
+0BSQCKDA:2: 	import javafx.application.Application;
+0MTOCQFK:3: 	import javafx.stage.Stage;
+0ZBWBIPW:4: 	import javafx.scene.Scene;
+0YXLKSSE:5: 	import javafx.scene.image.Image;
+0WPDWXZI:6: 	import javafx.scene.layout.BorderPane;
+0ISBVPQR:7: 	import javafx.fxml.FXMLLoader;
+0LSVQSPN:8: 	public class Main extends Application {
+0TXJROYU:9: 	 @Override
+JOSKVBH:10: 	 public void start(Stage primaryStage) {
+VNUYUDO:11: 	  try {
+ARZCNPV:12: 		primaryStage.setTitle("Billboard Chart 2018");
+NKZRUXP:13: 		BorderPane root = (BorderPane)FXMLLoader.load(getClass().
+VRLLYQC:14: 				                       getResource("Billboardfx2.fxml"));
+APOMMVN:15: 		Scene scene = new Scene(root,1400,800);
+ZBZSEON:16: 		scene.getStylesheets().add(getClass().
+BMDIGVI:17: 				getResource("application.css").toExternalForm());
+PRVJLJK:18: 		primaryStage.setScene(scene);
+IUZYULI:19: 		primaryStage.getIcons().add(
+UWCVMEX:20: 				new Image(getClass().getResourceAsStream("logo.png")));
+XPWOFPC:21: 		primaryStage.setResizable(false);
+TSPZVLG:22: 		primaryStage.show();
+FYAOIRD:23: 		
+RUZOQAX:24: 	  } catch(Exception e) {
+VGAZGRD:25: 		e.printStackTrace();
+KRLQAOG:26: 	  }
+SHTXEPB:27: 	 } 
+JSQJOHS:28: 	 public static void main(String[] args) {
+MKWCPCU:29: 		launch(args);
+PLJQRCT:30: 	 }
+EGDWJFW:31: 	}

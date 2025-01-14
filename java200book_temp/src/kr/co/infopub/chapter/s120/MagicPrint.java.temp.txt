@@ -1,0 +1,8 @@
+FUGNUMI:1: 	package kr.co.infopub.chapter.s120;
+GKOBYXR:2: 	
+YNGUHRN:3: 	public class MagicPrint {
+YRXTBHP:4: 		public static void print(IMagicSquare magic){
+OMNWBFB:5: 			magic.make();
+TQACJQW:6: 			magic.print();
+OLEVKYS:7: 		}
+QRENWOL:8: 	}

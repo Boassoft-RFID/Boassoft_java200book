@@ -1,0 +1,28 @@
+0DBLCRYH:1: 	package kr.co.infopub.chapter.s061;
+0WTNCTJQ:2: 	public class BitShifting {
+0SIZAUXM:3: 		public static final int BITMASK=1;	
+0RTNKCRG:4: 		public  String makeBit(int value){
+0PEAMSMT:5: 			//char배열을 String으로 만들기 위해 
+0LMVYRMP:6: 			char[] val=new char[32];
+0NCIPBOW:7: 			for(int i=31;i>=0;i--){
+0CEUFOSR:8: 				if((value & BITMASK) ==1){
+0UVJPAPC:9: 					val[i]='1';    //  1&1 일 때만 1 그 외 0
+EFDALOG:10: 				}else{
+QUQXKHD:11: 					val[i]='0';	   //  1&1 일 때만 1 그 외 0
+EHFOLVY:12: 				}
+FAVGHVG:13: 				value >>>=1;  //value=value>>>1; 부호 무시 오른쪽 이동
+CXWYXJQ:14: 			}
+NYGSSIG:15: 			return new String(val);//char배열을 String으로
+VBYDFCG:16: 		}
+YQZEGCA:17: 		public static void main(String[] args) {
+QHUBKDU:18: 			int ival=2345;
+UEQZIVP:19: 			int eval=-2345;
+LJUYTDG:20: 			BitShifting bitsh=new  BitShifting();
+BWMLCIT:21: 			String vals=bitsh.makeBit(ival);
+MJFUMXN:22: 			System.out.println(vals);
+LYMYWCT:23: 			vals=bitsh.makeBit(eval);
+FBTOKWQ:24: 			System.out.println(vals);
+EABHEYY:25: 			char[] vs=vals.toCharArray();
+SSAEWUP:26: 			System.out.println(vs[0]);
+OBOPQZN:27: 		}
+YDVNPUL:28: 	}

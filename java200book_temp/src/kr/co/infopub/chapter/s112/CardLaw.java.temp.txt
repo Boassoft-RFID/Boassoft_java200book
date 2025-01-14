@@ -1,0 +1,50 @@
+0HUDZNRV:1: 	package kr.co.infopub.chapter.s112;
+0NFPAAJH:2: 	public class CardLaw {
+0QPKULWJ:3: 		public boolean thirdCardPlayer(int x) { //플레이어의 세 번째 카드 
+0QTUISRN:4: 			boolean isC = false;
+0QBPUVXB:5: 			if (x < 6) { // 플레이어의 카드 두 장의 합이 0~5까지일 때
+0EFBUAYN:6: 				isC = true;
+0HATMLDK:7: 			}
+0ZLIADYC:8: 			return isC;
+0HJDXROF:9: 		}
+ATXYCCM:10: 		public boolean thirdCardDealer(int x, int y) { //딜러의 세 번째 카드를 받는 조건
+THQEUDX:11: 			boolean isC = false;
+IPOKSTZ:12: 			if (x < 3) { //딜러 카드 두 장의 합이 0, 1, 2 일 때
+ZXAOGVQ:13: 				isC = true;
+VMIJSOP:14: 			}else if (x == 3 && y != 8) { 
+GUJCZWL:15: 				// 딜러 카드 두 장의 합이 3이고 플레이어 세 번째 카드가 8이 아닐 때
+VVWIMEQ:16: 				isC = true;
+DHQYDGZ:17: 			}else if (x == 4 && (y > 1 && y < 8)) {
+SKMUAUS:18: 				//딜러 카드 두 장의 합이 4이고 플레이어 세 번째 카드가 2~7일 때
+GCFYRFP:19: 				isC = true;
+ZDDWTTK:20: 			}else if (x == 5 && (y > 3 && y < 8)) {
+GCVRDEV:21: 				//딜러 카드 두 장의 합이 5이고 플레이어 세 번째 카드가 4~7일 때
+PTONKTS:22: 				isC = true;
+RJJXUSQ:23: 			}else if (x == 6 && (y > 5 && y < 8)) {
+HLAALMD:24: 				//딜러 카드 두 장의 합이 6이고 플레이어 세 번째 카드가 6, 7일 때
+LRGKPBD:25: 				isC = true;
+HMVULUS:26: 			}	
+TTLXLSE:27: 			return isC;
+HLJRSYH:28: 		}
+GDDSVVV:29: 		public boolean stand(int x, int y) { //스탠드가 되는 조건
+XPPBDKG:30: 			boolean isC = false;
+NOSGVXU:31: 			if (x > 5 && x < 8) { // 플레이어의 두 장의 카드 합이 6, 7일 때
+LUBBBMX:32: 				if (x == y) { // 딜러의 두 장의 카드 합이 플레이어의 두 장의 카드 합과 같을 때
+UAJTYFO:33: 					isC = true;
+FLSLIFE:34: 				}
+IBKHXLL:35: 				isC = true;
+DKDGWPG:36: 			}else if (y == 7) { //딜러의 두 장의 카드 합이 7일 때
+DTQURHU:37: 				isC = true;
+JETBSDJ:38: 			}	
+BUNJJLQ:39: 			return isC;
+BRANVXC:40: 		}
+VBTQAUI:41: 		public boolean natural(int x, int y) { // 예외 처리가 되는 조건
+TNYEPMW:42: 			boolean isE = false;
+DBWEBWR:43: 			if (x > 7 && x < 10) {
+THDBSZH:44: 				isE = true;
+MEUPXLT:45: 			}else if (y > 7 && y < 10) {
+SDLHKCH:46: 				isE = true;
+ZEVAGKE:47: 			}
+OWLBPTP:48: 			return isE;
+ESQVZXO:49: 		}
+EPBDJQW:50: 	}

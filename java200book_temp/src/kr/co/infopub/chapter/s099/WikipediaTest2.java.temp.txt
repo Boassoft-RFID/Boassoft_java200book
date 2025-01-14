@@ -1,0 +1,34 @@
+0BWTMIAL:1: 	package kr.co.infopub.chapter.s099;
+0DIGTMWQ:2: 	
+0BMGLHCY:3: 	import javafx.application.Application;
+0QKRQWUN:4: 	import javafx.scene.Group;
+0VEPIHCN:5: 	import javafx.scene.Scene;
+0XDJKWBD:6: 	import javafx.scene.image.Image;
+0VQILVGN:7: 	import javafx.scene.image.ImageView;
+0NWXJRPA:8: 	import javafx.stage.Stage;
+0DGEKTSK:9: 	// image read test 
+ETVPLSB:10: 	public class WikipediaTest2 extends Application {
+CTWKKEI:11: 	    // 이미지 하나 보이기
+LIENQPO:12: 	    public static void main(String[] args) {
+NTMHJAO:13: 	        launch(args);
+AYNFAKP:14: 	    }
+RSLMIDG:15: 	    @Override
+EMIONTS:16: 	    public void start(Stage primaryStage) {
+RWZSAQO:17: 	        Group root = new Group();
+FABAOJT:18: 	        String imageSource=  "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/99px-Flag_of_France.svg.png";       
+KOXLRLZ:19: 	        //인터넷
+QSXPUNS:20: 	        ImageView imageView = new ImageView(new Image(imageSource));
+QCWECSW:21: 	        //디렉토리 내 파일
+YGMBNNK:22: 	        //ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("billboard.jpg")));
+NLTAQAG:23: 	        Group myGroup = new Group();
+GPZCVUG:24: 	        myGroup.getChildren().add(imageView);
+HXOCSGV:25: 	        root.getChildren().add(myGroup);
+DFPLQBQ:26: 	   
+FHAKMIO:27: 	        primaryStage.setScene(new Scene(root, 150, 150));
+SEGEFDI:28: 	        primaryStage.setTitle("Billboard Image");
+YGBNUFP:29: 	        primaryStage.show();
+LYHIYHR:30: 	    }
+KKFWCCU:31: 	    
+FHMXYCF:32: 	}
+WEIYZSL:33: 	
+KCAQGRD:34: 	   

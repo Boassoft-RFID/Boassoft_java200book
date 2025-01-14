@@ -1,0 +1,51 @@
+0QLIMZGP:1: 	package kr.co.infopub.chapter.s146;
+0SDLZXNS:2: 	
+0OQEHDWO:3: 	import java.util.Arrays;
+0QQIECQG:4: 	public class Matrix {
+0NHJQPYX:5: 		private double [][] matrix;
+0FGRJHOT:6: 		public Matrix(int m, int n) {
+0KGIHAZP:7: 			matrix=new double[m][n];
+0KSZCBRA:8: 		}
+0ARVHSCC:9: 		public Matrix() {
+EDISHPF:10: 			this(3,3);
+OCVCYZV:11: 		}
+LNQPDDY:12: 		public Matrix(Matrix mat) {
+QEKZDIT:13: 			this(mat.getMatrix());
+WEOIMGK:14: 		}
+ACSOBES:15: 		public Matrix(double[][] deep) {
+HLFKDNN:16: 			matrix=deepCopy(deep);
+LQUOWAR:17: 		}
+ITNIVII:18: 		public  void clear(){
+TYRXKRL:19: 			int m=matrix.length;
+USVDPLM:20: 			for (int i = 0; i < m; i++) {
+ITHAJLL:21: 				Arrays.fill(matrix[i], 0);
+KAEWJTO:22: 			}
+ZXQGCRF:23: 		}
+NDDYLFK:24: 		private double[][] deepCopy(double[][] deep){
+BWGSMRN:25: 			int m=deep.length;
+PWSPLWA:26: 			int n=deep[0].length;
+JTCLJSV:27: 			double[][] paste=new double[m][n];
+JWFPWTG:28: 			for (int i = 0; i <m; i++) {
+PYQZBAT:29: 				System.arraycopy(deep[i], 0, paste[i], 0, n);
+WJOBTTM:30: 			}
+JDVJRYX:31: 			return paste;
+XDYILRW:32: 		}
+SHLOLKM:33: 		public double[][] getMatrix() {
+FTHJERU:34: 			return deepCopy(matrix);
+HQYMVMG:35: 		}
+KPKPQBN:36: 		
+CKGEETG:37: 		public Matrix makeMatrix(){
+TXVKMEA:38: 			return new Matrix(matrix);
+IKMOHFP:39: 		}
+QBULRPD:40: 	
+BYOYOQZ:41: 		public void print(){
+CBITIAS:42: 			for (int i = 0; i < matrix.length; i++) {
+AGRTSGY:43: 				for (int j = 0; j < matrix[i].length; j++) {
+TPYCLBF:44: 					System.out.printf("%f\t",matrix[i][j]);
+KXFGIDD:45: 				}
+MSDWCSD:46: 				System.out.println();
+SKKQAQH:47: 			}
+TJGIPWF:48: 			System.out.println("---------------");
+DNFVJWO:49: 		}
+CUYHVPG:50: 	
+RPDFFUH:51: 	}

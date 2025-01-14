@@ -1,0 +1,37 @@
+0XDVHDNO:1: 	package kr.co.infopub.chapter.s097;
+0JESMUAF:2: 	import javafx.event.ActionEvent;
+0JQVFMFS:3: 	import javafx.fxml.FXML;
+0QRRHKYB:4: 	import javafx.scene.control.Button;
+0VJRMVGK:5: 	import javafx.scene.control.Label;
+0PWGZDBX:6: 	import javafx.scene.control.TableColumn;
+0NJSIQJA:7: 	import javafx.scene.control.TableView;
+0HAILFBQ:8: 	import javafx.scene.web.WebView;
+0HHCQUEZ:9: 	public class BillboardfxController {
+OOMLSYP:10: 		@FXML
+KJXAVBE:11: 		private TableView<Billbaord> billobardTable;
+VAAACHY:12: 	    @FXML
+KSCCJVN:13: 	    private TableColumn<Billbaord, String> song;
+SQWOVQR:14: 	    @FXML
+EUZNBVI:15: 	    private TableColumn<Billbaord, String> artist;
+YZONYVD:16: 	    @FXML
+AEVWNFA:17: 	    private TableColumn<Billbaord, Integer> lastweek;
+KMHXRMO:18: 	    @FXML
+VGNUUQO:19: 	    private TableColumn<Billbaord, Integer> rank;
+XPFDVVJ:20: 	    @FXML
+AWRLSHY:21: 	    private TableColumn<Billbaord, String> imagesrc;
+JLUEHBT:22: 	    @FXML
+JHRYOCQ:23: 	    private WebView billwebview;
+PKHQLNH:24: 	    @FXML
+XOACJNN:25: 	    private Button btnAf;
+RAKIBRG:26: 	    @FXML
+TFMGBLG:27: 	    private Button btnBf;
+CAZJLEI:28: 	    @FXML
+RPPYQPJ:29: 	    private Label lbbill;
+WEDPRJG:30: 	
+AYJMKNQ:31: 	    @FXML
+KRRPZVZ:32: 	    void onClickBtnBf(ActionEvent event) {}
+EFPKAKU:33: 	    @FXML
+EGHJTTX:34: 	    void onClickBtnAf(ActionEvent event) {}
+IHAPFKL:35: 	    @FXML
+VYCOYGO:36: 	    void initialize() {}
+SHOCRCV:37: 	}

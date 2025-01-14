@@ -1,0 +1,26 @@
+0IUZYXBG:1: 	package kr.co.infopub.chapter.s085;
+0EWOTSAK:2: 	import java.util.ArrayList;
+0BPSCIGQ:3: 	public class BillboardArrayMain {
+0OCOUBKK:4: 	 public static void main(String[] args) {
+0MFDEXVX:5: 		ArrayList<Billbaord> bills=new ArrayList<Billbaord>();
+0AWXEXFD:6: 		bills.add(new Billbaord(1,"Despacito",1,
+0KQIZRFJ:7: 			"https://www.billboard.com/images/pref_images/q61808osztw.jpg","luis fonsi"));
+0MSOXYCM:8: 		bills.add(new Billbaord(2,"That's What I Like",2,
+0CKDEBJY:9: 			"https://www.billboard.com/images/pref_images/q59725qvpol.jpg","bruno mars"));
+MXQWTEY:10: 		bills.add(new Billbaord(3,"I'm The One",3,
+GLDBWLR:11: 			"https://www.billboard.com/images/pref_images/q64532pl64x.jpg","dj khaled"));
+EPSIOFP:12: 		System.out.println(bills.size());   // 3 
+UAECLXT:13: 		showAbout(bills.get(0));  // 0번째 Billbaord 객체
+IVKWYAT:14: 		bills.remove(1);          // 1번쩨 삭제             
+FPALGFR:15: 		System.out.println(bills.size());   // 2
+SWIKDSC:16: 		System.out.println("----------------------");
+FAWSVHS:17: 		for(Billbaord bb : bills){
+WDDDSHU:18: 			showAbout(bb);
+CJJAVBS:19: 		}
+FDLLNYR:20: 	 }
+WWFUKTY:21: 	 public static void showAbout(Billbaord bb ){//객체를 전달하여 출력
+QJVORSY:22: 	 	String sf=String.format("%d, %s, %d, %s, %s",
+XMIYSOI:23: 				bb.getRank(), bb.getSong(),bb.getLastweek(),bb.getImagesrc(),bb.getArtist());
+ZJHHDJN:24: 		System.out.println(sf);
+JDNKHPE:25: 	 }
+LBKDSZN:26: 	}

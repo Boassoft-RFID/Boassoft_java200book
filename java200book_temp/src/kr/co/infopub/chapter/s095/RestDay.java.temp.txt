@@ -1,0 +1,88 @@
+0HIONAVG:1: 	package kr.co.infopub.chapter.s095;
+0ALNSHGL:2: 	import java.text.ParseException;
+0MXWKBMK:3: 	import java.text.SimpleDateFormat;
+0WAKPCCC:4: 	import java.util.Calendar;
+0MOEDFTI:5: 	import java.util.Date;
+0MQIKVZP:6: 	import java.util.Locale;
+0DHGAFVE:7: 	// s075 RestDay
+0JCSDTFE:8: 	public class RestDay {
+0QRGONZJ:9: 	
+KQEKEEM:10: 		public static boolean isRest(String day){
+OEAFCMK:11: 			//토, 일만 쉬도록 
+WJDGRCJ:12: 			boolean isRest=false;
+DTPFZEF:13: 			Calendar tod= todate(day);
+TBZTAFS:14: 			if(tod.get(Calendar.DAY_OF_WEEK)==Calendar.SATURDAY || 
+NMRGHJE:15: 					tod.get(Calendar.DAY_OF_WEEK)==Calendar.SUNDAY ){ //토요일 또는 일요일
+QXAPKUJ:16: 				isRest=true;
+DRIRHLS:17: 			}
+VCRLHYL:18: 			return isRest;
+MOPYAFS:19: 		}
+ZGOFUAX:20: 		public static String toYMD(Calendar dd){
+CAFQARK:21: 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+TDRDCSA:22: 			return sdf.format(dd.getTime());
+XYDRDZR:23: 		}
+TLOZLKV:24: 		public static String goGo(String ss,int day){
+UVQQRLM:25: 			Calendar cal=todate(ss);
+JOAPBNM:26: 			//-7일을 더하면 일주전
+SRCHVEZ:27: 			cal.add(Calendar.DAY_OF_YEAR, day);
+EMZYAZE:28: 			// 칼렌더를 문자열로 
+FSDKSWO:29: 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+WYZXTOI:30: 			return sdf.format(cal.getTime());
+BUQJLFT:31: 		}
+MCXQBFO:32: 		public static String toWantedDay(String ss,int round){
+DQUDOVW:33: 			return goGo(ss, -(round*7));
+FHDYNHW:34: 		}
+LYSBODA:35: 		public static Calendar todate(String ss){
+JHMGVHL:36: 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+FFLQBDE:37: 			Date dd=new Date();
+XUTVEPC:38: 			try {
+PDOIRAZ:39: 				dd=sdf.parse(ss);
+QHIWZPI:40: 			} catch (ParseException e) {
+NTZTVVE:41: 			}
+CWCFSAV:42: 			Calendar cal=Calendar.getInstance();
+ZTEYEFL:43: 			cal.setTime(dd);
+AJUOYAB:44: 			return cal;
+JJDYPFQ:45: 		}
+NGIBQIU:46: 		public static String toDay(String rs){  // September 22, 2018
+SSOLQBH:47: 			SimpleDateFormat sdf=new SimpleDateFormat("MMMM dd, yyyy",Locale.US);
+JYALMYW:48: 			Date dd=new Date();
+RIUEHQK:49: 			try {
+QSEBKGC:50: 				dd=sdf.parse(rs);
+AVPLFSX:51: 			} catch (ParseException e) {
+RYLLPVX:52: 				System.out.println(e);
+SJFTIUP:53: 			}
+RFFGPIS:54: 			Calendar cal=Calendar.getInstance();
+RKRLBKX:55: 			cal.setTime(dd);
+WJQXALX:56: 			return toYMD(cal);
+OABNTXL:57: 		}
+HROHIYL:58: 		public static String toKorDay(String rs){  // 8월 16, 2017
+WDWOZHU:59: 			SimpleDateFormat sdf=new SimpleDateFormat("MM월 dd, yyyy");
+NOGULCA:60: 			//SimpleDateFormat sdf=new SimpleDateFormat("MMMM dd, yyyy",Locale.US);
+MPNPUWU:61: 			Date dd=new Date();
+LSQAYZK:62: 			try {
+SKAUIKS:63: 				dd=sdf.parse(rs);
+NPXEJRK:64: 			} catch (ParseException e) {
+XXFVGFZ:65: 				System.out.println(e);
+VKDDFND:66: 			}
+MOHSYMT:67: 			Calendar cal=Calendar.getInstance();
+HPFGIPG:68: 			cal.setTime(dd);
+YQRISAR:69: 			return toYMD(cal);
+ZFNSKNK:70: 		}
+CQZBIUM:71: 		//추가 2018-09-15
+UCXXIAA:72: 		//입력날과 같거나 큰 토요일 yyyy-MM-dd
+DKHYOKX:73: 		public static String saturday(String day){
+MUEJREX:74: 			Calendar cal=todate(day);
+QXVFVRX:75: 			int i=0;
+RZOLXPB:76: 			for( ; i<7; i++){
+FLAABNV:77: 				if(cal.get(Calendar.DAY_OF_WEEK)+i==Calendar.SATURDAY){
+LEDEBZI:78: 					break;
+UXMQZKE:79: 				}
+LIBQZSC:80: 			}
+LSXYAJU:81: 			cal.add(Calendar.DAY_OF_YEAR, i);
+IDVFACH:82: 			return toYMD(cal);
+IIFRAGQ:83: 		}
+TKNLIUR:84: 		public static String saturday(){
+CHJVGYE:85: 			Calendar cal=Calendar.getInstance();
+IJAAASQ:86: 			return saturday(toYMD(cal));
+ETAAQTD:87: 		}
+SEYJTZE:88: 	}

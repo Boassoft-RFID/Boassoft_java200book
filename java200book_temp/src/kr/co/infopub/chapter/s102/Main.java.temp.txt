@@ -1,0 +1,28 @@
+0WLQMTTF:1: 	package kr.co.infopub.chapter.s102;
+0CTHPLGY:2: 	import javafx.application.Application;
+0UWKCPDA:3: 	import javafx.stage.Stage;
+0QBUIJLP:4: 	import javafx.scene.Scene; import javafx.scene.image.Image;
+0NXXIIKJ:5: 	import javafx.scene.layout.BorderPane;
+0KRFRTQP:6: 	import javafx.fxml.FXMLLoader;
+0OFIJIZP:7: 	public class Main extends Application {
+0AZJIPDS:8: 	 @Override
+0RCREMCB:9: 	 public void start(Stage primaryStage) {
+DFSDWHT:10: 		try {
+HTINRNC:11: 			primaryStage.setTitle("Billboard Accordion");
+HGUFKRD:12: 			BorderPane root = (BorderPane)FXMLLoader.load(
+NJUXCZL:13: 					     getClass().getResource("BillboardAccordionFx.fxml"));
+YQQDCBO:14: 			Scene scene = new Scene(root,1200,800);
+APWCFQF:15: 			scene.getStylesheets().add(
+RHCBPKN:16: 					getClass().getResource("application.css").toExternalForm());
+DHZCLUN:17: 			primaryStage.setScene(scene);
+ZXVFJHL:18: 			primaryStage.show();
+PNPDFUY:19: 			primaryStage.setResizable(true);
+RGHCIFY:20: 			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("logo.png")));
+WXLPYYY:21: 		} catch(Exception e) {
+AWJZFUJ:22: 			e.printStackTrace();
+YHNEQNV:23: 		}
+YWIABFU:24: 	 }
+ULAIFAZ:25: 	 public static void main(String[] args) {
+NAEEGQH:26: 		launch(args);
+FJMWACS:27: 	 }
+KIAUJLM:28: 	}

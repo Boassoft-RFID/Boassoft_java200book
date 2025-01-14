@@ -1,0 +1,26 @@
+0ZRCUSXX:1: 	package kr.co.infopub.chapter.s187;
+0QLUFWMI:2: 	import javafx.application.Application;
+0YMPODOM:3: 	import javafx.stage.Stage;
+0LDIZNUN:4: 	import javafx.scene.Scene;
+0GAOBSAF:5: 	import javafx.scene.layout.BorderPane;
+0OOZMMOD:6: 	import javafx.fxml.FXMLLoader;
+0EEOEOLN:7: 	public class Main extends Application {
+0SAEJAHD:8: 	 @Override
+0EOYMCPW:9: 	 public void start(Stage primaryStage) {
+EKGHKDV:10: 		try {
+JVPPZHG:11: 			primaryStage.setTitle("Human Resouce Management System ver. 0.5");
+RNPYLZZ:12: 			BorderPane root = (BorderPane)
+KUVVFPF:13: 					FXMLLoader.load(getClass().getResource("EmpTableFx.fxml"));
+CMBETXP:14: 			Scene scene = new Scene(root,850,800);
+JRLLILS:15: 			scene.getStylesheets().add(
+IMAYMIL:16: 					getClass().getResource("application.css").toExternalForm());
+SPNVJRT:17: 			primaryStage.setScene(scene);
+HWKVEDK:18: 			primaryStage.show();
+YJYQLTR:19: 		} catch(Exception e) {
+VEHYRBF:20: 			e.printStackTrace();
+DDCGNKJ:21: 		}
+ZHEQDBO:22: 	 }
+URZSYWN:23: 	 public static void main(String[] args) {
+CKRKCZB:24: 		launch(args);
+CQIOXNA:25: 	 }
+PIQGWZE:26: 	}

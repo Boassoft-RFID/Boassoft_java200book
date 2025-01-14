@@ -1,0 +1,31 @@
+0DGBSZQD:1: 	package kr.co.infopub.chapter.s190.dto;
+0XMOWJJI:2: 	
+0NZFPJCS:3: 	public class JobsDto {
+0LTOWMKG:4: 		private String job_id;
+0UDKSVUC:5: 		private String job_title;
+0TZCIPYV:6: 		public JobsDto() {
+0ETMDTXA:7: 			super();
+0DQIWGFO:8: 		}
+0ODGBYSQ:9: 		public JobsDto(String job_id, String job_title) {
+LPRKRRK:10: 			super();
+OBCQHXW:11: 			this.job_id = job_id;
+NEZBIMZ:12: 			this.job_title = job_title;
+FNZGQXC:13: 		}
+LIUMKRP:14: 		@Override
+LEDKITX:15: 		public String toString() {
+CNOCKEM:16: 			return "JobsDto [job_id=" + job_id + ", job_title=" + job_title + "]";
+CWBQHGO:17: 		}
+ITBCMIB:18: 		public String getJob_id() {
+FUROOZW:19: 			return job_id;
+IQXYHBM:20: 		}
+AYQQTKF:21: 		public void setJob_id(String job_id) {
+PVGAWSD:22: 			this.job_id = job_id;
+AIMHTTW:23: 		}
+LHDPLFK:24: 		public String getJob_title() {
+FOMHWUW:25: 			return job_title;
+XHIWKTH:26: 		}
+YKLDIYY:27: 		public void setJob_title(String job_title) {
+PMFOADS:28: 			this.job_title = job_title;
+MPJITAG:29: 		}
+VPBPRQX:30: 		
+ORAUYGO:31: 	}

@@ -1,0 +1,12 @@
+0ESSPQLM:1: 	package kr.co.infopub.chapter.s112;
+0SCUSMCI:2: 	public class CardUtil {
+0RXAJWOV:3: 		/**
+0DYFZCWL:4: 		 * 4종류 Spade, Heart, Diamond, Clover
+0JFEDHZZ:5: 		 */
+0XMOSBOQ:6: 		public static String [] SUIT={"S","H","D","C"};
+0WACJIHK:7: 		/**
+0TOUGZTK:8: 		 * 13가지 카드 값 1~10, J,Q,K
+0XOYOUHD:9: 		 */
+XMTGQHY:10: 		public static String [] VALU={"A","2","3","4","5","6","7","8","9","T","J","Q","K"};
+EEEEAWA:11: 		
+WRWUENO:12: 	}//

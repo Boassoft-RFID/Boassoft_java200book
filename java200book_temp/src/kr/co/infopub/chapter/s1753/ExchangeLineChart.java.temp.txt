@@ -1,0 +1,54 @@
+0KYSAQOJ:1: 	package kr.co.infopub.chapter.s1753;
+0FHOWYCN:2: 	import org.json.JSONArray;
+0RXIUPFJ:3: 	import org.json.JSONObject;
+0ONYSEYR:4: 	import javafx.application.Application;
+0FVFEUYH:5: 	import javafx.scene.Scene;
+0JIQDVXK:6: 	import javafx.scene.chart.CategoryAxis;
+0ZGQRDNY:7: 	import javafx.scene.chart.LineChart;
+0VMPIXMX:8: 	import javafx.scene.chart.NumberAxis;
+0WMSAZBW:9: 	import javafx.scene.chart.XYChart;
+UBRJQGF:10: 	import javafx.stage.Stage;
+ICTAONO:11: 	public class ExchangeLineChart extends Application{
+EFDMRSL:12: 	  public static void main(String[] args) {
+INJYZOO:13: 	    launch(args);
+YHUYSCZ:14: 	  }
+OZFELQF:15: 	  @Override
+QNHSFWJ:16: 	  public void start(Stage primaryStage) {
+BWWLVEZ:17: 		primaryStage.setTitle("Exchage Rate");  
+GRJPOKO:18: 		String date=RestDay.todates();  // 오늘
+NXQVGMF:19: 		String base="USD";              // 1달러당 환율   
+BDIJMYV:20: 		
+PMKLMPP:21: 		CategoryAxis xAxis = new CategoryAxis();
+JABWPYE:22: 		NumberAxis yAxis = new NumberAxis(1000,1200,10);
+SVDUQAL:23: 		yAxis.setLabel("KRW /1 "+base);
+NPEKSJW:24: 		xAxis.setLabel("Date");
+NPQGJHS:25: 		LineChart<String, Number> lineChart = 
+DRPTHBM:26: 				        new LineChart<String, Number>(xAxis, yAxis);
+VPQSRKG:27: 		lineChart.setTitle("Exchage Rates "+date);
+UUHTUNE:28: 		
+GANWKQX:29: 		XYChart.Series<String, Number> series1 =
+DXCCXVE:30: 				             new XYChart.Series<String, Number>();
+UIFQEAT:31: 		physicalChartData(series1,base, date);
+CNIDXAQ:32: 	
+HFVKFLH:33: 		Scene scene = new Scene(lineChart, 1400, 800);
+WKJMQGM:34: 	    lineChart.getData().addAll(series1);
+CABZJNV:35: 	    primaryStage.setScene(scene);
+SESSSNB:36: 	    primaryStage.show();
+MANRURY:37: 	  }
+NOBDWNZ:38: 	  public  void physicalChartData(XYChart.Series<String, Number> series1, 
+UANMUNK:39: 			  String base,String date ) {
+FZHPGOD:40: 	    series1.setName("KRW");
+QEZETSL:41: 	    JSONObject jsobj=FixerConvertJSON.convert(date,base);
+PVZRJSE:42: 	    JSONArray rates=jsobj.getJSONArray("rates");
+QHEHJPP:43: 		for(int i=0; i< rates.length() ;i++){ // 일 년 0~365 366개
+GUEUILF:44: 			JSONObject fix=rates.getJSONObject(i);
+IAPSUVE:45: 			// 365일 전부터 오늘까지
+FNRMZMX:46: 			String todays=RestDay.toWantedDay(date,i+1-rates.length()); //1+365-366
+GVTDCKH:47: 	    	if(!RestDay.isRest(todays)){
+CPSCPOE:48: 	    		series1.getData().add(
+OLEITAZ:49: 	    		  new XYChart.Data<String, Number>(todays, fix.getDouble("KRW") ));
+AQGFAUZ:50: 	    		System.out.println(fix);
+YLWRGTH:51: 	    	}
+DPKMHWL:52: 		}
+UKSRJOU:53: 	  }
+IPIVHNM:54: 	}

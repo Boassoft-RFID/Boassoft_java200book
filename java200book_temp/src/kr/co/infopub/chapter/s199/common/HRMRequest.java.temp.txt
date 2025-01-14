@@ -1,0 +1,47 @@
+0QAGATGH:1: 	package kr.co.infopub.chapter.s199.common;
+0JMYAXEB:2: 	import java.io.*;
+0UXLPVQV:3: 	public class HRMRequest implements Serializable {
+0OEPYGDO:4: 	 private int commandValue;
+0DUNIQPM:5: 	 private HRMResponse results;
+0LYCSVAD:6: 	 private Serializable requestObject;
+0YUEQYYI:7: 	 // CRUD 1234 - 상수이므로 대문자를 권장한다
+0OURLVLZ:8: 	 public static final int findAllEmployees=2010;           // 1
+0XPLSKKO:9: 	 public static final int findAllDepartments=2020;         // 2
+FHJUJIX:10: 	 public static final int findTreeManagerInEmployee=2030;  // 3
+ORORPYY:11: 	 public static final int findEmployeesByDepartName=2040;  // 4
+OHYZDIR:12: 	 public static final int getEmployeesTotal=2510;          // 5
+MVKRQTI:13: 	 public static final int findAllDepartments2=2050;        // 6
+UVRXPPX:14: 	 public static final int findAllDepCounts=2060;           // 7
+WDZTQVW:15: 	 public static final int findAllJobs=2070;                // 8
+GCQCATK:16: 	 public static final int findEmployeesByManagerId=2080;   // 9
+RJSDXMB:17: 	 public static final int findEmployeesByEmpId=2090;       // 10
+TDBHBTF:18: 	 public static final int findManagersByName=2100;         // 11
+ARSFOSR:19: 	 public static final int getTreeMaxLevel=2520;            // 12
+AVXQWYF:20: 	 public static final int findAfterAdd=2530;               // 13
+IRIKNDK:21: 	 public static final int addEmployee=1010;                // 14
+GFQHVET:22: 	 public static final int updateEmployee=3010;             // 15
+NERPSMW:23: 	 public static final int updateJobHistory=3020;           // 16
+NJTVVXE:24: 	 public static final int deleteEmployee=4010;             // 17
+UPYEKZV:25: 	 public static final int findEmployeeById=2110;           // 18
+YTAFYAN:26: 	 //생성자 setCommandValue()메소드 필요 없도록 생성자에서 처리
+EXQABUT:27: 	 public HRMRequest (int comm) {
+KCTYVTR:28: 	    commandValue = comm;
+GFEKHQN:29: 	    results = new HRMResponse();
+WWRKCTW:30: 	 }
+AYAZUPK:31: 	 //처리할 액션의 타입(commandValue)을 리턴
+PRBSCXL:32: 	 public int getCommandValue() {
+WTDDDVO:33: 	    return commandValue;
+DWZVWWZ:34: 	 }
+EVMVETK:35: 	 // 직렬화 객체를 반환
+HIKBWRW:36: 	 public Serializable getRequestObject() {
+PBUVURX:37: 		return requestObject;
+BNFGGOG:38: 	 }
+JNUJFNO:39: 	 // 직렬화 객체를 모두 받을 수 있다- 다형성
+KLRVKTD:40: 	 public void setRequestObject(Serializable requestObject) {
+YSVWZXH:41: 		this.requestObject = requestObject;
+KGDZLYI:42: 	 }
+LOCUYEA:43: 	 // 응답 객체 
+KYLGHLY:44: 	 public HRMResponse getResult() {
+MEYKKPV:45: 	    return results;
+HHDWPZA:46: 	 }
+EAPXXGO:47: 	}

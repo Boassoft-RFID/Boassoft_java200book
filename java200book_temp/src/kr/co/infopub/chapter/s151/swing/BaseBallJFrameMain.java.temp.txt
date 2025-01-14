@@ -1,0 +1,16 @@
+0SCQVBKM:1: 	package kr.co.infopub.chapter.s151.swing;
+0GONOAEY:2: 	import javax.swing.JFrame;
+0AFCRVKN:3: 	public class BaseBallJFrameMain {
+0NUYFRCK:4: 	
+0SZAOKKU:5: 		public static void main(String[] args) {
+0ANSTEPW:6: 			
+0ERCAAUF:7: 			BaseBallJFrame mf=new BaseBallJFrame();
+0FLNXGVG:8: 			mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+0ZQLVDEH:9: 			mf.setSize(500, 500);
+TUJJPCH:10: 			mf.setTitle("Hyo Baseball Game ver 0.9");
+GWKGKKE:11: 			mf.setVisible(true);
+WNZGCJU:12: 			mf.setResizable(false);
+KUDYARP:13: 			
+JWJSXJL:14: 		}
+ZYFIBCJ:15: 	
+GXBTLXN:16: 	}

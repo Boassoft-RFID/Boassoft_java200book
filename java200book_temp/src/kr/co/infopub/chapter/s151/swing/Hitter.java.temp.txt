@@ -1,0 +1,36 @@
+0FHLYSGG:1: 	package kr.co.infopub.chapter.s151.swing;
+0YMWOTHJ:2: 	
+0MIIIDTF:3: 	import java.util.Arrays;
+0ZRHBJFV:4: 	import java.util.Scanner;
+0MZLHPKS:5: 	
+0CEGKEYN:6: 	public class Hitter {
+0CSWLJQQ:7: 	
+0NUJRZUG:8: 		private int [] gong;
+0KTZXVAW:9: 		private int n;//3
+MFLEFYL:10: 		private int num=10;
+EGAJMOP:11: 		public Hitter() {
+XDBFVCP:12: 			this(10,3);
+IRUDUEP:13: 		}
+KGYEGKN:14: 		public Hitter(int num,int n ) {
+MVQHDOI:15: 			super();
+HRCZHJT:16: 			this.n = n;
+EJSHLYX:17: 			this.num = num;
+XNOYBYC:18: 			gong=new int[n]; //gong 3개
+SCRDXEK:19: 			Arrays.fill(gong, -1);
+GJRRADM:20: 		}
+EBTNYUJ:21: 		public int[] getGong() {
+KVQOHXG:22: 			return gong;
+THOBXZQ:23: 		}
+ISNXEMC:24: 		
+QPPWKDJ:25: 		public void make(int[] index){
+VYFXGSQ:26: 			System.arraycopy(index, 0, gong, 0, index.length);
+EJBNOWJ:27: 		}
+NTVQOWN:28: 		
+BGYQRDC:29: 		public void print(){
+PBVOKRA:30: 			System.out.println("Hitter");
+JLUDTKS:31: 			for (int i = 0; i < n; i++) {
+DOYJIVE:32: 				System.out.printf("%d\t",gong[i]);
+NKBPSGR:33: 			}
+SIDFSRZ:34: 			System.out.println();
+VFEJQZB:35: 		}
+XYYBXDH:36: 	}

@@ -1,0 +1,12 @@
+0EZMVWVU:1: 	package kr.co.infopub.chapter.s027;
+0NAOZRJV:2: 	// 연산  % * /
+0ZFFMVOS:3: 	public class BioCalendar {
+0YKORFMO:4: 		public static final int PHYSICAL = 23;     // 상수(개발자 정의), 상수값은 변경 불가
+0SUVSVRJ:5: 		public static void main(String[] args) {
+0BZKPQLH:6: 			int index=PHYSICAL;                  // 상수값을 변수에 대입
+0WWGIWCP:7: 			int days=1200;   
+0WTLMOCV:8: 			// Math.PI 3.14에서 정의되어 있는 상수
+0UMYTGFH:9: 			double vals=(days % index) * 2 * Math.PI / index ;
+VEBJNKU:10: 			System.out.println( Math.toDegrees(vals) +"도");
+DZUYSNZ:11: 		}
+FPGCWSJ:12: 	}

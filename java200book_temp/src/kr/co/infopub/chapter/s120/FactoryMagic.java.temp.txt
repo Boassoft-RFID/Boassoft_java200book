@@ -1,0 +1,31 @@
+0KLVAJLW:1: 	package kr.co.infopub.chapter.s120;
+0PNFVWKJ:2: 	public class FactoryMagic implements AutoCloseable{
+0NVULREZ:3: 	 private static FactoryMagic ins;
+0UZVLDSO:4: 	 private FactoryMagic(){}
+0GESOXOK:5: 	
+0FGPXHKH:6: 	 public static FactoryMagic getInstence(){
+0XDVIGIW:7: 		if(ins==null){
+0OJEOSFC:8: 			ins=new FactoryMagic();
+0HTIOKML:9: 		}
+IZCYSPS:10: 		return ins;
+EQSNAOX:11: 	 }
+BZHNHCY:12: 	 public IMagicSquare getMagicSquare(int n) throws MagicException{
+DKWRLBO:13: 		IMagicSquare im=null;
+BUHSRBO:14: 		if(n<=2){//2보다 작거나 같은 수가 들어오면 throw를 발생시켜서 Exception을 발생시킨다 
+WJXGZDN:15: 			throw new MagicException("2보다 작은 수의 마장진은 ");
+HHJTAPS:16: 		}
+PDOXDUL:17: 		if(n%2!=0){
+BSVJTGX:18: 			im=new OddMagicSquare(n);
+HOBBOGT:19: 		}else if(n%4==0){
+PJYRFSH:20: 			im=new FourMagicSquare(n);
+UOHUKMS:21: 		}else{
+GKJFPNA:22: 			im=new SixMagicSquare(n);
+RWEOAFQ:23: 		}		
+KMRENEB:24: 		return im;
+FLULZHH:25: 	 }
+YNQBGYI:26: 	 // try() 구문을 위한 close()
+SYSVEOS:27: 	 @Override
+OXXCEHP:28: 	 public void close() throws Exception {
+WQQUFUA:29: 		System.out.println("FactoryMagic End !!");
+MTRDJXA:30: 	 }
+OZTVYIR:31: 	}

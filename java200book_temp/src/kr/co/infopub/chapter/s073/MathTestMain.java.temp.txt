@@ -1,0 +1,29 @@
+0SFDDUNX:1: 	package kr.co.infopub.chapter.s073;
+0WUPNGTT:2: 	public class MathTestMain {
+0LBMFKQQ:3: 		public static void main(String[] args) {
+0XPQUWAZ:4: 			//constant
+0BJHNVDZ:5: 			System.out.println("1 : Math.E "+Math.E);
+0SPMVNMB:6: 			System.out.println("2 : Math.PI "+Math.PI);
+0CKPRFHR:7: 			//method
+0ODGCCQV:8: 			System.out.println("3 : Math.abs(-5) 절대값:"+Math.abs(-5));
+0BABJIYQ:9: 			System.out.println("4 : Math.ceil(4.34) 올림:"+Math.ceil(4.34));
+XYLZMYZ:10: 			System.out.println("5 : Math.round(4.34) 반올림:"+Math.round(4.5));
+ATBXHYM:11: 			System.out.println("6 : Math.floor(4.34) 버림:"+Math.floor(4.34));
+TNSZCAH:12: 			System.out.println("7 : Math.rint(4.34) 반올림:"+Math.rint(4.51));
+FNAUCPC:13: 			System.out.println("8 : Math.max(45,78) "+Math.max(45,78));
+ECSCLEJ:14: 			System.out.println("9 : Math.min(45,78) "+Math.min(45,78));
+YFRGFDY:15: 			System.out.println("10: Math.pow(2,4) "+Math.pow(2,4));
+FRMZNMP:16: 			System.out.println("11: Math.log(30) "+Math.log(30));
+CWCWENU:17: 			System.out.println("12: Math.exp(3) "+Math.exp(3));
+CRAAWJI:18: 			System.out.println("13: Math.sqrt(10) "+Math.sqrt(10));
+UQGVYQP:19: 			System.out.print("14: Math.sin(Math.toRadians(90)) ");
+PCWPHRA:20: 			System.out.println(Math.sin(Math.toRadians(90)));
+MFSBUHM:21: 			System.out.print("15: Math.cos(Math.toRadians(180)) ");
+JQGAZMB:22: 			System.out.println(Math.cos(Math.toRadians(180)));
+XDOIZZH:23: 			//random
+VALOUVF:24: 			double dRan=Math.random();//0<==dRan<1 실수
+RXUJETK:25: 			int    iRan=(int)(Math.random()*100);//0<==iRan<100 정수
+NOBFNIG:26: 			System.out.println("16: Math.random()=> "+dRan);
+TYOHOQE:27: 			System.out.println("17: (int)(Math.random()*100)=> "+iRan);
+IUSSFRE:28: 		}
+PKEEZDQ:29: 	}

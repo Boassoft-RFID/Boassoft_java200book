@@ -1,0 +1,77 @@
+0JYMHMHU:1: 	package kr.co.infopub.chapter.s199.test;
+0VSJDOLV:2: 	import java.sql.SQLException;
+0HXHPGBZ:3: 	import java.util.List;
+0ZPIAMCB:4: 	import javafx.application.Application;
+0FHQSEBX:5: 	import javafx.geometry.Insets;
+0QSTERRH:6: 	import javafx.scene.Scene;
+0YAAWCZD:7: 	import javafx.scene.control.Label;
+0EYODNFX:8: 	import javafx.scene.control.TreeItem;
+0DJLEDPJ:9: 	import javafx.scene.control.TreeView;
+FCMSTJO:10: 	import javafx.scene.layout.BorderPane;
+IWXXMLJ:11: 	import javafx.stage.Stage;
+JPFVTUA:12: 	import kr.co.infopub.chapter.s200.client.EmployeeService;
+XIMICBL:13: 	import kr.co.infopub.chapter.s200.dto.Employee;
+XXLKMOE:14: 	import kr.co.infopub.chapter.s200.util.EmpUtil;
+EYJVMIA:15: 	// s186, s194-13 test
+WGDCBUO:16: 	public class EmpTreeFx extends Application {
+TIURQVZ:17: 	 public static void main(String[] args) {
+LOXQYWY:18: 	  launch(args);
+BJTQSPR:19: 	 }
+RDZENCS:20: 	 // Create a tree hierarchy
+IHLSIRE:21: 	 public  void makeEmpTree(TreeItem<String> front,List<Employee> dlists,
+RQSSZFZ:22: 			                                      String key, int index,int max){
+RWZKXGS:23: 	  if(index>max){return ; }  //If it goes over max, it's over
+CKXKVYD:24: 	  for (Employee emp: dlists) {  //There's a number, so it'll be over.
+VONGWIS:25: 		if(EmpUtil.level(emp)!=index){   //Find only the desired level
+CJJPCSE:26: 			continue;
+UUQKUHB:27: 		}else if(index>1 && EmpUtil.level(emp)==index){   //From 2 to 1 compared to the key value of 1
+YHPPJWW:28: 			if(EmpUtil.level(emp,index-1).equals(key)){
+MDCSCVE:29: 				TreeItem<String> aa=new TreeItem<String>(EmpUtil.tname(emp, index));
+IUWDVBR:30: 				front.getChildren().add(aa);
+UOFNGGL:31: 				makeEmpTree(aa,dlists,EmpUtil.level(emp,index),index+1,max);
+IIVPWWG:32: 			}else{
+JHOOQIP:33: 				continue;
+EAXIOFK:34: 			}
+CTQCIII:35: 		}else if(EmpUtil.level(emp)==1){  //The key value of the parent (0) of 1 does not exist
+TXRSLFD:36: 			TreeItem<String> aa=new TreeItem<String>(EmpUtil.tname(emp, 1));
+TNLGAFC:37: 			front.getChildren().add(aa);
+JLGZBWR:38: 			makeEmpTree(aa,dlists,EmpUtil.level(emp,1),2,max);
+FMWXYCP:39: 		}
+MFVBDSU:40: 	  }
+RYUVZWO:41: 	 }	
+RTZZGEJ:42: 	 @Override
+WFFXEFC:43: 	 public void start(Stage stage) {
+PJMOPZK:44: 	  BorderPane vbox=new BorderPane();
+FPJHMXF:45: 	  vbox.setPadding(new Insets(10, 10, 10, 10));
+MMHAIES:46: 	  int max=0;
+OYWICDS:47: 	  try {
+CSUNYQE:48: 		// DAO, Convert를 감싸서 편기하게 사용
+WPQBTNK:49: 	    EmployeeService service=EmployeeService.getInstance();
+ENFZWBJ:50: 		// 가장 큰 레벨을 얻느다. 
+KRISAEZ:51: 		max = service.getTreeMaxLevel();
+TILYCWF:52: 		// 관리자/부서원을 트리 관계를 얻는다. 계층 구조다.
+GOJIDCN:53: 		List<Employee> dlists = service.findTreeManagerInEmployee();
+CLZODDJ:54: 		// Create a "manager and employee" tree item.
+MPXVLRA:55: 		TreeItem<String> root = new TreeItem<String>("managers and staff");
+BSITQVY:56: 		// Attach a hierarchy tree item to the "Manager and Staff" tree item.
+FVFBFMX:57: 		makeEmpTree(root,dlists,"",1,max);
+AKDVXTS:58: 		// 트리뷰에 "managers and staff" 트리 아이템을 붙인다.
+APYIVMX:59: 		TreeView<String> treeView = new TreeView<String>(root);
+IXAFUPQ:60: 		root.setExpanded(true);
+IKGRPCB:61: 		vbox.setCenter(treeView);
+CAJYYMB:62: 		Label label = new Label("                          ");
+LAUDQXB:63: 		vbox.setBottom(label);
+ODLGAGS:64: 		Scene scene = new Scene(vbox, 400, 800);
+NEFPOMW:65: 		stage.setScene(scene);
+YLDTWTO:66: 		stage.setTitle("Human Resouce Management System ver. 0.8");
+VOIYWGY:67: 		stage.show();
+JXSXAEZ:68: 		treeView.getSelectionModel().selectedItemProperty()
+HPAGBIH:69: 		.addListener( (observable, oldValue, newValue) -> {
+CPAVMDW:70: 			String name =newValue.getValue();
+VQJTOPX:71: 			label.setText(   EmpUtil.dep(name));
+ZJDOZBT:72: 		});
+TXUAJRN:73: 		} catch (SQLException e) {
+YXBCORZ:74: 			System.out.println(e);
+SMKXQRF:75: 		}
+VANYUYE:76: 	 }
+EILYMYN:77: 	}

@@ -1,0 +1,53 @@
+0BOAQBVH:1: 	package kr.co.infopub.chapter.s199.common;
+0MGZPBAM:2: 	
+0FYCWRRK:3: 	import java.io.Serializable;
+0DAZNUBD:4: 	
+0VKEEKCG:5: 	public class DepartmentDto implements Serializable{
+0BPBZPIC:6: 		
+0FFWVBVE:7: 		private int department_id;
+0TFMXDCG:8: 		private String department_name="NOTYET";
+0HDADNKD:9: 		private int manager_id;
+ZQOVUQO:10: 		private int location_id;
+PALESQK:11: 		
+WPDZXFT:12: 		public DepartmentDto() {
+VGBKWUC:13: 			super();
+UAAAZJG:14: 		}
+DBTOQKG:15: 		public DepartmentDto(int department_id, String department_name, int manager_id, int location_id) {
+KATINFY:16: 			super();
+LDCUQJN:17: 			this.department_id = department_id;
+WSHMSHI:18: 			this.department_name = department_name;
+NVXZBEB:19: 			this.manager_id = manager_id;
+VLPFVBY:20: 			this.location_id = location_id;
+WBOWDBJ:21: 		}
+BEWVIJK:22: 		@Override
+MBLNIBC:23: 		public String toString() {
+QMJPJCQ:24: 			return "DepartmentDto [department_id=" + department_id + ", department_name=" + department_name
+HQFNJXN:25: 					+ ", manager_id=" + manager_id + ", location_id=" + location_id + "]";
+FCVADNT:26: 		}
+LSWKLAQ:27: 		public int getDepartment_id() {
+VMZHGXO:28: 			return department_id;
+JQWVNPS:29: 		}
+EHHBONV:30: 		public void setDepartment_id(int department_id) {
+EABAWZI:31: 			this.department_id = department_id;
+XAIZIGA:32: 		}
+VFQXAAR:33: 		public String getDepartment_name() {
+TIYFAAR:34: 			return department_name;
+JRMPFWI:35: 		}
+HRTUHOR:36: 		public void setDepartment_name(String department_name) {
+REFPFGP:37: 			this.department_name = department_name;
+NLEHUPD:38: 		}
+ZBPVKEK:39: 		public int getManager_id() {
+GDSOSOX:40: 			return manager_id;
+QEOEFVH:41: 		}
+LQWFFUY:42: 		public void setManager_id(int manager_id) {
+QFJTETF:43: 			this.manager_id = manager_id;
+JVJYFOG:44: 		}
+RETVRMW:45: 		public int getLocation_id() {
+XUNSXNY:46: 			return location_id;
+UQWKQMG:47: 		}
+ZHUHEHW:48: 		public void setLocation_id(int location_id) {
+RAHRYFH:49: 			this.location_id = location_id;
+QNVSNCA:50: 		}
+PSCATWU:51: 		  
+GUEPDOM:52: 		  
+GXPCEBN:53: 	}

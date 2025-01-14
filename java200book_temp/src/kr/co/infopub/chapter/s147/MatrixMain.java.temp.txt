@@ -1,0 +1,18 @@
+0IYKWNNI:1: 	package kr.co.infopub.chapter.s147;
+0SUTJAPR:2: 	// 역행렬
+0OZDABNL:3: 	public class MatrixMain {
+0POMLCZO:4: 		public static void main(String[] args) {
+0ILBVQQP:5: 			double [][] basic={{2,3,1},{4,1,-3},{-1,2,2}};
+0EMLQPKK:6: 			double [][] y={{-4},{-2},{2}};
+0ISDSZKI:7: 			Matrix A=new Matrix(basic);
+0IZPUKYJ:8: 			A.print();
+0XXKPFWF:9: 			Matrix Y=new Matrix(y);
+PEDMYKA:10: 			Y.print();
+XUXWDYK:11: 			Matrix A_1=MatrixUtil.revMatrix(A);
+TCUBQZD:12: 			A_1.print();
+ZHLIHKJ:13: 			Matrix E=MatrixUtil.mulMatrix(A_1, A);
+XQBRMME:14: 			E.print();
+GWTFYVR:15: 			Matrix X=MatrixUtil.mulMatrix(A_1,Y);
+COBLHVU:16: 			X.print();
+RWHQHKP:17: 		}
+ECPKHSJ:18: 	}

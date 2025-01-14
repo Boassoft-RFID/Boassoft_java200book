@@ -1,0 +1,60 @@
+0QJPHQWB:1: 	package kr.co.infopub.chapter.s199.test;
+0OAJXPDV:2: 	import java.sql.SQLException;
+0QOBGTUD:3: 	import java.util.List;
+0FNVYFPJ:4: 	import javafx.application.Application;
+0TGEGYKU:5: 	import javafx.geometry.Insets;
+0DZXAADH:6: 	import javafx.scene.Scene;
+0FZKWJJE:7: 	import javafx.scene.control.Label;
+0RXYDTJH:8: 	import javafx.scene.control.TreeItem;
+0OCOQKLF:9: 	import javafx.scene.control.TreeView;
+YSVLKMU:10: 	import javafx.scene.layout.BorderPane;
+XXDLYDY:11: 	import javafx.stage.Stage;
+IVKMSZB:12: 	import kr.co.infopub.chapter.s200.client.EmployeeService;
+VHTELGW:13: 	import kr.co.infopub.chapter.s200.dto.Department;
+TDSBDYB:14: 	import kr.co.infopub.chapter.s200.util.EmpUtil;
+OWXROUU:15: 	// s185
+AWVZTEV:16: 	public class DepTreeFx extends Application {
+MFJRXPE:17: 	public void makeDepTree(TreeItem<String> front,List<Department> dlists){
+ZCSGRFS:18: 		for (Department dep: dlists) {
+MPYRKDC:19: 	      TreeItem<String> troots=new TreeItem<String>(EmpUtil.tname(dep));
+XQCVYSC:20: 	      front.getChildren().add(troots);
+JGNENOQ:21: 		}
+HWJGSDE:22: 	}	
+HOJPOCS:23: 	@Override
+FDOYPQR:24: 	public void start(Stage stage) {
+FVBWNGK:25: 	  BorderPane vbox=new BorderPane();
+YHLOTJY:26: 	  vbox.setPadding(new Insets(10, 10, 10, 10));
+CJUENAR:27: 	  try {
+YFALDSP:28: 		    // DAO, Convert를 감싸서 편기하게 사용
+RFXCKZL:29: 		    EmployeeService service=EmployeeService.getInstance();
+VISSTFZ:30: 		    // 사원이 있는 부서 가져오기
+LYRNBFR:31: 			List<Department> dlists=service.findAllDepartments();
+RETQFPD:32: 			// departmental item
+UVMKABK:33: 			TreeItem<String> root = new TreeItem<String>("부서");
+HKDEBEM:34: 			// departmental item에 부서들 붙이기
+UZVVFAN:35: 			makeDepTree(root,dlists);
+VVCHZKZ:36: 			// Attaching tree items to a tree view
+VOFEVOU:37: 			TreeView<String> treeView = new TreeView<String>(root);
+WVCFLMM:38: 		
+AYTPVRN:39: 		root.setExpanded(true);
+GPYGDZL:40: 		vbox.setCenter(treeView);
+WMEWLYS:41: 		Label label = new Label("                          ");
+SINYRFM:42: 		vbox.setBottom(label);
+BFGKSQK:43: 		Scene scene = new Scene(vbox, 400, 800);
+MNVTOFD:44: 		stage.setScene(scene);
+XLWEPSU:45: 		stage.setTitle("Human Resouce Management System ver. 0.8");
+KKSOGBG:46: 		stage.show();
+AVBKWGG:47: 		// 트리뷰의 한 아이템을 선택하면 선택된 아이템의 정보를 화면 아랫부분에 출력
+DNCCAUW:48: 		treeView.getSelectionModel().selectedItemProperty()
+MGDTUZB:49: 		.addListener( (observable, oldValue, newValue) -> {
+WIBZZAB:50: 			String name =newValue.getValue();
+BIUBNSP:51: 			label.setText(   EmpUtil.dep(name));
+YAUWYAX:52: 			});
+DBLDBXU:53: 	   } catch (SQLException e) {
+NFWUJAN:54: 			System.out.println(e);
+IEMNULS:55: 	   }
+GUCJMUV:56: 	 }
+ODHUYQQ:57: 	 public static void main(String[] args) {
+IAKFVBZ:58: 	   launch(args);
+UUDQWLB:59: 	 }
+MDUCUNH:60: 	}

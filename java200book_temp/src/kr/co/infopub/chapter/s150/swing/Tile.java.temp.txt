@@ -1,0 +1,64 @@
+0DMOVHHB:1: 	package kr.co.infopub.chapter.s150.swing;
+0ZIDSEUS:2: 	
+0VAMPIMS:3: 	public class Tile {
+0IMJZEDV:4: 		
+0YNKOMUH:5: 		private int tileNum=0;//0~15 갖고 있는 번호
+0QJWQPLL:6: 		private int row;//그림 행 위치
+0HJBEWVM:7: 		private int col;//그림 행 위치
+0QAAEMQY:8: 		
+0EDHWGAM:9: 		//0  1	2	3
+TPHKHUS:10: 		//4	 5	6	7
+LSHIYVF:11: 		//8	 9	10	11
+ODTQLRL:12: 		//12 13	14	15 ==>15를 empty
+HHVBFUD:13: 	
+XAFDPLC:14: 		@Override
+JSONWDX:15: 		public String toString() {
+YUQCAZW:16: 			//return String.format("%2d(%d,%d)",tileNum,row,col);
+RJQNLVI:17: 			return String.format("%2d",tileNum);
+YSPNCYI:18: 		}
+XZQQUBJ:19: 		public Tile(int tileNum, int row, int col) {
+PPMAOYF:20: 			super();
+JQUSEYO:21: 			this.tileNum = tileNum;
+VCQRUAQ:22: 			this.row = row;
+QWIKNJB:23: 			this.col = col;
+ZYETZGF:24: 		}
+DDJVIBP:25: 		public Tile( int row, int col) {
+BQLUDGW:26: 			this(15,row,col);
+BCZKBYD:27: 		}
+DABGSNZ:28: 		public Tile( ) {
+PBLFVWX:29: 			this(15,3,3);
+QUGTMTW:30: 		}
+QVIIWHM:31: 		public int getRow() {
+OVADMOX:32: 			return row;
+ZYJZTUK:33: 		}
+ENTWHWM:34: 	
+MVBWSQW:35: 		public int getCol() {
+WXPFXEP:36: 			return col;
+JHZUCIG:37: 		}
+TVBVALC:38: 	
+LSTVVLL:39: 		public void setRow(int row) {
+RWYKTXX:40: 			this.row = row;
+VGHNMHP:41: 		}
+EPDMPQC:42: 		public void setCol(int col) {
+IKRKLTU:43: 			this.col = col;
+YEJKSCB:44: 		}
+HSODJNK:45: 		public int getTileNum() {
+MSQMELL:46: 			return tileNum;
+FCMPOHQ:47: 		}
+OASWKXC:48: 		public void setTileNum(int tileNum) {
+VZTNCSG:49: 			this.tileNum = tileNum;
+WHGGWJA:50: 		}
+PYAGFOJ:51: 		
+XNTOJRT:52: 	//	@Override
+TNIGOBU:53: 	//	public int hashCode() {
+SEFBCSX:54: 	//		final int prime = 31;
+CQDITBH:55: 	//		int result = 1;
+YQVNVTJ:56: 	//		result = prime * result + tileNum;
+BJTDWHA:57: 	//		return result;
+FSLLYOF:58: 	//	}
+AUDJEOE:59: 	//	@Override
+RRCBFPP:60: 	//	public boolean equals(Object obj) {
+QXGAZXB:61: 	//		Tile other = (Tile) obj;
+SRHFYZQ:62: 	//		return getTileNum()==other.getTileNum()?true:false;
+WDKKVJQ:63: 	//	}
+GZKLYTU:64: 	}

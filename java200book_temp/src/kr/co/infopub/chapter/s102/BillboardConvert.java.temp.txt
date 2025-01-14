@@ -1,0 +1,31 @@
+0HUTJKLC:1: 	package kr.co.infopub.chapter.s102;
+0PFVNMJY:2: 	import java.util.ArrayList;
+0ELHTWCP:3: 	import javafx.collections.FXCollections;
+0TBLMAOQ:4: 	import javafx.collections.ObservableList;
+0WVZBNZJ:5: 	
+0SLOMQZC:6: 	public class BillboardConvert {
+0IQIHTEW:7: 	 public static BillbaordProperty toBill(Billbaord b){
+0KWVMJQH:8: 		BillbaordProperty bp=new BillbaordProperty();
+0CCRRLML:9: 		bp.setRank(b.getRank());
+NKRSWNT:10: 		bp.setSong(b.getSong());
+WSBCTVM:11: 		bp.setArtist(b.getArtist());
+DDFDWVU:12: 		bp.setImagesrc(b.getImagesrc());
+PNTUIVO:13: 		bp.setLastweek(b.getLastweek());
+XYDQHUV:14: 		return bp;
+PSJAEYW:15: 	 }
+MOCYLWK:16: 	 public static ArrayList<BillbaordProperty>toBill(ArrayList<Billbaord> blist){
+JNFOULY:17: 		ArrayList<BillbaordProperty> bplists=new ArrayList<>();
+EXGVDKM:18: 		for(Billbaord b:blist){
+OWMUCMZ:19: 			bplists.add(toBill(b));
+ODRCQSH:20: 		}
+PNUTCQX:21: 		return bplists;
+RTEKBLK:22: 	 } 
+JONIHYD:23: 	 public static ObservableList<BillbaordProperty> toBillboard(ArrayList<BillbaordProperty> alists){
+SQACEPM:24: 		ObservableList<BillbaordProperty> bList =
+AWYYSBV:25: 				FXCollections.observableArrayList(alists);
+SFXVLXE:26: 		return bList;
+YXPHWCY:27: 	 }
+ENAKQKY:28: 	 public static ObservableList<BillbaordProperty> toObservBill(ArrayList<Billbaord> alists){
+ZXYSTQO:29: 		return toBillboard(toBill(alists));
+IKAZFUF:30: 	 }
+QWEXZIW:31: 	}

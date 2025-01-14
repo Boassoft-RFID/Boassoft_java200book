@@ -1,0 +1,5 @@
+HSZAFBC:1: 	package kr.co.infopub.chapter.s150.swing;
+RBHRHPF:2: 	
+NFOQYCU:3: 	public class TileUtil {
+QBDEFRN:4: 		public static final int TILESIZE=100;
+AKBQBPE:5: 	}

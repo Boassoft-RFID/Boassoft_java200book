@@ -1,0 +1,26 @@
+0HMRINGG:1: 	package kr.co.infopub.chapter.s052;
+0YIUDFPW:2: 	// String method
+0KCTGGTY:3: 	public class BitNShiftMain {
+0NMDPFNR:4: 		public static int BITMASK=1;
+0LRWFXJN:5: 		// 10진법 수를 2진수 스트링으로 변환
+0EKYJUJB:6: 		public static String shifts(int a){
+0XCOPPKW:7: 			int BITMASK=1;
+0DVHINHQ:8: 			String s="";
+0VLTTCXU:9: 			for(int i=0;i<=31;i++){
+QWASMOU:10: 				s=(a & BITMASK)+s;
+TAFFNCN:11: 				a>>=1;   //  a/=2;
+GIWLWMG:12: 			}
+ENFQWNB:13: 			return s.substring(s.indexOf('1'));
+DQFLOCJ:14: 		}
+PSXRLGB:15: 		public static void main(String[] args) {
+HYVXZVC:16: 			int intNums1=123;
+GFICYJR:17: 			int intNums2=-123;
+LDKFACQ:18: 			System.out.printf("%d  : %s%n",intNums1,shifts(intNums1));
+JQXQVUI:19: 			System.out.printf("%d : %s%n",intNums2,shifts(intNums2));
+MYWXJCT:20: 			// Integer API 사용
+ZDEQMQJ:21: 			System.out.println(Integer.toBinaryString(intNums1));
+JNPKLXB:22: 			System.out.println(Integer.toOctalString(intNums1));
+BDUPCYS:23: 			System.out.println(Integer.toHexString(intNums1));
+JZVDJMA:24: 		}
+USSZBJW:25: 	
+EBYNCRW:26: 	}

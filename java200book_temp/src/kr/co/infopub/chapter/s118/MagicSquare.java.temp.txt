@@ -1,0 +1,80 @@
+0GXMVEZJ:1: 	package kr.co.infopub.chapter.s118;
+0XCTZCCY:2: 	public class MagicSquare {
+0EYPXLNO:3: 		protected int [][] magic;     // 자식이 public처럼 사용
+0VOLQNVZ:4: 		protected int n;              // 자식이 public처럼 사용
+0ETBADSM:5: 		
+0BLIGWRM:6: 		public int[][] getMagic() {
+0KAMUCYX:7: 			return magic;
+0KFYXTSK:8: 		}
+0UYKBJBP:9: 		// 반듯이 int를 입력 받아야 하는 생성자
+JWEFFJH:10: 		public MagicSquare(int n) {
+YQQABCC:11: 			magic=new int[n][n];
+QYYAIFW:12: 			this.n=n;
+DZVWCVD:13: 		}
+MFKFPWN:14: 	    // 기본 생성자 제거
+RFVVFBZ:15: 		//public MagicSquare() {}
+PGRNKBE:16: 		
+INEMSJG:17: 		public void make( ){ }  // make() 구현했으나 내용 없음
+WONTGJB:18: 		
+QFXQIZI:19: 		public void print(){    // public 자식이 물려받음 
+TNAEATV:20: 			System.out.println();
+BZGNLUB:21: 			System.out.println(n+" is magic : "+isMagic());
+JXPTLTI:22: 			for (int i = 0; i < n; i++) {
+BIXCMMD:23: 				for (int j = 0; j < n; j++) {
+BJDRQIY:24: 					System.out.print(magic[i][j]+"\t");
+XNNDUNA:25: 				}
+XXETKZW:26: 				System.out.println();
+ERIWIHD:27: 			}
+XTCGLHL:28: 		}
+QSFWYJV:29: 		//마방진이 잘 되었는가를 판단
+KXMKYJY:30: 		protected  boolean isMagic( ){  // 자식이 public처럼 사용
+JNCPNMZ:31: 			boolean isM=true;
+ZFEXIXL:32: 			int[ ]m=new int[2*n+2];
+GWVCKAZ:33: 			for (int i = 0; i < n; i++) {
+DOSYFSF:34: 				m[i]=sumRow(i);
+VWTXWLD:35: 				m[i+n]=sumCol(i);
+FOVSEXN:36: 			}
+TMZNBVF:37: 			m[2*n]=sumReverseDia();
+AVPFXDE:38: 			m[2*n+1]=sumDia();
+TXPZJPP:39: 			for (int i = 1; i < m.length; i++) {
+KVQUMCW:40: 				if(m[0]==0 || m[0]!=m[i]){
+CQOVFMC:41: 					isM=false;
+BOVYLIY:42: 					break;
+IPPXMVZ:43: 				}
+HESBWWO:44: 			}
+NADLWPX:45: 			return isM;
+PTNYAMF:46: 		}
+HESZEIV:47: 		//row 행의 열들의 합
+UQMSWUW:48: 		private int sumRow(int row){
+MPYENRK:49: 			int tot=0;
+VDPXHDO:50: 			for (int i = 0; i < n; i++) {
+KALQFHN:51: 				tot+=magic[row][i];
+KGTVPWX:52: 			}
+XEGVLGK:53: 			return tot;
+LNIJAAK:54: 		}
+ECQWVTC:55: 		
+RZVZYCO:56: 		//col 열의(열고정)  행들의 합
+YOYXNYI:57: 		private int sumCol(int col){
+JBHARJX:58: 			int tot=0;
+OZFHUOA:59: 			for (int i = 0; i < n; i++) {
+IGTGSWY:60: 				tot+=magic[i][col];
+VKJMYMT:61: 			}
+LBIBIVW:62: 			return tot;
+XKGBSPN:63: 		}
+RBCWVTY:64: 		
+JGWSRQA:65: 		private int sumDia(){
+GAAJNGV:66: 			int tot=0;
+ZDNJUJG:67: 			for (int i = 0; i < n ; i++) {
+MTWMVPJ:68: 				tot+=magic[i][n-1-i];
+ODKNFEM:69: 			}
+GPGXFBG:70: 			return tot;
+SNBMKJR:71: 		}
+NWNBURK:72: 		
+XHPMGZC:73: 		private int sumReverseDia(){
+MVSDXBT:74: 			int tot=0;
+XFVIBMB:75: 			for (int i = 0; i < n ; i++) {
+RSKNTJU:76: 				tot+=magic[i][i];
+KOWGLAD:77: 			}
+GPBQEFV:78: 			return tot;
+KBPFYUZ:79: 		}
+KTANOWW:80: 	}

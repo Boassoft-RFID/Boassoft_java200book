@@ -1,0 +1,24 @@
+0BMYBFBQ:1: 	package kr.co.infopub.chapter.s180.fx;	
+0QVOXXBW:2: 	import javafx.application.Application;
+0NHGSYUK:3: 	import javafx.stage.Stage;
+0ZEDAEHW:4: 	import javafx.scene.Scene;
+0XQETRXN:5: 	import javafx.scene.layout.BorderPane;
+0MLVVHNX:6: 	import javafx.fxml.FXMLLoader;
+0PAFRRMI:7: 	public class Main extends Application {
+0RFCPNVB:8: 		@Override
+0XBTTLIV:9: 		public void start(Stage primaryStage) {
+WMVKUUP:10: 			try {
+GPTXNAG:11: 				BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("TemperatureFX.fxml"));
+TFZOIZR:12: 				Scene scene = new Scene(root,500,600);
+RRJMEUZ:13: 				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+NRFIYLL:14: 				primaryStage.setScene(scene);
+MZVEQLS:15: 				primaryStage.setTitle("Temperature Conversion.");
+HMRSKIK:16: 				primaryStage.show();
+XXIWIDG:17: 			} catch(Exception e) {
+KHKJDFW:18: 				e.printStackTrace();
+HSSWZTL:19: 			}
+NDSHEUJ:20: 		}
+IABLGRH:21: 		public static void main(String[] args) {
+ACNCTMW:22: 			launch(args);
+BZYTXNC:23: 		}
+TPMCULH:24: 	}

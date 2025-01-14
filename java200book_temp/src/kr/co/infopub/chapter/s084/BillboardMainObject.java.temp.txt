@@ -1,0 +1,35 @@
+0ROBUBFA:1: 	package kr.co.infopub.chapter.s084;
+0GJGKXPG:2: 	public class BillboardMainObject {
+0UAWCENE:3: 	   public static void main(String[] args) {
+0HLQWBBG:4: 		Billbaord b1 =new Billbaord(1,"Despacito",1,
+0ZZOFUPJ:5: 				"https://www.billboard.com/images/pref_images/q61808osztw.jpg","luis fonsi");
+0DHEDAAG:6: 		Billbaord b2 =new Billbaord(2,"That's What I Like",2,
+0DAXOETZ:7: 				"https://www.billboard.com/images/pref_images/q59725qvpol.jpg","bruno mars");
+0MLVCMYN:8: 		Billbaord b3 =new Billbaord(3,"I'm The One",3,
+0BLTFKMA:9: 				"https://www.billboard.com/images/pref_images/q64532pl64x.jpg","dj khaled");
+SELPEQC:10: 		showAbout(b1);         // 1개 객체
+LEGMLKV:11: 		showAbout(b2);         // 1개 객체
+DSBMTGU:12: 		showAbout(b1,b2);      // 2개 객체
+QMQXDDN:13: 		showAbout(b1,b2,b3);   // 3개 객체
+NJJOMEC:14: 		Billbaord[] b=new Billbaord[3];
+AWLNGFD:15: 		b[0]=new Billbaord(1,"Despacito",1,
+MFIDURZ:16: 				"https://www.billboard.com/images/pref_images/q61808osztw.jpg","luis fonsi");
+VKAEVSK:17: 		b[1]=b2;  //생성해도 좋고 , 생성된 객체를 받아도 된다.
+XWPISBY:18: 		b[2]=b3;
+WXLRKVQ:19: 		showAbout(b[0],b[1]);   // 2개 객체
+YJUMFVG:20: 		showAbout(b);           // 배열->3개 객체
+CPQUXIV:21: 	 }
+XBLWSMV:22: 	 public static void showAbout(Billbaord bb ){//객체를 전달하여 출력
+HBOKDVA:23: 		System.out.println("1----------------------");
+LRYIJRJ:24: 		String sf=String.format("%d, %s, %d, %s, %s",
+BCDFUBJ:25: 				bb.getRank(), bb.getSong(),bb.getLastweek(),bb.getImagesrc(),bb.getArtist());
+NXOYSUC:26: 		System.out.println(sf);
+MZPTUPF:27: 	 }
+BUCTJGG:28: 	 public static void showAbout(Billbaord ... b ){//객체를 전달하여 출력
+BSTUAJF:29: 		System.out.println("2======================>");
+EBMIUYK:30: 		for(Billbaord bill : b){
+HKXVJRD:31: 			showAbout(bill);  // 1
+CFLOGLL:32: 		}
+PFZXSYP:33: 		System.out.println("<======================2");
+NWCWFXJ:34: 	 }
+VCVHJSU:35: 	}

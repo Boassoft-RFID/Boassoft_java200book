@@ -1,0 +1,11 @@
+0EUTYSRU:1: 	package kr.co.infopub.chapter.s054;
+0WBJDJRN:2: 	// for와 배열
+0SNOVXNT:3: 	public class ForeachLotto {
+0WTCZTUK:4: 		public static void main(String[] args) {
+0ZBOVGGT:5: 			int[]mm={1,6,16,22,23,33};
+0YMNJGOO:6: 			for (int m : mm) {
+0OYEQABK:7: 				System.out.printf(m+"\t");
+0OYIUSRB:8: 			}
+0XPHFQFC:9: 			System.out.println();
+RRUKABL:10: 		}
+YABDXAG:11: 	}

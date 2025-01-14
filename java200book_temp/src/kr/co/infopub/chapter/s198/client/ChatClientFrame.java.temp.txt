@@ -1,0 +1,37 @@
+0AEXLWFT:1: 	package kr.co.infopub.chapter.s198.client;
+0SHBRUOG:2: 	import java.awt.BorderLayout;
+0LDVFMMK:3: 	import java.awt.Dimension;
+0FCXQMDK:4: 	import java.awt.event.*;
+0DSQKPLP:5: 	import javax.swing.*;
+0XOCCJEP:6: 	public class ChatClientFrame extends StartingJFrame {
+0SZIHVQU:7: 	  private static final long serialVersionUID=122454214237L;//JAVA5
+0HRQRSCI:8: 	  JPanel contentPane;
+0VVYCASS:9: 	  ChatClientJPanel cp;
+UXBBAFD:10: 	  BorderLayout borderLayout1 = new BorderLayout();
+UXECJTM:11: 	  String ip="";
+VKBAABK:12: 	  int port =0;
+UWZNNLW:13: 	  public ChatClientFrame() {
+PVILEKW:14: 		  super();
+QEHGXLS:15: 		  this.setVisible(false);
+JWWXHBP:16: 		  this.validate();
+REQKUDF:17: 	      inits();
+BZGHMGB:18: 	  }
+LNDTMYU:19: 	  private void inits() {
+OLHYPVA:20: 		// 로딩 화면 
+WQDKUXN:21: 	    //ChatClientWindow win=new ChatClientWindow();
+GSTSBZG:22: 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ISLDLCL:23: 	    this.setSize(new Dimension(600, 500));
+BTCDJVF:24: 	    this.setTitle("Chat Client Frame");
+LKBRPOJ:25: 	    cp=new ChatClientJPanel(this);
+DIURNAE:26: 		setMainJpanel(cp);
+NWKXFBB:27: 		this.setVisible(true);
+QHPRLOW:28: 		this.validate();
+GZLBZIP:29: 	    this.addWindowListener(new WindowAdapter(){
+EMUJVST:30: 	        public void windowClosing(WindowEvent e){
+OHOXFOY:31: 	        	if(cp!=null){
+RXQQTDY:32: 	        		 cp.disConnection();
+VNDOKFV:33: 	        	}
+ARAXQFF:34: 	          System.exit(-1);
+RBUPOQS:35: 	        }});
+IUPQESH:36: 	    }
+NFAKRQC:37: 	}

@@ -1,0 +1,6 @@
+PHVCOIE:1: 	package kr.co.infopub.chapter.s033;
+JZILBNW:2: 	// 위도,경도를 저장하는 클래스
+BMUREHU:3: 	public class Geo {
+NAENGOA:4: 		public double latitude;      
+UAWGCJM:5: 		public double longitude;   
+AYZPXZZ:6: 	}

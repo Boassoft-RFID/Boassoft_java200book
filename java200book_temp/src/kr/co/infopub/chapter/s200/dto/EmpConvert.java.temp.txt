@@ -1,0 +1,65 @@
+0PDJQJDV:1: 	package kr.co.infopub.chapter.s200.dto;
+0XFYNEAT:2: 	
+0QPVQINO:3: 	import java.util.ArrayList;
+0MNJCSVS:4: 	import java.util.List;
+0ADTNAJN:5: 	
+0XCMZATY:6: 	import javafx.collections.FXCollections;
+0AZOGDTI:7: 	import javafx.collections.ObservableList;
+0XCTIPDD:8: 	import kr.co.infopub.chapter.s199.common.EmployeeDto;
+0IZFXDHS:9: 	
+KGMULEJ:10: 	public class EmpConvert {
+HMNLFOX:11: 	
+KOKDDIJ:12: 		public static EmployeeDto toDto(Employee b){
+WDZCQUO:13: 			EmployeeDto bp=new EmployeeDto();
+OQPGPDQ:14: 			bp.setCommissionPct(b.getCommissionPct());
+PZVPEMH:15: 			bp.setDepartmantId(b.getDepartmanId());
+XZILRBP:16: 			bp.setEmail(b.getEmail());
+PUQRLLN:17: 			bp.setEmployeeId(b.getEmployeeId());
+JRFVGIJ:18: 			bp.setFirstName(b.getFirstName());
+NYOPLXG:19: 			bp.setHireDate((java.sql.Date)b.getHireDate());
+KLXNNEL:20: 			bp.setJobId(b.getJobId());
+UHEEZYE:21: 			bp.setLastName(b.getLastName());
+VMUNUKL:22: 			bp.setManagerId(b.getManagerId());
+ISGPMUF:23: 			bp.setOrder2(b.getOrder2());
+HNFVTMT:24: 			bp.setPhoneNumber(b.getPhoneNumber());
+TMNVYTF:25: 			bp.setSalary(b.getSalary());
+CYVYAYE:26: 			return bp;
+YPINGJB:27: 		}
+YLYYCSE:28: 		public static Employee toPro(EmployeeDto b){
+GBTWUAX:29: 			Employee bp=new Employee();
+GTZZQKV:30: 			bp.setCommissionPct(b.getCommissionPct());
+INMUZKL:31: 			bp.setDepartmantId(b.getDepartmantId());
+IIBJSXT:32: 			bp.setEmail(b.getEmail());
+MVDYHIV:33: 			bp.setEmployeeId(b.getEmployeeId());
+MXZCKNL:34: 			bp.setFirstName(b.getFirstName());
+TLSSWOH:35: 			bp.setHireDate(b.getHireDate());
+MQNJCEU:36: 			bp.setJobId(b.getJobId());
+YISNCOP:37: 			bp.setLastName(b.getLastName());
+XWOXVOX:38: 			bp.setManagerId(b.getManagerId());
+SAJMSUR:39: 			bp.setOrder2(b.getOrder2());
+PVVPFQT:40: 			bp.setPhoneNumber(b.getPhoneNumber());
+RUBRATU:41: 			bp.setSalary(b.getSalary());
+JIVWOWX:42: 			return bp;
+SPJQMZI:43: 		}
+KUVUUXG:44: 		
+DVKNWCB:45: 		public static List<Employee> toPro(List<EmployeeDto> blist){
+NNPUWHJ:46: 			List<Employee> bplists=new ArrayList<>();
+WDXKQLF:47: 			for(EmployeeDto b:blist){
+LFOPBZK:48: 				bplists.add(toPro(b));
+UWKAOAQ:49: 			}
+MTCBHXX:50: 			return bplists;
+RQFGVPT:51: 		}
+AMYEXTD:52: 		public static ObservableList<Employee> toObservPro(List<Employee> alists){
+MIVQTCV:53: 			ObservableList<Employee> bList = FXCollections.observableArrayList(alists);
+OGKJBIV:54: 			return bList;
+JGUNWAK:55: 		}
+UOPWMTI:56: 		
+UYKONAS:57: 		public static ObservableList<Employee> toObservProFromDto(List<EmployeeDto> alists){
+CRIUDBV:58: 			return toObservPro(toPro(alists));
+MONXXYE:59: 		}
+SARAVPB:60: 		public static ObservableList<String> strList(List<String> alists){
+WECPDNH:61: 			ObservableList<String> bList = FXCollections.observableArrayList(alists);
+UUFQESH:62: 			return bList;
+XDOPSVP:63: 		}
+SUCQNPS:64: 		
+NTVCECM:65: 	}

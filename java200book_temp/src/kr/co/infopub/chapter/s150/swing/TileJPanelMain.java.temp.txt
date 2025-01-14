@@ -1,0 +1,34 @@
+0SEFCDFQ:1: 	package kr.co.infopub.chapter.s150.swing;
+0UDZJPCH:2: 	
+0QTTXFOM:3: 	import java.awt.EventQueue;
+0RHUBHDN:4: 	
+0ATCCAHB:5: 	import javax.swing.JFrame;
+0RXRYRVH:6: 	import javax.swing.JPanel;
+0FBUVAHF:7: 	
+0WVGNKGN:8: 	public class TileJPanelMain {
+0BSKLQTA:9: 		public  void createAndShowUI()
+XCEBUGI:10: 	    {
+YGRAERU:11: 	        JFrame frame = new JFrame("TilePanel Draw ver. 0.8");
+ATVYZNF:12: 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+DWRUGPJ:13: 	        JPanel mainp=(JPanel)frame.getContentPane();
+GSDDJWL:14: 	        int n=3;//nXn 퍼즐 만들기 2 이상 가능하지만 5부터는 그림 확인 속도도 늦어짐
+HCBJDTX:15: 	        TileJPanel pjp=new TileJPanel(frame,n);
+VBKMXZG:16: 	        pjp.setTest(true); //true면 디버그 모드 false면 실행 모드
+CJZXESC:17: 	        mainp.add(pjp);
+LNUEMMA:18: 	        frame.setSize(16+n*TileUtil.TILESIZE,
+OJZJWFK:19: 	        		64+n*TileUtil.TILESIZE);//기본으로 16, 메뉴가 있으면 64이동해서 시작
+GNGQHIH:20: 	        frame.setLocationRelativeTo( null );
+CCTTHTR:21: 	        frame.setVisible( true );
+DEKMIGN:22: 	    }
+LAPREYF:23: 	
+FEOVICC:24: 		public static void main(String[] args) {
+QCNNRAP:25: 			EventQueue.invokeLater(new Runnable()
+MGLRUQU:26: 		    {
+OSGXFIP:27: 		        public void run()
+IBOCBOA:28: 		        {
+FDPMTYM:29: 		        	TileJPanelMain ir=new TileJPanelMain();
+RQFSKUA:30: 		            ir.createAndShowUI();
+OLZBMTV:31: 		        }
+SVBNHMJ:32: 		    });
+ETWNPGJ:33: 		}
+AFANJSR:34: 	}

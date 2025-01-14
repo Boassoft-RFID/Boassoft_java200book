@@ -1,0 +1,82 @@
+0MEUEJRB:1: 	package kr.co.infopub.chapter.s111;
+0MOXJNIL:2: 	public class CardRule {
+0RLTRHUB:3: 	/*
+0NZNXWFT:4: 	 * C3C8      3000
+0SKBAVUB:5: 	 * C1C3 C1C8 2000
+0XPNXAWU:6: 	 * CTST x100 1000
+0MFIQVSW:7: 	 * CXSX x100 X00
+0KRGXSBA:8: 	 * C1S2 C2S1 99   알리
+0UDNCTLT:9: 	 * C1S4 S1C4 98   독사  
+ERQSAXC:10: 	 * C1S9 S9C1 97   삥
+WEJTERB:11: 	 * C1ST STC1 96   장삥
+BYKYZXC:12: 	 * CTS4 STC4 95   장사
+KJHZIMA:13: 	 * C4S6 S4C6 94   세륙
+BLZGIVQ:14: 	 * 끗 X 10
+DDJJUKO:15: 	 */
+ZDGYNUR:16: 	 public  int toV(Card c){
+DKOEEQR:17: 		int count=0;
+ZYBWQNR:18: 		switch(c.getCardVal().charAt(1)){
+GRKJYES:19: 		 case 'A': count=1; break;
+LGVBJJU:20: 		 case 'T': count=10; break;
+LDRYICL:21: 		 default : count=c.getCardVal().charAt(1)-'0';break; //'7'-'0'
+NHUEKPK:22: 		}
+QMIXKJV:23: 		return count;
+QIJCVCL:24: 	 }//
+JPYCXTD:25: 	 // 광 SUIT C
+WQAVXDZ:26: 	 public  boolean isLight(Card c){  // 광 모든 SUIT가 C
+GNNEQXN:27: 		boolean isL=false;
+WTEZUZM:28: 		if(c.getCardVal().charAt(0)=='C'){
+HXHPDGB:29: 			isL=true;
+HFCCJIG:30: 		}
+VFFSLDU:31: 		return isL;
+IXWIBPU:32: 	 }//
+GELUYTD:33: 	 // 광(C)이면서 밸류가 1,3,8 -> C1, C3, C8
+OUATTDP:34: 	 private boolean is138(Card c){
+VXGDWXO:35: 		boolean isC=false;
+UGKXLQK:36: 		if(isLight(c)){
+JMNHJEB:37: 			if(c.getCardVal().charAt(1)=='1' ||
+ELMAEQA:38: 					c.getCardVal().charAt(1)=='3'||
+DHAHAOS:39: 					c.getCardVal().charAt(1)=='8'){
+URZNZFE:40: 				isC= true;
+CMAZYOO:41: 			}
+AEUVADW:42: 		}
+AAAHRKA:43: 		return isC;
+YTWEQIH:44: 	 }
+MDRXVAD:45: 	 // 이차원 방정식을 이용 : 더해서 11, 곱해서 24 -> 3,8
+MMNAJQT:46: 	 public  int rule(Card c1, Card c2){
+EEGHYMK:47: 		int count=0;
+JZKMKFY:48: 		if(is138(c1) && is138(c2) ){          //C1, C3, C8은 광
+DTNBVUO:49: 			//광처리 1, 3, 8
+IHIFSWC:50: 			if((toV(c1)*toV(c2)==24 ) && (toV(c1)+toV(c2)==11)){     //3 8
+WUCAORW:51: 				count=3000;
+APWTWPX:52: 			}else if((toV(c1)*toV(c2)==3 ) && (toV(c1)+toV(c2)==4)){ //1 3
+JCQGNQF:53: 				count=2000;
+KSLKLSJ:54: 			}else if((toV(c1)*toV(c2)==8 )&& (toV(c1)+toV(c2)==9)){  //1 8
+BAEOEQF:55: 				count=2000;
+WCCFQBB:56: 			}
+KNJCWWY:57: 		}else {
+JJKNDRF:58: 			//땡처리
+ULGSMXE:59: 			if((toV(c1)==toV(c2))){    // 10, 10 -> 1000
+QTREQTH:60: 				count=toV(c1)*100;
+GKNRINO:61: 			}else{
+SSONLRV:62: 				//낫땡
+BFUDESP:63: 				if((toV(c1)*toV(c2)==2 ) && (toV(c1)+toV(c2)==3)){//1 2
+BAANEWA:64: 					count=99;
+JKUAQKD:65: 				}else if((toV(c1)*toV(c2)==4 ) && (toV(c1)+toV(c2)==5)){//1 4 
+LPNAHWH:66: 					count=98;
+QMOEZFH:67: 				}else if((toV(c1)*toV(c2)==9 ) && (toV(c1)+toV(c2)==10)){//1 9
+PODFAGY:68: 					count=97;
+IBIWRSM:69: 				}else if((toV(c1)*toV(c2)==10 ) && (toV(c1)+toV(c2)==11)){//1 10
+CTHUTPX:70: 					count=96;
+MUWBPZM:71: 				}else if((toV(c1)*toV(c2)==40 ) && (toV(c1)+toV(c2)==14)){//4 10
+DWRXVLE:72: 					count=95;
+TONIYHT:73: 				}else if((toV(c1)*toV(c2)==24 ) && (toV(c1)+toV(c2)==10)){// 4 6 
+AEPGLWB:74: 					count=94;
+GDSLPKE:75: 				}else{//끗
+GFSPJKR:76: 					count=((toV(c1)+toV(c2))%10)*10;
+LVFPZSS:77: 				}
+VJTZMXJ:78: 			}
+YUXSMRZ:79: 		}
+YHAWMLP:80: 		return count;
+XYSJERC:81: 	 }
+NTGFCGB:82: 	}

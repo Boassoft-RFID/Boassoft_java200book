@@ -1,0 +1,31 @@
+0DVTOEFF:1: 	package kr.co.infopub.chapter.s125;
+0XFGIIRT:2: 	public class AntQuiz {
+0DTQCTEC:3: 		//s="112111"
+0FCZMLMG:4: 		public  String   ant(String s){
+0YOUQFDG:5: 			String t="";
+0BKWHIOW:6: 			char c=s.charAt(0);//'1'
+0SMMWTUI:7: 			int count=1;
+0ZKPNAHV:8: 			for (int i = 1; i < s.length() ; i++) {
+0MQWGUDF:9: 				if( c==s.charAt(i) ){
+NQHGKTI:10: 					count++;
+UIGQXMW:11: 				}else {
+IZNUZAH:12: 					t=t+c+count;
+MQDYVMT:13: 					c=s.charAt(i);
+NNNOGBW:14: 					count=1;
+HEDQHRX:15: 				}
+JHSZTAX:16: 			}
+IKOJPMI:17: 			t=t+c+count;
+KTIXMFL:18: 			return t;
+JXRGUBG:19: 		}
+RKLQZDY:20: 		public void ant(int stage){
+IECFYNB:21: 			String s="11";
+PJAYYWQ:22: 			for (int i = 0; i <stage; i++) {
+OLVMOHK:23: 				System.out.println(s);
+SIRGVSX:24: 				s=ant(s);
+FKNHDHX:25: 			}
+XSGFHMI:26: 		}
+WUBWEBW:27: 		public static void main(String[] args) {
+AZIOIPV:28: 			AntQuiz quiz=new AntQuiz();
+WGYXCIY:29: 			quiz.ant(12);
+VIYTDTV:30: 		}
+CRVMCZY:31: 	}

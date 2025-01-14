@@ -1,0 +1,87 @@
+0UQHBMEE:1: 	package kr.co.infopub.chapter.s068;
+0DCSJVUB:2: 	import java.lang.reflect.Constructor;
+0GLTCAKF:3: 	import java.lang.reflect.Method;
+0FWBDYCH:4: 	public class UsingReflection {
+0TMRIODT:5: 	 public static String toModi(int n){
+0YWQJNES:6: 		String s="";
+0YGCLHOT:7: 		switch(n){
+0MMZYKOL:8: 		    case 0 : s=" ";break;
+0THYLHQP:9: 		    case 1 : s="public ";break;
+SQHJHDU:10: 		    case 2 : s="private ";break;
+HEETDRT:11: 		    case 4 : s="protected ";break;
+JUQUMUM:12: 		    case 8 : s="static ";break;
+JPHLFFY:13: 		    case 10 : s="private static ";break;
+YOOPISI:14: 		    case 9 : 
+IRNGDPB:15: 		    case 137 : s="public static ";break;
+GTSUPAE:16: 		    case 17 : s="public final ";break;
+UWHJRCO:17: 		    case 257 : s="public  native ";break;
+NRJDGVP:18: 		    case 260 : s="protected native ";break;
+HFJUYBW:19: 		    case 273 : s="public final native ";break;
+HPBSNRH:20: 		    default : s="xxxx"; break;
+VNMSTKY:21: 		}
+MWWESFR:22: 		return s;
+AQPYQMJ:23: 	 }
+CITNCFR:24: 	 public static String toRe(String msg){
+WOCGFZT:25: 		String s="";
+ISRDGDB:26: 		if(msg.indexOf("[")!=-1){
+CJKGCWU:27: 			if(msg.contains("[C")){ 
+WATZRZH:28: 				s=msg.substring(msg.indexOf(" ")+1).trim();
+ZDSBFUM:29: 				s=s.replace("[C", "char[] ");
+UDRCNDP:30: 			}else if(msg.contains("[L")){ 
+KTIEOPU:31: 				s=msg.substring(msg.indexOf(" ")+1).trim();
+VMFYGME:32: 				s=s.replace("[L", "").replace(";", "");
+YXAIRCT:33: 				s=s.concat("[]");
+NUMMFSJ:34: 			}else if(msg.contains("[B")){ 
+UJTNVDW:35: 				s=msg.substring(msg.indexOf(" ")+1).trim();
+TEBKNVA:36: 				s=s.replace("[B", "byte[] ");
+PTNGTAN:37: 			}
+GBSRZQF:38: 		}else if(msg.indexOf(" ")!=-1){
+EAFYNRI:39: 			s=msg.substring(msg.indexOf(" ")+1).trim();
+VZZUDHQ:40: 		}else{
+KKVOIHB:41: 			s=msg.trim();
+NURBHUB:42: 		}
+YYDBMTU:43: 		return s;
+DFLXONM:44: 	 }
+PGMMUXL:45: 	 public static void main(String[] args) {
+OIJARYK:46: 		Object obj1=new Object();
+CGFQHUG:47: 		try {
+FWLHIEW:48: 			//Class classes=obj1.getClass();
+ILTITKE:49: 			Class classes=Class.forName("java.lang.String"); // ClassNotFoundException 
+ADAZTCE:50: 			System.out.println("--------------Method 찾기----------------");
+CVAPTPM:51: 			Method[] mes =classes.getDeclaredMethods();
+TOSGPML:52: 			for(Method me:mes){
+EVWQFLO:53: 				if(me.getModifiers()>4000){continue; }    //  4000초과면  다음 스텝
+RKHKHKY:54: 				System.out.printf("%s\t\t",toModi(me.getModifiers()));  // 제한자 종류
+JWVSRVT:55: 				System.out.printf("%-30s\t\t",toRe(me.getReturnType().toString())); // 리턴 종류
+IGYFKFT:56: 				System.out.printf("%s",me.getName()); // 클래스 이름
+AWJRPNX:57: 				System.out.printf("(",""); // 2개 이상일 때 ,로 표시
+RPQRAXG:58: 				Class [] aa=me.getParameterTypes(); // 아규먼트(인자, 파라메터)
+MYMCWGY:59: 				for(int j=0; j<aa.length ; j++){
+VLWRKEG:60: 					System.out.printf("%s",toRe(aa[j].getName()));  // 아규먼트의 이름
+RVWJKQU:61: 					if(j!=aa.length-1){   // 2개 이상이면
+JKXDZUF:62: 						System.out.print(",");
+EOSRYJV:63: 					}
+WWKBALZ:64: 				}
+YEOPLZE:65: 				System.out.printf(")", "");
+RDANQQW:66: 				System.out.println();
+MFIVEMB:67: 			}
+KIWXHFW:68: 			System.out.println("--------------생성자 찾기----------------");
+WFMXNXB:69: 			Constructor [] constructor = classes.getDeclaredConstructors();
+VIIVYGT:70: 			for(Constructor con: constructor){
+VEYIHUM:71: 				System.out.print(con.getName());
+RJHPFIT:72: 				System.out.printf("(","");
+TRYABMZ:73: 				Class [] aa=con.getParameterTypes();
+UUDQOBO:74: 				for(int j=0; j<aa.length ; j++){
+ZJZNFWA:75: 					System.out.printf("%s",toRe(aa[j].getName()));
+TZBPLUW:76: 					if(j!=aa.length-1){
+QSNMURL:77: 						System.out.print(",");
+VKSDGXR:78: 					}
+NJDBNVH:79: 				}
+OWCVMXY:80: 				System.out.printf(")","");
+OAHSRSB:81: 				System.out.println();
+SNGBZHY:82: 			}
+GWXTAZT:83: 		}catch (ClassNotFoundException e) {
+KPPAOWV:84: 			System.out.println(e);
+JCZBZSG:85: 		} 
+LAAGAVH:86: 	 }
+BIDOKNP:87: 	}

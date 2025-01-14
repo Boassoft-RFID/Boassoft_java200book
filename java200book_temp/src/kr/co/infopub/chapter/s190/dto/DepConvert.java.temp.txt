@@ -1,0 +1,36 @@
+0HJZWQOQ:1: 	package kr.co.infopub.chapter.s190.dto;
+0NLUPTGK:2: 	
+0KTDSTEB:3: 	import java.util.ArrayList;
+0MTTIHHO:4: 	import java.util.List;
+0HJCKQGS:5: 	
+0JRZTEPZ:6: 	import javafx.collections.FXCollections;
+0XURMQZR:7: 	import javafx.collections.ObservableList;
+0UVWMWNZ:8: 	
+0XQLEWEH:9: 	public class DepConvert {
+ARUATWY:10: 	
+DPYVCFY:11: 		public static Department toPro(DepartmentDto b){
+JMVRVQR:12: 			Department bp=new Department();
+MQTQYFM:13: 			bp.setDepartment_id(b.getDepartment_id());
+LOOMAMC:14: 			bp.setDepartment_name(b.getDepartment_name());
+MEKIYUE:15: 			bp.setLocation_id(b.getLocation_id());
+HHPQMDM:16: 			bp.setManager_id(b.getManager_id());
+DXDOAJA:17: 			return bp;
+XAPNGJN:18: 		}
+XYVIJAY:19: 		
+CDSSWZY:20: 		public static List<Department> toPro(List<DepartmentDto> blist){
+CTAAZPW:21: 			List<Department> bplists=new ArrayList<>();
+RYCLUPR:22: 			for(DepartmentDto b:blist){
+KPUTDJX:23: 				bplists.add(toPro(b));
+MHNOQDO:24: 			}
+TBTBXYM:25: 			return bplists;
+LQGPYPP:26: 		}
+AILPOWE:27: 		public static ObservableList<Department> toObservPro(List<Department> alists){
+XKAANRR:28: 			ObservableList<Department> bList = FXCollections.observableArrayList(alists);
+JPOLHXM:29: 			return bList;
+OYZQTPZ:30: 		}
+SEIEZWE:31: 		
+DGVBSKD:32: 		public static ObservableList<Department> toObservProFromDto(List<DepartmentDto> alists){
+BXEEDUB:33: 			return toObservPro(toPro(alists));
+OBLNIAM:34: 		}
+ABNPXGO:35: 		
+BMPBQHE:36: 	}

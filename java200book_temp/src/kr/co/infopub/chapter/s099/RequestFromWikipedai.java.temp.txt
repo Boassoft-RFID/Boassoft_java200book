@@ -1,0 +1,108 @@
+00TBRETEK:1: 	package kr.co.infopub.chapter.s099;
+00EFBLHQV:2: 	import java.io.BufferedInputStream;
+00ADLEDRV:3: 	import java.io.BufferedReader;
+00JNMLQKP:4: 	import java.io.InputStream;
+00LOCUMAD:5: 	import java.io.InputStreamReader;
+00KHBYMAZ:6: 	import java.net.HttpURLConnection;
+00MFHNVUZ:7: 	import java.net.URL;
+00TWPQHVZ:8: 	import java.util.ArrayList;
+00IPTSFIN:9: 	public class RequestFromWikipedai {
+0SDWUXPW:10: 		ArrayList<String> htmls=new ArrayList<String>();
+0TFOPJIN:11: 		ArrayList<SovereignFlag> flags=new ArrayList<SovereignFlag>();
+0GBUERJI:12: 		public ArrayList<SovereignFlag> getFlags() {
+0GOLGIEH:13: 			return flags;
+0EPWSGCF:14: 		}
+0WVSITMH:15: 		public RequestFromWikipedai() {
+0CTMFGFM:16: 			htmls.clear();
+0YAJRDON:17: 			flags.clear();
+0LMVDTAW:18: 		}
+0YNHKENG:19: 		boolean isConnection=false;
+0TXKLBXL:20: 		public void getAllHtml(String newUrls){
+0DNZCAUV:21: 			htmls.clear();
+0CVZHQSB:22: 			InputStream inputStream;
+0NXMHYQJ:23: 			URL url=null;
+0SFJKVJC:24: 			try {
+0LCKWAYN:25: 				url= new URL(newUrls);
+0BIILPXO:26: 				HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+0MLVMNPO:27: 				inputStream = new BufferedInputStream(urlConnection.getInputStream());
+0PYDKJIB:28: 				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "utf-8"), 8);
+0CVKMJHX:29: 				String line = null;
+0YVEOZRB:30: 				while ((line = reader.readLine()) != null)
+0PNDYAYF:31: 				{
+0TFVNJTR:32: 					if(!line.trim().equals("")){
+0OCHNZCP:33: 	
+0CMKGIYZ:34: 						htmls.add(line.trim());
+0NMPIXLS:35: 					}
+0OIKLUJP:36: 				}
+0KLCQZKT:37: 				inputStream.close();
+0IUPRFHD:38: 				isConnection=true;
+0KDHLVGF:39: 	
+0QLBWNQL:40: 			} catch (Exception e) {
+0XAFYNLO:41: 				isConnection = false;
+0FAITCFH:42: 				System.out.println(e);
+0CQFGONI:43: 			} 
+0HAYJASI:44: 		}
+0PJBCNPV:45: 		public String __toStr(String msg){
+0THIVFZM:46: 			return msg.replaceAll("_", " ");
+0ZVZGCCQ:47: 		}
+0BEQCQQN:48: 		public String emptyto_(String msg){
+0IBVMTXE:49: 			return msg.replaceAll(" ", "_");
+0JURLKRF:50: 		}
+0MZKOWPI:51: 		public String replaceper(String msg){
+0TLPKXDF:52: 			String ss=msg;
+0SNYJJYK:53: 			return ss.trim();
+0FXNJPGC:54: 		}
+0NEYIPFP:55: 	
+0WZAHKVA:56: 		public synchronized void getSevereign(String msg){
+0JVTHJVM:57: 			int count=0;
+0VAPLRTF:58: 			flags.clear();
+0XATLWMX:59: 			for (int i=0; i<htmls.size(); i++) {
+0LLNMJBQ:60: 				String ss=htmls.get(i);
+0KNYYRUC:61: 				if(ss.contains(msg)){     
+0KXYMKOL:62: 					if(ss.contains(".svg.png")){
+0XSFPKTX:63: 						String korname=ss.substring(0,ss.lastIndexOf("</a></td>"));//
+0UGHTLRS:64: 						korname=korname.substring(korname.lastIndexOf(">")+1);//
+0NTMHCWP:65: 						String flag=ss.substring(0,ss.lastIndexOf(".svg.png")+".svg.png".length());//
+0QPGTNYC:66: 						flag="https:"+flag.substring(flag.lastIndexOf("//upload.wikimedia.org/wikipedia"));//
+0TDVGOBV:67: 						String name=flag.substring(flag.lastIndexOf("/")+1);
+0SNTVTIC:68: 						name=name.substring(0,name.lastIndexOf(".svg.png"));//
+0EOHMHKB:69: 						if(name.contains("Flag_of_the_")){
+0HSOQHRK:70: 							name=name.substring(name.lastIndexOf("Flag_of_the_")+"Flag_of_the_".length());//
+0DMUPFHX:71: 						}else if(name.contains("Flag_of_The_")){
+0YUOSFLI:72: 							name=name.substring(name.lastIndexOf("Flag_of_The_")+"Flag_of_The_".length());//
+0ODCBNQO:73: 						}else if(name.contains("Flag_of_")){
+0COHHLEO:74: 							name=name.substring(name.lastIndexOf("Flag_of_")+"Flag_of_".length());//
+0DZZLZYK:75: 						}
+0IKNRUEF:76: 						String code=htmls.get(i+1);
+0BFQXGVW:77: 						code=code.substring(0,code.lastIndexOf("<"));
+0GOOERGM:78: 						code=code.substring(code.indexOf(">")+1);
+0EMQLDJG:79: 						String shortname=htmls.get(i+3);  //2자=>3자 09.27수정  alpha-2
+0BODFYFK:80: 						shortname=shortname.substring(0,shortname.lastIndexOf("<"));
+0KSSPCWG:81: 						shortname=shortname.substring(shortname.indexOf(">")+1);
+0CKQJIPI:82: 						SovereignFlag sflag=new SovereignFlag(__toStr(name),shortname,code,flag,korname);
+0GFTWCKA:83: 						flags.add(sflag);
+0AYUSMXB:84: 					}
+0NTPKMOU:85: 				}
+0BZQXHBK:86: 			}
+0AWKCUYS:87: 		}
+0BRJXNIX:88: 		public void printHtml(){
+0JMPVFTF:89: 			for (String dto : htmls) {
+0ZDBGBVN:90: 				System.out.println(dto);
+0IVALPXD:91: 			}
+0GBPIYAC:92: 		}
+0MNJQINI:93: 		public void printFlags(){
+0FFJGGAB:94: 			int count=1;
+0ZJHEXEZ:95: 			for (SovereignFlag dto : flags) {
+0TYYLGIT:96: 				System.out.println((count++)+"\t"+dto);
+0IIDWZDQ:97: 			}
+0UGKTHNU:98: 		}
+0DGBMTEV:99: 		public static void main(String[] args) {
+OBZZAFO:100: 			RequestFromWikipedai rfw=new RequestFromWikipedai();
+NHRAMYG:101: 			String a="https://ko.wikipedia.org/wiki/ISO_3166-1";
+VRPURKJ:102: 			String msg="srcset=\"//upload.wikimedia.org/wikipedia";
+WSJPNUG:103: 			rfw.getAllHtml(a);   
+UUOIZBA:104: 			//rfw.printHtml();
+OAHCIVK:105: 			rfw.getSevereign(msg);
+PEAYRYG:106: 			rfw.printFlags();
+ACSJTOZ:107: 		}
+SVWGSHK:108: 	}

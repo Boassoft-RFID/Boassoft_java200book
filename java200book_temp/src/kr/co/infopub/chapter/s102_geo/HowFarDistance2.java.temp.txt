@@ -1,0 +1,73 @@
+0MDXJCMG:1: 	package kr.co.infopub.chapter.s102_geo;
+0CNKEWIN:2: 	import java.io.BufferedReader;
+0OFCVJHB:3: 	import java.io.FileNotFoundException;
+0AMSYYGN:4: 	import java.io.FileReader;
+0GFJGDWY:5: 	import java.io.IOException;
+0CRKYDMI:6: 	import org.json.JSONArray;
+0RIVGGFS:7: 	import org.json.JSONObject;
+0AIABZVH:8: 	public class HowFarDistance2 {
+0PNYSTNZ:9: 		private String json="";
+SXEYHII:10: 		public HowFarDistance2 (){
+FLKWPPV:11: 		}
+GVVUDQT:12: 		public  void makeDistances(String fname){
+VLRWYVW:13: 			StringBuffer sb=new StringBuffer();
+RITKOQB:14: 			try {
+FNEXCLT:15: 				BufferedReader br=new BufferedReader(new FileReader(fname));
+CHVSQSB:16: 				String msg="";
+EYSTANA:17: 				while((msg=br.readLine())!=null){
+ZPXAATI:18: 					if(!msg.trim().equals("")){
+CSGHTKT:19: 						//stu+=msg.trim();
+LMYTUPH:20: 						sb.append(msg.trim());
+NHKOLLU:21: 					}
+KZNOXCN:22: 				}
+JTEXYYG:23: 				
+NADDDOV:24: 			} catch (FileNotFoundException e) {
+YRESQTV:25: 				System.out.println(e);
+BYDVHDC:26: 			} catch (IOException e) {
+XKMEFZJ:27: 				System.out.println(e);
+UXIHSBS:28: 			}
+RSVZAAZ:29: 			json=sb.toString();
+BTMQXBB:30: 		}
+GDQOLYT:31: 		public  double [][] getLatLng(){
+ZHSGUJS:32: 			JSONObject jObject = new JSONObject(json);
+HTGPSNM:33: 			JSONArray loc = jObject.getJSONArray("loc");
+SCBEENA:34: 			
+ILFVZGE:35: 			double [][]latlng=new double[loc.length()][2];
+DOYSPOS:36: 			for(int i=0; i<loc.length(); i++) {
+FIXDPRY:37: 				JSONObject local = loc.getJSONObject(i);
+NYMHWSN:38: 				int marknum=local.getInt("marknum");
+QJXUHLV:39: 				String markerX = local.getString("markerX");
+QGGYEXY:40: 				String markerY = local.getString("markerY");
+EJJJVAV:41: 				latlng[i][0]=Double.parseDouble(markerX.trim());
+IZJFXOC:42: 				latlng[i][1]=Double.parseDouble(markerY.trim());
+EJRZOON:43: 			}	
+FRGSNVK:44: 			return latlng;
+YCSHGKG:45: 		}
+SAVCMHI:46: 		public double howfar(){
+GGLSNVF:47: 			double [][]latlng=getLatLng();  //Two dimensions 배열을 얻어옴
+HQMWUZO:48: 			double tot=0.0;   //산책한 총 거리 
+XVTKTSA:49: 			for (int i = 0; i < latlng.length-1; i++) {
+CCJBKUO:50: 				double distance=HaversineDistance.distance(
+KGBETNZ:51: 						latlng[i][0], latlng[i][1], latlng[i+1][0], latlng[i+1][1]);
+JCCDHDA:52: 				tot+=distance;
+JMCGKQS:53: 				String ss=String.format("(%f,%f)-(%f,%f) 사이 거리 : %f",
+OCNYYST:54: 						latlng[i][0], latlng[i][1], latlng[i+1][0], latlng[i+1][1],
+BJDRELR:55: 						distance);
+WQAMZTQ:56: 				System.out.println(ss);
+ZUWKEXX:57: 			}
+OGITRVG:58: 			return tot;
+DIXHYRJ:59: 		}
+VHTRYGH:60: 		public static double howfarDistance(double [][]latlng){
+XZYFJHB:61: 			double tot=0.0;   //산책한 총 거리 
+PTQVLAU:62: 			for (int i = 0; i < latlng.length-1; i++) {
+VRCFMGR:63: 				double distance=HaversineDistance.distance(
+KLJNMEV:64: 						latlng[i][0], latlng[i][1], latlng[i+1][0], latlng[i+1][1]);
+UKSXXOF:65: 				tot+=distance;
+KBCIRKW:66: 				String ss=String.format("(%f,%f)-(%f,%f) 사이 거리 : %f",
+ZPSIFTY:67: 						latlng[i][0], latlng[i][1], latlng[i+1][0], latlng[i+1][1],
+RQNFYGD:68: 						distance);
+CICFJHO:69: 				System.out.println(ss);
+TNRQNQR:70: 			}
+EYHQUDZ:71: 			return tot;
+KBOHHQF:72: 		}
+IWTXGYX:73: 	}

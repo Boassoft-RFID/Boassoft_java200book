@@ -1,0 +1,25 @@
+0HJJBQDK:1: 	package kr.co.infopub.chapter.s179;
+0CJQYDVT:2: 	import javafx.application.Application;
+0BSYHAWM:3: 	import javafx.stage.Stage;
+0PPXCSTO:4: 	import javafx.scene.Scene;
+0OVMHCBZ:5: 	import javafx.scene.layout.BorderPane;
+0VVCLBZK:6: 	import javafx.fxml.FXMLLoader;
+0RBHPQMC:7: 	public class Main extends Application {
+0DMRRXXF:8: 		@Override
+0JRYMVSA:9: 		public void start(Stage primaryStage) {
+VWVLUPN:10: 			try {
+XCVOUHW:11: 				primaryStage.setTitle("Distance Conversion");
+UULHYLW:12: 				BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("DistanceConversionFx.fxml"));
+DPXQFLB:13: 				Scene scene = new Scene(root,800,400);
+MRLMOCT:14: 				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+NOLZSPE:15: 				primaryStage.setScene(scene);
+AUXFLRI:16: 				primaryStage.setResizable(false);
+WWGMZSG:17: 				primaryStage.show();
+ONMYUDA:18: 			} catch(Exception e) {
+PTTCYVP:19: 				e.printStackTrace();
+GCHXJLD:20: 			}
+MVZIVYI:21: 		}
+YDMBQUM:22: 		public static void main(String[] args) {
+IKVHDHE:23: 			launch(args);
+XOXXIWH:24: 		}
+GOTJDOF:25: 	}

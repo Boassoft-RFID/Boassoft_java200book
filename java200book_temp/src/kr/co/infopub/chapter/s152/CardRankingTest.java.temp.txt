@@ -1,0 +1,31 @@
+0CMOLNEY:1: 	package kr.co.infopub.chapter.s152;
+0BKFGHSQ:2: 	public class CardRankingTest {
+0ILDLYUT:3: 	 public static void main(String[] args) {
+0WRBYEFZ:4: 		CardCase cc=new CardCase();
+0RIMUPVL:5: 		cc.make();
+0YNDIEQN:6: 		cc.print();
+0PQRQCFM:7: 	    // 테스트용 
+0MGAJJXM:8: 	    Card[] cd=new Card[5];
+0RYDPFZK:9: 		cd[0]=new Card("SA");
+RJPGRKQ:10: 		cd[1]=new Card("S3");
+MIDSGFE:11: 		cd[2]=new Card("S2");
+QUYGUFQ:12: 		cd[3]=new Card("S5");
+KHGQTOV:13: 		cd[4]=new Card("S4");
+JZMNJPQ:14: 		
+ZNJXADL:15: 		Card[] cc0=cc.makeFiveCards(0); // 02468 짝수 5장
+EOWZWOH:16: 		Card[] cc1=cc.makeFiveCards(1); //  13579 홀수 5장
+YJBLPWT:17: 		CardRanking.print(cd);
+WWUQGZD:18: 		CardRanking.print(cc0);
+CIUSMIO:19: 		CardRanking.print(cc1);
+MZGFBUF:20: 		// 족보 확인
+FNRUKFJ:21: 		System.out.printf("1. isStraightFlush %s\n",CardRanking.isStraightFlush(cd));
+YEUNGDG:22: 		System.out.printf("1. isStraightFlush %s\n",CardRanking.isStraightFlush(cc0));
+ZOLPOLX:23: 		System.out.printf("1. isStraightFlush %s\n",CardRanking.isStraightFlush(cc1));
+YXGCXGH:24: 		String sd=CardRanking.toRankName(cd);
+VERKDYV:25: 		String s0=CardRanking.toRankName(cc0);
+GLQPCMR:26: 		String s1=CardRanking.toRankName(cc1);
+ZVSOKKI:27: 		System.out.println(sd);
+PWMSHOY:28: 		System.out.println(s0);
+LOIHCSE:29: 		System.out.println(s1);
+HWSWIKW:30: 	 }
+GJIUORA:31: 	}

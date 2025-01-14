@@ -1,0 +1,13 @@
+0XEOZHVH:1: 	package kr.co.infopub.chapter.s019;
+0BDMCGHX:2: 	// 코멘트 - 프로그래밍에는 영향이 없고 설명을 위한 표시
+0XAVFWKD:3: 	public class JavaComment {
+0NNWQWJO:4: 		public static void main(String[] args) {
+0GGRIENM:5: 			/*
+0FPFIQFH:6: 			0.0<= 실수값 <10.0을 (int)하면 정수만 반환한다. 
+0YILXEDD:7: 			그래서 0~9 사이의 임의 정수를 반환한다.
+0TZNKLBO:8: 			*/
+0UDOMAIT:9: 			int makeOne=(int)(Math.random()*10);   
+XYQTRZO:10: 			// 0~9 사이의 임의 정수
+QCPUHQQ:11: 			System.out.println(makeOne);
+KUDWDYK:12: 		}
+JKNIDRX:13: 	}

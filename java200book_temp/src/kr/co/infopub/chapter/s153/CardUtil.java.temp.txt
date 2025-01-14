@@ -1,0 +1,36 @@
+0FWWIEKJ:1: 	package kr.co.infopub.chapter.s153;
+0OFVAIOY:2: 	
+0UMGTUHL:3: 	public class CardUtil {
+0MUSGZPV:4: 	
+0KNTPZFV:5: 	 public static final String[] 
+0GUGLBGC:6: 	   SUIT={"S","D","H","C"};
+0HACYABB:7: 	 public static final String[]
+0NHSRMRK:8: 	   RANK={"A","2","3","4","5",
+0AZXALAY:9: 		 "6","7","8","9",
+DRBMQWX:10: 		 "T","J","Q","K"};     
+HYDBKGV:11: 	 
+NBNETNF:12: 	 public static int toVal(Card c){
+ONVRKRG:13: 		 return toVal(c.getCard().charAt(1));
+ALIEYGD:14: 	 }
+MUZNAGL:15: 	 public static int toVal(char cc){
+GZMTHVX:16: 		 int tot=0;
+HIKMKDK:17: 		 switch (cc) {
+WTJYFOT:18: 		 	case 'A':tot=1;break;
+USYUCYT:19: 		 	case 'T':tot=10;break;
+PHQKWES:20: 		 	case 'J':tot=11;break;
+WRLSYOR:21: 		 	case 'Q':tot=12;break;
+NCMHQSF:22: 		 	case 'K':tot=13;break;
+SNHWPII:23: 		 	default: tot=cc-'0';break;
+JZJGYHA:24: 		}
+YQHTXWJ:25: 		 return tot;
+JZNDFNZ:26: 	 }
+KKBIAWR:27: 	 
+BBDKZQJ:28: 	 public static void printFive(Card[] cd){
+DKLKGIL:29: 		 for (int i = 0; i < cd.length; i++) {
+YUNEELG:30: 			System.out.printf("%s\t",cd[i].toString());
+LXBDTQK:31: 		}
+KCHKIWZ:32: 		 System.out.println();
+GHONOEM:33: 	 }
+BQCJGDR:34: 	 
+EBPDXVY:35: 	 
+COYUJZR:36: 	}

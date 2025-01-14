@@ -1,0 +1,12 @@
+0PMJZWMC:1: 	package kr.co.infopub.chapter.s028;
+0GANWRMC:2: 	// Math.sin(), s014.Math.toDegrees()
+0ZOFFVTK:3: 	public class BioCalendar {
+0AMUXGLN:4: 		// 상수, 상수값은 변경할 수 없다.
+0FLYQZQO:5: 		public static final int PHYSICAL = 23;     // 상수(개발자 정의)
+0DFJPDAP:6: 		public static void main(String[] args) {
+0GKQRYIC:7: 			int index=PHYSICAL;                  // 상수값을 변수에 대입
+0LUBXUKA:8: 			int days=1200;     
+0SONRKRL:9: 			double phyval=100*Math.sin( (days % index) * 2 * Math.PI / index );
+LVLYKBE:10: 			System.out.printf("나의 신체지수 %1$.2f입니다.\n",phyval);
+BRUUNQF:11: 		}
+CHQPSPP:12: 	}

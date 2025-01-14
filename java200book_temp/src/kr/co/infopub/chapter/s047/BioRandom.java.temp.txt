@@ -1,0 +1,15 @@
+0GLLTXTV:1: 	package kr.co.infopub.chapter.s047;
+0BVRJDWL:2: 	// random
+0UQDZQRK:3: 	public class BioRandom {
+0BDNECPC:4: 		public static void main(String[] args) {
+0CIKOWKA:5: 			int range=10;
+0TARGDZB:6: 			int start=1;
+0VVVZALW:7: 			int a=0, b=0, c=0;
+0GPZTHYR:8: 			while(!(a!=b && b!=c && c!=a)){
+0UAJVCOQ:9: 				a=(int)(range*Math.random()+start);
+OTJYPZW:10: 				b=(int)(range*Math.random()+start);
+UOEXJXI:11: 				c=(int)(range*Math.random()+start);
+ZNNZKZN:12: 			}
+XFLIPBJ:13: 	        System.out.printf("%d\t%d\t%d",a,b,c);
+FKCYYVO:14: 		}
+PLWMUGG:15: 	}

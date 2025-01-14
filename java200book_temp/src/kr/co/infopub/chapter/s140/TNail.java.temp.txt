@@ -1,0 +1,66 @@
+0NPTTRBL:1: 	package kr.co.infopub.chapter.s140;
+0EJVSZPU:2: 	public class TNail {
+0KHZTPYX:3: 		private int m;
+0BMHQEQE:4: 		private int n;
+0YMVYWAH:5: 		private int[][] loc;
+0OEDEFMQ:6: 		public TNail(int m, int n) {
+0FVBDVWR:7: 			super();
+0KEHJCDR:8: 			this.m = m;
+0GPITJXD:9: 			this.n = n;
+OUPLGBR:10: 			loc=new int[m][n];
+NVNXANE:11: 		}
+TRWVFDJ:12: 		public void make(){
+BQNVTZL:13: 			int x=0;
+JCITIJR:14: 			int y=0;
+SPLOOAL:15: 			int d=1;
+XIADMQT:16: 	
+QYMSEXH:17: 			for (int i = 0; i < m; i++) {
+VKOJRKK:18: 				for (int j = 0; j < n; j++) {
+WNZMBFT:19: 					loc[x][y]=i*n+j+1;//넣고
+JTQWBPZ:20: 						if(d==0){  
+WATKRDH:21: 							//2) 오른쪽 이동
+CXKXOFI:22: 							if(y+1<n && loc[x][y+1]==0){
+JXXSOBN:23: 								y++;  // 오른쪽
+JOHSFMJ:24: 							}else{    // 오른쪽 벽 또는 숫자
+YSQEJUL:25: 								d=3;  
+DJFPJLM:26: 								x--;  // 위로
+FNTSLHK:27: 							}
+DQVBQFE:28: 						} else if(d==1){
+EEAXXWS:29: 						//1) 아래로 내려가자
+IYAZCJB:30: 						if(x+1<n && loc[x+1][y]==0){
+GBBQQJV:31: 							x++; // 아래로
+KFZJZBM:32: 						}else{   // 아래쪽 벽또는 숫자
+WXJEJRI:33: 							d=0; 
+CYUSHHF:34: 							y++; // 오른쪽
+ARHBIFG:35: 						}
+GHNCPBF:36: 					}else if(d==2){
+YYOZWME:37: 						//4)왼쪽이동
+NKRMEJH:38: 						if(y-1>=0 && loc[x][y-1]==0){
+XUYTNSA:39: 							y--; // 왼쪽
+WCQWDKC:40: 						}else{   // 왼쪽 벽또는 숫자
+HNVEJUJ:41: 							d=1;
+VAUDRCX:42: 							x++; // 아래
+KDIUONH:43: 						}
+EXODADM:44: 					}else if(d==3){
+XRZEYYR:45: 						//3)위로 올라가자
+JNPFWMK:46: 						if(x-1>=0 && loc[x-1][y]==0){
+PRQQDNL:47: 							x--; // 위로
+VOAOCIE:48: 						}else{   // 위쪽 벽 또는 숫자
+EPYPSVZ:49: 							d=2; 
+EKHAATD:50: 							y--; // 왼쪽
+QYBCNFC:51: 						}
+LPSCBXY:52: 					}
+ISSKPRO:53: 				}
+QPGGLRG:54: 			}
+WRCDKHL:55: 		}
+RZEBXAT:56: 		public void print(){
+YGKNJKN:57: 			for (int i = 0; i < m; i++) {
+WJWJXWH:58: 				for (int j = 0; j < n; j++) {
+PKAAGPT:59: 	//				System.out.printf("(%2d:[%d,%d])",
+MFSMGKS:60: 	//				loc[i][j],i,j);
+IBOXSFL:61: 					System.out.printf("(%2d)",loc[i][j]);
+KSKPDBV:62: 				}
+YEDPBPQ:63: 				System.out.println();
+ZGZYIML:64: 			}
+LZRFUBK:65: 		}
+MFWCHRD:66: 	}

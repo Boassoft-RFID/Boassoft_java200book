@@ -1,0 +1,74 @@
+0TKRMPGG:1: 	package kr.co.infopub.chapter.s101;
+0SCZVWNB:2: 	import java.io.Serializable;
+0CKUMALD:3: 	public class Billbaord implements Serializable {
+0CXVYGYL:4: 		private int rank;         // 순위
+0JPPJLJQ:5: 		private String song;      // 곡명
+0KUDBEKR:6: 		private int  lastweek;    // 전주 순위
+0GIOXJIZ:7: 		private String imagesrc;  // 가수사진
+0GEUBEOY:8: 		private String artistsrc; // 가수정보
+0TDUNZZK:9: 		private String artist;    // 가수이름
+TPBCDJZ:10: 		
+KSTCFAY:11: 		public Billbaord() {
+FUYLAIQ:12: 		}
+FEXHATB:13: 		
+ZIQVULI:14: 		public Billbaord(int rank, String song, int lastweek, String imagesrc,
+FFGWYRS:15: 				String artistsrc, String artist) {
+NYAKSAR:16: 			super();
+PVAJROU:17: 			this.rank = rank;
+SDNOLIP:18: 			this.song = song;
+IIIEJLN:19: 			this.lastweek = lastweek;
+SOYECKM:20: 			this.imagesrc = imagesrc;
+LYDCYUF:21: 			this.artistsrc = artistsrc;
+OQHJKGV:22: 			this.artist = artist;
+PIRKHFY:23: 		}
+PWJONLR:24: 		public Billbaord(int rank, String song, int lastweek, String imagesrc, String artist) {
+ZWRNYAC:25: 			super();
+CTUZUUH:26: 			this.rank = rank;
+VQMVKGQ:27: 			this.song = song;
+XIOAPZE:28: 			this.lastweek = lastweek;
+WPZRFCI:29: 			this.imagesrc = imagesrc;
+TVLYCII:30: 			this.artist = artist;
+UJYDBHM:31: 		}
+WURUDCQ:32: 		@Override
+IPBQSYD:33: 		public String toString() {
+BWPQCTA:34: 			return "[rank=" + rank + ", song=" + song + ", lastweek="
+WZWCOUV:35: 					+ lastweek + ", imagesrc=" + imagesrc 
+VNCJDHK:36: 					 + ", artist=" + artist+"]";
+HHKUSVG:37: 		}
+TQCWJUM:38: 		public int getRank() {
+GQNNFAF:39: 			return rank;
+YKEXRNG:40: 		}
+OSTTJOG:41: 		public void setRank(int rank) {
+BMIDEQK:42: 			this.rank = rank;
+UMJNFWX:43: 		}
+GXOOCNL:44: 		public String getSong() {
+ZRAAOGF:45: 			return song;
+QHPLRDH:46: 		}
+YOANDKO:47: 		public void setSong(String song) {
+DBJKCXG:48: 			this.song = song;
+JCLWJMQ:49: 		}
+KLJRWWN:50: 		public int getLastweek() {
+DDRXCWK:51: 			return lastweek;
+SQGULBY:52: 		}
+BBIKOZM:53: 		public void setLastweek(int lastweek) {
+BXLQVKB:54: 			this.lastweek = lastweek;
+YFLTMSJ:55: 		}
+QXYZIBU:56: 		public String getImagesrc() {
+UCYCPHX:57: 			return imagesrc;
+GWLQGWF:58: 		}
+ZRNLZVN:59: 		public void setImagesrc(String imagesrc) {
+JMJXWZK:60: 			this.imagesrc = imagesrc;
+LEIDBZO:61: 		}
+XHYKURO:62: 		public String getArtistsrc() {
+BEHKYVW:63: 			return artistsrc;
+VQBHUYU:64: 		}
+RTXVNDQ:65: 		public void setArtistsrc(String artistsrc) {
+TRRYPTA:66: 			this.artistsrc = artistsrc;
+MEUXFIO:67: 		}
+BPUNUZX:68: 		public String getArtist() {
+XLGDRRS:69: 			return artist;
+CETFYJX:70: 		}
+IYEIEAO:71: 		public void setArtist(String artist) {
+BCBHMXC:72: 			this.artist = artist;
+WEPCSIB:73: 		}
+MYCRSFN:74: 	}

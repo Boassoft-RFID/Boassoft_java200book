@@ -1,0 +1,135 @@
+00TSOOXIF:1: 	package kr.co.infopub.chapter.s189.model;
+00AXYKGGK:2: 	
+00FRAWSYR:3: 	import java.sql.ResultSet;
+00VVHEIJA:4: 	import java.sql.DriverManager;
+00BRZREUL:5: 	import java.sql.Statement;
+00NOMYYPG:6: 	import java.text.SimpleDateFormat;
+00UFVIUTR:7: 	import java.util.Date;
+00GYUWGUK:8: 	import java.sql.Connection;
+00EXWZTHM:9: 	import java.sql.SQLException;
+0XZVLNFD:10: 	
+0FEJHBNN:11: 	public abstract class DataBase {
+0MTNUDCV:12: 		public static final String DRIVER="oracle.jdbc.driver.OracleDriver";
+0NMGFGGU:13: 		public static final String URLS="jdbc:oracle:thin:@127.0.0.1:1521:xe";
+0BMQYXDH:14: 		public static final String USER="hr";
+0AHDUEUY:15: 		public static final String PWD="hr";
+0HYCSQKT:16: 		private boolean isD=true;
+0ZRFMMIP:17: 		private boolean isS=true;
+0VGYWNRV:18: 		public DataBase() {
+0QNRUENH:19: 			init();   // Driver Loading
+0FPBIFSO:20: 		}//
+0SFPZGMV:21: 		private void init(){
+0CHAGSRL:22: 			try {
+0GCBSHSD:23: 				Class.forName(DRIVER);
+0HBOCYYO:24: 				log("1/6 Driver Loading Success!!!");
+0LKVEZJY:25: 			} catch (ClassNotFoundException e) {
+0NBUQLQZ:26: 				log("1/6 Driver Loading Fail!!!");
+0HSIYBPI:27: 			}//
+0PHMONXH:28: 		}
+0OHQOKSM:29: 		public void log(String msg){
+0AKCVCXZ:30: 			if(isD){
+0YLKUELA:31: 				System.out.println(this.getClass()+": "+msg);
+0SIMDTLD:32: 			}
+0REVHQCI:33: 		}//
+0HFXVFBS:34: 		public void log(String msg,String methodName){
+0JOJSGPV:35: 			if(isD || isS){
+0YHKGOEC:36: 				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+0VHUUOXD:37: 				String[] mmm=msg.split("     ");
+0OTFDAZV:38: 				String ss="";
+0VQJVSJK:39: 				for (int i = 0; i < mmm.length; i++) {
+0WVMYEGM:40: 					if(mmm[i]!=null && !mmm[i].trim().equals("")){
+0ELIXZDD:41: 						ss+= " "+mmm[i].trim()+" \n ";
+0WMOHBMW:42: 					}
+0JNNIQMH:43: 				}
+0ZAQUBID:44: 				System.out.println("CRUD-------------------------------"+this.getClass()+"."+methodName+"()");
+0HUUTICZ:45: 				System.out.println(ss.trim());
+0CWKFSAP:46: 				System.out.println("CRUD--------------------------------------"+sdf.format(new Date()));
+0FOWYRKO:47: 			}
+0KHCGFYX:48: 		}//
+0MZIZZOF:49: 		public void log(String msg,String methodName,Object data){
+0XPGJDWU:50: 			if(isD || isS){
+0RRZAPOA:51: 				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+0OQLDUGP:52: 				String[] mmm=msg.split("     ");
+0ZERFWKU:53: 				String ss="";
+0KAUKVCQ:54: 				for (int i = 0; i < mmm.length; i++) {
+0PDRTPWD:55: 					if(mmm[i]!=null && !mmm[i].trim().equals("")){
+0ZWFFDMJ:56: 						ss+= " "+mmm[i].trim()+" \n ";
+0DJJTOIS:57: 					}
+0HEOCQGX:58: 				}
+0JZJUKRZ:59: 				System.out.println("CRUD-------------------------------"+this.getClass()+"."+methodName+"()");
+0FMNLACR:60: 				System.out.println(ss.trim());
+0PKNKTWX:61: 				System.out.println("Data : "+data.toString());
+0NFVBQIN:62: 				System.out.println("CRUD--------------------------------------"+sdf.format(new Date()));
+0NHVWRNL:63: 			}
+0DTXYFHB:64: 		}//
+0BMJGCZK:65: 		
+0LBTQHQT:66: 		
+0AXBGQKY:67: 		
+0TOKHOBK:68: 		public void log(String msg,Exception e){
+0SXASYJH:69: 			if(isD){
+0DFQRMVA:70: 				System.out.println(this.getClass()+": "+msg);
+0OSTUPJL:71: 				System.out.println("============>"+e);
+0OORSLNY:72: 			}
+0SLIELVH:73: 		}//
+0PBYDBXP:74: 		 public String quots(String msg){
+0WDMXRMX:75: 	   	  String ss="";
+0YBCUXYH:76: 		   	  if(msg==null || msg.trim().equals("")|| msg.trim().equals("0")|| msg.trim().equals("0.0")){
+0NFJDURT:77: 		   		  ss=" NULL ";
+0ZHISVHO:78: 		   	  }else{
+0YAVWAVD:79: 		   		  ss="'"+msg+"'";
+0EPZEUCM:80: 		   	  }
+0GZEVRXM:81: 		   	  return ss;
+0JCEFJVO:82: 	     }
+0JIQSWZO:83: 	     public String quoti(String msg){
+0SRAZBBR:84: 		   	  String ss="";
+0CEDBSCF:85: 		   	  if(msg==null || msg.trim().equals("")|| msg.trim().equals("0")|| msg.trim().equals("0.0")){
+0MNDXNRV:86: 		   		  ss=" NULL ";
+0HPVGHDL:87: 		   	  }else{
+0WNTUKHR:88: 		   		  ss=""+msg+"";
+0AOYNLSB:89: 		   	  }
+0GFCZFFT:90: 		   	  return ss;
+0UYJSGUS:91: 	     }
+0YVRRCPK:92: 	     public String quotd(String msg){
+0KUFNUAI:93: 		   	  String ss="";
+0LAFWMAX:94: 		   	  if(msg==null || msg.trim().equals("")|| msg.trim().equals("0")|| msg.trim().equals("0.0")){
+0AQLYLGN:95: 		   		  ss=" NULL ";
+0LCRCTJA:96: 		   	  }else{
+0TPLMSAW:97: 		   		  ss=""+msg+"";
+0HCRYOWP:98: 		   	  }
+0EQLMNTW:99: 		   	  return ss;
+FLLGJTV:100: 	     }
+FPDRWWA:101: 		//--------------------------------------
+OLAAGYZ:102: 		public Connection getConnection() throws SQLException{//
+DFGWNOO:103: 			Connection conn=null;
+JASFLAE:104: 			conn=DriverManager.getConnection(
+RKCZSCM:105: 					URLS, 
+RJTQOVO:106: 					USER,
+VZUYMVX:107: 					PWD);
+EGCFOWC:108: 			log("2/6 Connection Success!!!");
+CGUXVQB:109: 			return conn;
+OOBPDGQ:110: 		}//getConnection
+IZIEHFV:111: 		public void close(Connection conn, Statement stmt,ResultSet rs){
+DZUYYHC:112: 			if(rs!=null){
+VUSMQAG:113: 				try {
+DNSETAA:114: 					rs.close();
+IOTCFDG:115: 				} catch (SQLException e) {
+DRBMGUH:116: 					
+JXPMYAS:117: 				}
+RXSGGZF:118: 			}//
+GWFIYOX:119: 			if(stmt!=null){
+JLSNAGK:120: 				try {
+VFWGYJZ:121: 					stmt.close();
+VUSOGUA:122: 				} catch (SQLException e) {
+OFIKCMZ:123: 					
+YYBXUJQ:124: 				}
+EEWZMKV:125: 			}//
+SEJVLHU:126: 			if(conn!=null){
+DSFPZKX:127: 				try {
+IGBRECR:128: 					conn.close();
+FJDYQQB:129: 					log("6/6 Close Success!!!");
+OCABMRS:130: 				} catch (SQLException e) {
+AXPRLWF:131: 					log("6/6 Close Fail: ",e);
+RDFZQTZ:132: 				}
+HAFOTMS:133: 			}//
+YMRWNGX:134: 		}//close
+WJOYNRW:135: 	}

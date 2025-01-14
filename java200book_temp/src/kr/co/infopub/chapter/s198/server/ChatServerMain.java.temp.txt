@@ -1,0 +1,9 @@
+MJABUTC:1: 	package kr.co.infopub.chapter.s198.server;
+SDJXUDG:2: 	public class ChatServerMain {
+SRNPLIS:3: 		public static void main(String args[]){
+QAYDTSF:4: 			ChatServer cs=new ChatServer();
+WAVFQLM:5: 			cs.setPort(5200);
+FFKNXSP:6: 			cs.service();
+CXAUCNC:7: 		}
+NYQHCZM:8: 		
+XUOYIZN:9: 	}

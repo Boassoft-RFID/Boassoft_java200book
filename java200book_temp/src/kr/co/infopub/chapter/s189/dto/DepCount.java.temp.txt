@@ -1,0 +1,41 @@
+0XQSTICB:1: 	package kr.co.infopub.chapter.s189.dto;
+0SEYLHXC:2: 	
+0INFDUYC:3: 	public class DepCount {
+0GSXHTKR:4: 		
+0PEGYDCK:5: 		private int count;
+0XSMLFQU:6: 		private int department_id;
+0ZERWHCT:7: 		private String department_name="NOTYET";
+0GSCQTCX:8: 		public DepCount() {
+0EZTJGTI:9: 			super();
+AYORNAP:10: 		}
+FMMIYSE:11: 		public DepCount(int count, int department_id, String department_name) {
+MMBOMXM:12: 			super();
+ISMAZWA:13: 			this.count = count;
+BQLNMKO:14: 			this.department_id = department_id;
+BTPXJCZ:15: 			this.department_name = department_name;
+CHICYMB:16: 		}
+JVMKTPR:17: 		@Override
+PDIBCPE:18: 		public String toString() {
+NVELVRQ:19: 			return "DepCount [count=" + count + ", department_id=" + department_id + ", department_name=" + department_name
+XIMVGDR:20: 					+ "]";
+ILUTWLO:21: 		}
+EBDRNRA:22: 		public int getCount() {
+YQPCTYH:23: 			return count;
+KNFSBEV:24: 		}
+NWKKGAP:25: 		public void setCount(int count) {
+FPCKBHK:26: 			this.count = count;
+VNVKHUL:27: 		}
+VMHSTXC:28: 		public int getDepartment_id() {
+BWFCONC:29: 			return department_id;
+TDJLLUY:30: 		}
+JWSPYCQ:31: 		public void setDepartment_id(int department_id) {
+AQSQDLB:32: 			this.department_id = department_id;
+RUFQTTC:33: 		}
+OPNJPBY:34: 		public String getDepartment_name() {
+AJICJTX:35: 			return department_name;
+DRGCUOG:36: 		}
+PQVVRUB:37: 		public void setDepartment_name(String department_name) {
+IPKDANP:38: 			this.department_name = department_name;
+VLVWTJE:39: 		}
+YKVTTNN:40: 	
+WJDLFFT:41: 	}

@@ -1,0 +1,20 @@
+0UXAGRVS:1: 	package kr.co.infopub.chapter.s032;
+0GGYOEBB:2: 	// 1차원 배열, Two dimensions 배열
+0CPJTJMX:3: 	public class GeoPoint {
+0PMQVCMB:4: 		public static void main(String[] args) {
+0JUEKNRG:5: 			// 실수변수
+0IFUAMBJ:6: 			double latitude1=37.52127220511242;
+0UFPHUJC:7: 			double longitude1=127.0074462890625;   // 서울
+0QFTRJZN:8: 			double latitude2=35.137879119634185;
+0OTDKWMJ:9: 			double longitude2=129.04541015625;     // 부산
+WBQAINQ:10: 			System.out.println(latitude1+"\t"+longitude1 );
+WCRAPOB:11: 			// 실수 1차원 배열
+IGXUSJZ:12: 			double [] latlng1={latitude1,longitude1};
+LIHOIXU:13: 			double [] latlng2={latitude2,longitude2};
+YYHYQRN:14: 			System.out.println( latlng1[0]+"\t"+latlng1[1] );
+WCGDGGH:15: 			// 실수 Two dimensions 배열
+EYTVASO:16: 			double [][] latlng={ {latitude1,longitude1},
+WKJRHJT:17: 					             {latitude2,longitude2} };
+IHKGSIC:18: 			System.out.println( latlng[0][0]+"\t"+latlng[0][1] );
+YTPSCZY:19: 		}
+BOINKOC:20: 	}

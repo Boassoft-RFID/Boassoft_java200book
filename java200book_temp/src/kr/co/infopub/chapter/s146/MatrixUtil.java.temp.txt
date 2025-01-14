@@ -1,0 +1,113 @@
+00ZSOBSNM:1: 	package kr.co.infopub.chapter.s146;
+00OJALJQQ:2: 	// 행렬 연산 +, -, X
+00VJXPUYJ:3: 	public class MatrixUtil {
+00DMKVCSF:4: 	 public static Matrix addMatrix(Matrix a, Matrix b){
+00UIZFCNO:5: 		int m=a.getMatrix().length;
+00GHXLLML:6: 		int n=a.getMatrix()[0].length;
+00IPCENRM:7: 		double [][]c=new double[m][n];
+00GKFRJUM:8: 		for (int i = 0; i < c.length; i++) {
+00ICZVUUO:9: 			for (int j = 0; j < c[i].length; j++) {
+0SKISYYI:10: 				c[i][j]=a.getMatrix()[i][j]+b.getMatrix()[i][j];
+0MHUHBMR:11: 			}
+0FAQCPXP:12: 		}
+0VNFODIW:13: 		return new Matrix(c);
+0PKCXRMQ:14: 	 }//
+0YNRIJBI:15: 	 public static Matrix diffMatrix(Matrix a, Matrix b){
+0BVZGBQD:16: 		int m=a.getMatrix().length;
+0UEMUYNJ:17: 		int n=a.getMatrix()[0].length;
+0ZKVCLFE:18: 		double [][]c=new double[m][n];
+0KXQGUAF:19: 		for (int i = 0; i < c.length; i++) {
+0GLHRVJT:20: 			for (int j = 0; j < c[i].length; j++) {
+0HSQLWVV:21: 				c[i][j]=a.getMatrix()[i][j]-b.getMatrix()[i][j];
+0LLXVIYX:22: 			}
+0SIEVHMY:23: 		}
+0YIJHQLR:24: 		return new Matrix(c);
+0OVPFDQJ:25: 	 }//
+0OAVWHGE:26: 	 public static Matrix mulMatrix(Matrix a, Matrix b){
+0WLTOAFZ:27: 		int m=a.getMatrix().length;
+0LIMBOSG:28: 		int n=a.getMatrix()[0].length; 
+0WRBHLHW:29: 		int p=b.getMatrix()[0].length;
+0IEYOAFO:30: 		double [][]c=new double[m][p];
+0BTNTQAU:31: 		for (int i = 0; i < m; i++) {
+0QLYXWYV:32: 			for (int j = 0; j < p; j++) {
+0YHMQQOO:33: 				for (int k = 0; k < n; k++) {
+0IOOZNEI:34: 					c[i][j]+=a.getMatrix()[i][k]*b.getMatrix()[k][j];
+0ETYDZRE:35: 				}
+0GCLDQAU:36: 			}
+0AMPMLBK:37: 		}
+0IVDPIFX:38: 		return new Matrix(c);
+0QDGHRRH:39: 	 }//
+0EHBISEL:40: 	 // Gaus 소거법- 역행렬
+0LMMKGWB:41: 	 public static Matrix revMatrix(Matrix a){
+0ALMMMNH:42: 		double [][] matricex=a.getMatrix();//깊은 복사
+0RFPUCMX:43: 		double [][] matrices=new double[matricex.length][matricex[0].length*2];
+0GIWTLVU:44: 		
+0HKPICFK:45: 		for (int i = 0; i < matricex.length; i++) {
+0WHGBMAV:46: 			for (int j = 0; j < matricex[i].length; j++) {
+0YXIGWXS:47: 				matrices[i][j]=matricex[i][j];
+0MZAQNRG:48: 			}
+0JPBTOPA:49: 		}
+0ZLEOJVV:50: 		for (int i = 0; i < matricex.length; i++) {
+0ENXUYMJ:51: 			matrices[i][i+matricex[i].length]=1.0;
+0YAXIWSM:52: 		}
+0SZSOIZB:53: 		int row=matrices.length;
+0UMEWNQS:54: 		int col=matrices[0].length;//n==0 
+0LKRQTXA:55: 		for (int k = 0; k <row; k++) {
+0GMZVEVW:56: 			double max=0.0;
+0PLUJNLZ:57: 			int pivotRow=k;
+0AEAEESO:58: 			for (int j = k; j < row; j++) {
+0GLFXMJB:59: 				double tempMax=Math.abs(matrices[j][k]);
+0MHQVMHZ:60: 				if(max<tempMax){
+0TXXGQEZ:61: 					max=tempMax;
+0VRWIKCQ:62: 					pivotRow=j;
+0YGLHHUQ:63: 				}
+0QUWQRCZ:64: 			}
+0HIABMDR:65: 			if(k!=pivotRow){
+0UPRWWYS:66: 				for (int j = 0; j <col; j++) {
+0GJSJXFC:67: 					double temp=matrices[k][j];
+0HOONJXD:68: 					matrices[k][j]=matrices[pivotRow][j];
+0TCOLPYF:69: 					matrices[pivotRow][j]=temp;
+0SZQYVEG:70: 				}
+0ECENIAA:71: 			}//pivot 
+0YCIHVEC:72: 			double pivot=matrices[k][k];    
+0VMMPDQM:73: 			for (int j = k; j <col; j++) {
+0HUHZXOR:74: 				matrices[k][j]/=pivot;      // 1 만들기
+0CBXLLYD:75: 			}
+0MYMQWGR:76: 			for (int i = 0; i < row; i++) {
+0HHNMKZV:77: 				if(i!=k){
+0BOWVKWS:78: 					double delta=matrices[i][k];
+0JBCFAJJ:79: 					for (int j = k; j <col; j++) {
+0EXZKPPN:80: 						matrices[i][j]-=delta*matrices[k][j];
+0OUMMUIK:81: 					}
+0DPNDFWV:82: 				}
+0UAJKATU:83: 			}
+0SIQSWIV:84: 		}
+0WVTHNDV:85: 		//System.out.println(matrices);
+0KFEUVUW:86: 		double [][] results=new double[matricex.length][matricex.length];
+0WEUPPPZ:87: 		for (int i = 0; i < matricex.length; i++) {
+0CQIVGGK:88: 			for (int j = 0; j < matricex[i].length; j++) {
+0CWFISAV:89: 				results[i][j]=matrices[i][j+matricex[i].length];
+0IYSNSAP:90: 			}
+0YNBKRML:91: 		}
+0NYANXVN:92: 		return new Matrix(results);
+0STPRARV:93: 	 }//
+0SCHQJEO:94: 	 public static Matrix toTwoOne(Matrix a){
+0TPIGVDH:95: 		int m=a.getMatrix().length;
+0XAUQCGO:96: 		int n=a.getMatrix()[0].length;
+0NDNPNFM:97: 		double [][]c=new double[1][m*n];
+0ZQXGXWZ:98: 		for (int i = 0; i < m; i++) {
+0EAATIGW:99: 			for (int j = 0; j < n; j++) {
+KTSDVJC:100: 				c[0][i*n+j]=a.getMatrix()[i][j];
+NXFDDIF:101: 			}
+WPHEISR:102: 		}
+BJFLOUU:103: 		return new Matrix(c);
+GIYATFX:104: 	 }
+PQPZDQA:105: 	 public static Matrix toOneTwo(Matrix a, int m, int n){
+MGHGOXX:106: 		int l=a.getMatrix()[0].length;
+FIIPFUH:107: 		double [][]c=new double[m][n];
+EHNLPVD:108: 		for (int i = 0; i < l; i++) {
+TMLEQTY:109: 			c[i/n][i%n]=a.getMatrix()[0][i];
+UAVANIX:110: 		}
+EMRGWBX:111: 		return new Matrix(c);
+FCCUJUE:112: 	 }
+WFNMYRS:113: 	}

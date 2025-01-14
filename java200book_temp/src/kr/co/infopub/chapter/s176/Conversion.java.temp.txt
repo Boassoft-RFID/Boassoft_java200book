@@ -1,0 +1,15 @@
+0YNTTZIL:1: 	package kr.co.infopub.chapter.s176;
+0FDKNNXL:2: 	// One-dimensional array and loop for
+0YRWYUAU:3: 	public class Conversion {
+0DLXTCSX:4: 		public static void main(String[] args) {
+0ECDESGW:5: 			String [] names={"Cm","M","Inch","Feet","Yard","Mile"};
+0HUORPDG:6: 			for(int i=0; i<names.length; i++){
+0XEXETME:7: 				System.out.printf("%s\t\t\t",names[i]);
+0NBDDZEW:8: 			}
+0KWDOMWT:9: 			System.out.println();
+UOMQZKY:10: 			for(String ss: names){
+NWXFDWK:11: 				System.out.printf("%s\t\t\t",ss);
+EPSRQMA:12: 			}
+MPDNVYY:13: 			System.out.println();
+GJLLABX:14: 		}
+BFUDFHS:15: 	}

@@ -1,0 +1,40 @@
+0AXUHOFK:1: 	package kr.co.infopub.chapter.s161;
+0KAOGIUN:2: 	import java.io.*;
+0HGHUFJZ:3: 	public class ResultWrite {
+0GKCUFVD:4: 		public boolean isExist(String fname){
+0PBCTHCD:5: 			boolean isE=false;
+0MAINKBP:6: 			File f=null;
+0PXARQOX:7: 			try{
+0OTQHQNT:8: 				f=new File(fname);
+0VXJMTZV:9: 				if(f.exists()){
+VYUDAGP:10: 					isE=true;
+UVXYGUM:11: 				}
+JSVGGKE:12: 			}catch(Exception ee){
+NBIPMOQ:13: 				log(ee.getMessage());
+ZZQFLVF:14: 			}
+RCZVDVF:15: 			return isE;
+BEBYSAU:16: 		}
+XRIUECE:17: 		private static void log(String msg){
+TVBAGNC:18: 			System.out.println("Error-->:"+msg);
+VBVOQGE:19: 		}
+DYYYMYB:20: 		public void setTexts(String fname,String msg){
+PTZGQJO:21: 			FileWriter fw=null;
+HLODWHY:22: 			PrintWriter pw=null;
+HESOLTH:23: 			File ff=null;
+WIDCXOK:24: 			try{
+OBWXUXK:25: 				ff=new File(fname);
+IXBJAWL:26: 				fw=new FileWriter(ff,false);
+NCBKYFP:27: 				pw=new PrintWriter(fw,true);
+JBDHCXT:28: 				pw.write(msg);
+IRFLDZD:29: 			}catch(Exception ee){
+KPAESDT:30: 				log(ee.getMessage());
+CVCRAJV:31: 			}finally{
+LXBMBSV:32: 				try{
+SCSPQYR:33: 					pw.close();
+HZOCSTN:34: 					fw.close();
+GXOKEFK:35: 				}catch(Exception eee){
+KIBASUT:36: 					log(eee.getMessage());
+EHXBUEK:37: 				}
+HDSWZBF:38: 			}
+DUDVCBI:39: 		}
+OEJACKW:40: 	}

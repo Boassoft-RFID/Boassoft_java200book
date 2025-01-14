@@ -1,0 +1,198 @@
+00WGGQDZU:1: 	package kr.co.infopub.chapter.s200;
+00YHDCMYA:2: 	import java.io.IOException;
+00BOJRCKE:3: 	import java.util.Date;
+00BKGXGSD:4: 	import java.util.Optional;
+00SXDEYRO:5: 	
+00ZUBVLRX:6: 	import javafx.application.Platform;
+00ISYKXHM:7: 	import javafx.event.ActionEvent;
+00LKXZXHC:8: 	import javafx.fxml.FXML;
+00DIJRPTN:9: 	import javafx.fxml.FXMLLoader;
+0NAKTFPY:10: 	import javafx.scene.control.Alert;
+0JQGQIZT:11: 	import javafx.scene.control.Alert.AlertType;
+0EVQZVWE:12: 	import javafx.scene.control.ButtonType;
+0GASWNYA:13: 	import javafx.scene.control.MenuItem;
+0TFQPKXM:14: 	import javafx.scene.control.Tab;
+0IDVDWNU:15: 	import javafx.scene.control.TabPane;
+0ATDOHIR:16: 	import javafx.scene.layout.BorderPane;
+0RBKUWRK:17: 	import kr.co.infopub.chapter.s200.client.EmployeeService;
+0ORJAIWQ:18: 	import kr.co.infopub.chapter.s200.util.PTS;
+0QQAIKIF:19: 	
+0YIGJQNT:20: 	public class MainHrFXController {
+0MCQBMIW:21: 	
+0FGVCLLQ:22: 	    @FXML
+0TVGQOAV:23: 	    private MenuItem menuDepart;
+0BEBIEQA:24: 	
+0PDBXALA:25: 	    @FXML
+0BZQRDMA:26: 	    private MenuItem menuManage;
+0RHUYVUX:27: 	
+0JIWDKPW:28: 	    @FXML
+0BLCBZYW:29: 	    private MenuItem menuSearch;
+0IWBBZXE:30: 	
+0MHGUTJK:31: 	    @FXML
+0ZCDCQPZ:32: 	    private MenuItem menuUpdate;
+0DRSEGAK:33: 	    
+0TBHINFF:34: 	    @FXML
+0VTBXACM:35: 	    private MenuItem menuChart;
+0LNBBONB:36: 	
+0YTLGHZK:37: 	    @FXML
+0MOLSNPB:38: 	    private TabPane mainTabPane;
+0XPYUPLV:39: 	    
+0VYLEJBM:40: 	    @FXML
+0KINAPFZ:41: 	    private Tab tab3;
+0DYTTVGX:42: 	
+0GZPAKMZ:43: 	    @FXML
+0LYNDWMT:44: 	    private Tab tab1;
+0KCQDFPM:45: 	
+0YFQEVGP:46: 	    @FXML
+0TYHTHMD:47: 	    private Tab tab2;
+0DDBAQLW:48: 	
+0YUVKREO:49: 	    @FXML
+0CCSDCSF:50: 	    private Tab tab4;
+0BXGTVTG:51: 	    
+0YFOWKYU:52: 	    @FXML
+0ADWYYRD:53: 	    private Tab tab5;
+0RXNWRZS:54: 	    
+0CPASRAP:55: 	    @FXML
+0BICTSRO:56: 	    private BorderPane searchTabBorder;
+0VIYPYCW:57: 	
+0YILQUUP:58: 	    @FXML
+0EAJZJEZ:59: 	    private BorderPane empTabBorder;
+0KGXYXON:60: 	
+0XUVKPMR:61: 	    @FXML
+0GXELGUC:62: 	    private BorderPane depChartBorder;
+0ALCGURX:63: 	
+0JVIIUTQ:64: 	    @FXML
+0EFWPPAT:65: 	    private BorderPane debTabBorder;
+0LCBLNKZ:66: 	
+0XXVGGLH:67: 	    @FXML
+0KXGRUAF:68: 	    private BorderPane updateTabBorder;
+0IHQVNEW:69: 	
+0FEDYDZI:70: 	    String systemver="HR Information System ver.1.0";
+0PCRUTUJ:71: 	    
+0GOBRCXC:72: 		EmployeeService service;
+0YEWPQCJ:73: 		public void setService(EmployeeService service) {
+0OKBZTTP:74: 			this.service=service;
+0WGVUNVO:75: 		}	
+0OURXNKG:76: 		
+0AQNXSUN:77: 		
+0PAJBTLJ:78: 	    @FXML
+0IDUYDND:79: 	    public void initialize () {
+0RYTNGTA:80: 	        tab1.setOnSelectionChanged(eee->{
+0KZPNWQR:81: 	        	if(tab1.isSelected()){
+0IGRGXUZ:82: 	        		System.out.println("tab1------------------------->"+((Tab)eee.getSource()).getId());
+0XMARITN:83: 	        		debTabBorder.setCenter(departView);  
+0YWMRKGS:84: 	        	}
+0JDQKDQW:85: 	        });
+0OSBNCUV:86: 	        tab2.setOnSelectionChanged(eee->{
+0VXUBGJG:87: 	        	if(tab2.isSelected()){
+0LDGCTCM:88: 	        		System.out.println("tab2------------------------->"+((Tab)eee.getSource()).getId());
+0BAOHZZO:89: 	        		empTabBorder.setCenter( emptvView);
+0CBYQZZF:90: 	        	}
+0UUMSWLO:91: 	        });
+0XSEXFWJ:92: 	        tab3.setOnSelectionChanged(eee->{
+0NWSKEZM:93: 	        	if(tab3.isSelected()){
+0DPUEVRH:94: 	        		System.out.println("tab3------------------------->"+((Tab)eee.getSource()).getId());
+0PUWAFYG:95: 	        		searchTabBorder.setCenter(empsearchView);
+0VEDAIUY:96: 	        	}
+0DMVLYGZ:97: 	        });
+0LENUTIW:98: 	        tab4.setOnSelectionChanged(eee->{
+0HIJXRTU:99: 	        	if(tab4.isSelected()){
+RRNHXIZ:100: 	        		System.out.println("tab4------------------------->"+((Tab)eee.getSource()).getId());
+CUCDHBB:101: 	        		updateTabBorder.setCenter(empupdateView);
+RRZECXK:102: 	        	}
+DFLGISX:103: 	        });
+RMHEKBR:104: 	        tab5.setOnSelectionChanged(eee->{
+HJCBXDT:105: 	        	if(tab5.isSelected()){
+MDGDZNP:106: 	        		System.out.println("tab5------------------------->"+((Tab)eee.getSource()).getId());
+NNNNCHF:107: 	        		depChartBorder.setCenter(piecharview);
+NMNMIGS:108: 					piecharview.refresh();
+VOCCKRK:109: 		        }
+TKFDFMC:110: 	        });
+JAOKFOW:111: 	    }
+AEYCFUH:112: 	    @FXML
+RZSIYJK:113: 	    void onStartAction(ActionEvent event) {
+HYAPTWS:114: 	    	  Alert alert = new Alert (Alert.AlertType.INFORMATION);
+EOEBKVM:115: 	          alert.setTitle(systemver);
+JTLVSDO:116: 	          alert.setHeaderText("HR Management System "+PTS.toDate3(new Date()));
+AMJORIY:117: 	          alert.setContentText("HR Management System is a system for entering/editing information related to department management, administrator management, and personnel.");
+KPHUDHZ:118: 	          alert.show();
+KAPIVFU:119: 	          mainTabPane.setVisible(true);    
+LXNOMHK:120: 	    }
+PVVGKHQ:121: 	
+ESQLHPU:122: 	    @FXML
+TKGWHFI:123: 	    void onExitAction(ActionEvent event) {
+FJJEMVV:124: 	    	Alert alert = new Alert(AlertType.CONFIRMATION);
+TUIFPPX:125: 	    	alert.setTitle(systemver);
+KIZLOGF:126: 	        alert.setHeaderText("HR Management System("+PTS.toDate3(new Date())+")을 끝내시겠습니까?");
+NMVZHLF:127: 	    	alert.setContentText("Are you sure you want to finish it?");
+ITTIBBE:128: 	    	Optional<ButtonType> result = alert.showAndWait();
+LQIWDVE:129: 	    	if (result.get() == ButtonType.OK){
+RFBOAPN:130: 	    		if(service!=null){
+TRPIPAK:131: 	    			service.close();    
+YTYEAQR:132: 	    			System.out.println("Good by HRM!");
+XCPCPYS:133: 	    		}
+MSDNLWL:134: 	    		Platform.exit();
+OFFWWMM:135: 	    		//System.exit(0);
+OQBZWTF:136: 	    	} else return;
+NJOMKVK:137: 	    }
+HCLMKXQ:138: 	
+ADVDBAK:139: 	    @FXML
+UTIOHCE:140: 	    void onHelpAction(ActionEvent event) {
+MVCTFIH:141: 	    	  Alert alert = new Alert (Alert.AlertType.INFORMATION);
+TLLFWNA:142: 	          alert.setTitle(systemver);
+GFRNDGV:143: 	          alert.setHeaderText("HR Management System "+PTS.toDate3(new Date()));
+VKUOKMS:144: 	          alert.setContentText("안녕하세요 "+systemver+"입니다. "
+RNCRAPI:145: 	          		+ "\nHR Management System is a system for entering/editing information related to department management, administrator management, and personnel."
+BGRTQPP:146: 	          		+ "\n Select the Start menu for Start.");
+BYCFLCC:147: 	          alert.show();
+DBVZSXK:148: 	    }
+ORRFMWH:149: 	
+FXHCLIC:150: 	    @FXML
+WQIGERD:151: 	    void onMenuction(ActionEvent event) {
+UUELGZP:152: 	    	if(event.getSource()==menuDepart){
+WDXPMLF:153: 	    		System.out.println("tab1------------------------->");
+IZSUKHK:154: 	    		mainTabPane.getSelectionModel().select(tab1);
+JPKEOKM:155: 	    		debTabBorder.setCenter(departView);  
+UXKIMNX:156: 	    	}else if(event.getSource()==menuManage){
+PJFHEDL:157: 	    		System.out.println("tab2------------------------->");
+PCWQIQI:158: 	    		mainTabPane.getSelectionModel().select(tab2);
+LIDYDUN:159: 	    		empTabBorder.setCenter( emptvView);
+IGYIOSD:160: 	    	}else if(event.getSource()==menuSearch){
+VDBPCEK:161: 	    		System.out.println("tab3------------------------->");
+BECUNVO:162: 	    		mainTabPane.getSelectionModel().select(tab3);
+RWENXXF:163: 	    		searchTabBorder.setCenter(empsearchView);
+VGZPSBC:164: 	    	}else if(event.getSource()==menuUpdate){
+WSDDLGV:165: 	    		System.out.println("tab4------------------------->");
+JKLSPES:166: 	    		mainTabPane.getSelectionModel().select(tab4);
+IZGXILY:167: 	    		updateTabBorder.setCenter(empupdateView);
+SSWWVVG:168: 	    	}else if(event.getSource()==menuChart){
+SLPENAU:169: 	    		System.out.println("tab5------------------------->");
+FRMHCFW:170: 	    		mainTabPane.getSelectionModel().select(tab5);
+MTKXWBQ:171: 	    		depChartBorder.setCenter(piecharview);
+YESYZDY:172: 				piecharview.refresh();
+QBYFELC:173: 	    	}
+FRRKBNX:174: 	    }
+DFNKMOD:175: 	    // Attach each view to the main menu.
+JZVWMLG:176: 		BorderPane departView;
+CHPMXUU:177: 		public void setView1(BorderPane departView) {
+AOBZYJC:178: 			this.departView=departView;
+AGSBNRW:179: 			//Reflects the first screen.
+IVJZDFR:180: 			debTabBorder.setCenter(departView);  
+WHNEFLO:181: 		}
+WJLRRGE:182: 		BorderPane emptvView;
+ZJGKABB:183: 		public void setView2(BorderPane emptvView) {
+PSAILMY:184: 			this.emptvView=emptvView;
+XGRUSGV:185: 		}
+HSLLUJM:186: 		BorderPane empsearchView;
+PXIAPJW:187: 		public void setView(BorderPane empsearchView) {
+ZJMNVTZ:188: 			this.empsearchView=empsearchView;
+AJGYRQF:189: 		}
+TTBIHAR:190: 		BorderPane empupdateView;
+MJUALIB:191: 		public void setView3(BorderPane empupdateView) {
+HCNSOBK:192: 			this.empupdateView=empupdateView;
+HBDUMGT:193: 		}
+ZYUUEPQ:194: 		PieChartController piecharview;
+NXWKPTL:195: 		public void setView4(PieChartController piecharview) {
+BMKUXIS:196: 			this.piecharview=piecharview;
+KSBVPXF:197: 		}
+NRKHFCZ:198: 	}

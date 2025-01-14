@@ -1,0 +1,18 @@
+0MBMELGA:1: 	package kr.co.infopub.chapter.s200.client;
+0QEHZJSO:2: 	import java.sql.SQLException;
+0IVXMOPQ:3: 	import java.util.List;
+0ULBCKNQ:4: 	
+0OMJVAZO:5: 	import kr.co.infopub.chapter.s200.dto.Employee;
+0XSPHLVV:6: 	public class ServicelTest {
+0MNEWELP:7: 		public static void main(String[] args) {
+0THCEPVD:8: 			try {
+0KANPYOC:9: 				EmployeeService pro=EmployeeService.getInstance();
+RONHDVC:10: 				List<Employee> emps= pro.findTreeManagerInEmployee();
+KDATHWT:11: 				for (Employee emp:emps) {
+ULONTBF:12: 					System.out.println(emp);
+HQGERWG:13: 				}
+PURJVUN:14: 			} catch (SQLException e) {
+OTFRFJM:15: 				System.out.println(e);
+JVQFIKT:16: 			}
+IRVWWVH:17: 		}
+TXKAJYU:18: 	}

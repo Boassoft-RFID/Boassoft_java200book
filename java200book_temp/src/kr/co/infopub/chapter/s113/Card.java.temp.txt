@@ -1,0 +1,32 @@
+0TFMJTQQ:1: 	package kr.co.infopub.chapter.s113;
+0HMCCPWY:2: 	public class Card {
+0BHAJGGK:3: 		private String cardVal;
+0NCCVPBD:4: 		public Card() {
+0NEWSXSS:5: 			init();
+0QASLPWV:6: 		}
+0OKFNMHF:7: 		public void init() {
+0KBXNYMN:8: 			int a = (int)(Math.random()*CardUtil.SUIT.length); 
+0MYKBVTG:9: 			int b = (int)(Math.random()*CardUtil.VALU.length);
+ZMDKJWC:10: 			cardVal = CardUtil.SUIT[a] + CardUtil.VALU[b];
+MYPQFNO:11: 		}
+LJEAJWI:12: 		public String getCardVal() {
+ZXDHNLZ:13: 			return cardVal;
+GNXDYJR:14: 		}
+WSZMOMX:15: 		@Override
+SJEKOWS:16: 		public String toString() {
+NCUIRYM:17: 			return  "["+cardVal+"]";
+RNQAWOY:18: 		}
+NMCCGFB:19: 		@Override
+BOISREG:20: 		public boolean equals(Object obj) {
+NEZVZKM:21: 			boolean isS = false;
+RZOSEJP:22: 			Card cd = (Card)obj;
+EJHWKTI:23: 			if (cardVal.equals(cd.getCardVal())) {
+ETIUAMF:24: 				isS = true;
+YFORPOW:25: 			}
+UJDTCIA:26: 			return isS;
+FKVLRCX:27: 		}
+SVYPWDY:28: 		@Override
+WPTVXOT:29: 		public int hashCode() {
+HPMIBSX:30: 			return  cardVal.hashCode()+137;
+FOQPLQU:31: 		}
+XKUBKNI:32: 	}

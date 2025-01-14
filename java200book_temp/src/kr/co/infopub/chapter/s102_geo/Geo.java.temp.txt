@@ -1,0 +1,41 @@
+0ZAQHLCR:1: 	package kr.co.infopub.chapter.s102_geo;
+0ODGVQLL:2: 	
+0VWRUPCU:3: 	public class Geo {
+0LROKYLF:4: 		private double latitude;      
+0ZHSUXIB:5: 		private double longitude;   
+0CXYMGXL:6: 		public Geo(double latitude, double longitude) {
+0ZZSKHIA:7: 			this.latitude = latitude;
+0LLIDPWV:8: 			this.longitude = longitude;
+0TBEYQZL:9: 		}
+ATZAQSV:10: 		public Geo() {            // 기본생성자
+AVRJDEM:11: 			this(37.5, 127.0);   
+GTWUKOM:12: 		}
+PDAMZZU:13: 		//생성자 오버로딩 추가
+BYJFSAC:14: 		public Geo(double [] latlng) {
+EWOXRZF:15: 			this.latitude = latlng[0];
+LPDHPVE:16: 			this.longitude = latlng[1];
+PBLSFEG:17: 		}
+SSELODC:18: 		//복사 생성자
+HRZZRZY:19: 		public Geo(Geo geo) {
+BGLPZWN:20: 			this.latitude = geo.getLatitude();
+CIGBZZX:21: 			this.longitude =geo.getLongitude();
+IXFADJR:22: 		}
+QDCFKYH:23: 		
+TKPLQHI:24: 		public double getLatitude() {   //getter 
+LXDNKAE:25: 			return latitude;
+WSBPEQF:26: 		}
+YBWWSDB:27: 		public void setLatitude(double latitude) { //setter
+IAJZCDY:28: 			this.latitude = latitude;
+MUPMWMU:29: 		}
+GYVNQWL:30: 		public double getLongitude() {
+OTYMLDQ:31: 			return longitude;
+CHKXUFL:32: 		}
+GFDLPYH:33: 		public void setLongitude(double longitude) {
+NEZWAUQ:34: 			this.longitude = longitude;
+LGMVLKQ:35: 		}
+HBPSSUG:36: 		@Override
+AZPRRQL:37: 		public String toString() {
+IWVXVJM:38: 			return "(" + latitude + ", " + longitude + ")";
+JFXDKMC:39: 		}
+LEDVOPE:40: 		
+OXHKTKK:41: 	}

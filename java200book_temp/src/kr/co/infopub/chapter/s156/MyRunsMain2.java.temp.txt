@@ -1,0 +1,12 @@
+0UKOJFZN:1: 	package kr.co.infopub.chapter.s156;
+0VAQITXJ:2: 	public class   MyRunsMain2{
+0WIVGKYH:3: 		public static void main(String[] args) {
+0QHMRQKP:4: 			MyRuns2 mr1=new MyRuns2();
+0WFHGWFA:5: 			Thread t1=new Thread(mr1,"a");
+0XUQTFTC:6: 			Thread t2=new Thread(mr1,"b");
+0OZMXGXV:7: 			Thread t3=new Thread(mr1,"c");
+0DCXNKYB:8: 			t1.start();
+0YJPFHMT:9: 			t2.start();
+OIBAEIF:10: 			t3.start();
+SCYZOXI:11: 		}
+PLTXRVL:12: 	}

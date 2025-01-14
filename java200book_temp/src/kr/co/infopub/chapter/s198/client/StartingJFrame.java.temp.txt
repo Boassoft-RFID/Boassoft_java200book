@@ -1,0 +1,49 @@
+0RSRTUWU:1: 	package kr.co.infopub.chapter.s198.client;
+0LPHCXYD:2: 	import java.awt.*;
+0ILIRKLW:3: 	import java.awt.event.*;
+0KHZJJVA:4: 	import javax.swing.*;
+0NIONDVC:5: 	public class StartingJFrame extends JFrame {
+0DXIGKFC:6: 	  private static final long serialVersionUID=122454214237L;//JAVA5
+0MOXTKKU:7: 	  private JPanel mainp;
+0VYJNWXM:8: 	  public StartingJFrame() {
+0HPDUVXT:9: 		System.out.println(this.getClass().getName()+" Start!!");
+OKZNQNM:10: 	    inits();//JFrme에 기본 패널을 붙이기 그리고 중앙에 놓기
+DUFLZZD:11: 	  }
+QGYAKXB:12: 	  private void inits() {
+EJKNUEO:13: 		//--------------필수---------------//
+RUHPCZQ:14: 	    mainp = (JPanel) this.getContentPane();
+FENYHUZ:15: 	    mainp.setLayout(new BorderLayout());//중앙을 사용하기 위해서
+IQPNBHU:16: 	    this.setSize(new Dimension(400, 300));// this.setSize(400,300)//크기
+DOAVWTU:17: 	    initFrame();//중앙에 붙이기
+UFDMKYR:18: 		//------------타이틀----------------//
+BCVBIHX:19: 		this.setTitle(this.getClass().getName());//JFrame에 이름 붙이기
+GJGCAPS:20: 	  }
+KCXRTWK:21: 	  public  void addListeners(){//JFrame에 관련된 리스너
+NAJAJRE:22: 		//-------귀달기-------//
+JTWLYTC:23: 	  }
+DFMVGUN:24: 	  private void initFrame(){//중앙에 놓기
+DTPQSAS:25: 	    Dimension monitorSize = Toolkit.getDefaultToolkit().getScreenSize();
+SHWHPMT:26: 	    Dimension frameSize = this.getSize();
+DTKCMZE:27: 	    if (frameSize.height > monitorSize.height) {
+XPISEIW:28: 	        frameSize.height = monitorSize.height;
+DICDHHC:29: 	      }
+XQNBVWE:30: 	    if (frameSize.width > monitorSize.width) {
+JZBXCQX:31: 	      frameSize.width = monitorSize.width;
+LFHGFGB:32: 	    }
+QEDBGQN:33: 	    int locationX=(monitorSize.width - frameSize.width) / 2;
+WDGYHUS:34: 	    int locationY=(monitorSize.height - frameSize.height) / 2;
+HRSTQTT:35: 	    this.setLocation(locationX, locationY);
+VTFAMAX:36: 	    this.setVisible(true);
+RFWLTUQ:37: 		enableEvents(AWTEvent.WINDOW_EVENT_MASK);//X로 끄기
+XSVEMHM:38: 	  }
+HUDVUUR:39: 	  public void processWindowEvent(WindowEvent e) {
+RWIZDQC:40: 	    super.processWindowEvent(e);
+SXKISHE:41: 	    if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+CSRCESE:42: 		  System.out.println(this.getClass().getName()+" End!!");
+XIGRRKR:43: 	      System.exit(1);//프로그램 끝내기
+BHMOTQK:44: 	    }
+MAYXALG:45: 	  }
+SXUZDOO:46: 	  public void setMainJpanel(javax.swing.JComponent c){
+XSFQRJO:47: 	    mainp.add(c);
+XIZCBZV:48: 	  }
+SHKEWFH:49: 	}

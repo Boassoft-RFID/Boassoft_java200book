@@ -1,0 +1,17 @@
+0LPXNTLR:1: 	package kr.co.infopub.chapter.s141;
+0IVJTBWY:2: 	public class PascalMain {
+0MLSKNXJ:3: 		public static void main(String[] args) {
+0AAYBBEF:4: 			int[][] pt=Pascal.triAngle(10);
+0YAYBCMT:5: 			for (int i = 0; i < pt.length; i++) {
+0QTRVTIE:6: 				for (int j = 0; j < pt[i].length; j++) {
+0TWRNGNG:7: 					System.out.printf("%d\t",pt[i][j]);
+0FXILZLJ:8: 				}
+0NFZILPV:9: 				System.out.println();
+WUXBOGV:10: 			}
+YZCOVXE:11: 			System.out.println();
+LKXIYZU:12: 			int [] bt=Pascal.phibo(20);
+UCTYMQE:13: 			for (int i = 0; i < bt.length; i++) {
+WQDPVRA:14: 				System.out.printf("%d\t",bt[i]);
+WDZPNQE:15: 			}
+SKGZUDN:16: 		}
+NDRHQEH:17: 	}

@@ -1,0 +1,48 @@
+0MHCIOJT:1: 	package kr.co.infopub.chapter.s182;
+0TBWZNFH:2: 		
+0NZQJABM:3: 	import javafx.application.Application;
+0ACKGIGI:4: 	import javafx.stage.Stage;
+0RCGIYRK:5: 	import javafx.scene.Scene;
+0KNXOYSQ:6: 	import javafx.scene.layout.BorderPane;
+0ANUFWHQ:7: 	import javafx.fxml.FXMLLoader;
+0UKOHTTO:8: 	
+0QDKNHDH:9: 	public class Main extends Application {
+HAHURFN:10: 		
+JCNRKJY:11: 		private Stage primaryStage;
+HTODIXO:12: 		private BorderPane root;
+IWWTQRQ:13: 		
+AMKFLLT:14: 		@Override
+EWNBYBS:15: 		public void start(Stage primaryStage) {
+QLKRZHN:16: 			primaryStage.setTitle("Human Resouce Management System ver. 0.2");
+NDUVYPR:17: 			this.primaryStage=primaryStage;
+NDDJBJF:18: 	        //---------------Separate the sauce
+PTAATFU:19: 			showHR();
+DXXGFHF:20: 		}
+GBYKBUY:21: 		
+DZWDDOM:22: 		public void showHR() {
+ECUNJMN:23: 			try {
+VDLUUSV:24: 				FXMLLoader loader = new FXMLLoader();
+GLZPKXH:25: 		        loader.setLocation(getClass().getResource("MainHrFX.fxml"));
+KMGJEZL:26: 		        root = (BorderPane) loader.load();
+QMJVOIZ:27: 		        //MainHrFXController empcon=loader.getController();
+PMDINKD:28: 		        //------Add source code here
+QMVNLPV:29: 				
+QGAGKKA:30: 				
+FSCQZEU:31: 		        //------Add source code here
+RQEADSV:32: 				Scene scene = new Scene(root,1200,850);
+FWFBTXN:33: 				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+HNWLEGP:34: 				primaryStage.setScene(scene);
+ZLPAJGL:35: 				primaryStage.show();
+CHBNNWC:36: 				
+BNSVEZG:37: 				primaryStage.setOnCloseRequest(e -> {
+XXNJNIQ:38: 		        	System.out.println("Close primaryStage !!!");
+JLMRZNY:39: 		        });
+PDNLEDA:40: 			} catch(Exception e) {
+KRSWBUA:41: 				e.printStackTrace();
+VWHKBYA:42: 			}
+JSEGSEB:43: 		}
+USEZCQF:44: 	
+HKQWOQC:45: 		public static void main(String[] args) {
+LUBBHCP:46: 			launch(args);
+IBZKUGP:47: 		}
+IHIEGHQ:48: 	}

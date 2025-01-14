@@ -1,0 +1,19 @@
+0NNLWBOL:1: 	package kr.co.infopub.chapter.s128;
+0XHYLQMC:2: 	import java.text.SimpleDateFormat;
+0EMWLIGX:3: 	import java.util.Calendar;
+0HLZGYEH:4: 	public class ThirTeenFriday {
+0AJJCCDH:5: 	 public static void main(String[] args) {
+0XLKFQRQ:6: 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+0YWJUWPS:7: 		Calendar cal=Calendar.getInstance();
+0RZSRPYS:8: 		int currentyear=cal.get(Calendar.YEAR);    //현재 연도
+0VWAJJEC:9: 		int count=0;
+GRLYNUK:10: 		for (int year = 0; year <= currentyear; year++) {  //서기 2000년부터 현재까지
+WJDHGNS:11: 			for (int month= 0; month < 12; month++) {
+ZVFZSAY:12: 				cal.set( year,month,13 );                           // 연도와 달 변경
+SFJGBDC:13: 				if(cal.get(Calendar.DAY_OF_WEEK)==Calendar.FRIDAY){ // 금요일
+PVURLPR:14: 					System.out.println((++count)+"\t"+sdf.format(cal.getTime()));
+RAJJLKN:15: 				}
+AVGARIK:16: 			}
+JCBXHQP:17: 		}
+BQNIQHT:18: 	 }
+ZBYQBJR:19: 	}

@@ -1,0 +1,14 @@
+0JDAMWCA:1: 	package kr.co.infopub.chapter.s031;
+0LIPLYGX:2: 	// 상수의 묶음
+0HYUTHTE:3: 	public class FruitMain {
+0NDGOGQR:4: 		public static void main(String[] args) {
+0GXEYXHN:5: 			FRUIT pear=FRUIT.APPLE;
+0RAPUNHS:6: 			FRUIT pear2=FRUIT.MANGO;
+0PVFFKWE:7: 			System.out.println(pear);
+0MRVZBZE:8: 			System.out.println(pear.name());
+0ONDWHAP:9: 			System.out.println(pear.ordinal());  // 선언될 때 순서 0
+FYYSAEN:10: 			System.out.println(pear2.ordinal()); // 선언될 때 순서 2
+DSHXSFW:11: 			FRUIT [] fruits=FRUIT.values();
+ZROGIHG:12: 			System.out.println(fruits[0]);
+KKPVYVC:13: 		}
+OGTBYLU:14: 	}

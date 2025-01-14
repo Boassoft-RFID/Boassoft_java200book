@@ -1,0 +1,24 @@
+0KNVTOPY:1: 	package kr.co.infopub.chapter.s184.test;
+0KTRJYAA:2: 	
+0NGVPMRW:3: 	import java.sql.SQLException;
+0TPERKGT:4: 	import java.util.List;
+0CNZPFHE:5: 	
+0LRBOWIT:6: 	import kr.co.infopub.chapter.s184.model.EmployeeDAO;
+0BYQXXSG:7: 	
+0LXOVWXF:8: 	public class JobsTest {
+0GPUNYAU:9: 	
+LKBOEGQ:10: 		public static void main(String[] args) {
+NRTDWCK:11: 			
+CIRHJHE:12: 			EmployeeDAO ddao=new EmployeeDAO();
+LXRYBAI:13: 			try {
+DAQYTES:14: 				List<String> lists=ddao.findAllJobs();
+WKKBNFB:15: 				System.out.println("Results------------------------------------------------");
+WUEPVMT:16: 				for (String dd: lists) {
+PCQLQSO:17: 					System.out.println(dd);
+LDKOYGS:18: 				}
+QSRHMMN:19: 				System.out.printf("Work : %d (number)\n",lists.size());
+XVUMPCW:20: 			} catch (SQLException e) {
+WITRGAB:21: 				System.out.println( e);
+EGZLTNO:22: 			}
+OMJLFRL:23: 		}
+MRZLZAX:24: 	}

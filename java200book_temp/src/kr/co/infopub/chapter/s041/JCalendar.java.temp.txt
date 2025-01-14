@@ -1,0 +1,15 @@
+0KAHKLQS:1: 	package kr.co.infopub.chapter.s041;
+0SOQFSQU:2: 	// if && || 
+0LVCKLKW:3: 	public class JCalendar {
+0VDZVNAU:4: 		public boolean isLeapYear(int year){
+0FGWWCYW:5: 			boolean isS=false;
+0RKXYKUB:6: 			if( ((year%4==0)&&(year%100!=0)) || (year%400==0)){
+0HUQSLIK:7: 				isS=true;
+0OFHDGYW:8: 			}
+0TEZLYXZ:9: 			return isS;
+BHPJHIJ:10: 		}
+UKZKETO:11: 		public static void main(String[] args) {
+VTMLRLX:12: 			JCalendar hc=new JCalendar();
+YFYUBGB:13: 			System.out.println( hc.isLeapYear(2017));
+QOIPKDT:14: 		}
+WMLBTZN:15: 	}

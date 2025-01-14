@@ -1,0 +1,57 @@
+0JNKKVMZ:1: 	package kr.co.infopub.chapter.s180.fx;
+0WMYLGKC:2: 	import javafx.beans.value.ChangeListener;
+0KMYTYDW:3: 	import javafx.beans.value.ObservableValue;
+0GNYYUYP:4: 	import javafx.fxml.FXML;
+0KIBGFWT:5: 	import javafx.scene.control.Label;
+0EFWQJLL:6: 	import javafx.scene.control.Slider;
+0ZQFWVVF:7: 	import javafx.scene.image.Image;
+0BLWVALH:8: 	import javafx.scene.image.ImageView;
+0PWEUHZF:9: 	public class TemperatureFXController {
+JQQTMII:10: 	 @FXML
+LJGYJAM:11: 	 private Slider cdegree;
+WHTHXUM:12: 	 @FXML
+QLXDSHR:13: 	 private Slider fdegree;
+DOSTYXB:14: 	 @FXML
+ZQZFGYO:15: 	 private Label lbdegree;
+WFHGKDO:16: 	 @FXML
+IEQBIJM:17: 	 void initialize() {
+QKAIWUY:18: 		cdegree.valueProperty().addListener(new ChangeListener<Number>() {
+TMEWHEU:19: 	         public void changed(ObservableValue<? extends Number> ov,
+DMIRZFR:20: 	             Number old_val, Number new_val) {
+ZAMEOMN:21: 	                 System.out.println("C->F:"+new_val.doubleValue());
+CLIEJEA:22: 	                 double cval=new_val.doubleValue();
+FIQRJFT:23: 	                 double fval=TemperatureConv.toFahrenheit(cval);
+MYBTZHX:24: 	                 String sf=String.format("섭씨 %.2f도 =\n\n화씨 %.2f도.",
+OUMEOOF:25: 	                		 cval,fval);		
+UTCMFIG:26: 	                 next(cval);
+IXCTBSG:27: 	                 fdegree.setValue(fval);		 
+UUKXHRP:28: 	                 lbdegree.setText(sf);
+VHLTFHJ:29: 	         }
+ZLJRVDN:30: 	     });
+FQMWNCD:31: 		fdegree.valueProperty().addListener(new ChangeListener<Number>() {
+WICIFDA:32: 		    public void changed(ObservableValue<? extends Number> ov,
+EINUNQU:33: 		        Number old_val, Number new_val) {
+MGYAKFF:34: 		            System.out.println("F->C:"+new_val.doubleValue());
+MMDHEIU:35: 		            double fval=new_val.doubleValue();
+UCRVXZZ:36: 		            double cval=TemperatureConv.toCelsius(fval);
+GLVNXTB:37: 	                String sf=String.format("화씨 %.2f도 =\n\n섭씨 %.2f도 .",
+QKGLZVQ:38: 	                		fval,cval);		
+NSGDXVY:39: 	                back(fval);
+NIEKIDC:40: 	                cdegree.setValue(cval);		 
+TEMPPWT:41: 	                lbdegree.setText(sf);
+LLJHRLW:42: 	           }
+BIEYEHH:43: 	    });
+MDLCVQR:44: 	 }
+SXAMNAK:45: 	 // 수학자표와 그래프 좌표 차이
+QSGRGAK:46: 	 static double height=412;
+TJAHXKE:47: 	 void next(double cval){
+MYEQCOQ:48: 		Image image = new Image(getClass().getResourceAsStream("gogo.png"));
+TEOTGKA:49: 		lbdegree.setGraphic(new ImageView(image));
+ITHMIVS:50: 		lbdegree.setTranslateY(-height*cval/100);
+WPYGSBR:51: 	 }
+ZTYSSZT:52: 	 void back(double fval){
+DBMSOPQ:53: 		Image image = new Image(getClass().getResourceAsStream("gogo.png"));
+QMRYUXN:54: 		lbdegree.setGraphic(new ImageView(image));
+ASSOEPW:55: 		lbdegree.setTranslateY(-height*(fval-32)/180);
+JYIVFLP:56: 	 }
+MYNTSWI:57: 	}

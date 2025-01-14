@@ -1,0 +1,44 @@
+0VSTLVIL:1: 	package kr.co.infopub.chapter.s158;
+0JSOQVUK:2: 	import java.io.Serializable;
+0JEGRCGO:3: 	public class Student implements Cloneable, Serializable{
+0JMLXQDB:4: 		private static final long serialVersionUID=12234214234L;
+0REUYGGE:5: 		private String name;
+0MELWUUC:6: 		private int age;
+0QLSWRKP:7: 		private String addr;
+0DJHWLTB:8: 		
+0EEBOLWK:9: 		public Student(String name, int age,String addr) {
+WHSUDVB:10: 			this.name=name;
+SCBAQPM:11: 			this.age=age;
+WGLUFXE:12: 			this.addr=addr;
+GGDDHNF:13: 		}//Student
+WRYQRSN:14: 		public String getAddr() {return addr;}
+RGDFHNL:15: 		public int getAge() {return age;}
+FSPRPZO:16: 		public String getName() {return name;}
+DKGYUOS:17: 		public void setAddr(String string) {addr = string;}
+AWSYDQH:18: 		public void setAge(int i) {age = i;}
+LSEABJK:19: 		public void setName(String string) {name = string;}
+LBPYPJK:20: 		public String toString(){
+VZJGCGT:21: 			return name+"   "+age+"    "+addr;
+PGYBBXL:22: 		}//toString
+ENSWQSU:23: 		public Object clone(){ // 멤버가 기본타입과 String으로만 구성
+NLGZOZM:24: 			try{
+KXDMIIQ:25: 				return super.clone();
+PKARBUT:26: 			}catch(CloneNotSupportedException e){
+FXWOBQN:27: 				return this;
+NNHJGWX:28: 			}
+CYZHCLR:29: 		}//clone
+JWYPSHC:30: 		public boolean equals(Object obj){ // 멤버비교 같은객체
+FHWBDYF:31: 			boolean isE=false;
+ABLKKHC:32: 			Student temp=(Student)obj;
+FXCUKBH:33: 			if(temp.getName().equals(name) && temp.getAge()==age
+THFPLXP:34: 				&& temp.getAddr().equals(addr)){
+SLVGVZC:35: 				isE=true;
+SYUFDGC:36: 			}
+QHIORMY:37: 			return isE;
+XXQZCOS:38: 		}//equals
+UEDSDEK:39: 		public int hashCode(){
+ZWIPHJU:40: 			int temp=0;
+CRPQHZC:41: 			temp=name.hashCode()+addr.hashCode()+age+37;
+SYTWOYY:42: 			return temp;
+QEGRMLI:43: 		}//hashCode
+PPFPRGX:44: 	}

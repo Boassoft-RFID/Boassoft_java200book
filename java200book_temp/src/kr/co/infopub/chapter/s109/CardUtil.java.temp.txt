@@ -1,0 +1,26 @@
+0RMUZGQH:1: 	package kr.co.infopub.chapter.s109;
+0FGOWQVZ:2: 	// static 변수, 메서드 - 객체 생성 없이 사용 가능하다.
+0PFEPOHD:3: 	public class CardUtil {
+0PWHDLYX:4: 		public static final int SUTDA=2;
+0IKERTWB:5: 		public static final String[] SUIT={"H","C"};
+0OBBKFDS:6: 		public static final String[] VALU={"A","2","3","4","5","6","7","8","9","T"};    
+0IRMANJY:7: 		 
+0XLOLPMN:8: 		public static int toVal(Card c){
+0KPENVUU:9: 			 return toVal(c.getCardVal().charAt(1)); //"H6"에서 '6'
+GTWSKIS:10: 		}
+OJYVKLB:11: 		public static int toVal(Card c, int index){
+HGHLEBI:12: 			 return toVal(c.getCardVal().charAt(index));
+FORZNLB:13: 		}
+UYCWUAM:14: 		public static int toVal(char cc){
+FUQMTBB:15: 			int tot=0;
+XYKVFWX:16: 			switch (cc) {
+MAUCEDI:17: 			 	case 'A':tot=1;break;
+BYFSEHK:18: 			 	case 'T':tot=10;break;
+ONMOTRY:19: 			 	case 'J':tot=11;break;
+SGRDCFC:20: 			 	case 'Q':tot=12;break;
+CFAUCNQ:21: 			 	case 'K':tot=13;break;
+PBYUMIS:22: 			 	default: tot=cc-'0';break;
+TJTQUCI:23: 			}
+FODKSYS:24: 			 return tot;
+TVBDRYE:25: 		 }
+DYLPTYH:26: 	}

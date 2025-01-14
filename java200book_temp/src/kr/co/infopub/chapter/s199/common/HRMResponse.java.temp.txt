@@ -1,0 +1,19 @@
+0IRTROAY:1: 	package kr.co.infopub.chapter.s199.common;
+0YHHJTQQ:2: 	import java.util.*;
+0GWJOOGQ:3: 	import java.io.*;
+0HPEBRCS:4: 	public class HRMResponse extends Vector implements Serializable {
+0LQATNRQ:5: 	   private int status = -1;
+0CITYTWQ:6: 	   public HRMResponse () {
+0RIPPYGN:7: 	      super(1,1);
+0PPHONNL:8: 	   }
+0OQKMBGK:9: 	   // 응답할 때 성공 여부, 양수- 성공, 0이하 실패 
+OJCQTTG:10: 	   public int getStatus () {
+OKZDBDM:11: 	      return status;
+IOVIPRL:12: 	   }
+GFDSVMD:13: 	   public void setStatus(int value) {
+XBNMJKT:14: 	      status = value;
+MQGLTUZ:15: 	   }
+IEDNXPB:16: 	   public int getNumRows () {
+BATYQNW:17: 	      return this.size();//벡터의 크기
+FNLOYYV:18: 	   }
+XEYPXUL:19: 	}

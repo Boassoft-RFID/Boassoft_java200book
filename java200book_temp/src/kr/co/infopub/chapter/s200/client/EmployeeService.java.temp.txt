@@ -1,0 +1,105 @@
+00HYAJREQ:1: 	package kr.co.infopub.chapter.s200.client;
+00SJEWTVJ:2: 	import java.io.IOException;
+00SJMLGYW:3: 	import java.sql.SQLException;
+00WSXBHTO:4: 	import java.util.List;
+00ZJJZGOI:5: 	import javafx.collections.ObservableList;
+00ODZBLZC:6: 	import kr.co.infopub.chapter.s199.common.DepCountDto;
+00AKNEOSX:7: 	import kr.co.infopub.chapter.s199.common.DepartmentDto;
+00AKSQSZT:8: 	import kr.co.infopub.chapter.s199.common.EmployeeDto;
+00EADHXZT:9: 	import kr.co.infopub.chapter.s200.dto.DepConvert;
+0AEUZLYN:10: 	import kr.co.infopub.chapter.s200.dto.DepCount;
+0EIPTXHD:11: 	import kr.co.infopub.chapter.s200.dto.DepCountConvert;
+0CEMOJPE:12: 	import kr.co.infopub.chapter.s200.dto.Department;
+0CRZRENQ:13: 	import kr.co.infopub.chapter.s200.dto.EmpConvert;
+0BKZTGYQ:14: 	import kr.co.infopub.chapter.s200.dto.Employee;
+0TERFVZF:15: 	public class EmployeeService { 
+0HDQQWYU:16: 	 // 자신을 private static 
+0RWTSTYM:17: 	 private static EmployeeService employeeService;
+0ANPGFMJ:18: 	 private static HRMProtocol employeeDAO; 
+0ZXWXLLE:19: 	 // 생성자도 private
+0OCNYXBX:20: 	 private EmployeeService() {
+0VKFIWNH:21: 		try {
+0DFUHWRG:22: 			employeeDAO=new HRMProtocol("127.0.0.1");
+0RCGPWYF:23: 		} catch (IOException e) {
+0VECXHPJ:24: 			close();
+0SOQVBVN:25: 		}
+0PUWOZUC:26: 	 }
+0WDIOUAP:27: 	 public void close(){
+0MAHLVLE:28: 		try {
+0GOCSFRM:29: 			employeeDAO.close();
+0PLGLGDP:30: 		} catch (IOException e1) {
+0ROPZFOU:31: 			System.out.println("socket Error ~~~~~ ");
+0LFSKSRB:32: 		}
+0CKCUCXC:33: 	 }
+0CRPXHHJ:34: 	 // static -> 한 번의 객체 생성 
+0KZYLUYX:35: 	 public static EmployeeService getInstance(){
+0SDIHOLJ:36: 		if(employeeService==null){
+0FXLYJNP:37: 			employeeService=new EmployeeService();
+0UWAOWWQ:38: 		}
+0IVOKKPG:39: 		return employeeService;
+0MPZKVHC:40: 	 }//--------------DAO를 감싸고, List -> ObservableList
+0BGUJRGV:41: 	 public ObservableList<Department> 
+0XAQHCIX:42: 	                     findAllDepartments() throws SQLException{
+0SBTYOPR:43: 		List<DepartmentDto> blist=employeeDAO.findAllDepartments();
+0FXOQNXY:44: 		return DepConvert.toObservProFromDto(blist);
+0WVMJBHG:45: 	 }
+0GBMOAOE:46: 	 public ObservableList<Employee> findAllEmployees() throws SQLException{
+0FXYDXYF:47: 		List<EmployeeDto> blist  = employeeDAO.findAllEmployees ();
+0AVZONFT:48: 		return EmpConvert.toObservProFromDto(blist);
+0CLMAJOV:49: 	 }
+0HHFMRFV:50: 	 public ObservableList<Employee> findTreeManagerInEmployee()
+0JQKVIJJ:51: 			                                            throws SQLException{
+0TPWFUHY:52: 		List<EmployeeDto> bdlists= employeeDAO.findTreeManagerInEmployee();
+0UOGKYTQ:53: 	    return EmpConvert.toObservProFromDto(bdlists);
+0SYFRBXR:54: 	 }
+0ANWRWTN:55: 	 public int getTreeMaxLevel() throws SQLException{
+0OWUVHEN:56: 		 return  employeeDAO.getTreeMaxLevel();
+0DNKZKNW:57: 	 }
+0OMBFFSK:58: 	 public ObservableList<DepCount> findAllDepCounts() throws SQLException{
+0FVEEVBB:59: 	    List<DepCountDto> deplist = employeeDAO.findAllDepCounts();
+0HOYWOXF:60: 	    return DepCountConvert.toObservProFromDto(deplist);
+0XLACATA:61: 	 }
+0DFYLQKZ:62: 	 public ObservableList<Employee> 
+0XSQQRGI:63: 	          findEmployeesByDepartName(String val) throws SQLException{
+0LKDSICB:64: 		 List<EmployeeDto> emplists=
+0VPLPTAC:65: 				               employeeDAO.findEmployeesByDepartName(val);
+0LUZXILC:66: 		 return EmpConvert.toObservProFromDto(emplists);
+0PQLDAME:67: 	 }
+0UVMOMWY:68: 	 public ObservableList<Employee> 
+0CVLAYBF:69: 	                 findEmployeesByEmpId(String val) throws SQLException{
+0XDSZSTW:70: 	  List<EmployeeDto> elists=employeeDAO.findEmployeesByEmpId(val);//100
+0UYYNOZD:71: 		return EmpConvert.toObservProFromDto(elists);
+0EHGKCCU:72: 	 }
+0VNOAFSM:73: 	 public Employee findEmployeeById(String string) throws SQLException{
+0VEZIIZA:74: 		EmployeeDto edto =employeeDAO.findEmployeeById(string);
+0CQSLSIC:75: 		return EmpConvert.toPro(edto);
+0JIRRDPY:76: 	 }
+0RTIUJNB:77: 	 public ObservableList<Employee> 
+0OFCVADB:78: 	            findManagersByName(String searchname) throws SQLException{
+0QZBUGEH:79: 		List<EmployeeDto> elists=employeeDAO.findManagersByName(searchname);
+0YBLUCKD:80: 		return EmpConvert.toObservProFromDto(elists);
+0QPSSJWU:81: 	 }
+0PKXFJAD:82: 	 public ObservableList<String> findAllJobs() throws SQLException{
+0UPYKBND:83: 	    List<String> jlists=employeeDAO.findAllJobs();
+0BVEXFHV:84: 		return EmpConvert.strList(jlists);
+0YNWRPBO:85: 	 }
+0ZTOEEKY:86: 	 public ObservableList<Department>
+0SBTSGGV:87: 	                           findAllDepartments2() throws SQLException{
+0PANNHUG:88: 	    List<DepartmentDto> edeps=employeeDAO.findAllDepartments2 ();
+0DTPSKEE:89: 		return DepConvert.toObservProFromDto(edeps);
+0ZNJKDGO:90: 	 }
+0QAVXNIE:91: 	 public int addEmployee(EmployeeDto empdto) throws SQLException{
+0FCLNYEZ:92: 		return employeeDAO.addEmployee(empdto);
+0DIYFIGP:93: 	 }
+0WCCDIZW:94: 	 public boolean updateEmployee(Employee emp) throws SQLException{
+0UNSUXIV:95: 		EmployeeDto edot=EmpConvert.toDto(emp);
+0HXKYMTS:96: 		return employeeDAO.updateEmployee(edot);
+0SHBLHEZ:97: 	 }
+0DBYFKRS:98: 	 public boolean deleteEmployee(Employee emp) throws SQLException{
+0CVTHHUD:99: 		EmployeeDto edot=EmpConvert.toDto(emp);
+TRXJMHU:100: 		return employeeDAO.deleteEmployee(edot);
+YAUEUKI:101: 	 }
+HSIIJYJ:102: 	 public int getEmployeesTotal() throws SQLException{
+OIQSTTE:103: 		return employeeDAO.getEmployeesTotal();
+PXRGBIM:104: 	 }
+DAHQAEH:105: 	}

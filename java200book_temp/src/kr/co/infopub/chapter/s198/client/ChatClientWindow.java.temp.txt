@@ -1,0 +1,63 @@
+0IFGOYXO:1: 	package kr.co.infopub.chapter.s198.client;
+0EWEQVNR:2: 	import javax.swing.*;
+0ZFFGQMA:3: 	import java.awt.*;
+0PJXODBR:4: 	import java.awt.Image;
+0OPFOGDU:5: 	import javax.swing.border.*;
+0OCXFYYP:6: 	public class ChatClientWindow extends JWindow {
+0WZKXNUB:7: 	  private static final long serialVersionUID=122454214237L;//JAVA5
+0QCKFTWQ:8: 	  JPanel jPanel1 = new JPanel();
+0TCSGAXG:9: 	  ImageIcon icon;
+YAFOSHF:10: 	  BorderLayout borderLayout1 = new BorderLayout();
+JPQCTHH:11: 	  JLabel jLabel1 = new JLabel();
+GMSPCQR:12: 	  JProgressBar jProgressBar1 = new JProgressBar();
+SGNOABJ:13: 	  public ChatClientWindow() {
+QXOXBDV:14: 	      inits();
+RSGIAPL:15: 	  }
+RRYVKKB:16: 	  public void setTime(){
+ZZFYCZW:17: 	    this.setVisible(true);
+EDVIHOI:18: 	    try {
+VUZNFXC:19: 	      Thread.sleep(3000);//3초간 보여 준다.
+GQNVLFM:20: 	    }
+ACXVVDU:21: 	    catch (InterruptedException ex) {
+VFTDLQP:22: 	    }
+TMRFCSR:23: 	    this.setVisible(false);
+FZNOAEM:24: 	    this.dispose();
+WTSQHMM:25: 	  }
+MJONOFN:26: 	  private void inits()  {
+LRBQUOA:27: 	    String imageNums="image/image.jpg";
+RJMGFCR:28: 	    icon = new ImageIcon(ChatClientWindow.class.getResource(imageNums));
+QAWOHFZ:29: 	    jPanel1.setLayout(new BorderLayout());
+TCYNZOA:30: 	    jLabel1.setIcon(icon);
+SPJVLAM:31: 	    jProgressBar1.setBorder(BorderFactory.createLineBorder(Color.black));
+WGRWYFG:32: 	    jProgressBar1.setPreferredSize(new Dimension(300, 20));
+USGKKXP:33: 	    jProgressBar1.setStringPainted(true);
+GBNURAG:34: 	    this.getContentPane().add(jPanel1,  BorderLayout.CENTER);
+PRFSDUS:35: 	    jPanel1.add(jLabel1, BorderLayout.CENTER);
+TJZKSSE:36: 	    jPanel1.add(jProgressBar1,  BorderLayout.SOUTH);
+GBGDXPR:37: 	    this.setSize(300,202+20);
+UZPSKKT:38: 	    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+PRZVMYM:39: 	    Dimension frameSize = this.getSize();
+DWZVAYA:40: 	    this.setLocation((screenSize.width - frameSize.width) / 2,
+ZCKHJEZ:41: 	          (screenSize.height - frameSize.height) / 2);
+UFGBDDY:42: 	    MyThread thread =new MyThread();
+KJBAIDV:43: 	    thread.start();
+KLVYGPU:44: 	    setTime();
+SCHILGG:45: 	  }
+TPHRTBB:46: 	  public class MyThread extends Thread{//Nested class
+IUDUXBY:47: 	    int i=0;
+IHMIOEM:48: 	    public void run(){
+XTATNDC:49: 	      while(true){
+XSZDOQQ:50: 	        if(i<101){
+SEHPSVL:51: 	          jProgressBar1.setValue(i); //
+DSVMFVN:52: 	          i += 5;
+JOQGWCQ:53: 	        }
+BDNZDKM:54: 	        try {
+AQKQTDU:55: 	          Thread.sleep(3000 / 20);
+OKUSUHH:56: 	          if (i > 100) {
+NMVOAZZ:57: 	            break;
+OLPOGRD:58: 	          }
+EHLMMZI:59: 	        }catch (InterruptedException ite) {}
+KSKTKFL:60: 	      }//while
+PWGLBEL:61: 	    }//run
+KHPIFLM:62: 	  }///thread
+ZMGRZLZ:63: 	}

@@ -1,0 +1,19 @@
+0GFVPAZL:1: 	package kr.co.infopub.chapter.s043;
+0MGQOYFO:2: 	// while
+0UFFQLEJ:3: 	public class EvenOdd {
+0RWSZDAP:4: 		public static void showOddnEvenw(int n){
+0VBWNKTI:5: 			int temp=n;
+0HSIXYFO:6: 			while(temp!=1){
+0YAWNYJP:7: 				if(temp%2==1){       // 홀수 
+0LWVEEHK:8: 					temp=temp*3+1;
+0CMVYSLD:9: 				}else{               // 짝수 
+ZQZARFB:10: 					temp/=2;
+GOWEYXU:11: 				}
+VRXBOZG:12: 				System.out.print("["+temp+"] ");
+ZWPPTYV:13: 			}
+ZQOHSWR:14: 			System.out.println("\n---------------------");
+UVFHAKI:15: 		}
+WLCNPXS:16: 		public static void main(String[] args) {
+HZLVUAA:17: 			showOddnEvenw(122);
+KAYTLMQ:18: 		}
+YBWNREE:19: 	}

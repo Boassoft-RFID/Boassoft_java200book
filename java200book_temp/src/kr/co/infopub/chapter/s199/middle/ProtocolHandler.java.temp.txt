@@ -1,0 +1,68 @@
+0LUOEILG:1: 	package kr.co.infopub.chapter.s199.middle;
+0CBSYRAM:2: 	import java.io.*;
+0DMGSRKV:3: 	import java.net.*;
+0FLADMPI:4: 	public class  ProtocolHandler implements Runnable{
+0RHRAVWX:5: 		int          listenPort    =  9983;
+0CZAIQQL:6: 		int          alternatePort = listenPort;
+0UDQZQRF:7: 		ServerSocket myServer      = null;
+0ICUDOCZ:8: 		JuryThread   juryThread;
+0LJTNQDV:9: 		Socket       answerSocket;
+ZBXYYLX:10: 		EmployeeService     db;
+AHBTKPD:11: 		public ProtocolHandler(){
+BTIBBLF:12: 	        init();
+LEFREUY:13: 	    } 
+HTRYRVP:14: 	   // 클라이언트의 접속을 기다릴 서버 소켓을 연다.
+KLNBLZR:15: 	   // 서버 소켓에 사용자가 접속할 때까지 무한 루프(블록킹) 기다린다.
+SJKEPYF:16: 	   // 서버 소켓에 사용자가 접속하면 소켓이 생성된다.
+AAGWQTR:17: 	   public void init(){
+VCDKKLK:18: 	      try{
+CLSJZKV:19: 	    	 System.out.println( "1 서버 소켓 생성..");
+DTWZWAJ:20: 	         myServer = new ServerSocket(listenPort);
+ASLEHTY:21: 	         myServer.setReuseAddress(true) ; //ServerSocket port 바로 다시사용
+SMLQSQC:22: 	         System.out.println( "2 db 연결 ....");
+VFXOMCC:23: 			 db = EmployeeService.getInstance();
+FKHBOKG:24: 	      }catch(IOException e){
+BUQCHID:25: 	         System.out.println(" 데이타베이스 서버에 연결할 수 없습니다.");
+IGRYMRN:26: 			 close();
+HDHWHPX:27: 	         System.exit(1);
+OJOWEFH:28: 	      }catch(Exception io){
+WCYMFYE:29: 	    	 close();
+VLZGXEL:30: 	         System.exit(1);
+QCUYRAL:31: 	         System.err.println("Unable to create Server Socket!");
+EEVSFRE:32: 	      }
+KACMIKJ:33: 	   }
+CESLOWP:34: 	   // 사용후 서버 소켓을 닫는다.
+OHMPXWQ:35: 	   public void close(){
+XDAHPKV:36: 		   try {
+WBWSMJU:37: 			if(myServer!=null){
+ZSQMUPH:38: 				myServer.close();
+PWXLEEU:39: 				System.out.println("ServerSocket id dead.");
+EJXVDDS:40: 			}
+IRBIRGW:41: 		} catch (IOException e) {
+BJZFSWZ:42: 			
+SWEWFEE:43: 		}
+XCFLXYW:44: 	   }
+BLQHCTD:45: 	   // 서버 소켓이 생성되면 클라이언트의 요청을 기다린다.
+WLIDKAU:46: 	   // 실제 클라이언트와 데이타베이스의 연동은 JuryThread가 담당한다.
+RTARETC:47: 	   public void run(){
+CDTUJIO:48: 	      while(true){
+RLUGZHN:49: 	         try{
+DYAARZM:50: 	            answerSocket = myServer.accept();
+IOHDMVN:51: 	            System.out.println( "3 사용자 접속으로 소켓 생성 ......");
+JQWLLQT:52: 	         }catch(IOException io){
+KRFVDMV:53: 	            System.err.println(io.getMessage());
+BCOCUTO:54: 	            return;
+ROMAGOM:55: 	         }
+UPYTCBI:56: 	         System.out.println( "4 배심원 쓰레드 작동 - 요구 사항 파악 준비 ........");
+GCAXFZM:57: 	         juryThread = new JuryThread(answerSocket, db);
+ZGJDJIW:58: 	         Thread.yield();  // 핸들러 쓰레드 -> JuryThread에게 양보
+SOCCPAV:59: 	      }
+OHBBTRS:60: 	   }
+MEADKHP:61: 	   // 서버 소켓을 열고 클라이언트의 접속을 기다린다.
+WJTVOGO:62: 	   // 실제 DB와 연동은 JuryThread가 하도록 한다.
+RCJPATP:63: 	   public static void main(String[] args){
+RWQRMWK:64: 	      ProtocolHandler myHandler = new ProtocolHandler();
+FZUFEAN:65: 	      new Thread(myHandler).start();
+SPDCXMD:66: 	      System.out.println("ProtocolHandler server ready..........");
+ZIYDVAQ:67: 	   }
+WBYVRIF:68: 	}

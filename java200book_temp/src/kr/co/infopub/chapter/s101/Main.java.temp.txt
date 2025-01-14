@@ -1,0 +1,32 @@
+0NGSNBQB:1: 	package kr.co.infopub.chapter.s101;
+0BOUJUYM:2: 	import javafx.application.Application;
+0OQHJUYE:3: 	import javafx.stage.Stage;
+0QLLYMCE:4: 	import javafx.scene.Scene;
+0HUTXOOI:5: 	import javafx.scene.image.Image;
+0IKRIDJX:6: 	import javafx.scene.layout.BorderPane;
+0CFVWLZE:7: 	import javafx.fxml.FXMLLoader;
+0BMWNEEB:8: 	public class Main extends Application {
+0DQBELTQ:9: 	 @Override
+IQNLIYT:10: 	 public void start(Stage primaryStage) {
+TCTPDQF:11: 	  try {
+LDORZQJ:12: 		primaryStage.setTitle("Billboard Chart");
+HXVRMQZ:13: 		BorderPane root = 
+NSCCCFL:14: 			(BorderPane)FXMLLoader.load(getClass().getResource("Billboardfx2.fxml"));
+IDOOJJC:15: 		Scene scene = new Scene(root,1400,800);
+BWEZGRM:16: 		scene.getStylesheets().add(getClass()
+ESWERBO:17: 				.getResource("application.css").toExternalForm());
+RLUXISX:18: 		primaryStage.setScene(scene);
+XMEYJXU:19: 		//primaryStage.setIconified(true);  // 아이콘 위치에서 시작
+GGEHXQL:20: 		//아이콘을 가져온다.
+WJXXWIP:21: 		primaryStage.getIcons().add(
+WTRFFGP:22: 				new Image(getClass().getResourceAsStream("logo.png")));
+GEBIUEP:23: 		primaryStage.setResizable(true);  // false 사이즈 변경 못함
+GTKUULL:24: 		primaryStage.show();
+LTPRWIJ:25: 	  } catch(Exception e) {
+RHYOJBV:26: 		e.printStackTrace();
+ANKKSCZ:27: 	  }
+UQHIMIS:28: 	 } 
+UHPTJFD:29: 	 public static void main(String[] args) {
+VGKXIHI:30: 		launch(args);
+OSIHTDC:31: 	 }
+UHIHLOJ:32: 	}

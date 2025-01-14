@@ -1,0 +1,18 @@
+0YCLCKJG:1: 	package kr.co.infopub.chapter.s053;
+0UWBXTIZ:2: 	// s=s+a 
+0LFDQOQY:3: 	public class ForCondition {
+0COVAJJU:4: 		public static void main(String[] args) {
+0LLRWJNG:5: 			int s=0;
+0QYJGKSY:6: 			for (int i = 1; i <= 100; i++) {
+0RXHLWKK:7: 				s+=i;
+0DREQTXA:8: 			}
+0SXEKEUM:9: 			System.out.println("1~100의 합: "+s);
+PRLQKAM:10: 			s=0;                 // 0으로 초기화
+VQLTXER:11: 			for (int i = 1; i <= 100; i++) {
+TPSYCYA:12: 				if(i%2==1){
+FIIBXLF:13: 					s+=i;
+PABVWLF:14: 				}
+TBOGBLJ:15: 			}
+GWKYYHI:16: 			System.out.println("1~100사이의 홀수의 합: "+s);
+FDYIGEY:17: 		}
+GMLNNLU:18: 	}

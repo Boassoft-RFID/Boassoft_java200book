@@ -1,0 +1,65 @@
+0RWXRBTC:1: 	package kr.co.infopub.chapter.s190;	
+0SGBDBWC:2: 	import javafx.application.Application;
+0SDCMZNK:3: 	import javafx.stage.Stage;
+0VVDQXDO:4: 	import javafx.scene.Scene;
+0JUASOWA:5: 	import javafx.scene.layout.BorderPane;
+0RNHHVNT:6: 	import javafx.fxml.FXMLLoader;
+0REQEGSM:7: 	public class Main extends Application {
+0CSILZSY:8: 	 private Stage primaryStage;
+0SPBNYBJ:9: 	 private BorderPane root;
+ZSIEGAN:10: 	 String systemver="HR Information System ver.1.0";
+IEVWUCX:11: 	 @Override
+CFLMLNU:12: 	 public void start(Stage primaryStage) {	
+EPHUYPL:13: 		primaryStage.setTitle(systemver);
+MXCKBYD:14: 		this.primaryStage=primaryStage;
+CSCWHHT:15: 	    //---------------Separate the sauce
+MHBQSEO:16: 		showHR();
+HIZZDXF:17: 	 }
+LMAYODP:18: 	 public void showHR() {
+PRSSNCM:19: 		try {
+QTCJOTX:20: 			FXMLLoader loader = new FXMLLoader();
+MQJEJPU:21: 	        loader.setLocation(Main.class.getResource("view/MainHrFX.fxml"));
+GYKCUTL:22: 	        root = (BorderPane) loader.load();
+SIHWVEM:23: 	        MainHrFXController empcon=loader.getController();
+IAQOSPH:24: 	        //------Add source code here
+OAZAJJT:25: 	        FXMLLoader loader4 = new FXMLLoader();
+XIZCVLO:26: 	        loader4.setLocation(Main.class.getResource("view/DepTabView.fxml"));
+GCHDIIO:27: 	        BorderPane departView = (BorderPane) loader4.load();
+MGLIUGM:28: 			
+GBXNAAQ:29: 	        FXMLLoader loader2 = new FXMLLoader();
+GXYRURC:30: 	        loader2.setLocation(Main.class.getResource("view/ManagerFx.fxml"));
+YRFIDTG:31: 	        BorderPane emptvView = (BorderPane) loader2.load();
+CXHHKQE:32: 	        
+AOGMCER:33: 	        FXMLLoader loader1 = new FXMLLoader();
+YYPMPKO:34: 	        loader1.setLocation(Main.class.getResource("view/EmployeeSearchFx.fxml"));
+DMOFYHQ:35: 	        BorderPane empsearchView = (BorderPane) loader1.load();
+MUPWBAX:36: 	        
+MUFIQJP:37: 	        FXMLLoader loader3 = new FXMLLoader();
+KQKFLRF:38: 	        loader3.setLocation(Main.class.getResource("view/EmployUpdateFx.fxml"));
+VKKPAVT:39: 	        BorderPane empupdateView = (BorderPane) loader3.load();
+SCJNPXM:40: 	        
+YFYHQRH:41: 	        FXMLLoader loader5 = new FXMLLoader();
+GBMSWKA:42: 	        loader5.setLocation(Main.class.getResource("view/DepChartView.fxml"));
+WJSYXAB:43: 	        
+HZKLLFQ:44: 	        empcon.setView1(departView);
+GZUISKS:45: 	        empcon.setView2(emptvView);
+YGPWLLW:46: 	        empcon.setView(empsearchView);
+GQWXOMN:47: 	        empcon.setView3(empupdateView);
+VOPPHFH:48: 	        empcon.setView4(loader5);
+VDKLNNE:49: 	        //------Add source code here
+THGFQME:50: 			Scene scene = new Scene(root,1250,880);
+CBILRNT:51: 			scene.getStylesheets().add(Main.class.getResource("view/application.css").toExternalForm());
+ZOJLXHR:52: 			primaryStage.setScene(scene);
+MCXTSPJ:53: 			primaryStage.show();
+XNQBUYP:54: 			primaryStage.setResizable(false);
+KUUMOOT:55: 			primaryStage.setOnCloseRequest(e -> {
+NXDVUMU:56: 	        	System.out.println("Close primaryStage !!!");
+NOMZGZX:57: 	        });
+MGZGSOI:58: 		} catch(Exception e) {
+QBTFIWA:59: 			System.out.println(" start에서 Error : "+e);
+SGFOIPE:60: 		}
+ZXDJDND:61: 	 }
+UGNYCLH:62: 	 public static void main(String[] args) {
+ZSJESXO:63: 		launch(args);
+JGNVDQB:64: 	 }
+QMOXLMV:65: 	}

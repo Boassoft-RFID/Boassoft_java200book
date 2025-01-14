@@ -1,0 +1,71 @@
+0WTUXGBW:1: 	package kr.co.infopub.chapter.s191.dto;
+0TNFHAGM:2: 	
+0PDPLZPN:3: 	import javafx.beans.property.IntegerProperty;
+0LXHFNZR:4: 	import javafx.beans.property.SimpleIntegerProperty;
+0NFEMCOR:5: 	import javafx.beans.property.SimpleStringProperty;
+0NRDEHSB:6: 	import javafx.beans.property.StringProperty;
+0WIRCPPA:7: 	
+0PDKTUQN:8: 	public class Department {
+0FZYVJJT:9: 		
+PZHESFE:10: 		  private IntegerProperty department_id;
+XEJHPGV:11: 		  private StringProperty department_name;
+NWMAIMG:12: 		  private IntegerProperty manager_id;
+HRFRUKF:13: 		  private IntegerProperty location_id;
+LPPFCCA:14: 			
+VABOLUM:15: 		  public Department() {
+MNTTOLZ:16: 				this.department_id=new SimpleIntegerProperty();
+YZVLMWY:17: 				this.department_name = new SimpleStringProperty();
+CNKWIRY:18: 				this.manager_id=new SimpleIntegerProperty();
+OSQJJWS:19: 				this.location_id=new SimpleIntegerProperty();
+LHDDRZU:20: 		  }
+TCCBFUE:21: 	
+DJSDGVG:22: 		public IntegerProperty department_idProperty() {
+BPTMVLV:23: 			return department_id;
+TCNACYG:24: 		}
+LIZGFWT:25: 		
+NBRCCKG:26: 		public int getDepartment_id() {
+WLTLRCX:27: 			return department_id.get();
+AXWRVKX:28: 		}
+NWOOYKU:29: 		
+RJDAFGJ:30: 		public void setDepartment_id(int department_id) {
+EWTJCSA:31: 			this.department_id.set(department_id);
+TQMWMRF:32: 		}
+YUYHSXI:33: 		
+IWGQWPU:34: 		public StringProperty department_nameProperty() {
+RQUDPEQ:35: 			return department_name;
+UFNGKPQ:36: 		}
+LGQYIUE:37: 		
+DDGBRTO:38: 		public String getDepartment_name() {
+HRUVDGG:39: 			return department_name.get();
+NEZPDVY:40: 		}
+XXFLPWG:41: 		
+RPEYDDM:42: 		public void setDepartment_name(String department_name) {
+UWWMNZX:43: 			this.department_name.set(department_name);
+ZTZIBOV:44: 		}
+SUHSOWM:45: 		
+MVIZZOS:46: 		public IntegerProperty manager_idProperty() {
+MHNJJHN:47: 			return manager_id;
+GDGAEWO:48: 		}
+AORVERB:49: 		public int getManager_id() {
+DXRVVUG:50: 			return manager_id.get();
+FFCXITD:51: 		}
+OCWRFYZ:52: 		
+TSFLUZC:53: 		public void setManager_id(int manager_id) {
+FGASYNB:54: 			this.manager_id.set(manager_id);
+QJKGMKK:55: 		}
+UTWITNR:56: 		
+XWQZVXT:57: 		
+KHXEVMF:58: 		public IntegerProperty getLocation_idProperty() {
+WSKJUQP:59: 			return location_id;
+YUIXKWZ:60: 		}
+WRNVZAS:61: 		public int getLocation_id() {
+QYRJTCP:62: 			return location_id.get();
+TGYJEGG:63: 		}
+SARSMHC:64: 		
+YJSZTSF:65: 		public void setLocation_id(int location_id) {
+EYELKJT:66: 			this.location_id.set(location_id);
+MJPQRIO:67: 		}
+OIHIARO:68: 			
+CGXNMGC:69: 	  
+EPAIIIC:70: 		  
+VNKXZVO:71: 	}

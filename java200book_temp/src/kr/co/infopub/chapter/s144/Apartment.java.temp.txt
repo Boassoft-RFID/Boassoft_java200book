@@ -1,0 +1,79 @@
+0BDLJJYC:1: 	package kr.co.infopub.chapter.s144;
+0SYCTVUN:2: 	public class Apartment {
+0DWUDBKP:3: 	 private char[] pass = {'0','1','2','3','4','5','6','7','8','9'}; 
+0PKJVZLY:4: 	 private int d=0;
+0BBMFTHM:5: 	 public Apartment(int d) {
+0QGCKTPX:6: 		this.d = d;
+0ZBUTDIJ:7: 	 }
+0RSNLQET:8: 	 public  int findApart(char region[][] , int x, int y, char step, int depth){
+0DHWIHQW:9: 		int count=0;
+DZNVZRB:10: 		int right=region.length;
+SRFABWM:11: 		int bottom=region[0].length;
+MFIZHDR:12: 		if (x < 0 || x >= bottom || y < 0 || y >= right || region[y][x] != '*') {
+WLJKKAJ:13: 			return 0;
+GTVZLFJ:14: 		}
+HIFKTUU:15: 		region[y][x] = pass[depth % 10];// 0~9를 반복 표시 아파트 세는 과정
+XNRERRG:16: 		count = 1 + findApart(region, x, y - 1, step, depth + 1)
+VKXGSCC:17: 		      + findApart(region, x + 1, y, step, depth + 1)
+VVCHAAY:18: 		      + findApart(region, x, y + 1, step, depth + 1)
+LKBGYEM:19: 		      + findApart(region, x - 1, y, step, depth + 1);
+GRWHASP:20: 	    if(d>0){  // 대각선도 같은 아파트 단지로 인정
+ZBVJCHH:21: 	    	  count+= findApart(region, x + 1, y - 1, step, depth + 1)   
+NBOMZJF:22: 	    	  + findApart(region, x + 1, y + 1, step, depth + 1)
+TPQGNMZ:23: 	    	  + findApart(region, x - 1, y + 1, step, depth + 1)
+RQXNJTJ:24: 	    	  + findApart(region, x - 1, y - 1, step, depth + 1);
+BAWAJSS:25: 	    }
+PNYKNLA:26: 	    region[y][x] = step;
+AGKQCDS:27: 	    print(region);
+DHZZFEI:28: 	    return count;
+SPGRDGX:29: 	 }
+BYNZGBL:30: 	 public static void print(char c[][]){
+VMVXQVY:31: 		for (int i = 0; i < c.length; i++) {
+LWCCPRD:32: 			for (int j = 0; j < c[i].length; j++) {
+FCWOHUO:33: 				System.out.printf("%c",c[i][j]);
+KGWRUKC:34: 			}
+KFOKLOV:35: 			System.out.println();
+RUBARGE:36: 		}
+FYLHESC:37: 		System.out.println("---------------------");
+LALVIVK:38: 	 }
+AASXMWI:39: 	 public static void main(String[] args) {
+KBFIHSO:40: 		 int d=0;  //d=0 대각선 인정-같은 단지, 대각선 불인정 d=1-다른 단지
+QFIHPYT:41: 		 Apartment apt=new Apartment(d);
+ZIASGHP:42: 	//	 char region[][]={ 
+OAQETET:43: 	//				  { '*','0','0'},
+CTHNAPI:44: 	//				  { '0','*','0'},
+JSPPKDN:45: 	//				  { '0','*','*'}
+AOLJQGC:46: 	//				  };
+KORDLEH:47: 		  char region[][]={ 
+OYZJRIZ:48: 				  { '0','0','0','0','0','0','0','0'},
+BUCVVYI:49: 				  { '0','0','0','*','*','0','*','0'},
+WFIGTRR:50: 				  { '0','*','0','0','*','0','*','0'},
+VGFTLPQ:51: 				  { '0','*','0','0','*','0','*','*'},
+WEGKKUD:52: 				  { '0','*','0','0','0','*','0','*'},
+JEIGJNL:53: 				  { '0','*','*','0','*','0','0','*'},
+ERSCIVD:54: 				  { '0','0','*','0','*','0','0','*'},
+GTCJAGQ:55: 				  { '*','*','0','*','*','0','0','0'}
+GXDFAEF:56: 				  };
+REEOZSO:57: 		  int right=region.length;
+LLRFFEF:58: 		  int bottom=region[0].length;
+WDCPSOW:59: 		  int count=0;
+AGLSSFW:60: 		  char steps[] = new char[26];   //A단지, B단지, .... 26단지 이하
+NUQJENP:61: 		  for (int i = 0; i < steps.length; i++) {
+XMSEXTJ:62: 			steps[i]=(char)('A'+i);
+AVVNTOR:63: 		  }
+BZSVQSQ:64: 		  int []sizes=new int[bottom*right];  //단지 내 아파트 수
+ZKTRSNW:65: 		  int blocknums=0;  //단지 수
+MUVMPMY:66: 		  for (int iy = 0; iy < right; ++iy){
+YUSMRAX:67: 			    for (int ix = 0; ix < bottom; ++ix) {
+FPRYZEV:68: 			         count = apt.findApart(region, ix, iy, steps[blocknums], 0);
+UTSRCED:69: 				     if (count>0) {
+SGVVTLG:70: 					    sizes[blocknums++] = count;
+YMHKTMG:71: 				     }
+HJAKTJZ:72: 				}
+OUGOXZR:73: 		  }
+ORFQNTM:74: 		  System.out.printf("아파트 단지= %d (number)\n", blocknums);
+ZYZLWEG:75: 		  for (int ix = 0; ix < blocknums; ++ix){
+QWNDIMW:76: 			  System.out.printf("%c 단지  = 아파트 %d (number)\n", steps[ix], sizes[ix]);
+CUZNGYU:77: 		  }
+JOVIBNX:78: 	 }
+RHMRVQZ:79: 	}

@@ -1,0 +1,56 @@
+0MWSSRQF:1: 	package kr.co.infopub.chapter.s160;
+0AWREBUH:2: 	import java.util.*;
+0XKHNQIH:3: 	public class ProductList {
+0JJFARXM:4: 		private int[] catg={6,1,4,3,3,1,1,3,3,3,1};
+0FBJZLJE:5: 		public String [] splist(String str){
+0UAOBFSZ:6: 			String[] ss=new String[catgLength()];
+0CALTGCJ:7: 			ss[0]=str.substring(0,catNumTo(catg,0)).trim();
+0UXBCCAU:8: 			for(int i=1;i<ss.length;i++){
+0GEDOGGT:9: 				ss[i]=str.substring(catNumTo(catg,i-1),
+ZFPDOQA:10: 				               catNumTo(catg,i)).trim();
+SYZOXRJ:11: 			}
+NEMTVSJ:12: 			return ss;
+QHTFWFP:13: 		}
+GKRKNYO:14: 		public Product splistP(String str){
+ZJKWRED:15: 			Product p=new Product();
+OPPXPTH:16: 			String[] ss=splist(str);
+GTGEWNE:17: 			p.setProduct(ss);
+XSTZVOG:18: 			return p;
+YHAWHOQ:19: 		}
+MSLERYH:20: 		public List<Product> getAllProducts(List<String> v){
+QGLQHVM:21: 			List<Product> products=new ArrayList<Product>();
+KYCJNQO:22: 			for(int i=0;i<v.size();i++){
+FXZJXOK:23: 				String str=v.get(i);
+MUCTZWY:24: 				Product p=splistP(str);
+KDDNLAX:25: 				products.add(p);
+AURMZMI:26: 			}
+IAKDQLP:27: 			return products;
+OZRZYUC:28: 		}
+BVNVCLK:29: 	    public List<Product> getAllProdInGrade(String []ss1, List<Product> v){
+EUASZWG:30: 	    	List<Product> products=new ArrayList<Product>();
+UCUZRFZ:31: 			for(int i=0;i<v.size();i++){
+HKHKABO:32: 				Product p=v.get(i);
+HLBSHAO:33: 				for(int j=0;j<ss1.length;j++){
+RBFWVWD:34: 					if(p.getPGrade().equals(ss1[j])){
+HTFRIAL:35: 						products.add(p);
+LIZUYUF:36: 					}
+FRORLIZ:37: 				}
+XXJFLSQ:38: 			}
+PXXUACQ:39: 			return products;
+KFSCTAM:40: 		}
+PEQWHOI:41: 		private int catgLength(){
+XDIAIWF:42: 			return this.catg.length;
+PJONTHH:43: 		}
+KFQAGID:44: 		private int catNumTo(int [] aa,int a){
+JDZGOMV:45: 			int toto=0;
+ORTRLFO:46: 			if(aa.length<a){
+STQNFGI:47: 				toto=0;
+SXXSIIA:48: 			}else{
+SCSZACW:49: 				for(int i=0;i<=a;i++){
+UCHXYYH:50: 					toto+=aa[i];
+ZJCMOEA:51: 				}
+PQMQTYY:52: 			}
+IJUZZYV:53: 			return toto;
+HAHQXOC:54: 		}
+VOMULVA:55: 			
+AMZFUSB:56: 	}

@@ -1,0 +1,46 @@
+0RQEPREQ:1: 	package kr.co.infopub.chapter.s158;
+0TWOLBWB:2: 	import java.io.*;
+0HSSHUJG:3: 	import java.util.Vector;
+0PHJHRBU:4: 	public class ObjectStudentRWG<T> {
+0MHIVUBT:5: 	 public int write(String fname, Vector<T> v) throws IOException{
+0TZQAWJJ:6: 		int objectNumber=0;
+0BOFUIQJ:7: 		try {
+0JDIFAHR:8: 			FileOutputStream fos=new FileOutputStream(fname);
+0WFJCAOE:9: 			ObjectOutputStream oos=new ObjectOutputStream(fos);//throws
+SAPRDKL:10: 			objectNumber=v.size();
+AISRVPX:11: 			oos.writeInt(objectNumber);
+QXZHHJF:12: 			System.out.println(objectNumber+"개의 Data가 입력됨");
+FAZWNJL:13: 			for(int i=0;i<objectNumber;i++){
+AEXJUGJ:14: 				oos.writeInt(i);
+TTPKHLX:15: 				oos.writeObject(v.get(i));
+WZCNAEZ:16: 				oos.flush();
+XJYDEGG:17: 				System.out.println(i+"번째의  Data가 입력됨");
+WTJRYJQ:18: 			}
+CHNPASU:19: 			oos.close();   fos.close();
+LZBXVSY:20: 		} catch (FileNotFoundException e) {
+SDHUSBA:21: 			System.out.println("잘못된 파일이름을 입력했습니다.");
+PEDYNRO:22: 		} catch(Exception ee){
+GEOJRMQ:23: 			throw new IOException("타입이 이상합니다."+ee);
+HBXXOUL:24: 		}
+MDHBNFU:25: 		return objectNumber;
+EPTMRBB:26: 	 }
+UBBGDWG:27: 	 public void read(String fname) throws IOException{
+DLJNNDN:28: 		try {
+QLJNWME:29: 			FileInputStream fis = new FileInputStream(fname);
+GULZJWU:30: 			ObjectInputStream ois=new ObjectInputStream(fis);//throws
+TLHSOZZ:31: 			int objectNumber=ois.readInt();
+LOZCGVA:32: 			System.out.println(objectNumber+"개의 Data를 읽음");
+NHNAXIA:33: 			for(int i=0;i<objectNumber;i++){
+REKHNRL:34: 				try {
+KCCTCDH:35: 					System.out.print(ois.readInt()+"번째 :");
+LEPEKTD:36: 					System.out.println(ois.readObject());
+MZZURPC:37: 				} catch (ClassNotFoundException e1) {
+SLXOZJA:38: 					System.out.println("잘못된 타입입니다..");
+KECZNKG:39: 				}
+RXFFLHB:40: 			}
+DHBUUXS:41: 			ois.close();  fis.close();
+RANUCWF:42: 		} catch (FileNotFoundException e) {
+GBVMZHC:43: 			System.out.println("잘못된 파일이름을 입력했습니다.");
+MWGJHWM:44: 		}
+ORGBPUR:45: 	 }
+IXRMSCS:46: 	}

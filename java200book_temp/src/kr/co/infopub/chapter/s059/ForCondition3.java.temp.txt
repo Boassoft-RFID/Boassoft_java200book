@@ -1,0 +1,33 @@
+0IMCNHPE:1: 	package kr.co.infopub.chapter.s059;
+0YLDMACG:2: 	import java.util.ArrayList;
+0RMNNBVE:3: 	import java.util.List;
+0NWXOXJV:4: 	import java.util.function.BinaryOperator;
+0DRLTSBF:5: 	// stream
+0JOXSBJG:6: 	public class ForCondition3 {
+0QBCXTVY:7: 		public static void main(String[] args) {
+0HCRTZTO:8: 			List<Integer> ilist=new ArrayList<>();
+0MGHTGDU:9: 			int s=0;
+XSVTCFC:10: 			for (int i = 1; i <= 100; i++) {
+DTTSJKV:11: 				ilist.add(i);
+CPUJUGM:12: 			}
+TWEERNM:13: 			// 초기값 0, 
+FHSUQNV:14: 			s=ilist.stream().reduce(0, Integer::sum);
+VBRGVRL:15: 			System.out.println("1~100의 합: "+s);
+IAQZCNU:16: 			s=0;  
+LGFAUXM:17: 			// 1~100사이의 홀수의 합
+TMXKJKM:18: 			s=ilist.stream().filter(i-> i%2==1).reduce(0, Integer::sum);
+OMQXOMF:19: 			System.out.println("1~100사이의 홀수의 합: "+s);
+APZZGEY:20: 			// 1~100사이의 홀수의 합
+PSQSCXS:21: 			s=ilist.stream().filter(i-> i%2==1).reduce(0, (x,y)->x+y );
+HYRWBTK:22: 			System.out.println("1~100사이의 홀수의 합: "+s);
+DGZKMVF:23: 			// 1~100사이의 홀수의 합
+VVOXEEZ:24: 			s=ilist.stream().filter(i-> i%2==1).reduce(0, 
+JXNHKMU:25: 					                new BinaryOperator<Integer>() {
+JXWISEA:26: 				@Override
+WPAOTOE:27: 				public Integer apply(Integer t, Integer u) {
+WVWEMNW:28: 					return t+u;
+TXRXBTD:29: 				}
+GOOZNIK:30: 			});
+BVUORCA:31: 			System.out.println("1~100사이의 홀수의 합: "+s);
+VVOPGQA:32: 		}
+LRDDRWI:33: 	}

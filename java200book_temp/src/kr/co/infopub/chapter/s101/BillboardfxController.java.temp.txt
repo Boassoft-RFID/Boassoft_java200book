@@ -1,0 +1,116 @@
+00GZNLSOT:1: 	package kr.co.infopub.chapter.s101;
+00OHAYOJK:2: 	import java.util.ArrayList;
+00IZXHARA:3: 	import javafx.collections.ObservableList;
+00CZRKWBT:4: 	import javafx.event.ActionEvent;
+00ZVVIGLT:5: 	import javafx.fxml.FXML;
+00OTAUWPS:6: 	import javafx.scene.control.Button;
+00VXAGWAC:7: 	import javafx.scene.control.Label;
+00LCFWMIG:8: 	import javafx.scene.control.TableCell;
+00MXDBXTN:9: 	import javafx.scene.control.TableColumn;
+0WYMBJYX:10: 	import javafx.scene.control.TableView;
+0SCBXWEN:11: 	import javafx.scene.image.ImageView;
+0YMVYHDK:12: 	import javafx.scene.web.WebEngine;
+0CGVZGFM:13: 	import javafx.scene.web.WebView;
+0GYZMIXM:14: 	import javafx.util.Callback;
+0KDQVEZA:15: 	public class BillboardfxController {
+0QZPRLDG:16: 	 @FXML
+0DWWBOIF:17: 	 private TableView<BillbaordProperty> billobardTable;
+0MAZSYUI:18: 	 @FXML
+0FBFBRIH:19: 	 private TableColumn<BillbaordProperty, String> song;
+0DEYUHPZ:20: 	 @FXML
+0UVLBPJE:21: 	 private TableColumn<BillbaordProperty, String> artist;
+0ZGPKVTM:22: 	 @FXML
+0YQMWNSY:23: 	 private TableColumn<BillbaordProperty, Integer> lastweek;
+0NNPOCCP:24: 	 @FXML
+0DVOQXYZ:25: 	 private TableColumn<BillbaordProperty, Integer> rank;
+0RDCVWWM:26: 	 @FXML
+0RLALUVL:27: 	 private TableColumn<BillbaordProperty, String> imagesrc;
+0JEAZIYN:28: 	 @FXML
+0RTBWGZQ:29: 	 private WebView billwebview;
+0TFDHWGE:30: 	 @FXML
+0YHISSIG:31: 	 private Button btnAf;
+0EOSEELS:32: 	 @FXML
+0UMCCINE:33: 	 private Button btnBf;
+0VQWEXJT:34: 	 @FXML
+0EXDTFOU:35: 	 private Label lbbill;
+0DMEIIUZ:36: 	 //ImageFXListRequest  request=new ImageFXListRequest();
+0QMMECBJ:37: 	 int count=0;
+0GVTAHDD:38: 	 @FXML
+0UPMTPEJ:39: 	 void onClickBtnBf(ActionEvent event) {
+0NCJWQXQ:40: 		count++;
+0IAUDJXD:41: 		getAllBillboard();
+0TCYUMSA:42: 	 }
+0QFCICGS:43: 	 @FXML
+0ANEXXSU:44: 	 void onClickBtnAf(ActionEvent event) {
+0MZSAUFU:45: 		count=0;
+0LUUWVSP:46: 		getAllBillboard();
+0BGIFWML:47: 	 }
+0XKKZKSS:48: 	 @FXML
+0GHSMBOC:49: 	 void initialize() {
+0BUVPYJI:50: 	  rank.setCellValueFactory(cellData->cellData.getValue().rankProperty().asObject());
+0ULBWGQW:51: 	  artist.setCellValueFactory(cellData->cellData.getValue().artistProperty());
+0QIMPOHE:52: 	  song.setCellValueFactory(cellData->cellData.getValue().songProperty());
+0PGXIHRF:53: 	  imagesrc.setCellValueFactory(cellData->cellData.getValue().imagesrcProperty());
+0PJXCINU:54: 	  lastweek.setCellValueFactory(cellData-> 
+0TEXQFEA:55: 	                              cellData.getValue().lastweekProperty().asObject());
+0JSYRZEJ:56: 		rank.setStyle("-fx-alignment: CENTER");     
+0AFRHFIA:57: 		lastweek.setStyle("-fx-alignment: CENTER");  
+0VDJGKJS:58: 		imagesrc.setCellFactory(new Callback<TableColumn<
+0QYMJSXC:59: 		             BillbaordProperty, String>,TableCell<BillbaordProperty, String>>(){        
+0IYJDCDR:60: 			@Override
+0RYPYZVS:61: 			public TableCell<BillbaordProperty, String> 
+0DRGQEVB:62: 			                        call(TableColumn<BillbaordProperty, String> param) {                
+0ZQYOJOA:63: 				TableCell<BillbaordProperty, String> cell =
+0ROBAVVJ:64: 						new TableCell<BillbaordProperty, String>(){
+0EOVHEWV:65: 					final ImageView imageview = new ImageView();
+0XCCYALK:66: 					@Override
+0KIVHUWA:67: 					public void updateItem(String item, boolean empty) {                        
+0EIXFVQH:68: 						if(item!=null){                            
+0VMCILZZ:69: 							imageview.setFitHeight(100);
+0XIRUPUG:70: 							//imageview.setImage(request.loadImage(item));
+0JIHRKSS:71: 							setGraphic(imageview);
+0DPMDDFO:72: 						}
+0IFGIWDL:73: 					}
+0FUSJCNE:74: 				};            
+0ILBFVWH:75: 				return cell;
+0QSWLXHX:76: 			}
+0QQCFBJT:77: 		});
+0ENTDPPZ:78: 		final WebEngine webEngine = billwebview.getEngine();
+0TTIIQAO:79: 		billobardTable.setOnMouseClicked(e ->{
+0UGZQLGK:80: 	    	if(billobardTable.getSelectionModel().getSelectedItem()!=null ){
+0ZUHGGSL:81: 	    		BillbaordProperty billboard = 
+0DGSVEDH:82: 	    		 (BillbaordProperty)billobardTable.getSelectionModel().getSelectedItem();
+0MAMBBHK:83: 	    		webEngine.load(
+0OLPILRB:84: 	    		   "https://www.youtube.com/results?search_query="
+0UXBPOUN:85: 	    		      +toP(billboard.getArtist())+toP(billboard.getSong()));
+0GOQWJGN:86: 	    	}
+0HAXDYEN:87: 	      }
+0NTMJZKV:88: 	    );
+0PZUSXXM:89: 		getAllBillboard();
+0HUKRBYN:90: 	 }
+0TDUPGRP:91: 	 public String toP(String msg){
+0KVJVTJW:92: 	    String ss=msg;
+0NIIRXGJ:93: 	    ss=ss.replaceAll(" ", "+");
+0WVROLFM:94: 	    return ss.trim();
+0KCMPUZT:95: 	 }
+0PWLXVLH:96: 	 public void getAllBillboard(){
+0UWMPUUS:97: 		RequestFromBillboard200 rfw=new RequestFromBillboard200();
+0ONVZPZL:98: 		String a="https://www.billboard.com/charts/billboard-200/";
+0CNAGEMQ:99: 		String rs=rfw.getTimeDate(a);
+JNMEXTO:100: 		rs=RestDay.toWantedDay(rs, count); //count 1 : 1주흐
+CURMPRS:101: 		//RequestFromBillboardHot rfw=new RequestFromBillboardHot();
+NWOOYTS:102: 		//String a="https://www.billboard.com/charts/hot-100/";
+BZPXMDS:103: 		//String rs=rfw.getTimeDate(a);
+GIYJVBS:104: 		rfw.getBillboardData(a+rs);
+TFMENJC:105: 		ArrayList<Billbaord> bills=rfw.getBillboards();
+SNKATOQ:106: 		
+OWFGBWR:107: 		//request.getAllImages(bills);  //image
+IEOIPHX:108: 		ObservableList<BillbaordProperty> obsbills=
+FNNOYMW:109: 				                 BillboardConvert.toObservBill(bills);
+PGVKYTK:110: 		populateEmployees(obsbills);
+APCQEXO:111: 		lbbill.setText("Billboard Chat 200 "+rs);  
+ERAJYOP:112: 	 }
+MZSELEL:113: 	 public void populateEmployees(ObservableList<BillbaordProperty> bills) {
+WWSZFPB:114: 		billobardTable.setItems(bills);
+FONVLGC:115: 	 }
+AWGAPSF:116: 	}

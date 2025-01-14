@@ -1,0 +1,6 @@
+KICNSTO:1: 	package kr.co.infopub.chapter.s198.client;
+MALTWMD:2: 	public class ChatClientFrameMain {
+ZDQYFQU:3: 		public static void main(String[] args) {
+YRINXOW:4: 			ChatClientFrame sj=new ChatClientFrame();
+FUROLNN:5: 		}
+GIDGUKJ:6: 	}

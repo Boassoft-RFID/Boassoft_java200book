@@ -1,0 +1,56 @@
+0AKSHFDP:1: 	package kr.co.infopub.chapter.s198;
+0VESGJOA:2: 	import java.io.IOException;
+0CAJJTWD:3: 	import java.net.ServerSocket;
+0CVNFAEU:4: 	import java.net.Socket;
+0VSKPRXY:5: 	import java.util.ArrayList;
+0BEXRMRM:6: 	import java.util.Collections;
+0SNOLZVV:7: 	import java.util.List;
+0ADVDRSR:8: 	public class HwiServer {
+0XJOZEPI:9: 	 private List<ServerThread> room=
+WHBWLYX:10: 		Collections.synchronizedList(new ArrayList<ServerThread>());
+QZVQLSW:11: 	 public HwiServer() {
+BULTOAS:12: 		room.clear();
+FJVTPYB:13: 	 }
+DIDYAVM:14: 	 public synchronized void add(ServerThread st){
+ZEVWOVN:15: 		room.add(st);
+LOPJFEK:16: 	 }
+ZWQQYRW:17: 	 public synchronized void remove(ServerThread st){
+MLYWFCC:18: 		room.remove(st);
+CICUZUN:19: 	 }
+JIOMEVE:20: 	 // broad casting - List에 있는 모든 소켓에 메시지 보내기
+YVLJJZO:21: 	 public synchronized void broadCasting(String msg){
+JSZYDDX:22: 		System.out.println("방 개수:"+room.size());
+VEYWJZQ:23: 		for (int i = 0; i < room.size(); i++) {
+RFJCEMX:24: 			ServerThread st=room.get(i);
+IETMSDG:25: 			st.sendMessage(msg);
+RUIRPVI:26: 		}
+VBIDUXM:27: 	 }
+CNRNENS:28: 	 public static void main(String[] args) {
+SLZHUSW:29: 		HwiServer hserver=new HwiServer();
+GOOPFZG:30: 		hserver.go();
+HZOPMXQ:31: 	 }
+DFKLHZU:32: 	 ServerSocket ss;
+SIMDJMJ:33: 	 int port =9907;
+UDUVYBM:34: 	 public void go() {
+GJLRPEM:35: 		try {
+XRRMPGH:36: 			ss=new ServerSocket(port);
+PSKDKTB:37: 			ss.setReuseAddress(true);
+RBSKDBQ:38: 			System.out.println("서버소켓 Ready~~~~");
+MINSOYH:39: 			//blocking
+DZYRPGN:40: 			while(true){
+PBLDHGL:41: 				Socket s=ss.accept();
+STZRRHJ:42: 				ServerThread st=new ServerThread(s , this);
+JCGXRUU:43: 				add(st);
+HYGIZQV:44: 				st.start();
+DXYUXBJ:45: 			}
+OBFNWCO:46: 		} catch (IOException e) {
+FENCRVL:47: 			System.out.println(e);
+TIAUDAV:48: 		}finally{
+RAABHON:49: 			try {
+YJXALQN:50: 				ss.close();
+KCGYILD:51: 			} catch (IOException e) {
+UFFBZGH:52: 				
+OSUKVBN:53: 			}
+YPEPDGL:54: 		}
+ZGMMYNG:55: 	 }
+YEPKMHY:56: 	}

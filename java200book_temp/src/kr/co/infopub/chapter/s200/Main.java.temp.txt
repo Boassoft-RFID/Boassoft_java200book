@@ -1,0 +1,57 @@
+0NPCICWW:1: 	package kr.co.infopub.chapter.s200;
+0VABYTAQ:2: 	import javafx.application.Application;
+0XHXGPCK:3: 	import javafx.stage.Stage;
+0AVMBBCQ:4: 	import kr.co.infopub.chapter.s200.client.EmployeeService;
+0LSLLWXO:5: 	import javafx.scene.Scene;
+0AXOEBJC:6: 	import javafx.scene.layout.BorderPane;
+0RVAPUFT:7: 	import javafx.fxml.FXMLLoader;
+0GOIZNVL:8: 	public class Main extends Application {
+0VAKEVJB:9: 	 private Stage primaryStage;
+OIAFICT:10: 	 private BorderPane root;
+LTYAKED:11: 	 String systemver="HR Information System ver.1.0";
+SDSKFXT:12: 	 @Override
+LBDDVCF:13: 	 public void start(Stage primaryStage) {
+CICAGAR:14: 		primaryStage.setTitle(systemver);
+KFUCSLP:15: 		this.primaryStage=primaryStage;
+JDYKLES:16: 	    //---------------Separate the sauce
+FPIHCWQ:17: 		showHR();
+CWQXGTA:18: 	 }
+PXIDVXI:19: 	 public void showHR() {
+NXIISEG:20: 	  try {
+NKQLJJB:21: 		// DAO 대신 Serivce 사용 -> ObservableList 변환도 같이 함
+HIZXOWL:22: 		EmployeeService service=EmployeeService.getInstance(); //DB 준비
+EJXYJMY:23: 		FXMLLoader loader = new FXMLLoader();
+JCEDWGS:24: 	    loader.setLocation(Main.class.getResource("view/MainHrFX.fxml"));
+LDXXHVN:25: 	    root = (BorderPane) loader.load();
+UCDNXSE:26: 	    MainHrFXController empcon=loader.getController();
+VDTOQEX:27: 	    empcon.setService(service);
+XFGJQPU:28: 	    //------>>>Add source code here
+UUHOIOG:29: 	    DepartmentController departView=new DepartmentController(service);
+IEAUQEN:30: 	    ManagerFxController emptvView=new ManagerFxController(service);
+KUBMCGA:31: 	    EmployeeSearchFxController empsearchView=new EmployeeSearchFxController(service);      
+DXBCADM:32: 	    EmployUpdateFxController empupdateView=new EmployUpdateFxController(service); 
+BZGLKER:33: 	    PieChartController piecharview=new PieChartController(service); 
+KECKZPS:34: 	    
+RCCFMUU:35: 	    empcon.setView1(departView);
+KAAMOGB:36: 	    empcon.setView2(emptvView);
+LEAZNSN:37: 	    empcon.setView(empsearchView);
+VMVKADD:38: 	    empcon.setView3(empupdateView);
+WIKTOSC:39: 	    empcon.setView4(piecharview);
+WJSQLUL:40: 	    //<<<------Add source code here
+LOYIVYP:41: 		Scene scene = new Scene(root,1250,880);
+DFNEQGW:42: 		scene.getStylesheets().add(
+GNTIESD:43: 		Main.class.getResource("view/application.css").toExternalForm());
+YPUTCWG:44: 		primaryStage.setScene(scene);
+UKGAGCD:45: 		primaryStage.show();
+NSZQVEE:46: 		primaryStage.setResizable(false);
+ATYTMUI:47: 		primaryStage.setOnCloseRequest(e -> {
+QBQWBHK:48: 	    	System.out.println("Close primaryStage !!!");
+TYFIJXC:49: 	    });
+KRRDETX:50: 	  } catch(Exception e) {
+UWPKKIP:51: 		System.out.println(" start에서 Error : "+e);
+JZBKADD:52: 	  }
+ZQOUUWZ:53: 	 }
+GPMNCGJ:54: 	 public static void main(String[] args) {
+ABUTOOO:55: 		launch(args);
+KLXHYWY:56: 	 }
+IPEKJFV:57: 	}

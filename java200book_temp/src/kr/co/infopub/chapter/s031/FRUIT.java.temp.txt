@@ -1,0 +1,4 @@
+OLIVLOG:1: 	package kr.co.infopub.chapter.s031;
+CVZYJJV:2: 	public enum FRUIT{
+PIUMHQQ:3: 		APPLE, BANANA, MANGO     //0~2 자동 초기화
+DCGLDMR:4: 	}

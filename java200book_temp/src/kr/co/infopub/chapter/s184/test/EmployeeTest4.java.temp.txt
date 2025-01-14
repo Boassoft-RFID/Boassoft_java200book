@@ -1,0 +1,44 @@
+0QPGNUUP:1: 	package kr.co.infopub.chapter.s184.test;
+0GOGEXZP:2: 	
+0OOCOZBA:3: 	import java.sql.SQLException;
+0PEJOGRY:4: 	import java.util.List;
+0ZCUQZKU:5: 	import kr.co.infopub.chapter.s184.dto.EmployeeDto;
+0DHKPRMO:6: 	import kr.co.infopub.chapter.s184.model.EmployeeDAO;
+0YDMLWJW:7: 	// findEmployeesByManagerId : a subordinate immediately below
+0PTWUBWY:8: 	public class EmployeeTest4 {
+0NYGDQGH:9: 		public static void main(String[] args) {
+AFSTGGS:10: 			EmployeeDAO ddao=new EmployeeDAO();
+IIBVKKU:11: 			try {
+KKBSCOL:12: 				List<EmployeeDto> lists=ddao.findEmployeesByManagerId(100+"");
+DBHIEKT:13: 				for (EmployeeDto dd: lists) {
+ERQWDYK:14: 					System.out.println(dd.getEmployeeId()+"  "+dd.getFirstName()+"  "+dd.getLastName());
+RNPIACZ:15: 				}
+RKYPCHR:16: 			} catch (SQLException e) {
+YUCXSZX:17: 				System.out.println( e);
+JMFOYRL:18: 			}
+MRJQOGK:19: 		}
+ZABMBXY:20: 	}
+SYOWYIR:21: 	/*
+EJMOBRY:22: 	CRUD-------------------------------class sample.model.EmployeeDAO.findEmployeesByManagerId()
+HRAQLRY:23: 	SELECT  E.EMPLOYEE_ID EMPLOYEE_ID, D.EMPLOYEE_ID MANAGER_ID, 
+PUYKDQZ:24: 	  E.FIRST_NAME , 
+QFNUBID:25: 	  E.LAST_NAME, E.EMAIL, E.PHONE_NUMBER,E.HIRE_DATE 
+TMZKOFC:26: 	  FROM EMPLOYEES E, EMPLOYEES D 
+RHCSPYD:27: 	  WHERE D.EMPLOYEE_ID=E.MANAGER_ID AND E.MANAGER_ID=?
+DCNAOGS:28: 	Data : 100
+MAVHHJK:29: 	CRUD--------------------------------------2017-05-13 20:22
+TCVUDLX:30: 	101  Neena  Kochhar
+UPVYIBU:31: 	102  Lex  De Haan
+KSRETWD:32: 	114  Den  Raphaely
+HAWFYSB:33: 	120  Matthew  Weiss
+HNDRPAN:34: 	121  Adam  Fripp
+MLWHKRR:35: 	122  Payam  Kaufling
+IJKWSTD:36: 	123  Shanta  Vollman
+PEHLSJR:37: 	124  Kevin  Mourgos
+ELEHECF:38: 	145  John  Russell
+IICBVTR:39: 	146  Karen  Partners
+XWTXOFI:40: 	147  Alberto  Errazuriz
+PGCPGHR:41: 	148  Gerald  Cambrault
+BTQSFXV:42: 	149  Eleni  Zlotkey
+ZRSRWGE:43: 	201  Michael  Hartstein
+SYZWBZG:44: 	*/

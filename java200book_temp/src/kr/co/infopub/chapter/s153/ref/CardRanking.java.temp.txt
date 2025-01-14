@@ -1,0 +1,284 @@
+00QVAVAHQ:1: 	package kr.co.infopub.chapter.s153.ref;
+00SJZYUVB:2: 	
+00TNCTTEC:3: 	import java.util.Arrays;
+00UXRNTMP:4: 	import java.util.HashMap;
+00MYVJSGQ:5: 	import java.util.Map;
+00SLHQAUV:6: 	
+00FULSULP:7: 	//https://www.pokerstars.com/poker/games/rules/hand-rankings/
+00JORFLXR:8: 	
+00WBQSWLE:9: 	
+0ZGCOYVT:10: 	public class CardRanking {
+0LEXULPF:11: 	
+0WTZVDWJ:12: 		public static String fiveSuit(Card[] cd){
+0LSEBVKK:13: 			String s="";
+0GHLQCHO:14: 			for (int i = 0; i < cd.length; i++) {
+0EQJWKBK:15: 				s=s+cd[i].getCard().charAt(0);
+0JORXVFA:16: 			}
+0LHPOOBL:17: 			//System.out.println("----->"+s);
+0EIBKOLZ:18: 			return s;
+0QHNISUA:19: 		}
+0DHJIUWT:20: 		public static String fiveRank(Card[] cd){
+0MMWGAIJ:21: 			String s="";
+0JRBDPNW:22: 			for (int i = 0; i < cd.length; i++) {
+0PTQEEQL:23: 				s=s+cd[i].getCard().charAt(1);
+0VIGRRMY:24: 			}
+0NKRJBRE:25: 			return s;
+0OTMFIZC:26: 		}
+0HXAJCQK:27: 		
+0NZITDHE:28: 		public static int[] sameSuits(String s){
+0XXQKIRZ:29: 			int[] t=new int[4];
+0BIYPPYI:30: 			Arrays.fill(t, 0);
+0IJTCHEJ:31: 			for (int i = 0; i < s.length(); i++) {
+0UIJMTFV:32: 				switch(s.charAt(i)){
+0TZMUTGW:33: 					case 'C': t[0]+=1;break;
+0PCXARHA:34: 					case 'D': t[1]+=1;break;
+0RCDLZDZ:35: 					case 'H': t[2]+=1;break;
+0UTWMQKU:36: 					case 'S': t[3]+=1;break;
+0RYUGTJS:37: 				}
+0GKTGTMV:38: 			}
+0GSDXEEN:39: 			return t;
+0YAUPOIP:40: 		}
+0JRKNLYC:41: 		public static int sameSuit(String s, char c){
+0SOFQGNW:42: 			int t=0;
+0LXAIPCO:43: 			for (int i = 0; i < s.length(); i++) {
+0ZRZYKRN:44: 				if(s.charAt(i)==c){
+0ESWJQBS:45: 					t+=1;
+0DGHGXDA:46: 				}
+0WQJHEGC:47: 			}
+0CETOLBO:48: 			return t;
+0IYVZNHR:49: 		}
+0KDHCSAU:50: 		public static int sameRank(String s, char c){
+0CXNZJNN:51: 			int t=0;
+0YIORCGW:52: 			for (int i = 0; i < s.length(); i++) {
+0INRXODR:53: 				if(s.charAt(i)==c){
+0OYYWOZJ:54: 					t+=1;
+0UUTJVYO:55: 				}
+0RCOVRIS:56: 			}
+0VGSTTIS:57: 			return t;
+0UYYMDLV:58: 		}
+0FPTJODP:59: 		//H가 몇개
+0PMDCOBM:60: 	//	public static Map<String, Integer> analyRank(String s){
+0KCZYKDD:61: 	//		Map<String, Integer> map=new HashMap<>();
+0HLJJVUU:62: 	//		char c=s.charAt(0);//'1'
+0TDTNFBI:63: 	//		int count=1;
+0ZOXGPRR:64: 	//		for (int i = 1; i < s.length() ; i++) {
+0AMCHLTC:65: 	//			if( c==s.charAt(i) ){
+0QHBNNWG:66: 	//				count++;
+0QTJGLXZ:67: 	//			}else {
+0GHIGNAL:68: 	//				map.put(c+"", count);
+0QTVMOYN:69: 	//				c=s.charAt(i);
+0MHSEDVD:70: 	//				count=1;
+0KDCBYWB:71: 	//			}
+0SPESSTV:72: 	//		}
+0ZCGNMZV:73: 	//		map.put(c+"", count);
+0EBIWFVN:74: 	//		return map;
+0MPLDEAJ:75: 	//	}
+0JHAOJEQ:76: 		
+0LSLQTHC:77: 		public static boolean isStraightFlush(Card[] cd){
+0XRYZOIM:78: 			boolean isSF=false;
+0MUBBVCQ:79: 			if(isAllStraight(cd) && isAllFlush(cd)){
+0DJMSCLF:80: 				isSF=true;
+0FTWUFMR:81: 			}
+0CGOIQUW:82: 			return isSF;
+0IMEJBKC:83: 		}
+0UIEORJI:84: 		public static boolean isStraight(Card[] cd){
+0PKAMWZN:85: 			boolean isSF=false;
+0OLOHWQT:86: 			if(isAllStraight(cd) && !isAllFlush(cd)){
+0SKILOJV:87: 				isSF=true;
+0AACQYSM:88: 			}
+0SBCBYOP:89: 			return isSF;
+0VFGNWIC:90: 		}
+0ZKJHXDI:91: 		public static boolean isAllStraight(Card[] cd){
+0UZUQCYX:92: 			boolean isSF=false;
+0HGGJORV:93: 			Card[] ccd=new Card[5];
+0JLUSQQT:94: 			System.arraycopy(cd, 0, ccd, 0, cd.length);
+0MFDUWPK:95: 			Arrays.sort(ccd,new CardRankComp());
+0DREMKHD:96: 			String fr= CardRanking.fiveRank(ccd);
+0SELVPKJ:97: 			String basement="A23456789TJQK";
+0PVGVBLA:98: 			for (int i = 0; i < 9; i++) {
+0OWCQGNY:99: 				String ts=basement.substring(i,5+i);
+LBMVYFL:100: 				if(ts.equals(fr)){
+GJOYDKT:101: 					isSF=true;
+PSIINBV:102: 					break;
+VKUNJAL:103: 				}
+YTODCUU:104: 			}
+HZHIAEP:105: 			//TJQKA 일때 Royal Straight
+CAJVYRO:106: 			if("ATJQK".equals(fr)){
+NRBNXRQ:107: 				isSF=true;
+ANMBCEY:108: 			}
+RUIASCN:109: 			//System.out.println(fr);
+JGCKYZR:110: 			return isSF;
+UZUGMZZ:111: 		}
+WZCTWFK:112: 		//모든 flush
+BKVDSEP:113: 		public static boolean isAllFlush(Card[] cd){
+DDVOJTN:114: 			boolean isSF=false;
+SHQKSTE:115: 			Card[] ccd=new Card[5];
+OOWCEHC:116: 			System.arraycopy(cd, 0, ccd, 0, cd.length);
+PWVERXV:117: 			Arrays.sort(ccd,new CardSuitComp());
+PRQJETM:118: 			String fs=  CardRanking.fiveSuit(ccd);
+YOFZDCD:119: 			int[] ss=sameSuits(fs);
+JXOXPIF:120: 			for (int i = 0; i < ss.length; i++) {
+MMZXHGP:121: 				if(ss[i]==5){
+SUGWXJS:122: 					isSF=true;
+WQTPYXK:123: 					break;
+QFXXMDB:124: 				}
+RCXJIGJ:125: 			}
+CCYHFZV:126: 			return isSF;
+IDWODQU:127: 		}
+ASNEBHI:128: 		//모든 flush 중에서 straight를 제거하면 flush
+ZVSKHKC:129: 		public static boolean isFlush(Card[] cd){
+FMTUWRK:130: 			boolean isSF=false;
+BNQSVQW:131: 			if(!isAllStraight(cd) && isAllFlush(cd)){
+YQHYQKF:132: 				isSF=true;
+YOEOOLB:133: 			}
+RQRKIKI:134: 			return isSF;
+WHYHGEO:135: 		}
+LATKVEJ:136: 		
+CQPKZUZ:137: 		public static boolean isFourKind(Card[] cd){
+VBHBWLW:138: 			boolean isSF=false;
+EIBBWBD:139: 			Card[] ccd=new Card[5];
+EQZMPLW:140: 			System.arraycopy(cd, 0, ccd, 0, cd.length);
+JTENGDM:141: 			Arrays.sort(ccd,new CardRankComp());
+ZMYZXMU:142: 			String fr= CardRanking.fiveRank(ccd);
+OMQWVAQ:143: 			int[] ss=new int[CardUtil.RANK.length];
+BLXCIXU:144: 			for (int i = 0; i < ss.length; i++) {
+ORLUZQD:145: 				ss[i]=sameRank(fr,CardUtil.RANK[i].charAt(0));
+YRSCDMX:146: 			}			
+XXTGOKT:147: 			for (int i = 0; i < ss.length; i++) {
+JBLUWMM:148: 				if(ss[i]==4){
+DWEULMV:149: 					isSF=true;
+IUBDZKQ:150: 					break;
+DRPDYNH:151: 				}
+PNJUVIH:152: 			}
+NWVRUMV:153: 			return isSF;
+WZAKHCY:154: 		}
+KWUICRA:155: 		public static boolean isThreeKind(Card[] cd){
+QONXOIE:156: 			boolean isSF=false;
+RXIPPGI:157: 			if(!isAllOnePair(cd) && isAllThreeKind(cd)){
+SETVQYZ:158: 				isSF=true;
+MMDYCAU:159: 			}
+TJFDCOK:160: 			return isSF;
+YLKSNOY:161: 		}
+YGEQKGO:162: 		public static boolean isAllThreeKind(Card[] cd){
+UMNXBQB:163: 			boolean isSF=false;
+YPIKYHZ:164: 			Card[] ccd=new Card[5];
+YBUJEKF:165: 			System.arraycopy(cd, 0, ccd, 0, cd.length);
+GVSMSRG:166: 			Arrays.sort(ccd,new CardRankComp());
+UOIPTEO:167: 			String fr= CardRanking.fiveRank(ccd);
+EKIGROJ:168: 			int[] ss=new int[CardUtil.RANK.length];
+QWHYCXH:169: 			for (int i = 0; i < ss.length; i++) {
+AZFLJVE:170: 				ss[i]=sameRank(fr,CardUtil.RANK[i].charAt(0));
+BEJXMZS:171: 			}			
+DWJVZCD:172: 			for (int i = 0; i < ss.length; i++) {
+BIXIWXQ:173: 				if(ss[i]==3){
+EFHIZWB:174: 					isSF=true;
+DGOVEFS:175: 					break;
+KLNOBFO:176: 				}
+GAUMJNY:177: 			}
+WYXFZTI:178: 			return isSF;
+IIAYOUN:179: 		}
+MNGUETI:180: 		public static boolean isFullHouse(Card[] cd){
+DNSWQKP:181: 			boolean isSF=false;
+CFGQIIZ:182: 			if(isAllThreeKind(cd) && isAllOnePair(cd)){
+YBYNEDO:183: 				isSF=true;
+DEIIWPG:184: 			}
+FSYWOQB:185: 			return isSF;
+TGDYJQJ:186: 		}
+GRGWJXD:187: 		public static boolean isOnePair(Card[] cd){
+DJUTKGE:188: 			boolean isSF=false;
+APGTKNZ:189: 			if(!isAllThreeKind(cd) && isAllOnePair(cd)){
+IAFPNTM:190: 				isSF=true;
+AFZMTCC:191: 			}
+JKXFISN:192: 			return isSF;
+RUQLTUS:193: 		}
+GUXWCFO:194: 		public static boolean isAllOnePair(Card[] cd){
+BOAAMMS:195: 			int count=0;
+KRZAPEI:196: 			Card[] ccd=new Card[5];
+FDNNEFS:197: 			System.arraycopy(cd, 0, ccd, 0, cd.length);
+NEBXDPE:198: 			Arrays.sort(ccd,new CardRankComp());
+AINMCCS:199: 			String fr= CardRanking.fiveRank(ccd);
+QIRAYZT:200: 			int[] ss=new int[CardUtil.RANK.length];
+FUFZIGY:201: 			for (int i = 0; i < ss.length; i++) {
+BGSTAIJ:202: 				ss[i]=sameRank(fr,CardUtil.RANK[i].charAt(0));
+MDCDJUQ:203: 			}
+GACIYQO:204: 			for (int i = 0; i < ss.length; i++) {
+GUXWDNP:205: 				if(ss[i]==2){
+QCZFBXU:206: 					count++;
+LJVRYNZ:207: 				}
+HCQVLNO:208: 			}
+XLMNDIM:209: 			return count==1?true:false;
+MQRUBAD:210: 		}
+ZBVZGFM:211: 		public static boolean isTwoPairs(Card[] cd){
+URKQIHF:212: 			int count=0;
+CKGYWZB:213: 			Card[] ccd=new Card[5];
+DAKPWEY:214: 			System.arraycopy(cd, 0, ccd, 0, cd.length);
+KOEMPNV:215: 			Arrays.sort(ccd,new CardRankComp());
+AEFDLAQ:216: 			String fr= CardRanking.fiveRank(ccd);
+UMLUJCJ:217: 			int[] ss=new int[CardUtil.RANK.length];
+DPSIHBX:218: 			for (int i = 0; i < ss.length; i++) {
+MUKICSO:219: 				ss[i]=sameRank(fr,CardUtil.RANK[i].charAt(0));
+IAJXKFT:220: 			}
+WGEQXXV:221: 			for (int i = 0; i < ss.length; i++) {
+IEJLDXQ:222: 				if(ss[i]==2){
+ZVNCPFY:223: 					count++;
+YECONKF:224: 				}
+ETLXZXI:225: 			}
+QXXKEWN:226: 			return count==2?true:false;
+AFILNEB:227: 		}
+PCGKGTW:228: 		
+JBNOMII:229: 		public static boolean isNotThing(Card[] cd){
+SOKZKVQ:230: 			if(!isStraightFlush(cd) && 
+MWGJRZH:231: 				!isFourKind (cd) &&
+QMFKYLR:232: 				!isFullHouse(cd) &&
+MZJUABG:233: 				!isFlush(cd) &&
+WLZHEXA:234: 				!isStraight(cd)&&
+GAIDVYW:235: 				!isThreeKind (cd) &&
+YYBGIDZ:236: 				!isTwoPairs(cd)&&
+TEOYZXF:237: 				!isOnePair(cd)){
+SLSMETA:238: 				return true;
+ZRSGVZS:239: 			}else return false;
+DWAUHZO:240: 		}
+MXHLKGF:241: 		public static void print(Card[] cd){
+RGFNTDR:242: 			for (int i = 0; i < cd.length; i++) {
+ZLXAMAH:243: 				System.out.printf("%s \t",cd[i]);
+NBCQZOK:244: 			}
+NCJKYSK:245: 			System.out.println();
+WBCIWFO:246: 		}
+JEEWATM:247: 		
+WIJIEDR:248: 		public static void cardRankKind(Card[] cd){
+YVJXMYT:249: 			System.out.printf("1. isStraightFlush %s\n",CardRanking.isStraightFlush(cd));
+GXVZLII:250: 			System.out.printf("2. isFourKind %s\n",CardRanking.isFourKind(cd));
+THIYALF:251: 			System.out.printf("3. isFullHouse %s\n",CardRanking.isFullHouse(cd));
+VCYUNYZ:252: 			System.out.printf("4. isFlush %s\n",CardRanking.isFlush(cd));
+RWOWMRP:253: 			System.out.printf("5. isStraight %s\n",CardRanking.isStraight(cd));
+JGSFMJQ:254: 			System.out.printf("6. isThreeKind %s\n",CardRanking.isThreeKind(cd));
+JWKRTHR:255: 			System.out.printf("7. isTwoPairs %s\n",CardRanking.isTwoPairs(cd));
+BNPUGZF:256: 			System.out.printf("8. isOnePair %s\n",CardRanking.isOnePair(cd));
+ZDEWZMY:257: 			System.out.printf("9. isNotThing %s\n",CardRanking.isNotThing(cd));
+RWDJLPT:258: 		}
+QHZFJIH:259: 		
+UJTJMJT:260: 		public static String toRankName(Card[] cd){
+UWXCTSJ:261: 			String s="Nothing";
+JSTOMSY:262: 			if(isStraightFlush(cd)){
+VHYACCU:263: 				s="StraightFlush";
+DVTVBKI:264: 			}else if(isFourKind (cd)){
+NQQOAOP:265: 				s="Four of Kinds";
+WDERPPN:266: 			} else if(isFullHouse (cd)){
+BISVJFM:267: 				s="FullHouse";
+GNYGFWL:268: 			} else if(isFlush (cd)){
+MQXHDOM:269: 				s="Flush";
+IEKHAHR:270: 			} else if(isStraight (cd)){
+LGCMUUB:271: 				s="Straight";
+HVGEOKC:272: 			} else if(isThreeKind (cd)){
+HTGKQMA:273: 				s="Three of Kinds";
+YBSUPWI:274: 			} else if(isTwoPairs (cd)){
+YHRPIAA:275: 				s="TwoPairs";
+BXYLTDB:276: 			} else if(isOnePair (cd)){
+FSMOHTG:277: 				s="OnePair ";
+MIFKTPM:278: 			} else {
+SCSCVBV:279: 				s="Nothing ";
+NDIFPJZ:280: 			} 
+EFHKUCB:281: 			return s;
+ABIDFFU:282: 		}
+FKTYOYO:283: 		
+QRSJLRB:284: 	}

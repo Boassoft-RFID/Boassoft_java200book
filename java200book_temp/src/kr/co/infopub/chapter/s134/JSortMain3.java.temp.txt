@@ -1,0 +1,17 @@
+0NFZHMKP:1: 	package kr.co.infopub.chapter.s134;
+0LFMTUZT:2: 	import kr.co.infopub.chapter.s133.Lotto6Num;
+0NYBVBIU:3: 	public class JSortMain3 {
+0KHDWXEK:4: 		public static void main(String[] args) {
+0LQCZHPN:5: 			Lotto6Num lot=new Lotto6Num(1000,100);
+0WINQSLJ:6: 			lot.randomMake();        //정렬 안 된 정수 100개를 저장한 배열 만들기
+0MVZZQXU:7: 	    	int [] m=lot.getLots();  //정렬 안 된 정수 100개를 저장한 배열 얻기
+0WKAZGTI:8: 	    	int []n=new int[m.length];
+0SUVDPEE:9: 			System.arraycopy(m, 0, n, 0, m.length);
+MBLJEMG:10: 			JSort.print(n);
+UZROGKK:11: 			long a=System.nanoTime();
+WSPWPXJ:12: 			JSort.InsertSort(n);
+VJQUTQY:13: 			long b =System.nanoTime();
+HRRRLWB:14: 			System.out.println((b-a)+"nano sec");  // 10의 -9승
+SYNDUCD:15: 			JSort.print(n);
+DVCZDYR:16: 		}
+TJXFDZI:17: 	}

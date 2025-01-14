@@ -1,0 +1,39 @@
+0DPUBGXV:1: 	package kr.co.infopub.chapter.s151;
+0PVRGDXY:2: 	import java.util.Arrays;
+0VOOYMFZ:3: 	import java.util.Scanner;
+0DWGXEEV:4: 	public class Hitter {
+0QBHJGAM:5: 		private int [] gong;
+0DQPYOIA:6: 		private int n;//3
+0GUAJQGP:7: 		private int num=10;
+0NWXMTAR:8: 		public Hitter() {
+0WCVPPWS:9: 			this(10,3);
+PJNWWZT:10: 		}
+RHQPGRI:11: 		public Hitter(int num,int n ) {
+URGCGSY:12: 			this.n = n;
+SJJMYCZ:13: 			this.num = num;
+PLEVTKU:14: 			gong=new int[n]; //gong 3개
+HTEDJST:15: 			Arrays.fill(gong, -1);
+IFPZKEQ:16: 		}
+OOZKMDL:17: 		public int[] getGong() {
+SGLTKES:18: 			return gong;
+WDLXVKS:19: 		}
+JPNFHIF:20: 		public void make(){
+HSBEWXT:21: 			// 과제 => 서로 다르도록 하시오
+UNYNSSD:22: 			System.out.println(
+IIQFBDF:23: 					"0~9 사이의 서로 다른 정수를 붙여서 입력해 주세요. 예)123");
+NAYQFRR:24: 			Scanner scan=new Scanner(System.in);
+ZDQUUCB:25: 			String s=scan.nextLine();
+PLSINSV:26: 			//123
+KHJTTQU:27: 			for (int i = 0; i < n; i++) {
+GEGDMCE:28: 				gong[i]=s.charAt(i)-'0';   //'1'-'0'
+VCBBCND:29: 			}
+ICEBXRI:30: 			
+BURHFIH:31: 		}
+AGJLSXL:32: 		public void print(){
+EZPZOJT:33: 			System.out.println("Hitter");
+QGJKXPF:34: 			for (int i = 0; i < n; i++) {
+QQNAYOW:35: 				System.out.printf("%d\t",gong[i]);
+MPCTIMB:36: 			}
+EQGKTRN:37: 			System.out.println();
+PWNBJYR:38: 		}
+XRQRMBM:39: 	}

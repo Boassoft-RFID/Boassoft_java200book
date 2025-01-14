@@ -1,0 +1,82 @@
+0HCTWENP:1: 	package kr.co.infopub.chapter.s136;
+0LSFZDVU:2: 	import java.util.ArrayList;
+0GBSUCWY:3: 	public class RSA {
+0LZZVWVT:4: 	 public static final int START=200;
+0SVCXCXW:5: 	 private int p=11;
+0ZHWNKBS:6: 	 private int q=7;
+0OWNBXZA:7: 	 private int n;
+0JLUFZSR:8: 	 private int phiN;
+0SXUYLLQ:9: 	 private int e;
+XLXKVIH:10: 	 private int d;
+OTCNVJM:11: 	 public void makePQ(){  
+BYQKFGA:12: 		p=(int)(Math.random()*START);
+VPZZRGM:13: 		q=(int)(Math.random()*START);
+ZHGZMGT:14: 		while((p==q)|| (p<100 || q<100) ||
+SIRQYWG:15: 		 (!Java200Math.isPrime(p) || !Java200Math.isPrime(q))){
+IVKWKCS:16: 			p=(int)(Math.random()*START);
+LEPTKHD:17: 			q=(int)(Math.random()*START);
+YIRXYLH:18: 		}
+DFUZQYQ:19: 	 }
+TYFLZTU:20: 	 public void makeN(){
+ILJQJCI:21: 		n=p*q;
+UKLJDHV:22: 	 }
+GGSHDHH:23: 	 public int getN() {
+MLORDUB:24: 		return n;
+XOXJIPG:25: 	 }
+CCSWDGT:26: 	 public void print(){
+EBRTJGX:27: 		System.out.printf("(p,q)=(%d, %d)\n"
+UFSAGEC:28: 		+ "(n,phi)=(%d,%d)\n(e,d)=(%d,%d)\n",p,q,n,phiN,e,d);
+XKHHSDB:29: 	 }
+RHPLNMA:30: 	 public void makePHIN(){
+XCJWBYF:31: 		this.phiN=(p-1)*(q-1);
+TCXGWWS:32: 	 }
+FFQMQTJ:33: 	 public int getPhiN() {
+OIROHRM:34: 		return phiN;
+JMNRLLE:35: 	 }
+HSQMSVC:36: 	 public void makeE(){
+LJDYUUN:37: 		ArrayList<Integer> 
+FMJCHMV:38: 		es=new ArrayList<Integer>();
+GDRMDFS:39: 		for (int i = 2; i < phiN; i++) {
+AIFVLBX:40: 			if(Java200Math.gcd(phiN, i)==1){
+EYIHEBE:41: 				es.add(i);
+BMHEGVY:42: 				//System.out.printf(i+",");
+AXYZQEN:43: 			}
+USPSHQE:44: 		}
+KBTDSKB:45: 		e=es.get(es.size()-1);//가장 큰 것.(랜덤으로 만들면 좋다)
+LZJYGUK:46: 	 }
+FOTCRLA:47: 	 public void makeD(){
+GBZVROG:48: 		int count=2;
+JUWNUNM:49: 		while(!(count*e%phiN==1 && count!=e)){
+JOZNAWC:50: 			count++;
+OFMJGNC:51: 		}
+WUVOLMQ:52: 		d=count;
+PNCXLML:53: 	 }
+JJUVPDY:54: 	 public int toCiph(int m){
+VTNRTLQ:55: 		int tot=1;
+ARVGHTF:56: 		for (int i = 0; i < e; i++) {
+LBBVRAX:57: 			tot=(tot*m)%n;
+XFWADHS:58: 		}
+MNQSLOW:59: 		return tot;
+LNOAIPA:60: 	 }
+ODGJJME:61: 	 public int toUnCiph(int c){
+JSTAEUX:62: 		int tot=1;
+QVCBAKL:63: 		for (int i = 0; i < d; i++) {
+ZKVMTSO:64: 			tot=(tot*c)%n;
+HIULYBT:65: 		}
+MWACYHP:66: 		return tot;
+XHSTNVJ:67: 	 }
+QCLCDZP:68: 	 public static void main(String[] args) {
+CISZEQZ:69: 		RSA aa=new RSA();
+FJQXOWF:70: 		aa.makePQ();
+FGCULXR:71: 		aa.makeN();
+NATYAZL:72: 		aa.makePHIN();
+CEMCNLL:73: 		aa.makeE();
+IQHMSNM:74: 		aa.makeD();
+NMILFGE:75: 		aa.print();
+VHRSSED:76: 		for(int i=65 ; i<200 ;i++){
+FXZVTPR:77: 			int bbb=aa.toCiph(i);       //암호
+DKWGIZP:78: 			int ccc=aa.toUnCiph(bbb);   //복호
+UTKNTGX:79: 			System.out.println(String.format("%d, %d, %d", i,bbb,ccc));
+CABNUUR:80: 		}
+RSMEYIU:81: 	 }
+UOHUSOP:82: 	}

@@ -1,0 +1,19 @@
+0WINZJNT:1: 	package kr.co.infopub.chapter.s040;
+0YEEXCMZ:2: 	// String switch
+0GQHEDUP:3: 	public class SwitchStringCondition {
+0AOUNEIP:4: 		public static double toMoney(String c){
+0LMJSSCF:5: 			double tot=0.0;
+0ORWQZSW:6: 			switch(c){
+0JFEQBQX:7: 				case "USD": tot=1126.5;break;
+0ZMRRDCI:8: 				case "JPY": tot=110.6;break;
+0YWGTSZE:9: 				case "CNY": tot=10.5;break;
+JYSFOLE:10: 				default : tot=1; break; 
+ORMXFUM:11: 			}
+KRQHJAO:12: 			return tot;
+BHKQPNA:13: 		}
+SMZMMHW:14: 		public static void main(String[] args) {
+ZJIWLBA:15: 			String money="USD";
+OVUTDNN:16: 			double result=toMoney(money);
+PFJZETY:17: 			System.out.printf("%s => %f\n",money,result);		
+PPVZGPC:18: 		}
+NYASJPR:19: 	}

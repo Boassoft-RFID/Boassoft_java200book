@@ -1,0 +1,371 @@
+00CVHPXMH:1: 	package kr.co.infopub.chapter.s150.swing;
+00CSXISHX:2: 	
+00RLNLZXU:3: 	import java.awt.Font;
+00QBSSTJK:4: 	import java.awt.Graphics;
+00UUNIFHY:5: 	import java.awt.Image;
+00DVQKHIQ:6: 	import java.awt.event.ActionEvent;
+00FUEAOMT:7: 	import java.awt.event.ActionListener;
+00ODFNDDW:8: 	import java.awt.event.MouseEvent;
+00FPVQBJO:9: 	import java.awt.event.MouseListener;
+0XYNDHZK:10: 	import java.awt.image.BufferedImage;
+0DJYJVKI:11: 	
+0QNYAKLI:12: 	import javax.swing.ImageIcon;
+0PHWDQFX:13: 	import javax.swing.JFrame;
+0EJYPPBH:14: 	import javax.swing.JMenu;
+0ETWOXIX:15: 	import javax.swing.JMenuBar;
+0WCSJKHQ:16: 	import javax.swing.JMenuItem;
+0RYNFSNB:17: 	import javax.swing.JPanel;
+0BJBLGDT:18: 	
+0BWPAVZU:19: 	public class TileJPanel extends JPanel implements MouseListener, ActionListener{
+0MMQUUHZ:20: 		//테스트용
+0RWUJFUY:21: 		private boolean isTest=false;
+0GMOZHDF:22: 		//private String imageUrl="Lighthouse.jpg";
+0TTVZCUX:23: 		private String imageUrl="Penguins.jpg";
+0QFMWCOV:24: 	
+0SGMURZX:25: 		private JFrame mainFrame;
+0ZLLBTUX:26: 		private JMenuBar mainBar=new JMenuBar();
+0IAICBMH:27: 		private JMenu fileMenu=new JMenu("FILE");
+0QERQHZV:28: 		private JMenuItem exitItem=new JMenuItem("EXIT");
+0RPOEWSZ:29: 		private JMenuItem newItem=new JMenuItem("NEW");
+0VJWMXIM:30: 		
+0YLCEMJX:31: 		private JMenu numMenu=new JMenu("NUM");
+0CUZKOUH:32: 		private JMenuItem twoItem=new JMenuItem("2");
+0FTHGIWF:33: 		private JMenuItem threeItem=new JMenuItem("3");
+0QLXOKQG:34: 		private JMenuItem fourItem=new JMenuItem("4");
+0LEFUHTY:35: 		private JMenuItem fifthItem=new JMenuItem("5");
+0CPGNSQP:36: 		
+0LRLGHCS:37: 		
+0HMRPAEM:38: 		private  int ITERNUMBER;
+0KLFDFWB:39: 		private int startX=0;//펭귄의 시작 부분
+0HXWCQCW:40: 		private int startY=0;
+0FYQVION:41: 		private int count=0;//클릭 수
+0YVBAYGA:42: 		private int n=4;
+0ULNILOZ:43: 		
+0RIHKXLF:44: 		public int getN() {
+0UTLPNWP:45: 			return n;
+0MFYBCII:46: 		}
+0ZXEHKHZ:47: 	
+0LUTEIQE:48: 		public void setN(int n) {
+0YMLGYGH:49: 			this.n = n;
+0KRFCLWF:50: 		}
+0XYIHATD:51: 	
+0HHLZVKJ:52: 		private Tiles tiles;
+0SLGVIRF:53: 		
+0WBYERAC:54: 		public int getStartX() {
+0FVHZJEZ:55: 			return startX;
+0NPEDLZC:56: 		}
+0LIXQPIA:57: 	
+0ZBIMFGD:58: 		public void setStartX(int startX) {
+0UFAQXBW:59: 			this.startX = startX;
+0UOEWHHI:60: 		}
+0FZIUJRB:61: 	
+0OASFOUN:62: 		public int getStartY() {
+0AIRATWU:63: 			return startY;
+0ERSFQPZ:64: 		}
+0UBMIWHY:65: 	
+0HXDYKZO:66: 		public void setStartY(int startY) {
+0AYUVZLN:67: 			this.startY = startY;
+0OQWDSPN:68: 		}
+0RUPBSJS:69: 	
+0QUZGLMT:70: 		public TileJPanel(JFrame mainFrame, int n) {
+0SCLPQCC:71: 			this.mainFrame=mainFrame;
+0WMURFTQ:72: 			this.n=n;
+0IPGBGMA:73: 			ITERNUMBER=n*n;//16
+0PISEKXR:74: 			makeMenu();
+0JNECSDS:75: 			tiles=new Tiles(n);
+0MCICXEQ:76: 			tiles.setTest(isTest);
+0DMUMKZE:77: 			tiles.make();
+0YKKHWZZ:78: 			addMenuListener();
+0TJGIHFE:79: 			//------------------------------
+0OZRAFOS:80: 			this.setSize(this.n*100,this.n*100);
+0EPNLWLT:81: 		}//
+0WNGOLUZ:82: 		public TileJPanel(JFrame mainFrame) {
+0NQBMNJR:83: 			this(mainFrame,4);
+0KXSEGGN:84: 		}//
+0VFCOPUX:85: 		public void addMenuListener(){
+0LEJHOTV:86: 			this.addMouseListener(this);
+0LPSUWJQ:87: 			exitItem.addActionListener(this);
+0BKYJBKN:88: 			newItem.addActionListener(this);
+0TOKKJSY:89: 			threeItem.addActionListener(this);
+0MPPBQWN:90: 			fourItem.addActionListener(this);
+0CFLTSJI:91: 			fifthItem.addActionListener(this);
+0XWCKBUY:92: 			twoItem.addActionListener(this);
+0LDPABGM:93: 		}
+0EYAKZZV:94: 		private void makeMenu() {
+0OYZCYMW:95: 			mainBar.add(fileMenu);
+0ZQQKDMI:96: 			fileMenu.add(newItem);//new
+0MGVJPWT:97: 			fileMenu.add(exitItem);//exit
+0DVQNHET:98: 			mainBar.add(numMenu);
+0SREGHLA:99: 			
+PDNJUOW:100: 			numMenu.add(twoItem);//2
+DUCFBAA:101: 			numMenu.add(threeItem);//3
+TVKFXYN:102: 			numMenu.add(fourItem);//4
+KTHUCHG:103: 			numMenu.add(fifthItem);//5
+XBUPIOX:104: 			mainFrame.setJMenuBar(mainBar);
+BRKPUVQ:105: 		}
+GOQJDRT:106: 		public void setTest(boolean isTest) {
+FVCHGUB:107: 			this.isTest = isTest;
+IGCMAAG:108: 		}
+EDBYNAO:109: 	
+SAEJMNK:110: 		public String getImageUrl() {
+XRWELEP:111: 			return imageUrl;
+ZJPNKGC:112: 		}
+TAVLVGQ:113: 	
+HNHDRKX:114: 		public void setImageUrl(String imageUrl) {
+TTUWQRX:115: 			this.imageUrl = imageUrl;
+RVEGMUZ:116: 		}
+GNWSYXU:117: 	
+KCRVLKK:118: 		
+JDOSPGQ:119: 		public void restart(){
+MXBUDUB:120: 			tiles.make();
+PUCHPHK:121: 			tiles.setTest(isTest);
+FJSVKFT:122: 		}
+CJBIZXX:123: 		
+EFOYGQC:124: 		@Override
+ZXVHYMD:125: 		public void paint(Graphics g) {
+MMXBELB:126: 			super.paint(g);
+AXOYMAP:127: 			if(!isGameOver()){
+VTZMFWR:128: 				if(isTest){
+GHADVAE:129: 					//--테스트용
+PPMHRKV:130: 					FifteenPuzzle testposs=new FifteenPuzzle(tiles.getTile());
+MENQJWO:131: 					testposs.makeTestPuzzle(true);
+WAHBSQL:132: 					testposs.print();
+JZYMOKY:133: 					//--테스트용
+NSRPRLB:134: 				}
+HEDZBKL:135: 				for (int i = 0; i<n; i++) {
+IUMJVLR:136: 					for (int j = 0; j < n; j++) {
+IEFMUFZ:137: 						Tile tt=tiles.getTile(i, j);
+TAESTLY:138: 						int num=tt.getTileNum();
+ZHWKIKO:139: 						int mt=num-1;
+SNHWWMC:140: 						if(mt==-1){mt=n*n-1;}//1~15 0--> 0~14, 15
+PIZAOCC:141: 						//1~8 0-->0~7 8
+UKYPXLQ:142: 						int x=(mt)/n;
+CRIMSMS:143: 						int y=(mt)%n;
+CLFHSGN:144: 						Image img=fromTiles(i,j,x,y);
+HSFDMMB:145: 						g.drawImage(img,
+URXMJVI:146: 								(j)*TileUtil.TILESIZE, 
+FLFZSFJ:147: 								(i)*TileUtil.TILESIZE
+EQJYZJM:148: 								,null);
+GLZNBLU:149: 						if(isTest){
+WWFSCGK:150: 							g.setFont(new Font(Font.SERIF, Font.PLAIN, 10));
+MFIZXAU:151: 							g.drawString(num+"("+i+","+j+")", 
+SQBMDOE:152: 									(j)*TileUtil.TILESIZE, 
+QBMDBYI:153: 									(i)*TileUtil.TILESIZE+20);
+WWMBEKX:154: 						}
+OURZORK:155: 						if(isTest){
+XCKYLLK:156: 							g.setFont(new Font(Font.SERIF, Font.BOLD, 30));
+SKSXSXT:157: 							g.drawString(""+count+"Move!",
+OLXCRZY:158: 									n*TileUtil.TILESIZE/2-30,n*TileUtil.TILESIZE/2);
+EYMXZNV:159: 						}
+YGCHHYY:160: 						printchangeTilesf(hasEmpty(i, j)+String.format("[%d]", num)+"\t\t");
+SQJCJVR:161: 					}
+LHRBJYA:162: 					printchangeTiles("");
+NPPIOXX:163: 				}
+MXBBIOB:164: 				printchangeTiles("");
+GWIQBMW:165: 				
+NPDGUVS:166: 			}else{
+HJSOWPT:167: 				for (int i = 0; i<n; i++) {
+PVYXDEG:168: 					for (int j = 0; j <n; j++) {
+YBBLHCP:169: 	
+IVKATGL:170: 						Image img=fromTiles(i,j);
+QWYMMOL:171: 						g.drawImage(img,
+SMSMQBU:172: 								(j)*TileUtil.TILESIZE, 
+BLMSNHZ:173: 								(i)*TileUtil.TILESIZE
+EWTETPH:174: 								,null);
+EEZGBXD:175: 						
+ONTNJIU:176: 					}
+UBADXGD:177: 				}
+UDIVTUX:178: 				g.setFont(new Font(Font.SERIF, Font.BOLD, 30));
+LFIOLPE:179: 				g.drawString(""+count+"Move!",n*TileUtil.TILESIZE/2-30,n*TileUtil.TILESIZE/2);
+MDDPBFV:180: 			}
+FFCXMVH:181: 			//updateUI();
+MDGRJPY:182: 		}
+RFHDLMX:183: 		//배열좌표
+GBFQNMP:184: 		public Image fromTiles(int i, int j, int x, int y){
+ZHBWRPC:185: 			Tile t=tiles.getTile(i, j);
+VAFKPYE:186: 			Image img=null;
+OGYVBGV:187: 			if(t.getTileNum()==0){
+XMOWRGL:188: 				img=ImageUtiil.getImage(getUrl("white.jpg"));
+TAGDFYF:189: 			}else{
+NISBBHI:190: 				//그림 좌표
+VSADIPE:191: 				img=getPhotoImage(y, x,startX,startY);
+ORQUBFY:192: 			}
+XWDJTHV:193: 			return img;
+ZVEGHTY:194: 		}
+SDUJGIK:195: 		public Image fromTiles(int i, int j){
+NPZSXWX:196: 			Image img=getPhotoImage(j, i,startX,startY);
+QOXKBIN:197: 			return img;
+PCIPTNI:198: 		}
+CYYVRTD:199: 		
+JRUQGLS:200: 		public Image getPhotoImage(int x, int y){//0~3 0~3
+SNXWSYT:201: 			return getPhotoImage(x,y,0,0);
+XCYCXZG:202: 		}
+VKFJAIG:203: 		public Image getPhotoImage(int x, int y, int moveX, int moveY){//0~3 0~3
+CHAEZYM:204: 			return getPhotoImage(imageUrl,x,y,moveX,moveY);
+PBDVCGJ:205: 		}
+OPPNWPG:206: 		public Image getPhotoImage(String url,int x, int y, int moveX, int moveY){//0~3 0~3
+MBMBTPB:207: 			Image img=ImageUtiil.getImage(getUrl(url));
+XOEGPHV:208: 			BufferedImage bufimg=ImageUtiil.fromImage(img, 0,0,
+GIORFVJ:209: 					n*TileUtil.TILESIZE+moveX,
+OOPAAWJ:210: 					n*TileUtil.TILESIZE+moveY );
+SOZKGQP:211: 			BufferedImage subimg=ImageUtiil.getSubBufferedImage(bufimg, 
+GCUVKQJ:212: 					moveX+TileUtil.TILESIZE*x,
+LOQCEPK:213: 					moveY+TileUtil.TILESIZE*y, 
+NAYPNPA:214: 					TileUtil.TILESIZE, 
+PIHAPDI:215: 					TileUtil.TILESIZE);
+QRRTGHL:216: 			Image madeImg=ImageUtiil.fromImgBuffer(subimg);
+ELUNMJJ:217: 			return madeImg;
+GIGYPNX:218: 		}
+GYPVGUW:219: 		public String getUrl(String str){
+QZUUSWZ:220: 			return ImageUtiil.imgUrl+str;
+VFHLYLV:221: 		}
+ITWAQQE:222: 		//배열좌표
+XKNZMSI:223: 		public boolean isGameOver(){
+WQKKZLM:224: 			boolean isGameOver=true;//모두 같으면 
+PXLNZBY:225: 			for (int i = 0; i<ITERNUMBER-1; i++) {
+JSLNABE:226: 				Tile t=this.tiles.getTile(i/n, i%n);
+FTMBTTV:227: 				printchangeTilesf(String.format("%d(%d,%d)\t",
+OFERUTH:228: 						t.getTileNum(),i/n, i%n));
+WCMBALR:229: 				if(t.getTileNum()!=i+1){//1~15 0(0은 끝)
+XZMSPSS:230: 					isGameOver=false;
+ZITJXMI:231: 					break;
+VJTAZOR:232: 				}
+WRMKCNF:233: 			}
+DMARSAE:234: 			printchangeTiles("");
+JPWRPSE:235: 			return isGameOver;
+NRNZZPI:236: 		}
+RMZWKOM:237: 		//배열좌표
+NTZZQNB:238: 		public boolean isProper(int x, int y){
+AWWIEHR:239: 			return (x>=0 && x<n) && (y>=0 && y<n);
+PZMAFKF:240: 		}
+DGZLFGB:241: 		//배열 좌표
+LSFSKMK:242: 		public boolean isEmpty(int x, int y){
+CKZPEUK:243: 			Tile t=this.tiles.getTile(x, y);
+NEVPLGD:244: 			//num이 같으면 같은 객체로 오버로딩
+GYAKCUP:245: 			//return t.equals(new Tile(0,0,0))?true:false;
+OUATLNL:246: 			return t.getTileNum()==0?true:false;
+KPJVGUH:247: 		}//
+WNXMIPE:248: 		//배열좌표
+NDEFJEP:249: 		public boolean hasEmpty(int x, int y){
+EAJNFPW:250: 			boolean isS=false;
+QWTWQUB:251: 			if(!isEmpty(x, y)){//나는0가 아니면서 주변에 0가 있니
+WZJXWCO:252: 				if(isProper(x, y+1) && isEmpty(x, y+1)){//left
+JFOEWRE:253: 					isS=true;
+SHYSULJ:254: 				}else if(isProper(x+1, y) && isEmpty(x+1, y)){//up
+PNXYMFU:255: 					isS=true;
+YEXDLJH:256: 				}else if(isProper(x, y-1) && isEmpty(x, y-1)){//right
+FUWDIUZ:257: 					isS=true;
+CJUHZIY:258: 				}else if(isProper(x-1, y) && isEmpty(x-1, y)){//down
+REBTZVX:259: 					isS=true;
+LOHBYYC:260: 				}
+SLBGGYQ:261: 			}
+JSBWMHT:262: 			return isS;
+KRCZAGK:263: 		}//
+UIKKOQX:264: 		public void printchangeTiles(String s){
+KEURNOG:265: 			if(isTest){
+BEXZEGD:266: 				System.out.println(s);
+KPNCDQR:267: 			}
+EPPKWME:268: 		}
+FWHLUZK:269: 		public void printchangeTilesf(String s){
+GSQCJCE:270: 			if(isTest){
+VABXMCP:271: 				System.out.printf(s);
+CCKKJZD:272: 			}
+AEAFAKQ:273: 		}
+IXPKWIC:274: 		//배열좌표
+MAZYCJF:275: 		public void move(int x ,int y){
+REYVJZS:276: 			if(isProper(x, y+1) && isEmpty(x, y+1)){//left
+LGOHPFG:277: 				changeTiles(x,y,x, y+1);
+RTJQPSQ:278: 				printchangeTiles("R"+String.format("(%d,%d)", x,y));
+EAIKKXA:279: 			}else if(isProper(x+1, y) && isEmpty(x+1, y)){//up
+SNGCONC:280: 				changeTiles(x,y,x+1, y);
+ISGDMUG:281: 				printchangeTiles("D"+String.format("(%d,%d)", x,y));
+NKYNNYG:282: 			}else if(isProper(x, y-1) && isEmpty(x, y-1)){//right
+CWVUDQI:283: 				changeTiles(x,y,x, y-1);
+JLXNKJF:284: 				printchangeTiles("L"+String.format("(%d,%d)", x,y));
+CEBNWGE:285: 			}else if(isProper(x-1, y) && isEmpty(x-1, y)){//down
+DBCHFOA:286: 				changeTiles(x,y,x-1, y);
+NGFCJQI:287: 				printchangeTiles("U"+String.format("(%d,%d)", x,y));
+OAVGBYN:288: 			}
+SLHQJLH:289: 		}//
+OPXVKRP:290: 		//배열좌표
+ORWSEHK:291: 		public void changeTiles(int x1,int y1, int x2, int y2){
+KEABOMI:292: 			//위치는 변경하지 말고 번호값만 바꾸자
+HOKGMRX:293: 			int temp=tiles.getTile()[x1][y1].getTileNum();
+WBMEPKJ:294: 			tiles.getTile()[x1][y1].setTileNum(tiles.getTile()[x2][y2].getTileNum());
+KAWDLUB:295: 			tiles.getTile()[x2][y2].setTileNum(temp);
+VFRJXDY:296: 		}
+EZAOLQF:297: 		
+BUXHVNL:298: 		@Override
+RHLMXWF:299: 		public void mouseClicked(MouseEvent e) {
+UTAEPQK:300: 		}
+ZKSQKOG:301: 	
+ZSFOGEG:302: 		@Override
+PIYLHXO:303: 		public void mouseEntered(MouseEvent e) {
+WFBMYNQ:304: 		}
+XXXONZD:305: 	
+QVTCGVJ:306: 		@Override
+GUAMLBM:307: 		public void mouseExited(MouseEvent e) {
+ZUSUYEY:308: 		}
+NOTIYOF:309: 		
+PNAJYFF:310: 		@Override
+KOQLCUM:311: 		public void mousePressed(MouseEvent e) {
+YEQNWJX:312: 			if(!isGameOver()){
+PRCPXTM:313: 				//그림 좌표 얻기->배열 좌표로 변환 => 중요
+LXVINNP:314: 				int y=e.getX()/TileUtil.TILESIZE;
+ZPKAQLH:315: 				int x=e.getY()/TileUtil.TILESIZE;
+CJQKVJZ:316: 				Tile t=this.tiles.getTile(x, y);// 배열 좌표로
+LUVVMAI:317: 				printchangeTiles(String.format("%d[%d,%d]",t.getTileNum(),x,y));
+VVIKEFW:318: 				if( hasEmpty(x,y) ){
+XLXBMWQ:319: 					move(x,y);
+WRWOKSR:320: 					count++;
+JULCESM:321: 				}
+RCMRCQF:322: 				if(isTest){
+AHFCAYV:323: 					tiles.print();
+WGBTJHS:324: 				}
+SFXNZNI:325: 				this.repaint();//paint 호출
+YBEPEUH:326: 			}
+RENVHHQ:327: 		}//
+SVCDKTK:328: 		
+JIOIEFH:329: 		@Override
+TRPNWGS:330: 		public void mouseReleased(MouseEvent e) {
+USDKDKV:331: 		}
+WWRMORD:332: 	
+JWBLXIX:333: 		@Override
+IOMYKQZ:334: 		public void actionPerformed(ActionEvent e) {
+TSHGAKS:335: 			if(e.getSource()==this.newItem){
+TVDXOQX:336: 				this.count=0;
+YNRDGXY:337: 				tiles.setTest(isTest);
+EKFDABC:338: 				this.tiles.make();
+PTBNOVP:339: 				setJFramSize(n,n);
+HIQTATB:340: 				printchangeTiles("newItem :"+n);
+ZHBWYJM:341: 			}else if(e.getSource()==this.exitItem){
+XJJAXEG:342: 				System.exit(-1);
+TVYKIVP:343: 			}else if(e.getSource()==this.threeItem){
+JVFYDVZ:344: 				onItemAction(3);
+PDTTWRK:345: 				printchangeTiles("threeItem :"+n);
+RFXGMSJ:346: 			}else if(e.getSource()==this.fourItem){
+BVDVHQD:347: 				onItemAction(4);
+DRHFVPU:348: 				printchangeTiles("fourItem :"+n);
+MYFRQGJ:349: 			}else if(e.getSource()==this.fifthItem){
+LMAPFSU:350: 				onItemAction(5);
+DRIOSUE:351: 				printchangeTiles("fifthItem :"+n);
+JLDPFTW:352: 			}else if(e.getSource()==this.twoItem){
+EJXVBXL:353: 				onItemAction(2);
+ECSWMLS:354: 				printchangeTiles("twoItem :"+n);
+KHJGZZO:355: 			}
+LWXZMLM:356: 		}//
+LVBKQFW:357: 		public void onItemAction(int newNum){
+OCBHXGK:358: 			this.count=0;
+JMEXSLU:359: 			tiles.setTest(isTest);
+XHMDFFZ:360: 			this.n=newNum;
+YYEOLLT:361: 			ITERNUMBER=this.n*this.n;
+KNXDRRR:362: 			this.tiles.setN(newNum);
+WAPIYOQ:363: 			this.tiles.make();
+BENJAUV:364: 			setJFramSize(newNum,newNum);
+LDZECQW:365: 		}
+PLTZNXR:366: 		public void setJFramSize(int x, int y){
+PARNHYT:367: 			this.mainFrame.setSize(16+x*TileUtil.TILESIZE,
+LZGSHNC:368: 					64+y*TileUtil.TILESIZE);
+BNMSCMN:369: 			this.updateUI();
+YAIQJWA:370: 		}
+OFLVNWZ:371: 	}

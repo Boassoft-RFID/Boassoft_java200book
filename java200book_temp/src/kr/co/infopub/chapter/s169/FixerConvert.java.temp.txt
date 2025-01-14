@@ -1,0 +1,44 @@
+0LPGYWDI:1: 	package kr.co.infopub.chapter.s169;
+0LWJSBGZ:2: 	import java.io.InputStreamReader;
+0NHWFTHU:3: 	import java.net.URL;
+0PYRSUAL:4: 	import java.text.SimpleDateFormat;
+0LGZGYFL:5: 	import java.util.Calendar;
+0DCWIACO:6: 	import java.io.BufferedReader;
+0UITXVDE:7: 	public class FixerConvert { //2018-06-01부터 서비스 변경 예정 base=EUR만 가능
+0FUUSPTE:8: 		public static String conversion(String date,String base) {
+0QKMDGBV:9: 			BufferedReader br=null;//http://data.fixer.io/api/latest?access_key=
+DNDMIPA:10: 			String newUrls1="http://data.fixer.io/api/%s?access_key=97042483f2b64c6bfe1dbfbf4a2bd1b3&symbols=KRW,JPY,CNY,USD,EUR";
+IZAKBAE:11: 			String newUrls=String.format(newUrls1, date,base);
+BGTFZGF:12: 			URL url=null;
+JHNVYOR:13: 			StringBuffer sb=new StringBuffer();
+HWQXZCZ:14: 			try {
+GJHLKLN:15: 				url=new URL(newUrls); // http://api.fixer.io
+TOXCQPZ:16: 				System.out.println(newUrls);
+EZLJVNQ:17: 				br=new BufferedReader(new InputStreamReader(url.openStream(),"utf-8"));
+FNYSLJQ:18: 				String msg="";
+ZPKBASW:19: 				// http://data.fixer.io/api를 읽어 들인다.
+ZCMSBWC:20: 				while((msg=br.readLine())!=null){
+XFFWDDG:21: 					sb.append(msg);
+OIPCGRX:22: 				}
+YEWIOKL:23: 			} catch (Exception e) {
+WQNNLSS:24: 				
+DPROLNR:25: 			}
+JCPMGIT:26: 			return sb.toString();
+AMOOAAJ:27: 		}
+BXHWLET:28: 		public static void main(String[] args) {
+ICXTPKS:29: 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+COHVWTD:30: 			Calendar cal=Calendar.getInstance();
+DRJUQAN:31: 			//String date="2018-04-11";
+TWMDNJT:32: 			String date=sdf.format(cal.getTime()); //오늘
+JDFQWUQ:33: 			String base="USD";       
+MMVSNBE:34: 			String fixerrate=FixerConvert.conversion(date,base);
+IUWQWZY:35: 			System.out.println( fixerrate);
+FMKFFSM:36: 			String base2="JPY";       
+PKDINEE:37: 			String fixerrate2=FixerConvert.conversion(date,base2);
+NZOBESM:38: 			System.out.println( fixerrate2);
+EOEZNSR:39: 			String base3="CNY";       
+NCEDGZA:40: 			String fixerrate3=FixerConvert.conversion(date,base3);
+GVDEKUT:41: 			System.out.println( fixerrate3);
+JGVVHMO:42: 		}
+UHBVLMC:43: 	}
+ZTYEURB:44: 		  

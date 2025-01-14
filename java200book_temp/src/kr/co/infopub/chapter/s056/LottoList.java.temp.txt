@@ -1,0 +1,19 @@
+0ONUFKRE:1: 	package kr.co.infopub.chapter.s056;
+0CPHZFVQ:2: 	import java.util.ArrayList;
+0UQPEOAQ:3: 	import java.util.List;
+0CRRGCAB:4: 	// 배열보다 변한 List
+0YDLANHE:5: 	public class LottoList {
+0MRUJMGO:6: 		public static void main(String[] args) {
+0OKBLVBD:7: 			List<Integer> ilist=new ArrayList<>();
+0SJKPKYT:8: 			// 넣기
+0YFXRMAP:9: 			for (int i = 1; i <= 10; i++) {
+BRRDYUO:10: 				ilist.add(i);
+ZYSIPNV:11: 			}
+KSXDAXW:12: 			// 가져오기
+NVZYIUW:13: 			for(int i=0; i< ilist.size() ;i++){
+BFNNFJW:14: 				int m=ilist.get(i);
+ZAYFTUD:15: 				System.out.printf("%d\t",m);
+QCAQORJ:16: 			}
+DMGQPIS:17: 			System.out.println();
+RMCJKPQ:18: 		}
+TTNRIOE:19: 	}

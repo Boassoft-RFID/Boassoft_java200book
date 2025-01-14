@@ -1,0 +1,28 @@
+0UWNIOLO:1: 	package kr.co.infopub.chapter.s157;
+0IFZFHRL:2: 	public class CakePlate {
+0MZJSZHA:3: 		private int breadCount=0;
+0WTVIIBB:4: 		public CakePlate() {
+0PBUTJSJ:5: 		}
+0YBZEFRJ:6: 		public synchronized void makeBread(){
+0YWRSXIB:7: 			if(breadCount>=10){
+0YQBMCEK:8: 				try{
+0EKLJEPY:9: 					System.out.println("빵이 남는다.");
+XUFWTHS:10: 					wait();
+MJMSICM:11: 				}catch(InterruptedException ire){}
+CEKTGXR:12: 			}
+ZOCHDUS:13: 			breadCount++;  // 빵이 10개가 안되면 더 만들자.
+IZOACZQ:14: 			System.out.println("빵을 1개 더 만듬  총 : "+breadCount+"개");
+KQSFTNV:15: 			this.notifyAll();
+NIJBXKA:16: 		}
+OARBBIX:17: 		public synchronized void eatBread(){
+CRQQTJY:18: 			if(breadCount<1){
+TMQHNMH:19: 				try{
+ORYSSAO:20: 					System.out.println("빵이 모자라 기다림");
+QAMNOZN:21: 					wait();
+ITAETXE:22: 				}catch(InterruptedException ire){}
+COJMDYC:23: 			}
+EOSNUBM:24: 			breadCount--;  // 빵이 있으니 먹자.
+JEIQWLE:25: 			System.out.println("빵을 1개 먹음  총 : "+breadCount+"개");
+EOHZZPX:26: 			this.notifyAll();
+IIFGLEV:27: 		}
+KHKULCA:28: 	}

@@ -1,0 +1,24 @@
+0QUQCKNL:1: 	package kr.co.infopub.chapter.s141;
+0FCPHOGS:2: 	public class Pascal {
+0HLYKXED:3: 		public static int[][] triAngle(int n){
+0MVKWOIA:4: 			int[][] pt=new int[n][]; //zigzag
+0TOVHBWB:5: 			for (int i = 0; i < n; i++) {
+0CGOOITQ:6: 				pt[i]=new int[i+1];
+0IQHFYOB:7: 				pt[i][0]=1;
+0SMREYLV:8: 				//nCr=n-1Cr-1 + n-1Cr
+0UBTTIRW:9: 				for (int j = 1; j <i; j++) {
+YHXRJVD:10: 					pt[i][j]=pt[i-1][j-1]+pt[i-1][j];
+VBMDHRV:11: 				}
+HZSOYOY:12: 				pt[i][i]=1;
+GLMVSAJ:13: 			}
+ZESPDPZ:14: 			return pt;
+NFPCVRM:15: 		}
+FDQQSAL:16: 		public static int[] phibo(int n){
+NCHUJNK:17: 			int[] pt=new int[n]; //zigzag
+FHCGQYR:18: 			pt[0]=1; pt[1]=1; 
+WQDBCMB:19: 			for (int i = 2; i < n; i++) {
+SBKZLSF:20: 				pt[i]=pt[i-1]+pt[i-2];
+CQAOVLQ:21: 			}
+JMKIMPW:22: 			return pt;
+PFIJVBQ:23: 		}
+KYSIJLZ:24: 	}

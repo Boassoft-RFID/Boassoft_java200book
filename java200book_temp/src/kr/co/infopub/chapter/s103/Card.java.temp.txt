@@ -1,0 +1,29 @@
+0LRUUOIF:1: 	package kr.co.infopub.chapter.s103;
+0CDSDNWH:2: 	// 객체 - 중요한 데이터를 저장
+0QDNMZHE:3: 	public class Card {
+0EJOAXCG:4: 		// 데이터 보호- 은닉화 - 접근 제한자 private
+0STHWCJK:5: 		private String cardVal; // H8, H6, ...
+0OILYVCC:6: 		// 멤버 접근 메서드
+0GRICGZZ:7: 		public String getCardVal() {
+0FNYUMNN:8: 			return cardVal;
+0FIAIHTE:9: 		}
+BERTQTD:10: 		// 기본 생성자 - 멤버 초기화
+VHJKOKE:11: 		public Card() {
+DZQJJEB:12: 			this("H2");  //아래와 동일
+KGZJRLS:13: 			//this.cardVal="H2";
+LDKPCJQ:14: 		}
+GGMPXPT:15: 		// 테스트용
+TXHYVYF:16: 		public Card(String s) {
+EFTQKTF:17: 			this.cardVal=s;  // 문자열은 값 복사
+SCATNBF:18: 		}
+ZVIOMOK:19: 		// 복사 생성자
+ZCFIZXW:20: 		public Card(Card c) {
+WHLFSRO:21: 			this(c.getCardVal());  // 문자열은 값 복사
+OLFZCZB:22: 			// this.cardVal=c.getCardVal(); //동일
+YWJKXJC:23: 		}
+GQHURPX:24: 		// cardVal 내용  [H3]
+SYEEEVY:25: 		@Override
+FZZVMFE:26: 		public String toString() {
+KIVAIVG:27: 			return "[" + cardVal + "]";
+XWLCPOI:28: 		}
+WGPCOWY:29: 	}//

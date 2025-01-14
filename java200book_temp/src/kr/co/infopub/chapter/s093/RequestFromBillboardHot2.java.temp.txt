@@ -1,0 +1,112 @@
+00IDRZJQS:1: 	package kr.co.infopub.chapter.s093;
+00VNOOCMS:2: 	import java.io.IOException;
+00FAWFXFG:3: 	import java.util.ArrayList;
+00AHVFHOE:4: 	import org.apache.http.HttpEntity;
+00GSBAYUR:5: 	import org.apache.http.client.methods.CloseableHttpResponse;
+00RSLHZME:6: 	import org.apache.http.client.methods.HttpGet;
+00TEAWFTE:7: 	import org.apache.http.impl.client.CloseableHttpClient;
+00ASCBLFU:8: 	import org.apache.http.impl.client.HttpClients;
+00CJYCFNU:9: 	import org.apache.http.util.EntityUtils;
+0ZFWZZHP:10: 	import org.jsoup.Jsoup;
+0XYNBGFT:11: 	import org.jsoup.nodes.Document;
+0ZNQHTET:12: 	import org.jsoup.nodes.Element;
+0EPDQFCQ:13: 	import org.jsoup.select.Elements;
+0DFCOXMV:14: 	
+0HQSBEGF:15: 	public class RequestFromBillboardHot2 {
+0BSBQDLW:16: 	
+0BLGUFDD:17: 	ArrayList<Billbaord> billboards=new ArrayList<Billbaord>();
+0MCNVDYA:18: 	
+0SVVLFUG:19: 	public ArrayList<Billbaord> getBillboards() {
+0ZJKZRRQ:20: 		return billboards;
+0KMFBGUL:21: 	}
+0HCATFKM:22: 	public RequestFromBillboardHot2(){
+0OLDSZKO:23: 		billboards.clear();
+0CBAHASA:24: 	}
+0PJIPAGB:25: 	public  void getBillboardData(String newUrls){
+0PVKFDVE:26: 	 billboards.clear();
+0LNPJGCG:27: 	 HttpGet request = new HttpGet(newUrls);  // HttpGet 생성
+0KZTTDTS:28: 	 Document doc = null;  
+0RKARNRA:29: 	 // 자동 finally 처리용 
+0NKIFRLB:30: 	 try (CloseableHttpClient httpClient = HttpClients.createDefault(); 
+0GNGKFBF:31: 	  CloseableHttpResponse response = httpClient.execute(request)){
+0LJALJUC:32: 		StringBuffer sb=new StringBuffer();
+0MWTTWOR:33: 	    HttpEntity entity = response.getEntity();
+0TJZFDWQ:34: 	    if (entity != null) {
+0JKAOPCD:35: 	        String result = EntityUtils.toString(entity);
+0JVVECNY:36: 	        sb.append(result);                // 모든 내용을 읽어온다.
+0MPZQTGF:37: 	    }
+0KNOGKYW:38: 	    doc=Jsoup.parse(sb.toString());      // 읽은 내용을 Document로 만든다.
+0KJGQTEV:39: 	
+0WQXGZGV:40: 	    String r1="flex--column.flex--xy-center.";
+0BOZZUBV:41: 	    String r2="flex--no-shrink > span.chart-element__rank__number";
+0NBKDHFU:42: 	    String o1="span.chart-element__information__song.";
+0EAIOOLO:43: 	    String o2="text--truncate.color--primary";
+0XDYURVD:44: 	    String i1="span.chart-element__information__artist.";
+0TNIGMUY:45: 	    String i2="text--truncate.color--secondary";
+0EPMHFPQ:46: 	    String rank="li > button > span.chart-element__rank."+r1+r2;
+0QNTFEID:47: 	    String song="li > button > span.chart-element__information > "+o1+o2;
+0LYKIAWR:48: 	    String singer="li > button > span.chart-element__information > "+i1+i2;
+0TTHDSPH:49: 	    //String image="li > button > span.chart-element__image.flex--no-shrink";
+0WEOPCYE:50: 	    Elements ranks = doc.select(rank);     // 랭킹 : 모든 내용에서 랭킹 찾기
+0THKLQTV:51: 	    Elements songs = doc.select(song);     // 노래 : 모든 내용에서 노래  찾기
+0URKFMZO:52: 	    Elements singers = doc.select(singer); // 가수 : 모든 내용에서 가수 찾기
+0TPOQIXF:53: 	    //Elements images = doc.select(image); // 이미지 : 모든 내용에서 이미지 찾기
+0HDHVHNL:54: 	    // 빌보드 객체에 랭킹, 노래, 가수를 저장, 빌보드 객체를 List에 저장
+0YTWHYOB:55: 	    for (int i = 0; i < ranks.size(); i++) {
+0BIYGCLV:56: 	    	Billbaord board=new Billbaord();
+0VBUNFNM:57: 	    	board.setRank(Integer.parseInt(ranks.get(i).text()));
+0CSHUOWY:58: 	    	board.setSong(songs.get(i).text());
+0BWDEFUY:59: 	    	board.setArtist(singers.get(i).text());
+0POGGSFJ:60: 	/*          String ss=images.get(i).attr("style");
+0TPEZVGK:61: 	        	if(ss!=null && !ss.trim().equals("") && ss.indexOf("https")!=-1) {
+0XPHABGC:62: 	        		ss=ss.substring(ss.indexOf("https"));
+0AHRNEBI:63: 	        		ss=ss.substring(0,ss.length()-3);
+0IZXTAUO:64: 	        	}
+0APCJYBF:65: 	        	board.setImagesrc(ss);*/
+0RERDEPZ:66: 	    	billboards.add(board);   // 빌보드 객체를 List에 저장
+0UMQUMIS:67: 		}
+0YWYCZIO:68: 	  } catch (IOException e) {
+0YTNWWRP:69: 		System.out.println("Billboard Parsing error !!! ");
+0RCUEOFP:70: 	  }
+0WNSGBLN:71: 	 }
+0KPUYFFM:72: 	 public void printBillboard(){
+0KJBIULB:73: 		for (Billbaord ss : billboards) {
+0CZYGLET:74: 			System.out.println(ss);
+0GGKLFME:75: 		}
+0TEAHAOO:76: 	 }
+0UCEXVRW:77: 	 public String getTimeDate(String newUrls) {  //s091에서 설명
+0YGUKAIT:78: 	     HttpGet request = new HttpGet(newUrls); // HttpClient를 이용하여
+0SSNNAWZ:79: 	     CloseableHttpClient httpClient=null;
+0GHUDQTV:80: 	     CloseableHttpResponse response=null;
+0ERLUEXR:81: 	     Document doc = null;  
+0HZLOAED:82: 	     String sdate="";
+0WZFBRGZ:83: 	     try {
+0QCPQATL:84: 	     	 httpClient = HttpClients.createDefault(); // 웹에 연결
+0TYKNSBU:85: 	     	 response = httpClient.execute(request);   // 결과 얻기
+0SBZQCTY:86: 	     	 StringBuffer sb=new StringBuffer();       // 5000줄정도 저장
+0JGJVCLM:87: 	         HttpEntity entity = response.getEntity(); 
+0KJHYKJT:88: 	         if (entity != null) {  // 결과가 있다면 결과에서 한줄씩
+0KNJILZT:89: 	             String result = EntityUtils.toString(entity); 
+0YFZUUJX:90: 	             sb.append(result); // 한줄씩 저장
+0WHDODAS:91: 	         }
+0DVHKBEA:92: 	         doc=Jsoup.parse(sb.toString()); // 전체 내용을 HTML 파싱
+0LTOCJJJ:93: 	         String id="charts";  
+0WXUVCCH:94: 	         // <div id="charts" data-chart-date="2020-07-11"
+0CQLYYLO:95: 	         Element eid=doc.getElementById(id);    // 고유한 charts를 찾음
+0WTJLGCZ:96: 	         sdate=eid.attr("data-chart-date"); // 속성 값 
+0ZSMSPCJ:97: 	     } catch (IOException e) {
+0SMOEJFF:98: 	 		 System.out.println("Billboard Parsing error !!! ");
+0NOVNAYW:99: 		 }		
+CRIYRMD:100: 	     return sdate!=null?
+AYFDREG:101: 	    			RestDay.saturday(sdate): RestDay.saturday();
+NFLMPDO:102: 	 }
+LNPVXNC:103: 	 public static void main(String[] args) {
+CQKGNRC:104: 		RequestFromBillboardHot2 rfw=new RequestFromBillboardHot2();
+NOCDRJP:105: 		String a="https://www.billboard.com/charts/hot-100/";
+WUPLVEY:106: 		String rs=rfw.getTimeDate(a);
+GMHHNNW:107: 		System.out.println("이번 주 "+rs);
+WQSBEWS:108: 		//rs=RestDay.toWantedDay(rs, 1);  //1주전
+HEICBRN:109: 		rfw.getBillboardData(a+rs);  // List에 빌보드 객체들을 저장
+UZHKEBL:110: 		rfw.printBillboard();       //  List에 저장한 빌보드 객체들 출력
+GOVGXOM:111: 	 }
+LCCGNBK:112: 	}

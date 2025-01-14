@@ -1,0 +1,95 @@
+0RIFWZJF:1: 	package kr.co.infopub.chapter.s198.client;
+0LXPVXTG:2: 	import java.awt.*;
+0NSCTVQM:3: 	import javax.swing.*;
+0NPFTVCS:4: 	import javax.swing.border.*;
+0MKDCVXL:5: 	import java.awt.event.*;
+0SFMTGYJ:6: 	public class ChattingEnteranceDialog extends JDialog  implements ActionListener{
+0CWKVPDX:7: 	  private static final long serialVersionUID=122454214237L;//JAVA5
+0XKYTHFC:8: 	  JPanel panel1 = new JPanel();
+0NJJYBOH:9: 	  JPanel jPanel1 = new JPanel();
+AAUPCJY:10: 	  JLabel jLabel1 = new JLabel();
+DROHDTN:11: 	  JTextField jTextField1 = new JTextField();
+CCAFQEI:12: 	  JLabel jLabel2 = new JLabel();
+POHLMBC:13: 	  JTextField jTextField2 = new JTextField();
+LOLMFGA:14: 	  JButton jButton1 = new JButton();
+ABPGLMO:15: 	  JLabel jLabel3 = new JLabel();
+CFRHDCL:16: 	  TitledBorder titledBorder1;
+PJVHXGU:17: 	  TitledBorder titledBorder2;
+EOFPGIB:18: 	  JFrame jframe;
+GDOWDCD:19: 	  JPanel jpanel;
+ASVXTBO:20: 	  JLabel jLabel4 = new JLabel();
+KMOSWEA:21: 	  JTextField jTextField3 = new JTextField();
+ZVSWVQW:22: 	  public ChattingEnteranceDialog(JFrame jframe, JPanel jpanel,
+OKDNGOS:23: 		             String title, boolean modal) {
+NUIGBIQ:24: 	    super(jframe, title, modal);
+AKJJOFZ:25: 	    this.jframe=jframe;
+OZDMFJI:26: 	    this.jpanel=jpanel;
+IFLHLXM:27: 	    inits();
+PAWGSDG:28: 	    pack();
+POCQGSG:29: 	  }
+SBCMQZY:30: 	  public ChattingEnteranceDialog() {
+CXTVBPQ:31: 	    this(null, null,"", false);
+CQCEXFI:32: 	  }
+MYGQRVX:33: 	  private void inits()  {
+PAKUHVE:34: 	    panel1.setLayout(new BorderLayout());
+TXHVEWH:35: 	    jPanel1.setLayout(new GridBagLayout());
+MWAEQQS:36: 	    jLabel1.setText("Server IP");
+AWFQCIQ:37: 	    jLabel2.setText("Server port");
+JWAIEYU:38: 	    jTextField2.setPreferredSize(new Dimension(100, 21));
+YQYHQOG:39: 	    jTextField2.setText("5200");
+FLYNVJE:40: 	    jTextField1.setPreferredSize(new Dimension(100, 21));
+YPMKGXQ:41: 	    jTextField1.setText("127.0.0.1");
+NNIPEWO:42: 	    jButton1.setText("Connection");
+RRAMVSQ:43: 	    jButton1.addActionListener(this);
+XGRYOAO:44: 	    jLabel3.setBorder(new TitledBorder(""));
+BTGIVHE:45: 	    jLabel3.setText("Welcome to the HYO Chatting!");
+AHFOCHK:46: 	    jPanel1.setBorder(BorderFactory.createRaisedBevelBorder());
+BDDNJDZ:47: 	    this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);//DO_NOTHING_ON_CLOSE
+AFQCOYH:48: 	    this.setModal(true);
+YMXIIIB:49: 	    this.setResizable(false);
+INTWYTL:50: 	    jLabel4.setText("UserID");
+XBIMZLP:51: 	    jTextField3.setText("");
+EFQFPXB:52: 	    jTextField3.setPreferredSize(new Dimension(100, 21));
+IUYHNQF:53: 	    getContentPane().add(panel1);
+YDHBDJB:54: 	    panel1.add(jPanel1,  BorderLayout.CENTER);
+UYGRSLT:55: 	    jPanel1.add(jLabel1,       new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0
+KGZFOBF:56: 	            ,GridBagConstraints.CENTER,
+MZHFWKC:57: 	            GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+UNBPYWG:58: 	    jPanel1.add(jTextField1,   new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0
+ABICSAS:59: 	            ,GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+PCFXMHW:60: 	            new Insets(0, 0, 0, 0), 0, 0));
+HKTYBVM:61: 	    jPanel1.add(jLabel2, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0
+OTOANNH:62: 	            ,GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+GNBCQWJ:63: 	            new Insets(5, 5, 5, 5), 0, 0));
+USPKTQI:64: 	    jPanel1.add(jTextField2,  new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0
+NJFVBHE:65: 	            ,GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+HXXZJKI:66: 	            new Insets(0, 0, 0, 0), 0, 0));
+WUADCHV:67: 	    jPanel1.add(jButton1,   new GridBagConstraints(0, 4, 3, 1, 0.0, 0.0
+AOGSDDW:68: 	            ,GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+LWTWEXA:69: 	            new Insets(0, 5, 5, 5), 0, 0));
+VFJENQW:70: 	    jPanel1.add(jLabel3,    new GridBagConstraints(0, 0, 2, 1, 0.0, 0.0
+PKPKAWN:71: 	            ,GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+YRXACYL:72: 	            new Insets(0, 0, 0, 0), 0, 0));
+SDULQLN:73: 	    jPanel1.add(jLabel4, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0
+BPVCNSY:74: 	            ,GridBagConstraints.CENTER, GridBagConstraints.NONE,
+FECBAUT:75: 	            new Insets(0, 0, 0, 0), 0, 0));
+BQGLIDU:76: 	    jPanel1.add(jTextField3, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0
+NEXVWRC:77: 	            ,GridBagConstraints.CENTER, GridBagConstraints.NONE,
+PURYLJR:78: 	            new Insets(0, 0, 0, 0), 0, 0));
+UMZZGXX:79: 	    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+KKTTCBE:80: 	      Dimension frameSize = this.getSize();
+ZOTCFQA:81: 	     this.setLocation((screenSize.width - frameSize.width) / 2,
+MTNVSEO:82: 	             (screenSize.height - frameSize.height) / 2);
+DIKPXIH:83: 	  }
+TOCPQGK:84: 	  public void actionPerformed(ActionEvent e) {
+NCPTJSF:85: 	    try{
+VOUENNR:86: 	      int port =Integer.parseInt(this.jTextField2.getText());
+LAKRQUB:87: 	      ((ChatClientJPanel)jpanel).setIpPort(
+FJNHEAE:88: 	                  jTextField1.getText(),port,jTextField3.getText());
+UVZIRGU:89: 	      this.setVisible(false);
+FAIVMUQ:90: 	      this.dispose();
+AVKDHFD:91: 	    }catch(Exception ee){
+JXBHHDQ:92: 	      javax.swing.JOptionPane.showMessageDialog(jframe,"타입이 잘못입력됨");
+GPQSPIV:93: 	    }
+QQPIZNV:94: 	  }
+RWYHZKC:95: 	}

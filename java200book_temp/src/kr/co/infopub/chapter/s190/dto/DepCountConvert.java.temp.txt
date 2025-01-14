@@ -1,0 +1,35 @@
+0NCZMKPL:1: 	package kr.co.infopub.chapter.s190.dto;
+0DQWNYZA:2: 	
+0TUECXUZ:3: 	import java.util.ArrayList;
+0RNXAQSX:4: 	import java.util.List;
+0VCYMCDD:5: 	
+0YHNTKAC:6: 	import javafx.collections.FXCollections;
+0NKXUWJV:7: 	import javafx.collections.ObservableList;
+0PPCPWBI:8: 	
+0NHWIUDO:9: 	public class DepCountConvert {
+VODAAYW:10: 	
+RTELOZS:11: 		public static DepCount toPro(DepCountDto b){
+NZGTLDG:12: 			DepCount bp=new DepCount();
+KORAGUQ:13: 			bp.setCount(b.getCount());
+PBZCNYS:14: 			bp.setDepartment_name(b.getDepartment_name());
+BCTRVJO:15: 			bp.setDepartment_id(b.getDepartment_id());
+OFVJYFU:16: 			return bp;
+WXOFCXF:17: 		}
+RZOQXLW:18: 		
+QVELRXG:19: 		public static List<DepCount> toPro(List<DepCountDto> blist){
+NOYEHGT:20: 			List<DepCount> bplists=new ArrayList<>();
+RNXAHAH:21: 			for(DepCountDto b:blist){
+PCOBSXE:22: 				bplists.add(toPro(b));
+ETPIIIR:23: 			}
+ONWMJCM:24: 			return bplists;
+ERQWZYH:25: 		}
+HFCUIGX:26: 		public static ObservableList<DepCount> toObservPro(List<DepCount> alists){
+YAZSELJ:27: 			ObservableList<DepCount> bList = FXCollections.observableArrayList(alists);
+XZLJXAZ:28: 			return bList;
+RBFEKTO:29: 		}
+UCWJKWO:30: 		
+QVFEGTG:31: 		public static ObservableList<DepCount> toObservProFromDto(List<DepCountDto> alists){
+IHOXACF:32: 			return toObservPro(toPro(alists));
+NUHIBTK:33: 		}
+KQPICWZ:34: 		
+HWMXFQS:35: 	}

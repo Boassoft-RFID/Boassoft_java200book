@@ -1,0 +1,86 @@
+0KNBWXPK:1: 	package kr.co.infopub.chapter.s199.test;
+0MBKQBLZ:2: 	import java.sql.SQLException;
+0GBIHFMR:3: 	import java.util.List;
+0SLXLPML:4: 	import javafx.application.Application;
+0RUUIBZI:5: 	import javafx.collections.FXCollections;
+0BDQQFPS:6: 	import javafx.collections.ObservableList;
+0OVZZWFP:7: 	import javafx.scene.Group;
+0SPGQOGD:8: 	import javafx.scene.Scene;
+0YEHMSDO:9: 	import javafx.scene.chart.PieChart.Data;
+BBZZTAD:10: 	import javafx.scene.control.Label;
+JBQUQIZ:11: 	import javafx.scene.input.MouseEvent;
+WXCLFZB:12: 	import javafx.stage.Stage;
+WSMVIEP:13: 	import kr.co.infopub.chapter.s200.client.EmployeeService;
+UMGOCMC:14: 	import kr.co.infopub.chapter.s200.dto.DepCount;
+RLJCXAZ:15: 	import kr.co.infopub.chapter.s200.util.EmpUtil;
+DDWCIRJ:16: 	import kr.co.infopub.chapter.s200.util.PTS;
+LWWUUVX:17: 	import javafx.scene.chart.PieChart;
+VNZQUHG:18: 	// s188
+ATJASEU:19: 	public class DepChartFx extends Application {
+VCUCRYD:20: 	 int total=0;   // 전체 사원 수
+MZCYUMN:21: 	 private ObservableList<Data> getChartData(List<DepCount> dlists) {
+ZYQDZDY:22: 	    ObservableList<Data> answer = FXCollections.observableArrayList();
+RCAWXLF:23: 	    for (DepCount dc: dlists) {
+PMQDHIB:24: 	    	// 부서이름(부서아이디), 부서원 수
+LLULIYM:25: 	    	 answer.add(new PieChart.Data( dc.getDepartment_name()
+QLRUPHE:26: 	    			   +"("+dc.getDepartment_id()+")", dc.getCount()  ));
+SMZCIAJ:27: 		}
+LEFLESK:28: 	    return answer;
+YRUGLSO:29: 	 }
+DBBGIHQ:30: 	 @Override
+TYEAYZY:31: 	 public void start(Stage stage) {
+EAKFNBB:32: 	  try {
+YADFPRB:33: 		// DAO, Convert를 감싸서 편기하게 사용
+LIMQQRE:34: 		EmployeeService service=EmployeeService.getInstance();
+QWNURUB:35: 	    List<DepCount> dlists =service.findAllDepCounts();
+LSZPPQM:36: 	    // 부서별 인원을 더해서 전체 사원수를 구한다.
+KENRCBD:37: 	    for(DepCount dc: dlists){
+KOSEOSI:38: 		    total+=dc.getCount();
+VMHXOCL:39: 	    }
+MBFIHMG:40: 	    Scene scene = new Scene(new Group());
+NQRGVAD:41: 	    stage.setTitle("부서별 인원수 " +PTS.toDay());
+OBFUKNU:42: 	    stage.setWidth(750);
+UVDOVQB:43: 	    stage.setHeight(800);
+BMCPOUD:44: 		
+CREZOGK:45: 		PieChart pieChart = new PieChart();
+HIBWVBS:46: 		pieChart.setTitle("부서별 인원수 총"+total+"(Person)");
+LHXLCIB:47: 		// 파이 차트에  ObservableList를 대입한다
+TXWOWZD:48: 		// 부서별 부서원 수로 파이 넓이를 차지한다.
+DHDHMVP:49: 	    pieChart.setData(getChartData(dlists));
+NRIHHKE:50: 	    pieChart.setClockwise(true); 
+JANAHWI:51: 	    pieChart.setStartAngle(180);  
+FJRQKBF:52: 	    pieChart.setLabelsVisible(true); 
+HZYRUMC:53: 	    //레전드
+CTLGYVF:54: 	    //pieChart.setLabelLineLength(20);
+BVWPPZG:55: 	    //pieChart.setLegendSide(Side.LEFT);
+BWQBHMV:56: 	    pieChart.setPrefWidth(750);
+GBPZPWH:57: 	    pieChart.setPrefHeight(700); 
+EBMQNVI:58: 	    final Label caption = new Label("");
+HMKRMSV:59: 	    String value=
+VIHZPIS:60: 		    	   "-fx-font-size: 25px;           "
+KDSEKNT:61: 		    	  +"-fx-font-family: 'Arial Black';    ";
+CZKOMFB:62: 	    caption.setStyle(value);
+ZNJQYEJ:63: 	    for (final PieChart.Data data : pieChart.getData()) {
+UYHJAVB:64: 	        data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+RCQEUGU:65: 	            e-> {
+TLFKPXU:66: 	                caption.setTranslateX(e.getSceneX());  // 마우스로 누른 X위치에
+CZCSZSH:67: 	                caption.setTranslateY(e.getSceneY());  // 마우스로 누른 Y위치에
+FTMMHOH:68: 	                String sft=String.format("%s %.2f%%(%.0f명)", 
+YGEDXKI:69: 	                		EmpUtil.dep(data.getName()),   // 부서 이름
+RSLKYNT:70: 	                		100*data.getPieValue()/total,  // 부서 인원 %비율
+GTSHJKK:71: 	                		data.getPieValue());           // 부서 인원
+TAMCEOX:72: 	                caption.setText(sft);
+OUVCHFG:73: 	            });
+WCHFROX:74: 	    }
+DIHBJTV:75: 	    // 파이 차트와 이벤트가 발생했을 때 보일 내용(라벨)
+BIBGYRF:76: 	    ((Group) scene.getRoot()).getChildren().addAll(pieChart,caption);
+DEGKOVW:77: 	    stage.setScene(scene);
+XIAHLZL:78: 	    stage.show();
+XRSCJGG:79: 	  } catch (SQLException e) {
+MXBHJUU:80: 		System.out.println(e);
+VIGRPXL:81: 	  }
+CBWFMKS:82: 	 }
+ALTVOGE:83: 	 public static void main(String[] args) {
+CELHGUZ:84: 	  launch(args);
+QMBNSSR:85: 	 }
+AXKINJH:86: 	}

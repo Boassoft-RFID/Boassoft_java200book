@@ -1,0 +1,67 @@
+0UQHJMZR:1: 	package kr.co.infopub.chapter.s131;
+0QHPFNCB:2: 	import java.io.File;
+0NCAOEMK:3: 	import java.util.Date;
+0DSWJBJM:4: 	public class AboutFiles {
+0AHXFUQL:5: 	 public static void printTree(File ff){
+0VSGCYIC:6: 		if(ff.exists()){
+0XENMFFX:7: 			File[] fd=ff.listFiles();
+0DWIQEWV:8: 			if(fd==null || fd.length==0){
+0GNCVISD:9: 				return ;
+PVYTNKC:10: 			}else{
+RQQXTUC:11: 				for (File f: fd) {
+JOWKXYV:12: 					if(f.isDirectory()){
+WRLUNGX:13: 						System.out.println(f.getAbsolutePath());
+QACVQUZ:14: 					}
+GDEJQQI:15: 				}
+CLUDBSH:16: 			}
+LXYRXXZ:17: 		}
+YLPSDCD:18: 	 }
+EIMFXMV:19: 	 public static void aboutFile(File f){
+TEJBGAP:20: 		System.out.println("--------------------------------");
+EKBMMJO:21: 		System.out.println(f.getAbsolutePath());
+MSABEDN:22: 		System.out.println(f.getName());
+EYONHNT:23: 		System.out.println(RestDay.toStrDate(new Date(f.lastModified())));
+ZQGPNCD:24: 		System.out.println("canRead:"+f.canRead());
+TPERCJP:25: 		System.out.println(f.length()+" bytes.");
+QOJPXTU:26: 	 }
+LCTTXUR:27: 	 // 재귀
+NLGYBLT:28: 	 public static void printTree2(File ff){
+WMZVGYD:29: 		if(ff.exists()){
+BUMVPCH:30: 			File[] fd=ff.listFiles();
+SEJVUSG:31: 			if(fd==null || fd.length==0){
+EACLRTK:32: 				return ;
+YCUGTGG:33: 			}else{
+ZODHPVB:34: 				for (File f: fd) {
+BDDPIMO:35: 					if(f.isDirectory()){
+ZPROYID:36: 						System.out.println("---------"+f.getAbsolutePath());
+XDPUFST:37: 						printTree2(f);
+ZZRXNQD:38: 					}else{
+BBTBCHV:39: 						aboutFile(f);
+GOERPON:40: 					}
+UMNKZUB:41: 				}
+KZOFLXN:42: 			}
+GUJNIOE:43: 		}
+KGDUVEK:44: 	 }
+THWLGFS:45: 	 public static void main(String[] args) {
+ORHKECQ:46: 		File[] fs=File.listRoots();
+NZIFOOC:47: 		for (File f: fs) {
+BCCCGMV:48: 			if(f.isDirectory()){
+EGTFEVP:49: 				printTree(new File(f.getAbsolutePath()));
+WCSELMF:50: 			}
+LNIMGSD:51: 		}
+ZJJHHIS:52: 		File f=new File("D:\\java");  
+VQBHDYZ:53: 		printTree2(f);
+MGZXBFN:54: 		System.out.println("--------------------------------------------");
+XHYPDOG:55: 		for (char c = 'A'; c <= 'Z'; c++) { 
+ONMYLWF:56: 		   String dirNames = c + ":/";       // +System.lineSeparator(); 
+LNZDMOU:57: 		   File allDirs = new File(dirNames); 
+ORHDGCZ:58: 		     if(allDirs.exists()){ 
+LAYRUEI:59: 		          long total=(long)allDirs.getTotalSpace(); 
+PTQOYXE:60: 		          long free=(long)allDirs.getFreeSpace(); 
+WLMBQOJ:61: 		          double  used=(double)(1-free*1.0/total)*100; 
+GXSFJED:62: 		          String str=c+":\\디렉토리의  사용량 :  "+used+"%"; 
+LFSUTWV:63: 		          System.out.println(str);
+YYIVUIZ:64: 		     } 
+FHGMBUS:65: 		 } 
+PMSHTAQ:66: 	 }
+TWOHWFX:67: 	}

@@ -1,0 +1,88 @@
+0UVGIICR:1: 	package kr.co.infopub.chapter.s150.swing;
+0ZYKRSQD:2: 	
+0MPMZNCT:3: 	import java.awt.Graphics2D;
+0HSQAAPS:4: 	import java.awt.Image;
+0GGASQUP:5: 	import java.awt.Toolkit;
+0FEBRDJV:6: 	import java.awt.image.BufferedImage;
+0FQJMQWQ:7: 	import java.io.File;
+0WMXFKJZ:8: 	import java.io.IOException;
+0JVHCIFQ:9: 	
+NASPCZX:10: 	import javax.imageio.ImageIO;
+NONWBQR:11: 	import javax.swing.ImageIcon;
+FHTZLMT:12: 	import javax.swing.JLabel;
+OXLQETJ:13: 	
+PAGESOA:14: 	//use for application not for applet
+PKONCQE:15: 	public class ImageUtiil {
+HLFQHXA:16: 		
+BPAVJVR:17: 		public static final int WIDTH=71;
+QOJEMVV:18: 		public static final int HIGHT=96;
+UVOBRTO:19: 		public static final String imgUrl="kr/co/infopub/chapter/s150/images/";
+TJNVVUZ:20: 		public static final String ext=".gif";
+VCRGETD:21: 		
+XQLYEOG:22: 		public  static  JLabel getImgJLabel(String url){
+KTXDIRN:23: 			ClassLoader cldr = ImageUtiil.class.getClassLoader();
+EYSIPJD:24: 		    java.net.URL imageURL   = cldr.getResource(url);
+KJSLDFS:25: 		    ImageIcon image = new ImageIcon(imageURL);
+WCMXSBM:26: 			JLabel jLabel =new JLabel(image);
+DYRALWH:27: 			return jLabel;
+AVCJQKC:28: 		}
+ULWILJX:29: 		public static  Image getImage(String url){
+HZEFIRO:30: 			ClassLoader cldr = ImageUtiil.class.getClassLoader();
+PXOYNUX:31: 		    java.net.URL imageURL   = cldr.getResource(url);
+ORPZHDW:32: 		    Image image = new ImageIcon(imageURL).getImage();
+WDHLAXJ:33: 			return image;
+OQFFLJB:34: 		}
+XWKSBYI:35: 		public static  ImageIcon getIcon(String url){
+EFICNVJ:36: 			ClassLoader cldr = ImageUtiil.class.getClassLoader();
+UTQZFJG:37: 		    java.net.URL imageURL   = cldr.getResource(url);
+HGNTYCW:38: 		    ImageIcon image = new ImageIcon(imageURL);
+GTYOIXK:39: 			return image;
+SRRHUZV:40: 		}
+JEEDQAM:41: 		public static Image fromImgBuffer(BufferedImage bufImg){
+KPOYLRM:42: 			return Toolkit.getDefaultToolkit()
+SRPLZKW:43: 			              .createImage(bufImg.getSource());
+TVYGZVV:44: 		}
+RDZYXET:45: 		public static BufferedImage fromImage(
+MJUOTZW:46: 				Image img,int x0, int y0, int width, int height){
+VOSHYJV:47: 			BufferedImage copy=new BufferedImage(
+DOTZIHV:48: 					width, height, BufferedImage.TYPE_INT_ARGB);
+LTUQCSQ:49: 			Graphics2D g2d=copy.createGraphics();
+MZLMZXQ:50: 			g2d.drawImage(img,x0,y0,null);
+PGRNCHJ:51: 			g2d.dispose();
+VQZJQHK:52: 			return copy;
+CJWHRXO:53: 		}
+MUTRYYZ:54: 		public static BufferedImage fromImage(
+HDRNTTK:55: 				Image img, int width, int height){
+EYCGJPY:56: 			return fromImage(img,0,0,width,height);
+IEZGWZK:57: 		}//
+KISXECF:58: 		public static BufferedImage getSubBufferedImage(
+FHZGDKP:59: 			BufferedImage bufimg,int x0, int y0, int width, int height){
+HDMDMRB:60: 			BufferedImage subimage=
+QLGEKKD:61: 				             bufimg.getSubimage(x0, y0, width, height);
+NSTQGQM:62: 			return subimage;
+MZJDZLL:63: 		}//
+QIKURLD:64: 		public static Image getSubImage(
+KBPFVCK:65: 			BufferedImage bufimg,int x0, int y0, int width, int height){
+ZMROSEE:66: 			BufferedImage subimage=bufimg.getSubimage(x0, y0, width, height);
+SZGRWSH:67: 			return fromImgBuffer(subimage);
+RHFFZOZ:68: 		}//
+JYITMUA:69: 		public static BufferedImage loadImage(String url) {
+RORBGFR:70: 			BufferedImage img = null;
+DDFCUBJ:71: 			try {
+UHYGULW:72: 				img = ImageIO.read(new File(url));
+QNWVWGS:73: 			}
+GAQFKTV:74: 			catch (IOException e) {
+ZHIYXRM:75: 				System.err.println(e);
+AOCHXEF:76: 			}
+BMOUCXA:77: 			return img;
+OXINVQO:78: 		}
+SLRBVAF:79: 	
+KVKUADQ:80: 		public static Image getPhotoImage(String url,int x, int y, int moveX, int moveY){//0~3 0~3
+YKSGTCJ:81: 			Image img=ImageUtiil.getImage(url);
+FHRQLTA:82: 			BufferedImage bufimg=ImageUtiil.fromImage(img, 0,0,400+moveX,400+moveY );
+QYRBZCM:83: 			BufferedImage subimg=ImageUtiil.getSubBufferedImage(bufimg, moveX+100*x,moveY+100*y, 100, 100);
+ZTYWDLE:84: 			Image madeImg=ImageUtiil.fromImgBuffer(subimg);
+AETMDQU:85: 			return madeImg;
+AKMBLXI:86: 		}
+FUMQYAX:87: 	
+VMJZAIK:88: 	}

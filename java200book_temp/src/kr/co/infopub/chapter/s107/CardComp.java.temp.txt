@@ -1,0 +1,21 @@
+0ZYKFMIJ:1: 	package kr.co.infopub.chapter.s107;
+0LNUCNGP:2: 	import java.util.Comparator;
+0JKNOTHI:3: 	public class CardComp implements Comparator<Card>{
+0OEHIYCI:4: 	 @Override
+0ZFFSPDH:5: 	 public int compare(Card c1, Card c2) {
+0KRMSQGA:6: 		// 문자열 compareTo()  - 사전식 비교
+0OADTUET:7: 		if(c1.getCardVal().charAt(0)>c2.getCardVal().charAt(0) ){
+0IRBQFMN:8: 			return 1;
+0KTEFIGS:9: 		}else if(c1.getCardVal().charAt(0)<c2.getCardVal().charAt(0) ){
+UVKKBKG:10: 			return -1;
+ORPCIEU:11: 		}else{
+VDCTPKZ:12: 			if(CardUtil.toVal(c1.getCardVal().charAt(1)) > 
+NHADISG:13: 			                CardUtil.toVal(c2.getCardVal().charAt(1))){
+OECFLTK:14: 				return 1;
+QBVLTWE:15: 			}else if(CardUtil.toVal(c1.getCardVal().charAt(1)) < 
+RQBWKYC:16: 					        CardUtil.toVal(c2.getCardVal().charAt(1))){
+IWOMJLK:17: 				return -1;
+KDROIRL:18: 			}else return 0;
+QGPQPOR:19: 		}
+EHQTXBZ:20: 	 }
+HGLFBYO:21: 	}

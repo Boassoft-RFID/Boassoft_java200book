@@ -1,0 +1,18 @@
+0QEWZQYZ:1: 	package kr.co.infopub.chapter.s180;
+0NNXVTYE:2: 	public class TemperatureConv {
+0NBOWDRX:3: 	 public static double toCelsius(double fahrenheit){
+0FZJIYSK:4: 		return 5./9 *(fahrenheit-32);
+0OMOYWJK:5: 	 }
+0JZCRFCV:6: 	 public static double toFahrenheit(double celsius){
+0WONYVSR:7: 		return 9.0/5*celsius+32;
+0MGWLJFX:8: 	 }
+0FSWRYUH:9: 	 public static void main(String[] args) {
+UNQSMNY:10: 		double celsius=29;
+ZXIZLQK:11: 		double fahrenheit=0.0;
+EAJLBXN:12: 		fahrenheit=toFahrenheit(celsius);
+GASFEBT:13: 		System.out.printf("%.2f 섭씨= %.2f 화씨.\n",celsius,fahrenheit);
+TQXSMTK:14: 		
+UJQOMIO:15: 		celsius=toCelsius(fahrenheit);
+MNIEFFV:16: 		System.out.printf("%.2f 화씨= %.2f 섭씨.\n",fahrenheit,celsius);
+HPKLULM:17: 	 }
+WQYJSHM:18: 	}

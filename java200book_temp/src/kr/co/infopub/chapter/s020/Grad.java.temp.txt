@@ -1,0 +1,13 @@
+0FXWNXBI:1: 	package kr.co.infopub.chapter.s020;
+0CUAFXXM:2: 	// 정수 변수, 연산
+0BVNGUWY:3: 	public class Grad {
+0YACCMHG:4: 		public static void main(String[] args) {
+0AIDRDKG:5: 			int kor=90;
+0XYAEMHM:6: 			int eng=80;
+0NDVCDGT:7: 			int math=89;
+0IKGQVQB:8: 			int tot=kor+eng+math;
+0STBMQPF:9: 			int average=tot/3;              // 정수 연산은 정수
+ARGVSWN:10: 			System.out.printf("국어 %d점, 영어 %d점, 수학 %d점 =>\t",kor,eng,math);
+YHCEGDN:11: 			System.out.printf("총점 %d점, 평균 %d점\n",tot,average);
+UPKHGMH:12: 		}
+FJNYHOL:13: 	}

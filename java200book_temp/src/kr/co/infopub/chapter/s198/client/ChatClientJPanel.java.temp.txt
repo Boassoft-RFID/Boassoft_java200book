@@ -1,0 +1,184 @@
+00UWZSYWX:1: 	package kr.co.infopub.chapter.s198.client;
+00XONWBXF:2: 	import java.awt.*;
+00AREGBQB:3: 	import javax.swing.*;
+00PNLNGBT:4: 	import javax.swing.border.*;
+00WQLSZVH:5: 	import java.io.*;
+00XJNNBXI:6: 	import java.net.*;
+00KIGHUKI:7: 	import java.awt.event.*;
+00CGBDHXV:8: 	import javax.swing.event.*;
+00KBNMWCQ:9: 	
+0XTROBYV:10: 	import kr.co.infopub.chapter.s198.common.Message;
+0RQWYRGJ:11: 	
+0ZVSNAST:12: 	public class ChatClientJPanel extends JPanel implements javax.swing.event.ListSelectionListener{
+0BGWJYZI:13: 	  private static final long serialVersionUID=122454214237L;//JAVA5
+0EFLBRAS:14: 	  BorderLayout borderLayout1 = new BorderLayout();
+0MMNCRGD:15: 	  JPanel np = new JPanel();
+0VXJPFAO:16: 	  JPanel cp = new JPanel();
+0EDSZJNP:17: 	  JPanel ep = new JPanel();
+0WQJOFJN:18: 	  JPanel sp = new JPanel();
+0BTOCBEC:19: 	  JLabel stateLb = new JLabel();
+0DJHHUQM:20: 	  JPanel cnp = new JPanel();
+0TPDIUJK:21: 	  JLabel chatLb = new JLabel("Chatting Message", JLabel.CENTER);
+0RZDMXVY:22: 	  JLabel userLb = new JLabel("User Informations", JLabel.CENTER);
+0YGLJZGB:23: 	  JPanel ccp = new JPanel();
+0KRAUAIP:24: 	  JScrollPane jScrollPane1 = new JScrollPane();
+0SUAVMOH:25: 	  JTextArea chatTextArea = new JTextArea();
+0XAJVGPO:26: 	  JPanel ecp = new JPanel();
+0QMEWJBZ:27: 	  JPanel esp = new JPanel();
+0ZUKVHUW:28: 	  JScrollPane jScrollPane2 = new JScrollPane();
+0LAUUBGC:29: 	  JList userList = new JList();
+0EXOILPI:30: 	  JPanel essp = new JPanel();
+0CDJOPDA:31: 	  JLabel userCountLb = new JLabel();
+0NRZBRRE:32: 	  JLabel whoContacLb = new JLabel();
+0GXDDZMS:33: 	  JTextField sendTf = new JTextField(40);
+0NKXVRYO:34: 	  JButton sendButton = new JButton();
+0RGSGIJW:35: 	  Socket socket;
+0RHKJJWQ:36: 	  ObjectInputStream     ois;
+0YRNNMDT:37: 	  ObjectOutputStream    oos;
+0AVJXDQP:38: 	  Thread            t;
+0PHRABGT:39: 	  ChatClientThread cct;
+0OLBAUUH:40: 	  String name;
+0DSXKZDB:41: 	  String ip;
+0ZXFDFGR:42: 	  int port;
+0WSENTNB:43: 	  JFrame jframe;
+0IEFEFEN:44: 	  public JList getUserList(){
+0VUCSRWC:45: 	    return userList;
+0JNMRNFO:46: 	  }
+0AJIPQUU:47: 	  public JLabel getUserCountLb(){
+0BFAQQZT:48: 	    return userCountLb;
+0IHRCJKD:49: 	  }
+0KXJSPKK:50: 	  public JTextArea getChatTextArea(){
+0EJVYZAA:51: 	    return chatTextArea;
+0GKXQBIL:52: 	  }
+0LGJSWPC:53: 	  public ChatClientJPanel(JFrame jframe) {
+0AXPGSPM:54: 	    this.jframe=jframe;
+0EXXPQPJ:55: 	    inits();
+0HOYDRRO:56: 	  }
+0OAHQGAL:57: 	  private void inits()  {
+0AJPYELN:58: 	    this.setLayout(new BorderLayout());
+0OMYKJWZ:59: 	    np.setLayout(new BorderLayout());
+0XRQRPVF:60: 	    stateLb.setFont(new java.awt.Font("Arial", 1, 15));
+0ULEGCBL:61: 	    stateLb.setForeground(Color.black);
+0QDXAZHT:62: 	    stateLb.setBorder(new TitledBorder(""));
+0IHEQKWM:63: 	    stateLb.setText("Connect to the Server-   User ID : ");
+0TAOTNDG:64: 	    cnp.setLayout(new BorderLayout());
+0SZKWOUX:65: 	    cp.setLayout(new BorderLayout());
+0RUXVYRR:66: 	    chatLb.setFont(new java.awt.Font("Dialog", 1, 20));
+0QSYUOLD:67: 	    chatLb.setAlignmentY((float) 0.5);
+0JZWOHDB:68: 	    chatLb.setBorder(new TitledBorder(""));
+0UQIOPOW:69: 	    ep.setLayout(new BorderLayout());
+0EUOBCGG:70: 	    userLb.setAlignmentY((float) 0.5);
+0DUGDADC:71: 	    userLb.setBorder(new TitledBorder(""));
+0MXLMVEI:72: 	    userLb.setFont(new java.awt.Font("Dialog", 1, 20));
+0MSQVFVC:73: 	    ccp.setLayout(new BorderLayout());
+0ZWEQDZS:74: 	    chatTextArea.setBorder(BorderFactory.createLineBorder(Color.black));
+0SMCYSTF:75: 	    chatTextArea.setEditable(false);
+0QAACOWC:76: 	    chatTextArea.setText("");
+0AMVEJER:77: 	    jScrollPane1.setForeground(Color.black);
+0WOHZNUG:78: 	    jScrollPane1.setBorder(new TitledBorder(""));
+0PUPRQTL:79: 	    ecp.setLayout(new BorderLayout());
+0NBAOQZO:80: 	    esp.setLayout(new BorderLayout());
+0CLBGXGZ:81: 	    essp.setLayout(new BorderLayout());
+0XWDCQFB:82: 	    userCountLb.setFont(new java.awt.Font("Arial", 1, 13));
+0HHHMYFM:83: 	    userCountLb.setText("Current User Counts: 0                 ");
+0XTQBKBD:84: 	    whoContacLb.setFont(new java.awt.Font("Arial", 1, 13));
+0MLSJCRN:85: 	    whoContacLb.setPreferredSize(new Dimension(69, 30));
+0FUKJWTO:86: 	    whoContacLb.setText("No Select");
+0XKKYQRD:87: 	    sendTf.setBorder(BorderFactory.createLineBorder(Color.black));
+0UOSAAWE:88: 	    sendTf.setToolTipText("Please input message");
+0JZVEAXI:89: 	    sendTf.setText("");
+0TMMUBMW:90: 	    sendButton.setText("Send Message");
+0ZXKXDEA:91: 	    ep.setPreferredSize(new Dimension(258, 196));
+0XNLZCTS:92: 	    ecp.setBorder(new TitledBorder(""));
+0AOVSXAX:93: 	    ecp.setPreferredSize(new Dimension(200, 100));
+0IGQKPEG:94: 	    sp.setBorder(BorderFactory.createEtchedBorder());
+0RCBPCDQ:95: 	    esp.setBorder(new TitledBorder(""));
+0ERHQQIO:96: 	    ccp.setBorder(new TitledBorder(""));
+0LBZITMZ:97: 	    userList.setBorder(BorderFactory.createLineBorder(Color.black));
+0XGXJDWA:98: 	    userList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+0FUAOCIE:99: 	    cp.add(cnp,  BorderLayout.NORTH);
+DSDXDMT:100: 	    cnp.add(chatLb,  BorderLayout.NORTH);
+HEALGUZ:101: 	    cp.add(ccp, BorderLayout.CENTER);
+DQNQLBS:102: 	    ep.add(userLb, BorderLayout.NORTH);
+OEEHBQL:103: 	    ep.add(ecp,  BorderLayout.CENTER);
+GEQTTDS:104: 	    ep.add(esp,  BorderLayout.SOUTH);
+ARUVVPM:105: 	    sp.add(sendTf, null);
+EDAWTUL:106: 	    np.add(stateLb,  BorderLayout.CENTER);
+UECWSNQ:107: 	    ccp.add(jScrollPane1,  BorderLayout.CENTER);
+JTQIVFQ:108: 	    jScrollPane1.getViewport().add(chatTextArea, null);
+EACATEJ:109: 	    ecp.add(jScrollPane2,  BorderLayout.CENTER);
+TOCUGNX:110: 	    jScrollPane2.getViewport().add(userList, null);
+FXYBAIZ:111: 	    esp.add(essp, BorderLayout.WEST);
+UAZJPVI:112: 	    essp.add(userCountLb,  BorderLayout.SOUTH);
+VMMBPPV:113: 	    essp.add(whoContacLb, BorderLayout.NORTH);
+ISCKCGY:114: 	    sp.add(sendButton, null);
+VHUTPZY:115: 		userList.addListSelectionListener(this);
+RHVDCZX:116: 	    sendButton.addActionListener(new Handler());
+ALJZAWF:117: 	    sendTf.addActionListener(new Handler());
+IWFYETI:118: 	    // ip 이름등을 입력받음
+AUQLHJA:119: 	    setServerIP();
+HULYVDJ:120: 	    
+XUNZFLL:121: 	    this.add(np, BorderLayout.NORTH);
+QSYHAMA:122: 	    this.add(cp,  BorderLayout.CENTER);
+MCBYTBK:123: 	    this.add(ep,  BorderLayout.EAST);
+YGIBBNA:124: 	    this.add(sp,  BorderLayout.SOUTH);
+YZGWISY:125: 	  }
+QVWGUQW:126: 	  //서버쪽과 연결하는 메서드
+RVTXRYI:127: 	   public void connection(String serverName,int port) throws IOException{
+QPMKAAH:128: 	     socket = new Socket(serverName, port);
+HHFREUC:129: 	     System.out.println("Connect to "+serverName);
+JKTBUBZ:130: 	
+BQTZOJQ:131: 	     oos = new ObjectOutputStream(socket.getOutputStream());
+GWRNTYE:132: 	     ois = new ObjectInputStream(socket.getInputStream());
+OTQPSLF:133: 	
+HRNIUOY:134: 	     System.out.println("Server Ready : Writing");
+AZBSITW:135: 	     Message mess = new Message(name, "님이 접속하셨습니다.", Message.INITCONTACT);
+FUCKKDS:136: 	     oos.writeObject(mess);
+UGUPKCA:137: 	
+GAWVFAD:138: 	     System.out.println("Server Ready : Reading");
+JISXYKI:139: 	     cct = new ChatClientThread(ois, this);
+IBSJGKM:140: 	     t = new Thread(cct);
+SFFMAPW:141: 	     t.start();
+CNACXFZ:142: 	   }
+HBKNRQN:143: 	   public void disConnection() {
+XHNGNMQ:144: 	     try{
+JRTYJUE:145: 	       Message d=new Message(name,"님이 접속종료.",Message.END);
+UOEWLQC:146: 	       oos.writeObject(d);
+NVKKSVQ:147: 	      }catch(IOException e){}
+TIEWQAP:148: 	      t=null;
+TVLEEGZ:149: 	  }
+IUIDSQN:150: 	  public void setIpPort(String ip, int port,String name){
+EHNQDTQ:151: 	    this.ip = ip;
+DHJMIAP:152: 	    this.port = port;
+BDVRQRX:153: 	    this.name=name;
+MUYLDJH:154: 	  }
+SMALYKT:155: 	  
+IJVMDJO:156: 	  public void setServerIP(){
+MFNQXKY:157: 	    ChattingEnteranceDialog di=
+CLBKQNS:158: 	    new ChattingEnteranceDialog(jframe,this,"Welcom Dialog", true);
+LMLIREY:159: 	    di.setVisible(true);
+VNVLHAK:160: 	    try{
+GYWXIDP:161: 	       connection(ip,port);
+RTHWRWW:162: 	     }catch(IOException e1){
+FKDVAKW:163: 	       System.out.println("connection 중 Exception이 발생했습니다.");
+HRQZNOY:164: 	    }
+FFBULEV:165: 	     this.stateLb.setText("Connection to "+ip+" ,  UserID: "+name);
+ITWAHBT:166: 	  }
+SKKEXAT:167: 	  
+GMLRZUP:168: 	  public class Handler implements ActionListener{
+QHACRCA:169: 	       public void actionPerformed(ActionEvent e){
+FUQTJTR:170: 	         if (e.getSource() == sendButton || e.getSource() == sendTf) {
+PUTDAHU:171: 	           try {
+IHCWBYC:172: 	             oos.writeObject(new Message(name, sendTf.getText(), Message.PROGRESS));
+WZKRVRC:173: 	           }
+HJAXZIG:174: 	           catch (IOException e2) {
+RDFAHOO:175: 	             System.out.println("Communication IOEXception Occurs.");
+TYRLPLI:176: 	           }
+UHDSIRG:177: 	           sendTf.setText("");
+EXHIPLV:178: 	         } //if
+PDFTJRC:179: 	      }//actionperformed
+CKTQSNP:180: 	  }
+NJNWEDR:181: 	 public  void valueChanged(ListSelectionEvent e) {
+PBYQFMR:182: 	     whoContacLb.setText((String)userList.getSelectedValue());
+BXLZRZN:183: 	  }
+WBBYNOU:184: 	}

@@ -1,0 +1,35 @@
+0XKKHFEG:1: 	package kr.co.infopub.chapter.s1753;
+0MSLXARW:2: 	import org.json.JSONArray;
+0RDUJMBR:3: 	import org.json.JSONObject;
+0EPXULLV:4: 	import java.io.BufferedReader;
+0KCCWEXD:5: 	import java.io.FileReader;
+0WUVSIRY:6: 	public class FixerConvertJSON {
+0YVHTHPT:7: 		public static JSONObject convert(String date,String base) {
+0GRTJQTZ:8: 			JSONObject jObject = new JSONObject();
+0RWIYUNY:9: 			BufferedReader br=null;
+ONFGSYF:10: 			try {
+IIQIBRZ:11: 				br=new BufferedReader(new FileReader(date+""+base+".json"));
+AZGOMOB:12: 				StringBuffer sb=new StringBuffer();
+OXVSMSL:13: 				String msg="";
+KLKLDUV:14: 				// http://api.fixer.io/2017-06-09?base=USD를 읽어 들인다.
+XJDTGNS:15: 				while((msg=br.readLine())!=null){
+TCWPVVO:16: 					sb.append(msg);
+PDDTWWH:17: 				}
+JRRWBQK:18: 				jObject=new JSONObject(sb.toString());
+RNFOJJV:19: 			} catch (Exception e) {
+WEGDHQO:20: 				
+GNPJAYZ:21: 			}
+CCYPAAD:22: 			return jObject;
+QBYKGIB:23: 		}
+KGPFXSY:24: 		public static void main(String[] args) {
+YLVAGWV:25: 			String date=RestDay.todates();  // 오늘
+VUBIFIT:26: 			String base="USD";              // 1달러당 환율   
+YPLRZIQ:27: 			JSONObject jsobj=FixerConvertJSON.convert(date,base);
+VYGUOOX:28: 			JSONArray rates=jsobj.getJSONArray("rates");
+SQKWFJO:29: 			for(int i=0; i< rates.length() ;i++){
+MZANSGC:30: 				JSONObject nboj=rates.getJSONObject(i);
+JVKTSZD:31: 				System.out.println(nboj);
+PWODNHO:32: 			}
+VZURHFN:33: 		}
+GWAJUGH:34: 	}
+HYGVIEL:35: 		  

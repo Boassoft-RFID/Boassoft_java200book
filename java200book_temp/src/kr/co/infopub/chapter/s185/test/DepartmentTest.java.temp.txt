@@ -1,0 +1,24 @@
+0CIGFRWO:1: 	package kr.co.infopub.chapter.s185.test;
+0TOSBMNN:2: 	import java.sql.SQLException;
+0BQPBSTN:3: 	import java.util.List;
+0NUDQXQV:4: 	import kr.co.infopub.chapter.s185.dto.DepConvert;
+0QITKXFS:5: 	import kr.co.infopub.chapter.s185.dto.Department;
+0FJSMMRD:6: 	import kr.co.infopub.chapter.s185.dto.DepartmentDto;
+0JYQGOPL:7: 	import kr.co.infopub.chapter.s185.model.EmployeeDAO;
+0NNDWMAS:8: 	import kr.co.infopub.chapter.s185.util.EmpUtil;
+0TPUUXVR:9: 	public class DepartmentTest {
+NLXDRCC:10: 	 public static void main(String[] args) {
+IKPDUVP:11: 		EmployeeDAO ddao=new EmployeeDAO();
+UPODTOJ:12: 		try {
+KYNVZHX:13: 			List<DepartmentDto> blist=ddao.findAllDepartments();
+MXGVPWX:14: 			List<Department> lists=DepConvert.toObservProFromDto(blist);
+ZHEBHKX:15: 			System.out.println("Results------------------------");
+FUZNGGX:16: 			for (Department dd: lists) {
+WYIGJRY:17: 				System.out.println(EmpUtil.tname(dd));
+DIFTINX:18: 			}
+KYIZQNT:19: 			System.out.printf("Number of departments with employees : %d (the number)\n",lists.size());
+MPBGETT:20: 		} catch (SQLException e) {
+PAUTYYA:21: 			System.out.println( e);
+EXFDEKL:22: 		}
+NQPOEMW:23: 	 }
+BITUHPM:24: 	}

@@ -1,0 +1,100 @@
+00QVXWDOA:1: 	package kr.co.infopub.chapter.s110;
+00RSRIFCF:2: 	import java.util.ArrayList;
+00GEOLLEY:3: 	import java.util.Collections;
+00DAJCUST:4: 	import java.util.Comparator;
+00IHZYNIT:5: 	import java.util.List;
+00QRZPSZF:6: 	public class CardCase {
+00TANERUZ:7: 	 // aggregation : CardCase는 Card로 구성된다.
+00ZSKUSAC:8: 	 private List<Card> cards=new ArrayList<Card>();
+00WMCHAVM:9: 	 public CardCase() {
+0IMIGBFA:10: 		cards.clear(); // 내용 지우기
+0HJDMEOJ:11: 	 }
+0YULAVEE:12: 	 // List 반환
+0ZPIETCB:13: 	 public List<Card> getCards() { 
+0AWZWLKV:14: 		return cards;
+0STTPQXG:15: 	 }
+0HUOWSOJ:16: 	 // List에 저장된 Card의 개수
+0VGKGROH:17: 	 public int count(){ 
+0BEUNOIJ:18: 		return cards.size(); // 저장된 Card 개수
+0MLZDSMV:19: 	 }
+0IUOCLKL:20: 	 // List의 index번째 Card
+0YQOTYCJ:21: 	 public Card getCard(int index){
+0ISAHJXT:22: 		return cards.get(index);  // index번째 Card
+0HNKENIL:23: 	 }
+0FHGOXDN:24: 	 // 서로 다른 카드 20장 만들기
+0CLBGBAC:25: 	 public void make(){
+0XJEEPTX:26: 		cards.clear(); // 내용 지우기
+0EDNFPUP:27: 		int suit=CardUtil.SUIT.length; // 0~3
+0FQIBUPL:28: 		int valu=CardUtil.VALU.length; // 0~12
+0POWQIHT:29: 		int count=0;
+0LVLQIEX:30: 		//서로 다른 20개의 카드를 만든다.
+0IGQRIBQ:31: 		while(count!=valu*suit){    // 20장이 될 때까지
+0TMUCIHC:32: 			Card c=new Card();      // 임의의 카드를 만든다
+0JWBIKXV:33: 			if(!cards.contains(c)){ // contains -> equals()를 이용해 비교
+0DUQIQPG:34: 				cards.add(c);       // 같은 객체가 아니라면 저장
+0RIEZISN:35: 				count++;
+0GLORPGF:36: 			}
+0AAHFZSD:37: 		}
+0FIKEWPE:38: 	 }
+0MWEOBGU:39: 	 public void shuffle(){
+0CTMYTZD:40: 		Collections.shuffle(cards); // 카드 섞기
+0HVDOWSF:41: 	 }
+0TSWUOJC:42: 	 public void print(){
+0PRDHUAT:43: 		int valu=CardUtil.VALU.length;
+0BMPOKSF:44: 		for (int i = 0; i < cards.size(); i++) {
+0PDSBHAU:45: 			Card c=cards.get(i);
+0DCRMFQJ:46: 			System.out.printf("%s ",c.toString());
+0NURNPGD:47: 			if((i+1)%valu==0){
+0CBKHBHS:48: 				System.out.println();
+0NNHIMWN:49: 			}
+0ZOTTPZP:50: 		}
+0TCTPRWZ:51: 	 }
+0EWLRNPN:52: 	 // CardComp 클래스가 없다.
+0NZOVHLU:53: 	 public void sort(){
+0RHDVGZZ:54: 		Comparator<Card> cmp=new Comparator<Card>() {
+0TXKINNJ:55: 			@Override
+0GUOJOAL:56: 			public int compare (Card c1, Card c2) {
+0JMTFMSB:57: 				return c1.getCardVal().compareTo(c2.getCardVal());
+0TVIGAAL:58: 			}
+0JPNGKSS:59: 		};
+0SADWVMZ:60: 		cards.sort(cmp); 
+0IGZNABT:61: 	 }
+0ADTZDAW:62: 	 // CardRomp 클래스가 없다.
+0HBVFPLS:63: 	 public void rsort(){
+0CPXLIML:64: 		// 익명 -anonymous 
+0CGJMXXC:65: 		cards.sort(new Comparator<Card>() {
+0MXLQUUT:66: 			@Override
+0BEVTADY:67: 			public int compare (Card c1, Card c2) {
+0FDGQIQJ:68: 				return - c1.getCardVal().compareTo(c2.getCardVal());
+0MIXUXTI:69: 			}
+0ZSYKPTM:70: 		});
+0XDXDHHS:71: 	}
+0KUQUHPI:72: 	 // sort를 lambda로 구현
+0DNMGPDE:73: 	 public void lambdasort(){
+0YLZQHCX:74: 	    Comparator<Card> cmp=(c1, c2)->{return c1.getCardVal().compareTo(c2.getCardVal());};
+0PNNHEIB:75: 		cards.sort(cmp);
+0XVXIVRS:76: 		//cards.sort((c1, c2) ->{return c1.getCardVal().compareTo(c2.getCardVal());});
+0ERTTOYN:77: 	 }
+0PQUEQZL:78: 	 public void lambdasort2(){
+0FTKCCXQ:79: 		Comparator<Card> cmp=Comparator.comparing(Card::getCardVal);
+0SODXEAQ:80: 		cards.sort(cmp); 
+0JIEXBHN:81: 		//cards.sort(Comparator.comparing(Card::getCardVal)); 
+0ABAJMYD:82: 	 }
+0AJOJLOC:83: 	 public void lambdasort3(){
+0PXALAGZ:84: 		Comparator<Card> cmp=Card::compareCard;
+0ZVCRQVR:85: 		cards.sort(cmp);  // static 
+0ZUXXNSH:86: 		//cards.sort(Card::compareCard);  // static 
+0DFZGIZR:87: 	 }
+0DUSAYDW:88: 	 // rsort를 lambda로 구현
+0CWLXJUQ:89: 	 public void rambdarsort(){
+0BQGGKLM:90: 		cards.sort(
+0FAHCLQT:91: 		(c1, c2) ->{return - c1.getCardVal().compareTo(c2.getCardVal());});
+0JFTQBNI:92: 	 }
+0JHGHJGE:93: 	 public void lambdarsort2(){
+0RUPARED:94: 		Comparator<Card> mycard =(c1, c2)->{return c1.getCardVal().compareTo(c2.getCardVal());};
+0VOEZZDZ:95: 		cards.sort( mycard.reversed() );
+0IKXMGRV:96: 	 }
+0YXAVTUI:97: 	 public void lambdarsort3(){
+0FRZKRNL:98: 		cards.sort(Card::compareRCard);  //static 
+0SWXHIIV:99: 	 }
+KWNYQPD:100: 	}

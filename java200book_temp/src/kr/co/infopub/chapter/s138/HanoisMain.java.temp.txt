@@ -1,0 +1,10 @@
+0SUTVKLC:1: 	package kr.co.infopub.chapter.s138;
+0EIHVJMF:2: 	public class HanoisMain {
+0PGXMNZX:3: 		public static void main(String[] args) {
+0HQHRZDL:4: 			int tray=4;
+0TDSTYOI:5: 			Hanoi ha=new Hanoi(tray);  
+0AYNYZDE:6: 			int [][] a=ha.getRings();
+0OARMKJV:7: 			HanoisUtil.showHanoi(a);
+0HGWHNZG:8: 			HanoisUtil.moveHanoi(a,tray,'a','b','c');
+0VFABUPI:9: 		}
+OBDJPWU:10: 	}

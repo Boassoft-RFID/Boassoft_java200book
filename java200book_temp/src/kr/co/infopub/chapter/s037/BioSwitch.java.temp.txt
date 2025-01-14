@@ -1,0 +1,25 @@
+0QRVSXHW:1: 	package kr.co.infopub.chapter.s037;
+0AOIXDTJ:2: 	// 상수, switch case
+0ZDGBBIP:3: 	public class BioSwitch {
+0PVUOKVV:4: 		// 상수 
+0EBUWGKN:5: 		public static final int PHYSICAL = 23;
+0XKOGIHR:6: 		public static final int EMOTIONAL = 28;
+0IETNZQG:7: 		public static final int INTELLECTUAL = 33;
+0BEJGPTA:8: 		// 메서드 선언 
+0FWETEEQ:9: 		public static String textInfor(int index, double value) {
+KNFJZSF:10: 			String result = "";
+FJNEGHZ:11: 			switch( index ) {
+LNJDMXX:12: 				case PHYSICAL : result = "신체지수: " ;break;
+RRLOSWY:13: 				case EMOTIONAL : result = "감정지수: "; break;
+SNRPAIR:14: 				case INTELLECTUAL : result = "지성지수: "; break;
+GEGUEKV:15: 				default : result = "미결정: "; break;
+IPGAEMS:16: 			}
+WLQZOZR:17: 			return result + (value*100);
+EUHZRQI:18: 		}
+UTFMSRG:19: 		public static void main(String[] args) {
+GOWKAQY:20: 			int index=PHYSICAL;
+CHCDGXM:21: 			double value=0.86;
+CSDEWEC:22: 			String st=textInfor( index,  value) ;
+DJRNVOO:23: 			System.out.println(st);
+UEREDDV:24: 		}
+WVOIRSV:25: 	}

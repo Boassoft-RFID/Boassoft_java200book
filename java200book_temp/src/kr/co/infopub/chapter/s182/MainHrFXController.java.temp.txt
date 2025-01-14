@@ -1,0 +1,84 @@
+0IMPAGHG:1: 	package kr.co.infopub.chapter.s182;
+0UFONQPT:2: 	import java.util.Date;
+0PHYUSCO:3: 	import java.util.Optional;
+0OVOHKHS:4: 	import javafx.application.Platform;
+0KVHVAZI:5: 	import javafx.event.ActionEvent;
+0SKLERTP:6: 	import javafx.fxml.FXML;
+0LNNVRYS:7: 	import javafx.scene.control.Alert;
+0CSAMXZE:8: 	import javafx.scene.control.Alert.AlertType;
+0RIEYOHU:9: 	import javafx.scene.control.ButtonType;
+ZZHRCGO:10: 	import javafx.scene.control.MenuItem;
+JRIBKVU:11: 	import javafx.scene.control.Tab;
+FCZWGNL:12: 	import javafx.scene.control.TabPane;
+YFKJBXN:13: 	import javafx.scene.layout.BorderPane;
+LWTMXVI:14: 	public class MainHrFXController {
+IROLDDU:15: 	 @FXML
+CEYLVGX:16: 	 private MenuItem menuDepart;
+EGCUMXT:17: 	 @FXML
+ZOJZTWQ:18: 	 private MenuItem menuManage;
+SHIUJLU:19: 	 @FXML
+DAVATHV:20: 	 private MenuItem menuSearch;
+JUEJHUQ:21: 	 @FXML
+KDSDTTP:22: 	 private MenuItem menuUpdate;
+QMUOOAJ:23: 	 @FXML
+EEAHSIF:24: 	 private MenuItem menuChart;
+PQGUTUH:25: 	 @FXML
+DTYQYEW:26: 	 private TabPane mainTabPane;
+YFDGINO:27: 	 @FXML
+OWSVHLV:28: 	 private Tab tab3;
+QFKPFGB:29: 	 @FXML
+GMHLKZA:30: 	 private Tab tab1;
+HVWFXDZ:31: 	 @FXML
+FNAMUOI:32: 	 private Tab tab2;
+XFTIVXO:33: 	 @FXML
+HAEHRVW:34: 	 private Tab tab4;
+CXAGSFA:35: 	 @FXML
+ETZIQQI:36: 	 private Tab tab5;
+RAYXBFT:37: 	 @FXML
+MHNICCU:38: 	 private BorderPane searchTabBorder;
+TSTXRLZ:39: 	 @FXML
+FUOPUMM:40: 	 private BorderPane empTabBorder;
+GCCMYVC:41: 	 @FXML
+LDOPJFG:42: 	 private BorderPane depChartBorder;
+LTESNES:43: 	 @FXML
+MNBGYBP:44: 	 private BorderPane debTabBorder;
+SJEJLZR:45: 	 @FXML
+HOGKNMX:46: 	 private BorderPane updateTabBorder;
+KRYSVOS:47: 	 String systemver="HR Information Syste ver.0.2";
+VTBNXTL:48: 	 @FXML
+MOQUXRM:49: 	 void onStartAction(ActionEvent event) {
+LQMJCNQ:50: 		  Alert alert = new Alert (Alert.AlertType.INFORMATION);
+JUKEDNK:51: 	      alert.setTitle(systemver);
+YWKQMMX:52: 	      alert.setHeaderText("HR Management System "+PTS.toDate3(new Date()));
+OJYJCNR:53: 	      alert.setContentText(
+KHCOHUQ:54: 	    		  "HR Management System is a system for entering/editing information related to department management, administrator management, and personnel.");
+RKPKLQE:55: 	      alert.show();
+MYMKFYU:56: 	      mainTabPane.setVisible(true);    
+EADGAJS:57: 	 }
+ABVUDLO:58: 	 @FXML
+VLIDAYG:59: 	 void onExitAction(ActionEvent event) {
+KZGVIWV:60: 		Alert alert = new Alert(AlertType.CONFIRMATION);
+LXWZZOE:61: 		alert.setTitle(systemver);
+DRONNCQ:62: 	    alert.setHeaderText("Do you want to exit HR Management System("+PTS.toDate3(new Date())+")?");
+JPYTSWQ:63: 		alert.setContentText("Are you sure you want to finish it?");
+MKDPQDK:64: 		Optional<ButtonType> result = alert.showAndWait();
+NWTVRMV:65: 		if (result.get() == ButtonType.OK){
+GLTPLJX:66: 			Platform.exit();
+HTZEKBU:67: 			//System.exit(0);
+YLJRWAF:68: 		} else return;
+QXYDLYU:69: 	 }
+EZIVPRX:70: 	 @FXML
+PUSNZWU:71: 	 void onHelpAction(ActionEvent event) {
+IHLINSM:72: 		  Alert alert = new Alert (Alert.AlertType.INFORMATION);
+YMFPTHT:73: 	      alert.setTitle(systemver);
+PESYBFX:74: 	      alert.setHeaderText("HR Management System "+PTS.toDate3(new Date()));
+XPXCRCX:75: 	      alert.setContentText("Hello. This is "+systemver+". "
+FOZDBJG:76: 	       + "\nHR Management System is a system for entering/editing information related to department management, administrator management, and personnel."
+PLHESUR:77: 	       + "\n Select the Start menu for Start.");
+OUBLTEO:78: 	      alert.show();
+JXAOOWI:79: 	 }
+CFENXMY:80: 	 @FXML
+FELSMLX:81: 	 void onMenuction(ActionEvent event) {
+EXUSQUD:82: 		// When you select a menu, the corresponding tab will appear.
+NVCYJLP:83: 	 }
+SLHCBGE:84: 	}

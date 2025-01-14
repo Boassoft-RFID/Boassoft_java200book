@@ -1,0 +1,38 @@
+0LUOABOB:1: 	package kr.co.infopub.chapter.s153;
+0MPYNGFX:2: 	
+0HZETXKM:3: 	import java.util.Comparator;
+0HUCEVYI:4: 	
+0KAWZTCL:5: 	public class CardSuitComp implements Comparator<Card> {
+0MJERVCC:6: 		@Override
+0NSRIRDU:7: 		public int compare(Card o1, Card o2) {
+0MYKLRVW:8: 			char c1=o1.getCard().charAt(0);
+0FZWFEZF:9: 			char c2=o2.getCard().charAt(0);
+ZVZFTJZ:10: 			if(c1-c2>0){
+EVHEEUZ:11: 				return 1;//asc
+VPPXXGK:12: 			}else if(c1-c2<0){
+MTJKRGM:13: 				return -1;
+XFXQQID:14: 			}else{
+UBCXYXB:15: 				int cc1=toNum(o1.getCard().charAt(1));
+HYWNUUX:16: 				int cc2=toNum(o2.getCard().charAt(1));
+AJLFHHO:17: 				if(cc1-cc2>0){
+HKOTQGF:18: 					return 1;//asc
+NRDGOYJ:19: 				}else if(cc1-cc2<0){
+UQZAVGK:20: 					return -1;
+LKONHEA:21: 				}else{
+GKCMQJX:22: 					return 0;
+AMXSULJ:23: 				}
+HZOTXHH:24: 			}
+XMYPITF:25: 		}
+XHNOXUH:26: 		private int toNum(char c){
+PGLDKNQ:27: 			int tot=0;
+OPMVXYK:28: 			switch(c){
+CLPAWIZ:29: 				case 'A': tot=1;break;
+YHBYFLR:30: 				case 'T': tot=10;break;
+BUGAMIM:31: 				case 'J': tot=11;break;
+OWTSLHK:32: 				case 'Q': tot=12;break;
+OIBIBXU:33: 				case 'K': tot=13;break;
+LJXTYBV:34: 				default : tot=c-'0'; break; //'9'-'0'
+VTIFWBK:35: 			}
+EJBWHQT:36: 			return tot;
+IMYIFFG:37: 		}
+BFFWZXM:38: 	}

@@ -1,0 +1,13 @@
+0LELTNZL:1: 	package kr.co.infopub.chapter.s158;
+0BCDYLJV:2: 	import java.io.IOException;
+0FNYABGY:3: 	import java.util.Vector;
+0REDEJSZ:4: 	public class ObjectStudentReadMain {
+0RATQZCH:5: 		public static void main(String[] args) {
+0FXUNFVP:6: 			ObjectStudentRWG<Student> osw=new ObjectStudentRWG<Student>();
+0IRSMPJS:7: 			try {
+0UVOELWX:8: 				osw.read("kisul\\stu.obj");
+0KNBKWXH:9: 			} catch (IOException e) {
+RFKVUPY:10: 				System.out.println(e);
+MSRKTCT:11: 			}
+MPRJYXH:12: 		}
+ABIZIPK:13: 	}

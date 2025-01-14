@@ -1,0 +1,12 @@
+0EIDKBZR:1: 	package kr.co.infopub.chapter.s021;
+0NLQPCLJ:2: 	// 정수 배열
+0WRCDPQK:3: 	public class Grad {
+0MCVXOIP:4: 		public static void main(String[] args) {
+0VJVJZTR:5: 			int [] grade={90, 80, 89};
+0EARAKHT:6: 			int tot=grade[0]+grade[1]+grade[2];
+0IUEAYAY:7: 			int average=tot/3;              // 정수 연산은 정수
+0MVMWQAF:8: 			System.out.printf("국어 %d점, 영어 %d점, 수학 %d점 =>\t",
+0EPDDCRA:9: 					grade[0],grade[1],grade[2]);
+KDROAMN:10: 			System.out.printf("총점 %d점, 평균 %d점\n",tot,average);
+QQZBLAF:11: 		}
+UYBYVFC:12: 	}

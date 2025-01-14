@@ -1,0 +1,60 @@
+0VIBNJZT:1: 	package kr.co.infopub.chapter.s149;
+0PWBGYRI:2: 	import java.util.Arrays;
+0BJHEWEI:3: 	public class Matrix {
+0ICMQRBY:4: 		private double [][] matrix;
+0GHXFVEH:5: 		public Matrix(int m, int n) {
+0BGPRSVL:6: 			matrix=new double[m][n];
+0CKTZNES:7: 		}
+0HJNWCWV:8: 		public Matrix() {
+0WOCKDWI:9: 			this(3,3);
+GTGHJRW:10: 		}
+EKOKFKA:11: 		public Matrix(Matrix mat) {
+USYZLXM:12: 			this(mat.getMatrix());
+HBAOFLB:13: 		}
+TEKHWDC:14: 		public Matrix(double[][] deep) {
+AWQKSOZ:15: 			matrix=deepCopy(deep);
+YVVQSNW:16: 		}
+IJRKBJD:17: 		public  void clear(){
+KYCOATN:18: 			int m=matrix.length;
+PEODAWT:19: 			for (int i = 0; i < m; i++) {
+UDJCYZE:20: 				Arrays.fill(matrix[i], 0);
+TLUMPJX:21: 			}
+TWPPEYN:22: 		}
+ESHYWPO:23: 		private double[][] deepCopy(double[][] deep){
+ZRYPIJG:24: 			int m=deep.length;
+AXUNBOB:25: 			int n=deep[0].length;
+IWZABIG:26: 			double[][] paste=new double[m][n];
+WOCXNDJ:27: 			for (int i = 0; i <m; i++) {
+DIHQRZI:28: 				System.arraycopy(deep[i], 0, paste[i], 0, n);
+ITHEFMD:29: 			}
+SAXVEZM:30: 			return paste;
+HCBQCVK:31: 		}
+TRSFXNG:32: 		public double[][] getMatrix() {
+GTGRGAS:33: 			return deepCopy(matrix);
+FFRKGXK:34: 		}
+VWJUWZY:35: 		
+NFLVOUP:36: 		public Matrix makeMatrix(){
+AWSOANO:37: 			return new Matrix(matrix);
+SJOHAJP:38: 		}
+NYBLIHK:39: 		@Override
+RBREZNM:40: 		public String toString() {
+TUQXCIS:41: 			StringBuffer sb=new StringBuffer();
+EEHTRJJ:42: 			for (int i = 0; i < matrix.length; i++) {
+LIFHMIE:43: 				sb.append("[");
+IEABRPO:44: 				for (int j = 0; j < matrix[i].length; j++) {
+ONTCKJI:45: 					sb.append(matrix[i][j]+"\t");
+QRFBJCV:46: 				}
+VUNUUIO:47: 				sb.append("]");
+COSYLRL:48: 				sb.append("\n");
+ZCBUVMU:49: 			}
+CYSZXDA:50: 			return sb.toString();
+VFTEOUC:51: 		}
+AUEPUPF:52: 		public void print(){
+MXPPXYJ:53: 			for (int i = 0; i < matrix.length; i++) {
+GSKIVIJ:54: 				for (int j = 0; j < matrix[i].length; j++) {
+IEZJFJW:55: 					System.out.printf("%f\t",matrix[i][j]);
+JTSIPJE:56: 				}
+PCXQKDQ:57: 				System.out.println();
+BNYZQUM:58: 			}
+VUTVDDW:59: 		}
+OQMRUXC:60: 	}

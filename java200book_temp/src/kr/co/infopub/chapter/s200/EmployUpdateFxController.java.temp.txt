@@ -1,0 +1,615 @@
+00HCQHNWK:1: 	package kr.co.infopub.chapter.s200;
+00YJQPCDY:2: 	import java.sql.Date;
+00LYIWRVS:3: 	import java.sql.SQLException;
+00IPKBECG:4: 	import java.text.SimpleDateFormat;
+00KHJHUGS:5: 	import java.util.Optional;
+00FECJZWB:6: 	
+00ASQXOZS:7: 	import javafx.collections.FXCollections;
+00QELHLBE:8: 	import javafx.collections.ObservableList;
+00KVABQDT:9: 	import javafx.event.ActionEvent;
+0DPBDOJL:10: 	import javafx.fxml.FXML;
+0LLHPAQA:11: 	import javafx.fxml.FXMLLoader;
+0VBFWHYT:12: 	import javafx.scene.control.Alert;
+0PKQMRIY:13: 	import javafx.scene.control.Alert.AlertType;
+0UZDJYEU:14: 	import javafx.scene.control.Button;
+0IEWLQPO:15: 	import javafx.scene.control.ButtonType;
+0HPQWJCY:16: 	import javafx.scene.control.ComboBox;
+0MJEYMMQ:17: 	import javafx.scene.control.DatePicker;
+0YKOIUJR:18: 	import javafx.scene.control.Label;
+0BOZOTAY:19: 	import javafx.scene.control.SplitPane;
+0XDKTRNI:20: 	import javafx.scene.control.TableColumn;
+0UACGXKQ:21: 	import javafx.scene.control.TableView;
+0EOWJNIO:22: 	import javafx.scene.control.TextField;
+0FLRJLTM:23: 	import javafx.scene.layout.AnchorPane;
+0UMKZNHI:24: 	import javafx.scene.layout.BorderPane;
+0CDAZTUH:25: 	import kr.co.infopub.chapter.s199.common.EmployeeDto;
+0LIMMNOD:26: 	import kr.co.infopub.chapter.s200.client.EmployeeService;
+0IBXINOJ:27: 	import kr.co.infopub.chapter.s200.dto.Department;
+0CYFBTZP:28: 	import kr.co.infopub.chapter.s200.dto.EmpConvert;
+0OXIPCKS:29: 	import kr.co.infopub.chapter.s200.dto.Employee;
+0RJFADWE:30: 	import kr.co.infopub.chapter.s200.util.PTS;
+0KEBWUGG:31: 	
+0WPKXPSE:32: 	public class EmployUpdateFxController extends BorderPane{
+0BFJZKNI:33: 		    @FXML
+0WSULDJO:34: 		    private TextField tfphone;
+0FITHVTY:35: 	
+0SSMTZTO:36: 		    @FXML
+0PHANEMI:37: 		    private TextField tfdepartid;
+0YJPWBSR:38: 	
+0THFRAZG:39: 		   
+0HPIBQPD:40: 		    @FXML
+0GHYIIZF:41: 		    private AnchorPane bottomsplit;
+0PCUFMFE:42: 	
+0ANWWFDM:43: 		    @FXML
+0HGRTNVJ:44: 		    private Label lbhiredate;
+0SAAHXDL:45: 	
+0AWEJKIK:46: 		    @FXML
+0STVYOIM:47: 		    private TextField tffirstname;
+0LZYJNPA:48: 	
+0RVGEGXK:49: 		    @FXML
+0GAKTRBE:50: 		    private Label lbjobid;
+0WYSZGDK:51: 	
+0DWKFSGZ:52: 		    @FXML
+0QEUJDCF:53: 		    private TextField tflastname;
+0VYVBWMI:54: 	
+0TKDAKKK:55: 		    @FXML
+0ZBMVJQV:56: 		    private TextField tfemail;
+0GRKFDHT:57: 	
+0UYIYNKO:58: 		    @FXML
+0QSNEBVU:59: 		    private TextField tfjobid;
+0JWOXTNC:60: 	
+0SHIOISD:61: 		    @FXML
+0HXHTGFU:62: 		    private Label lbcommis;
+0VPSFHWF:63: 	
+0GHDLIBK:64: 		    @FXML
+0UMGJXXH:65: 		    private Label lbmanagerid;
+0YWYZBEU:66: 	
+0DGSYYOD:67: 		    @FXML
+0BKFIKQE:68: 		    private Label lbphone;
+0PCUTUOZ:69: 	
+0RLWDCFY:70: 	
+0EOVYXWS:71: 	
+0GTBEHAT:72: 		    @FXML
+0TYKVYPD:73: 		    private TextField tfempid;
+0VPSFNXA:74: 	
+0NLYEYDS:75: 		    @FXML
+0GUYXIHF:76: 		    private AnchorPane topslplit;
+0ZWTSPUB:77: 	
+0NMCITJT:78: 		    @FXML
+0SQRAQXU:79: 		    private Label lbfirstname;
+0ZOTFBNR:80: 	
+0ARZCGKO:81: 		    @FXML
+0BHBOEMA:82: 		    private SplitPane leftsplit;
+0IGNGLCJ:83: 	
+0HSSJHEA:84: 		    @FXML
+0DIXHNRF:85: 		    private Label lbdepartid;
+0LNYDGMH:86: 	
+0QBUJTDC:87: 		    @FXML
+0VPUMNTS:88: 		    private Label lbsalary;
+0FPELBSA:89: 	
+0VQLMFDJ:90: 		    @FXML
+0PILBJUP:91: 		    private Label lblastname;
+0LIESOXS:92: 	
+0TOMSPGI:93: 		    @FXML
+0DOUDUPD:94: 		    private TextField tfcommis;
+0QNAVMTG:95: 	
+0APLBNUU:96: 		    @FXML
+0FNVHDMU:97: 		    private DatePicker tfhiredate;
+0TSVEHDF:98: 	
+0NIMAHST:99: 		    @FXML
+WIDOLPW:100: 		    private TextField tfmanagerid;
+ZNQSTHY:101: 	
+DFHXCVF:102: 		    @FXML
+FJCOKNZ:103: 		    private Label lbempid;
+IMUVMLT:104: 	
+QNOQQVU:105: 		    @FXML
+GKRFIDJ:106: 		    private TableView<Employee> employeeTable;
+AGMPMAP:107: 		    @FXML
+MDHVNAS:108: 		    private TableColumn<Employee, Integer>  empIdColumn;
+USYJMSD:109: 		    @FXML
+ZJXHZEJ:110: 		    private TableColumn<Employee, String>  empNameColumn;
+HHHYXIS:111: 		    @FXML
+EROSYRE:112: 		    private TableColumn<Employee, String> empLastNameColumn;
+ISJGZIW:113: 		    @FXML
+SEZVKAL:114: 		    private TableColumn<Employee, String> empEmailColumn;
+TBPHYTA:115: 		    @FXML
+CELOBIP:116: 		    private TableColumn<Employee, String> empPhoneNumberColumn;
+TNYLXMT:117: 		    @FXML
+HWHHOTI:118: 		    private TableColumn<Employee, Date> empHireDateColumn;
+PFMHUES:119: 		    
+TATCLBI:120: 		    
+JBSIKXR:121: 		    @FXML
+AXTKYXT:122: 		    private TextField tfsalary;
+JTUEDVZ:123: 	
+JKVCKLM:124: 		    @FXML
+MUUCCZC:125: 		    private Button btnAllEmployee;
+XGWGUWX:126: 	
+FAVZQVW:127: 		    @FXML
+QNUSSVC:128: 		    private Label lbemail;
+EIXKUFY:129: 		    
+PWZEZPP:130: 		    @FXML
+ICWYLDF:131: 		    private Button btnAddEmployee;
+HEQOBEJ:132: 		     
+DFJUCCU:133: 		    //년월일로 보이기
+PXFODXB:134: 		    SimpleDateFormat sdf=new SimpleDateFormat("yyyy. MM. dd");
+GAWOLMZ:135: 		    
+RTNAWDH:136: 		    @FXML
+CFBGQLL:137: 		    private Label lbjobid2;
+CQQHDAD:138: 		    @FXML
+FLGUTUK:139: 		    private Label lbdepartid2;
+WDNTFLI:140: 		    
+OPJCMRV:141: 		    @FXML
+LAWAXLL:142: 		    private TextField tfupdatemanager;
+RNUVNSW:143: 		    
+GQALZKV:144: 		    @FXML
+ZWUTRMW:145: 		    private ComboBox<String> cbJobid;
+EECNVWI:146: 	
+HBSNLXQ:147: 		    @FXML
+NGQQSLW:148: 		    private ComboBox<String> cbdepartid;
+JXIEUJM:149: 		    
+FUGOCEI:150: 		    
+QDQRYFQ:151: 		    @FXML
+WFPTTRR:152: 		    private Button btnAddAfEmployee;
+MOVOMNB:153: 		    
+JCBZDEK:154: 		    @FXML
+VBIKUGS:155: 		    private TableView<Employee> tvSearchManager;
+IXFBCBK:156: 		    @FXML
+JGMWRFJ:157: 		    private TableColumn<Employee, Integer>  empIdColumn3;
+IUKPRDB:158: 		    @FXML
+CBTQOAN:159: 		    private TableColumn<Employee, String>  empNameColumn3;
+LOXMXKG:160: 		    @FXML
+HHXVREN:161: 		    private TableColumn<Employee, String> empLastNameColumn3;
+ITSRVFJ:162: 		    @FXML
+TNNODUF:163: 		    private TableColumn<Employee, String> empEmailColumn3;
+HZBFIIC:164: 		    
+KSUKWJL:165: 		    @FXML
+KOXUHEO:166: 		    private Button btnSearchManager  ;
+ZBEMBKJ:167: 		    
+ALYENSL:168: 		    @FXML
+ZAOITGC:169: 		    private TextField tfsearchmanager  ;
+LZOORRH:170: 		    
+XVKGPYL:171: 		    @FXML
+BEWCQXW:172: 		    private Button btndelEmployee  ;
+DWJOXRL:173: 		    
+MYEXBLV:174: 		    EmployeeService service;
+DVVFZRX:175: 		    
+WTQWPIJ:176: 			public EmployUpdateFxController(EmployeeService service) {
+OLORGDC:177: 				this.service=service;
+ACHMVDS:178: 				
+PEOGQJL:179: 				FXMLLoader loader4 = new FXMLLoader();
+FKQOWVF:180: 		        loader4.setLocation(Main.class.getResource("view/EmployUpdateFx.fxml"));
+KXZIILM:181: 		        loader4.setRoot(this);
+LLLHLIN:182: 		        loader4.setController(this);
+YPMPXWI:183: 		        try {
+IHENSRN:184: 		        	loader4.load();
+UPLTLBP:185: 		        } catch (Exception exception) {
+QVKHYTL:186: 		            throw new RuntimeException(exception);
+MWSSGRU:187: 		        }
+BRRAMYB:188: 			}
+JBEWCYU:189: 			private void clear(){
+ZIAVPQS:190: 	//	    	tfempid.setText("");
+YRWVOGF:191: 	//			tffirstname.setText("");
+SDIEIXV:192: 	//			tflastname.setText("");
+YAKEIRH:193: 	//			tfemail.setText("");
+SKQVZNC:194: 	//			tfhiredate.getEditor().setText("");
+ZUERBSV:195: 	//			tfphone.setText("");
+KIAYQOE:196: 	//			tfcommis.setText("");
+OIRWHOO:197: 	//			tfsalary.setText("");
+REWXEFL:198: 	//			tfdepartid.setText("");
+GCSNLTO:199: 	//			tfjobid.setText("");
+DRCHMAF:200: 	//			tfmanagerid.setText("");
+ZOEXKHM:201: 	//			tfsearchmanager.setText("");
+WGEUBMA:202: 		    }
+EQTCFCF:203: 		    private void edit(boolean b){
+VYDVEAM:204: 		    	tfempid.setEditable(false);
+AGMQTKP:205: 				tffirstname.setEditable(b);
+RRWDJHP:206: 				tflastname.setEditable(b);
+CYWYGBK:207: 				tfemail.setEditable(b);
+ACVFDVJ:208: 				tfhiredate.setEditable(b);
+MDHYMHA:209: 				tfphone.setEditable(b);
+PLSJZGT:210: 				tfcommis.setEditable(b);
+QGBLZKV:211: 				tfsalary.setEditable(b);
+EFNANBF:212: 				tfdepartid.setEditable(b);
+TBPTGGA:213: 				tfjobid.setEditable(b);
+IPLLMOA:214: 				tfmanagerid.setEditable(b);
+GBNFQJB:215: 				tfsearchmanager.setEditable(b);
+SBUJRGH:216: 		    }
+JWEYWFF:217: 		    private void edit2(boolean b){
+IWSTGKH:218: 		    	
+XJDPAOM:219: 		    	//tfempid.setEditable(b);
+BHWCTLK:220: 				tffirstname.setEditable(b);
+HVFILGX:221: 				tflastname.setEditable(b);
+HPTZWCA:222: 				tfemail.setEditable(b);
+RXDQMPY:223: 				//tfhiredate.setEditable(b);
+VCSEWSK:224: 				tfphone.setEditable(b);
+DNDGSGZ:225: 				tfcommis.setEditable(b);
+GPIQZLP:226: 				tfsalary.setEditable(b);
+RJCRRRM:227: 				
+VJVDKVQ:228: 				tfsearchmanager.setEditable(b);
+YRHVVIM:229: 				//tfdepartid.setEditable(b);
+IVZXPOV:230: 				//tfjobid.setEditable(b);
+GOAPQRL:231: 				//tfmanagerid.setEditable(b);
+OMJVBBH:232: 				if(b){
+YPVPRQY:233: 					tffirstname.setStyle("-fx-background-color: #0000ff");
+EPGHNYI:234: 					tflastname.setStyle("-fx-background-color: #0000ff");
+NOUIRPQ:235: 					tfemail.setStyle("-fx-background-color: #0000ff");
+UOUWFXF:236: 					tfhiredate.setStyle("-fx-background-color: #0000ff");
+GZKOBXP:237: 					tfphone.setStyle("-fx-background-color: #0000ff");
+RDDMUGT:238: 					tfcommis.setStyle("-fx-background-color: #cccccc");
+RMNROGW:239: 					tfsalary.setStyle("-fx-background-color: #cccccc");
+XJPUONH:240: 					tfdepartid.setStyle("-fx-background-color: #cccccc");
+BUHDWIJ:241: 					tfjobid.setStyle("-fx-background-color: #cccccc");
+PVGFJUK:242: 					tfmanagerid.setStyle("-fx-background-color: #cccccc");
+AZIUJBM:243: 					tfsearchmanager.setStyle("-fx-background-color: #cccccc");
+NIWXCBA:244: 				}else{
+UIJAAUF:245: 					tffirstname.setStyle("-fx-background-color: #ffffff");
+MTVEFFE:246: 					tflastname.setStyle("-fx-background-color: #ffffff");
+VPCFRCF:247: 					tfemail.setStyle("-fx-background-color: #ffffff");
+KDIEHDQ:248: 					tfhiredate.setStyle("-fx-background-color: #ffffff");
+TBXOMHV:249: 					tfphone.setStyle("-fx-background-color: #ffffff");
+YKCMRNR:250: 					tfcommis.setStyle("-fx-background-color: #ffffff");
+LLGGKMP:251: 					tfsalary.setStyle("-fx-background-color: #ffffff");
+CFEBFHS:252: 					tfdepartid.setStyle("-fx-background-color: #ffffff");
+ZUPSXFS:253: 					tfjobid.setStyle("-fx-background-color: #ffffff");
+FZCLYSY:254: 					tfmanagerid.setStyle("-fx-background-color: #ffffff");
+GRIUGFR:255: 					tfsearchmanager.setStyle("-fx-background-color: #ffffff");
+TCRSNVV:256: 				}
+GQLAIDQ:257: 				
+SLYMPCE:258: 		    }
+MDQEEWC:259: 	
+DTHLWBH:260: 		    @FXML
+IHWYPJO:261: 		    void initialize() {
+FCZHKJP:262: 		         empIdColumn.setCellValueFactory(cellData -> cellData.getValue().employeeIdProperty().asObject());
+AHQYSDZ:263: 		         empNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+EUBQRIM:264: 		         empLastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
+BLARYJX:265: 		         empEmailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
+YVXKEXG:266: 		         empPhoneNumberColumn.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
+INGIKVJ:267: 		         empHireDateColumn.setCellValueFactory(cellData -> cellData.getValue().hireDateProperty());
+PXKSUMS:268: 	
+NXVNIES:269: 		         empIdColumn3.setCellValueFactory(cellData -> cellData.getValue().employeeIdProperty().asObject());
+SIUPXFK:270: 		         empNameColumn3.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+OAGBMTP:271: 		         empLastNameColumn3.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
+ATZWTPW:272: 		         empEmailColumn3.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
+UCLURBG:273: 		         
+FAVIZZU:274: 		         
+CKEQNDO:275: 		         //tfhiredate.setPromptText("생일을 선택하세요.");
+HFWVEER:276: 		         //tfhiredate.setMaxWidth(381.0);
+NKDVRQH:277: 		         //tfhiredate.setStyle("-fx-background-color: #0000ff");
+XYAGKQY:278: 		         //
+VGFWKFO:279: 		         employeeTable.setOnMouseClicked(e ->{
+FNYJBEX:280: 		         	if(employeeTable.getSelectionModel().getSelectedItem()!=null ){
+OISNZKR:281: 		         		 edit(false);
+XRTCDNL:282: 		         		 edit2(true);
+CZJBNJQ:283: 				    	 clear();
+AUOTQTX:284: 				    	 //-----
+TWKUZWN:285: 				    	 btnAddAfEmployee.setVisible(true);
+XSMKNUR:286: 				    	 btndelEmployee.setVisible(true);
+DZMSQWM:287: 				    	 
+KWWNZVZ:288: 		         		Employee user = (Employee)employeeTable.getSelectionModel().getSelectedItem();
+DKGYFTD:289: 		         		try {
+PHGVZMU:290: 		         			//DB에서 찾아서
+PGKJLGE:291: 							Employee emp=service.findEmployeeById(user.getEmployeeId()+"");
+SEYEQVK:292: 							//현재 정보를 보인다.
+ZZIBZRP:293: 							tfempid.setText(emp.getEmployeeId()+"");
+BAOKLZE:294: 							tffirstname.setText(emp.getFirstName());
+WLJONEM:295: 							tflastname.setText(emp.getLastName());
+SMDSNKF:296: 							tfemail.setText(emp.getEmail());
+KBZFNBH:297: 							//달력으로 바꿈
+SOZSHNF:298: 							tfhiredate.getEditor().setText(sdf.format((java.util.Date)(emp.getHireDate())));
+SUKVIAZ:299: 							tfphone.setText(emp.getPhoneNumber());
+ASNTDSQ:300: 							tfcommis.setText(emp.getCommissionPct()+"");
+DYTBJGA:301: 							tfsalary.setText(emp.getSalary()+"");
+UHMUBHU:302: 							tfdepartid.setText(emp.getDepartmanId()+"");
+OAALKQT:303: 							tfjobid.setText(emp.getJobId()+"");
+MFOTBCH:304: 							tfmanagerid.setText(emp.getManagerId()+"");
+DWSZLVO:305: 							System.out.println("------->"+emp.getDepartmanId()+"");
+PLVDDCH:306: 						} catch (SQLException e1) {
+AQFULUE:307: 							System.out.println("DB에서 상세정보를 가져오다 에라가 발생했습니다.");
+ATLQBIU:308: 						}
+NBBMQXA:309: 		             	//System.out.println(user.getEmployeeId()+"  "+user.getFirstName()+" "+user.getLastName());
+NTXROYV:310: 		             	//lbhello.setText(user.getEmployeeId()+"  "+user.getFirstName()+" "+user.getLastName());
+DKADXXD:311: 		         	}
+LYKOTLT:312: 		           }
+NPJAUJN:313: 		         );
+INUVFGX:314: 		         btnAddAfEmployee.setVisible(false);
+CCCFOIS:315: 		         btndelEmployee.setVisible(false);
+JNBYXWD:316: 		         tvSearchManager.setOnMouseClicked(e ->{
+TJUYWOZ:317: 			         	if(tvSearchManager.getSelectionModel().getSelectedItem()!=null ){
+GZDDYFR:318: 			         		Employee user = (Employee)tvSearchManager.getSelectionModel().getSelectedItem();
+RXVRCDQ:319: 			         		tfmanagerid.setText(user.getFirstName()+" "+user.getLastName()+"("+user.getEmployeeId()+")");
+SRZOZHE:320: 			         	}
+AOAVVOG:321: 			           }
+DIHOKFQ:322: 			         );
+DASNRZH:323: 		    }
+PGBMGKO:324: 		    
+BJXXXFQ:325: 		    @FXML
+JUOPJNH:326: 		    void actionAllEmployee(ActionEvent event) {
+PZTYGMU:327: 		    	 try {
+ZFBVAPW:328: 		    		 
+TLULAIJ:329: 		    		 String updatemanager=tfupdatemanager.getText();
+HWYSHOV:330: 		 	    	 ObservableList<Employee> updatemanagerList= service.findManagersByName(updatemanager);
+LSSQKBB:331: 		 	    	 employeeTable.setItems(updatemanagerList);
+KZMQCSQ:332: 		 	    	 tfupdatemanager.setText("");
+EAMEJIX:333: 		    		 		    	 
+KCMKXHS:334: 		         } catch (SQLException e){
+LFODCWG:335: 		             System.out.println("Error occurred " + e);
+JTZOGXA:336: 		         }
+FEDYCYG:337: 		    	 btnAddAfEmployee.setVisible(false);
+CVGVEHJ:338: 		    	 btndelEmployee.setVisible(false);
+YCEGLVJ:339: 		    	 
+XTUECNN:340: 		    }
+UWBYUUN:341: 		    @FXML
+CSXDXYA:342: 		    private void showEmpoyeeTable (ObservableList<Employee> empData)  {
+ZLETSMU:343: 		    	employeeTable.setItems(empData);
+RXUUXRT:344: 		    }
+SDRDTFX:345: 		    //버튼을 클릭하여  직원추가 준비 
+JZGDGTZ:346: 		    @FXML
+NDFHTZK:347: 		    void actionReadyAddEmployee(ActionEvent event) {
+IPLFPNG:348: 		    	clear();
+SBRRQBD:349: 		    	edit(false);
+GSGIJES:350: 		    	edit2(true);
+NTOKQWE:351: 		    	cbJobid.setItems(null);
+DDWEGZA:352: 		    	cbdepartid.setItems(null);
+OUWOMWT:353: 		    	leftsplit.setDividerPositions(0.6);
+DEGJSKO:354: 		    	employeeTable.setItems(null);
+FSXQHKO:355: 		    	
+HYBSKSO:356: 		    	 try {
+SETXNZQ:357: 		    		    //모든 잡을 가져와 잡콤보에 넣기----------------
+JENUJHX:358: 				   		ObservableList<String> jobs=service.findAllJobs();
+JLKQFSE:359: 				        shoeJobsTable(jobs);
+XJJAVVG:360: 				        //-----------------------------------
+WPPZEVS:361: 				        //모든 부서를 가져와 콤보에 넣기-----------------
+MEGSZSP:362: 				        ObservableList<String> dpnames = FXCollections.observableArrayList();
+IEIQMNL:363: 				        ObservableList<Department> dlists =service.findAllDepartments2 ();
+CNKFBZQ:364: 				        for (Department dd:dlists) {
+IFUGNGJ:365: 				        	dpnames.add(String.format("%s(%d)", dd.getDepartment_name(),dd.getDepartment_id()));
+QUQFJDN:366: 						}
+ARCPIJW:367: 		    			cbdepartid.setItems(dpnames);
+KXFUULV:368: 		    	        //--------------------------------------
+FKEKHTG:369: 			        } catch (SQLException e){
+BEKMQAZ:370: 			            System.out.println("Error occurred actionReadyAddEmployee " + e);
+EUDRGRY:371: 			        }
+RVPZTDB:372: 		    	 btnAddAfEmployee.setVisible(true);
+ZVWPGBF:373: 		    	 btndelEmployee.setVisible(true);
+PMHSUPS:374: 		    }
+YJQUWNC:375: 	        //잡콥보를 선택하면 잡아이디를 tf에 넣기
+OZGCBLK:376: 		    @FXML
+AREFZKA:377: 		    void actionJobClicked(ActionEvent event) {
+QVLPZNC:378: 		    	if(cbJobid.getSelectionModel().getSelectedItem()!=null){
+QKLWNRS:379: 		    		String coms =  cbJobid.getSelectionModel().getSelectedItem().toString();    
+GUBEECT:380: 			    	 tfjobid.setText(coms);
+TGTXHKK:381: 			    	 System.out.println("잡아이디을 선택==========>"+coms);
+GWVQEJC:382: 		    	}
+HYIEJRZ:383: 		    }
+SDOLZPL:384: 		    //depart(59) ==> 59
+TFEYSFE:385: 		    private String depid(String msg){
+QUKBEWL:386: 		    	String ss="";
+MFUGIIX:387: 		    	if(msg.indexOf("(")!=-1 && msg.indexOf(")")!=-1 ){
+JFUJZRG:388: 		    		ss=msg.substring(msg.indexOf("(")+1);
+ARZIHOA:389: 		    		ss=ss.substring(0,ss.indexOf(")"));
+MERYBRG:390: 		    	}else{
+YXYZMVA:391: 		    		ss=msg.trim();
+ALRBCEG:392: 		    	}
+QPMLLCB:393: 		    	return ss.trim();
+ECSIYRM:394: 		    }
+RMJGBVQ:395: 		  //depart(59) ==> depart
+BDOFASO:396: 		    private String dep(String msg){
+UQMLALA:397: 		    	String ss="";
+DLCBLBY:398: 		    	if(msg.indexOf("(")!=-1){
+RODIWFL:399: 		    		ss=msg.substring(0, msg.indexOf("("));
+ZHMCZHK:400: 		    	}else{
+TDGDFFH:401: 		    		ss=msg.trim();
+GTABKXC:402: 		    	}
+CCCYEBU:403: 		    	return ss.trim();
+PTOOZRV:404: 		    }
+NJNDLXY:405: 		    //부서콤보에서 부서명으로 관리자 찾기
+VDCKMAC:406: 		    @FXML
+JRHUXWW:407: 		    void actionDepartClicked(ActionEvent event) {
+ERRSQYJ:408: 		    	if(cbdepartid.getSelectionModel().getSelectedItem()!=null){
+INNEHJD:409: 		    		String departid =  cbdepartid.getSelectionModel().getSelectedItem().toString();    
+TOIWBTW:410: 		    		
+TQNBJCV:411: 			    	 tfdepartid.setText(departid);//여기를 수정할 것.
+NLJCKWY:412: 			    	 System.out.println("부서명(부서아이디)================>"+departid);
+EQTAEVQ:413: 			    	 
+ZOBFIFZ:414: 			    	 try {
+IMYMTEF:415: 			    		 ObservableList<String> dpnames = FXCollections.observableArrayList();
+ZUEUNPD:416: 			    		//부서명을 이용하여 관리자정보를 찾음-------------
+KYQDGGL:417: 						 ObservableList<Employee> employeess= service.findEmployeesByDepartName(dep(departid));//depart(59) ==> depart
+JGBNFFX:418: 				        for (Employee dd:employeess) {
+YQLOTYT:419: 				        	dpnames.add(String.format("%s %s[%s](%d)", dd.getFirstName(),dd.getLastName(), dd.getEmail(),dd.getEmployeeId()));
+CQLXMFN:420: 						}
+SHXFOXG:421: 				        //관리자 콤보에 관리자 아이디를 넣기
+DHGRUPW:422: 		    			//cbmanager.setItems(dpnames);
+IAQBEAU:423: 		    			//-------------------------------------
+NMERKNQ:424: 					} catch (SQLException e) {
+CJOEGCA:425: 						System.out.println("actionDepartClicked : "+e);
+DZMNZSP:426: 					}
+IVLZFQF:427: 		    	}
+OLUNNWE:428: 		    }
+NMUSROJ:429: 		    
+ZHZFEMQ:430: 		    void shoeJobsTable(ObservableList<String>jobs){
+JOSTXNU:431: 		    	if(cbJobid!=null){
+SKZXLOS:432: 		    		cbJobid.setItems(jobs);
+KOUSGIH:433: 		    	}
+VJWEUTH:434: 		    }
+DERHJGW:435: 		    //관리자 콤보를 선택하면 관리자 정보를 tf에 넣기
+JUTTFZK:436: 	//	    @FXML
+ARSZXLC:437: 	//	    void actionManagerClicked(ActionEvent event) {
+HMDKFTJ:438: 	//	    	if(cbmanager.getSelectionModel().getSelectedItem()!=null){
+QLWVUHU:439: 	//	    		String manager =  cbmanager.getSelectionModel().getSelectedItem().toString();    
+RUKKJGN:440: 	//		    	 tfmanagerid.setText(manager);
+MXHDTMS:441: 	//		    	 System.out.println("========================>"+manager);
+VPZGEMH:442: 	//	    	}
+YKMUYFS:443: 	//	    }
+FRFNWRW:444: 		    
+BZMGOUG:445: 		    public void handleHelp() {
+PHQTUSO:446: 		        Alert alert = new Alert (Alert.AlertType.INFORMATION);
+BILDUDJ:447: 		        alert.setTitle("필수요소를 꼭 입력하십시오.");
+FRBMWIO:448: 		        alert.setHeaderText("필수요소확인");
+ZSWXWAF:449: 		        alert.setContentText("필수요소를 꼭 입력하세요. 필수요소는 파란색입니다..");
+ONKJEIY:450: 		        alert.show();
+DGQXHAX:451: 		    }
+QEMSKKE:452: 		    
+BUSKQUE:453: 		    
+NWVBLNI:454: 		    //emp 수정
+AXKGEKD:455: 		    @FXML
+UDGTJYH:456: 		    void actionUpdateEmployee(ActionEvent event) {
+ROYBUHB:457: 		    	Alert alert = new Alert(AlertType.CONFIRMATION);
+BEDYPLK:458: 		    	alert.setTitle("Confirmation Dialog");
+QHBNNSR:459: 		    	alert.setHeaderText("직원의 정보를 수정하시겠습니까?");
+CCCJMON:460: 		    	alert.setContentText("정말 수정하시겠습니까?");
+FPXBYKX:461: 	
+PXPCCRA:462: 		    	Optional<ButtonType> result = alert.showAndWait();
+RQZXYSA:463: 		    	if (result.get() != ButtonType.OK){
+AOMMTOM:464: 		    	   return;  //작업 끝냄
+JQXHCGC:465: 		    	} 
+UPLPLRT:466: 		    	String empId=tfempid.getText();
+KZVJLHX:467: 		    	String empfn=tffirstname.getText();
+QKUEOLK:468: 		    	String empln=tflastname.getText();
+NBESWCQ:469: 		    	String empmail=tfemail.getText();
+POMFIYN:470: 		    	String emphire=tfhiredate.getEditor().getText();
+SRPROSU:471: 		    	//sqldate로 변환준비
+JNLFHTZ:472: 		    	String empphone=tfphone.getText();
+YRMBXSG:473: 		    	//-----------------------------------------------
+EQXNAWH:474: 		    	String emppct=tfcommis.getText();
+KPCKOGT:475: 		    	String empsal=tfsalary.getText();
+AUTDSGT:476: 		    	String empdepid=tfdepartid.getText(); //수정필요
+ZMWUKPN:477: 		    	String empjobid=tfjobid.getText();   //수정필요 ->jobid(10)
+IIHXXJK:478: 		    	String empmanid=tfmanagerid.getText();//수정필요 ->
+XUDQBGR:479: 		    	System.out.println(String.format("%s,%s,%s,%s,%s", empfn,empln,empmail,emphire,empphone));
+TYKKRAX:480: 		    	System.out.println(String.format("%s,%s,%s,%s,%s", emppct,empsal,depid(empdepid),empjobid,depid(empmanid)));
+ISGKFVY:481: 		    	
+TGJUDXP:482: 		    	if(empId.equals("") || empfn.equals("") || empln.equals("")|| empmail.equals("")||
+AOWLXPH:483: 		    			emphire.equals("")|| empjobid.equals("")|| empmanid.equals("")){
+XZMSBZZ:484: 		    		handleHelp();
+BBFBWBB:485: 		    		return;
+URCYTCQ:486: 		    	}
+UFWXLIH:487: 	
+WAXIPMT:488: 		    	Date dhiredate= PTS.toDaeS(emphire);
+CSVKZRD:489: 		    	
+EWKRPFM:490: 		    	System.out.println("emphire-------------------"+emphire);
+ZKJAQFT:491: 		    	System.out.println("dhiredate-------------------"+dhiredate);
+FTOWOCU:492: 		    	Employee emp=new Employee();
+TBUMOAV:493: 		    	if(!empId.equals("")){
+GAOXCNJ:494: 		    		emp.setEmployeeId(Integer.parseInt(empId));
+RGYXSEP:495: 		    	}
+LVNFESZ:496: 		    	emp.setFirstName(empfn);
+BZLYXUG:497: 		    	emp.setLastName(empln);
+OGGRFMX:498: 		    	emp.setEmail(empmail);
+NQLUJFC:499: 		    	emp.setHireDate(dhiredate);
+IBRTOVZ:500: 		    	emp.setPhoneNumber(empphone);
+QDLGOXV:501: 		    	if(!emppct.equals("")){
+FCXEBHE:502: 		    		emp.setCommissionPct(Double.parseDouble(emppct));
+EBWUSWF:503: 		    	}
+MBPTRET:504: 		    	if(!empsal.equals("")){
+TMRGQEE:505: 		    		emp.setSalary(Double.parseDouble(empsal));
+OQSRJSS:506: 		    	}
+QEFJACM:507: 		    	if(!empdepid.equals("")){
+QIZDIBX:508: 		    		emp.setDepartmantId(Integer.parseInt(depid(empdepid)));
+KFYJDWN:509: 		    	}
+DAKWCRD:510: 		    	emp.setJobId(empjobid);
+LYUOYXT:511: 		    	if(!empmanid.equals("")){
+AWJNZMC:512: 		    		emp.setManagerId(Integer.parseInt(depid(empmanid)));
+VCEGTET:513: 		    	}
+TEDUWHS:514: 		    	try {
+PFWSFBS:515: 		    		System.out.println(" getFirstName------------------------------"+emp.getFirstName());
+JMJRKGM:516: 		    		System.out.println(" getLastName------------------------------"+emp.getLastName());
+VRXFQPF:517: 					boolean isS=service.updateEmployee(emp);
+GRPEQSX:518: 					if(isS){
+FXZGNWH:519: 						 System.out.println(" updateEmployee 성공-------------------------------"+empId);
+UXLGLUU:520: 						 show("Update "+emp.getEmployeeId(),"성공적으로 "+emp.getEmployeeId()+"를 수정하였습니다.");
+LEZWAIJ:521: 			             ObservableList<Employee> empData=FXCollections.observableArrayList();
+EPFGVRW:522: 			             Employee empDat = service.findEmployeeById(""+empId);  
+MILPGXM:523: 			             System.out.println(" actionUpdateEmployee 등록된 emp찾기-------------------------------"+empId);
+GEAKZFP:524: 			             if(empDat!=null){
+GPNGUXE:525: 			            	 empData.add(empDat);
+YJKDYSP:526: 				             showEmpoyeeTable(empData);
+FPXCFXK:527: 			             }
+QGOLQWW:528: 			 	    	 edit(false);
+CETBDNA:529: 			 	    	 edit2(false);
+TPIUMZN:530: 				    	 clear();
+TIXJGDW:531: 					}else{
+AEBZPVD:532: 						 System.out.println(" updateEmployee 실패------------------------------"+empId);
+TLRIHTN:533: 					}
+VZLRCDY:534: 				} catch (SQLException e) {
+XJUOPOO:535: 					System.out.println("문제발생:  actionUpdateEmployee======>"+e);
+DEKVYCF:536: 				}
+DCHVPBQ:537: 		    	 btnAddAfEmployee.setVisible(false);
+ZZOVYQP:538: 		    	 btndelEmployee.setVisible(false);
+MBWCKGK:539: 		    }
+EGOIVSE:540: 			
+QTBSUCK:541: 		    @FXML
+FGWOZBH:542: 		    void actionDeleteEmployee(ActionEvent event){
+OJSVOHF:543: 	
+MLBEQFT:544: 		    	
+TVSURWJ:545: 		    	Alert alert = new Alert(AlertType.CONFIRMATION);
+XOLGUXR:546: 		    	alert.setTitle("Confirmation Dialog");
+CODATLK:547: 		    	alert.setHeaderText("직원의 정보를 삭제하시겠습니까?");
+RJKULKM:548: 		    	alert.setContentText("정말 수정하시겠습니까?");
+HHXDUKY:549: 		    	Optional<ButtonType> result = alert.showAndWait();
+NFERFIQ:550: 		    	if (result.get() != ButtonType.OK){
+RMCSVKV:551: 		    	   return;
+XHFUZJK:552: 		    	} 
+ALDHMFI:553: 		    	
+VSQUNYI:554: 		    	
+PKIPEUN:555: 		    	String empId=tfempid.getText();
+DOSZYNQ:556: 		    	if(empId.equals("")){
+RKGVRLW:557: 		    		handleHelp();
+CTKSCTZ:558: 		    		return;
+EBXAJIW:559: 		    	}
+MCZOYOS:560: 		    
+NKPSPID:561: 		    	Employee emp=new Employee();
+VCJKVRD:562: 		    	if(!empId.equals("")){
+LFRFBLM:563: 		    		emp.setEmployeeId(Integer.parseInt(empId));
+IHCIQVM:564: 		    	}
+IATRDNQ:565: 		    	try {
+UROMLYD:566: 					boolean isS=service.deleteEmployee(emp);
+UXGDPLC:567: 					if(isS){
+GLGQDFR:568: 						 System.out.println(" deleteEmployee 성공-------------------------------"+empId);
+WRYOKYB:569: 						 show("Delete "+emp.getEmployeeId(),"성공적으로 "+emp.getEmployeeId()+"를 삭제하였습니다.");
+FZDLHNL:570: 			 	    	 edit(false);
+GAVBZCF:571: 			 	    	 edit2(false);
+ECFGLZZ:572: 				    	 clear();
+FKIAYKE:573: 					}else{
+WLRMUFJ:574: 						 System.out.println(" deleteEmployee 실패------------------------------"+empId);
+YZNGKYH:575: 					}
+ZSBAUND:576: 				} catch (SQLException e) {
+FERVSAT:577: 					System.out.println(" deleteEmployee==>"+e);
+ZKSQVCO:578: 				}
+KOQKHTF:579: 		    	 btndelEmployee.setVisible(false);
+VXAEVCN:580: 		    }
+DOQBZUF:581: 		    public void show(String header, String cont){
+HIIXXZE:582: 		    	Alert alert = new Alert(AlertType.INFORMATION);
+LWUHURA:583: 		    	alert.setTitle("Information Dialog");
+VZYVLAH:584: 		    	alert.setHeaderText(header);
+HMKOTIK:585: 		    	alert.setContentText(cont);
+KPQWDAA:586: 		    	alert.showAndWait();
+OGBZBFG:587: 		    }
+ZVDQSBC:588: 		    @FXML
+DEHDDHG:589: 		    void actionSearchManger(ActionEvent event) {
+OXLQHIP:590: 		    	
+KSBTDEO:591: 		    	String manid=tfsearchmanager.getText();
+ESGZQFF:592: 		    	ObservableList<Employee> managers=null;
+LDWNLFH:593: 				try {
+NOFDPAR:594: 					managers = service.findManagersByName(manid);
+RIASDBM:595: 					tvSearchManager.setItems(managers);
+BZDKRPH:596: 			    	tfsearchmanager.setText("");
+HDFJMOR:597: 				} catch (SQLException e) {
+IJFWGWW:598: 	
+QNNGKSO:599: 				}
+HLOACSC:600: 		    	
+CBINOKT:601: 		    	
+AMCSTRX:602: 		    }
+VNSADBS:603: 		    @FXML
+XWPOOMB:604: 		    private Button btnCancelEmployee;
+GAJFRDH:605: 		    
+YVZTPAM:606: 		    @FXML
+HWUEDCZ:607: 		    void actionCancelEmployee(ActionEvent event){
+EANYCLK:608: 		    	leftsplit.setDividerPositions(0.98);
+SNTXCUF:609: 		    	edit(false);
+LIPTWQR:610: 	 	    	edit2(false);
+HSSFRZP:611: 		    	clear();
+DBEEKTV:612: 		    }
+WOIAVKZ:613: 		   
+YXJGWZQ:614: 		    
+MNJEBZB:615: 	}

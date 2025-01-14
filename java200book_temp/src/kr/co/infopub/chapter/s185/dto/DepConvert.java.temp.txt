@@ -1,0 +1,34 @@
+0JRNGURW:1: 	package kr.co.infopub.chapter.s185.dto;
+0VIRDAWP:2: 	import java.util.ArrayList;
+0EJWVFLY:3: 	import java.util.List;
+0XHETKXB:4: 	import javafx.collections.FXCollections;
+0NAWPPSW:5: 	import javafx.collections.ObservableList;
+0LGKLXUL:6: 	// DTO List -> Properties List for Screen -> List for JavaFX tree view or table view
+0BILWTSW:7: 	public class DepConvert {
+0IOTFVZJ:8: 		// Convert the DTO to a properties object for the screen.
+0WFYPTPO:9: 		public static Department toPro(DepartmentDto b){
+EASBPGU:10: 			Department bp=new Department();
+XNTWGXJ:11: 			bp.setDepartment_id(b.getDepartment_id());
+WZHLUGO:12: 			bp.setDepartment_name(b.getDepartment_name());
+UOIBSCP:13: 			bp.setLocation_id(b.getLocation_id());
+EACAMOK:14: 			bp.setManager_id(b.getManager_id());
+QZPFCNX:15: 			return bp;
+MAAYBZR:16: 		}
+NITZWJX:17: 		// Converts the DTO List to a property object list for the screen.
+RSOSIUW:18: 		public static List<Department> toPro(List<DepartmentDto> blist){
+YWDFKFT:19: 			List<Department> bplists=new ArrayList<>();
+GAAMRFF:20: 			for(DepartmentDto b:blist){
+WEXKHMK:21: 				bplists.add(toPro(b));
+WAMTYAI:22: 			}
+BWUFRYR:23: 			return bplists;
+LAIFUKK:24: 		}
+FTENMUV:25: 		// Converts the list of properties objects for the screen to the List for JavaFX tree view or table view.
+QLDNNMH:26: 		public static ObservableList<Department> toObservPro(List<Department> alists){
+LSHNFFV:27: 			ObservableList<Department> bList = FXCollections.observableArrayList(alists);
+YWLTFYR:28: 			return bList;
+NATMBIQ:29: 		}
+INCGEOF:30: 		// Converts a DTO List to a List for JavaFX tree view or table view.
+ELGFKOJ:31: 		public static ObservableList<Department> toObservProFromDto(List<DepartmentDto> alists){
+KOGSMBU:32: 			return toObservPro(toPro(alists));
+ARXLMMU:33: 		}
+SNUAYFK:34: 	}

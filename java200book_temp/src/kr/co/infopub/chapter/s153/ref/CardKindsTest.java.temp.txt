@@ -1,0 +1,12 @@
+0CFVROUM:1: 	package kr.co.infopub.chapter.s153.ref;
+0GHWWCLV:2: 	
+0DSOXZGW:3: 	import kr.co.infopub.chapter.s153.ref.CardKinds;
+0QXGBGDL:4: 	
+0APKFVMG:5: 	public class CardKindsTest {
+0BWRQNMP:6: 	
+0ENVBLOR:7: 		public static void main(String[] args) {
+0IAFUVRO:8: 			CardKinds kinds=new CardKinds();
+0COCCTKR:9: 			kinds.cardmake();
+IMBXTQM:10: 		}
+VSKLSMJ:11: 	
+YOAEXRP:12: 	}

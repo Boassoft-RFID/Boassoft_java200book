@@ -1,0 +1,37 @@
+0QFIMLNE:1: 	package kr.co.infopub.chapter.s167;
+0CXKNYQI:2: 	import java.util.Scanner;
+0XRRBZZO:3: 	// switch 조건문 -> 1이면 USD로 2면 JPY, 3이면 CNY 1,2,3외의 다른수는 환전 불가능
+0YDAFRGJ:4: 	public class ExchangeRate {
+0NFFLNLG:5: 		public static void main(String[] args) {
+0TOSENAM:6: 			double USD=1113.00;    //변수값
+0FXPTDMF:7: 			double JPY=10.0624;    //변수값 
+0DAGIQQT:8: 			double CNY=164.1020;   //변수값 
+0DPAWTGJ:9: 			double krw=1000000;    //백만원 -환전하려고 하는 금액
+MPBTMCO:10: 			
+NQZUEYJ:11: 			System.out.println("USD로 환전하려면 1, JPY로 환전하려면 2, CNY로 환전 하려면 3을 입력하세요.");
+ZNDUXKD:12: 			Scanner scann=new Scanner(System.in);//키보드
+IWFFAAJ:13: 			int choice=scann.nextInt();//키보드로 정수 입력
+IROULWY:14: 			double result=0.0; //변수 선언
+ZDZZZOE:15: 			switch (choice) {
+EZZZGYH:16: 				case 1:
+CEMCEZZ:17: 					   	result=calculate(krw,USD);   
+CKYEAPL:18: 					   	System.out.printf("한화 %.2f원은  %.2f달러입니다.\n",krw,result);
+UEWDSRV:19: 					   break;
+AVMTUTI:20: 				case 2:
+QFVCQIG:21: 						result=calculate(krw,JPY);
+XDCAJKE:22: 						System.out.printf("한화 %.2f원은  %.2f엔 입니다.\n",krw,result);
+VQVUOCR:23: 					   break;
+FUHKVCN:24: 				case 3:
+GUIWQHF:25: 						result=calculate(krw,CNY);
+QXOLSIW:26: 						System.out.printf("한화 %.2f원은 %.2f위안 입니다.\n",krw,result);
+ARCDFIQ:27: 					   break;
+DZBBZWK:28: 				default:
+HBDBJEZ:29: 						System.out.println("환전할 수 없습니다.");
+RVVODQI:30: 					   break;
+SRZYOEN:31: 			}
+KGEAZJS:32: 		}
+SVGVXPL:33: 		//나누는 행위를 반복 -> 메서드로 만든다.
+EIZNKAR:34: 		public static double calculate(double krwMoney, double exchangeRatio){
+LYWSXII:35: 			return krwMoney/exchangeRatio;
+AIBQPKO:36: 		}
+PAQYQJB:37: 	}

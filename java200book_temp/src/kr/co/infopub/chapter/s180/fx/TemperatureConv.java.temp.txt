@@ -1,0 +1,9 @@
+IASRVET:1: 	package kr.co.infopub.chapter.s180.fx;
+GKGWWHH:2: 	public class TemperatureConv {
+XMAXWDA:3: 		public static double toCelsius(double fahrenheit){
+ITRCYZX:4: 			return 5./9 *(fahrenheit-32);
+SYBBABL:5: 		}
+LEUTMTO:6: 		public static double toFahrenheit(double celsius){
+KMHCIGC:7: 			return 9.0/5*celsius+32;
+UNCUOQM:8: 		}
+LMCNSYQ:9: 	}

@@ -1,0 +1,58 @@
+0ZAZNGXJ:1: 	package kr.co.infopub.chapter.s122;
+0DOVNAHI:2: 	public class SilverStar {
+0OJNZJWP:3: 	 public static void  stepDia(int n){
+0XTTPFZN:4: 		for (int i = 0; i < n ; i++) {
+0IKAKZUW:5: 			for (int j = 0; j <Math.abs(i-n/2)  ; j++) {
+0LCJVYCQ:6: 				System.out.printf(" ");
+0URYUNHD:7: 			}
+0TRGWJIR:8: 			for (int k= 0; k <n-2*Math.abs(i-n/2) ; k++) {
+0AXNWOLA:9: 				System.out.printf("*");
+CLJABWO:10: 			}
+QIZROYH:11: 			System.out.println();
+YECBYIJ:12: 		}
+FIHKGMC:13: 	 }
+SSMHAUQ:14: 	 public static void main(String[] args) {
+PFDZJWO:15: 		 SilverStar.stepDia(9);
+WUGAAGC:16: 	 }
+DGPGMZD:17: 	 public static void  stepDown(int n){
+YOZBXSX:18: 		for (int i = 0; i < n; i++) {
+WRRWRHY:19: 			for (int j = 0; j < i+1 ; j++) {
+UGBIBPH:20: 				System.out.printf("*");
+DMNMQGX:21: 			}
+RYXSNBQ:22: 			System.out.println();
+IFCZMFV:23: 		}
+VVVVMCG:24: 	 }//
+KZKIXGF:25: 	 public static void  stepUp(int n){
+DRBLNYB:26: 		for (int i = 0; i < n; i++) {
+BPSFTAA:27: 			for (int j = 0; j <n-1-i  ; j++) {
+ZMBRAAM:28: 				System.out.printf("   ");
+OFOFOBG:29: 			}
+IZOAKUY:30: 			for (int k= 0; k <i+1; k++) {
+HMTHAZU:31: 				System.out.printf("ⓐ");
+ASXYHGM:32: 			}
+TCUCHDA:33: 			System.out.println();
+QGVVUCW:34: 		}
+SKJLIKB:35: 	 }//
+PUHOYPO:36: 	 public static void  stepTri(int n){
+KXJEIXO:37: 		for (int i = 0; i < n; i++) {
+EDJENEW:38: 			for (int j = 0; j <n-1-i  ; j++) {
+EKCVWTI:39: 				System.out.printf("   ");
+JKZKYFT:40: 			}
+KTBSABM:41: 			for (int k= 0; k <2*i+1; k++) {
+ROAYSKE:42: 				System.out.printf("ⓐ");
+GEOWSRC:43: 			}
+JQSHPZS:44: 			System.out.println();
+JHVDASH:45: 		}
+LWIGXLB:46: 	  }
+XCYISIE:47: 	  public static void  stepRevTri(int n){
+JYZRIOM:48: 		for (int i = 0; i < n; i++) {
+WFKLCTW:49: 			for (int j = 0; j <i  ; j++) {
+PKCCQCC:50: 				System.out.printf("   ");
+EGBHKSZ:51: 			}
+NTYKAEX:52: 			for (int k= 0; k <2*n-1-2*i ; k++) {
+GWYNRJT:53: 				System.out.printf("ⓐ");
+YCZDSTR:54: 			}
+TEWWHRQ:55: 			System.out.println();
+AGVEOQJ:56: 		}
+SGYLQSX:57: 	 }
+ESJFRUC:58: 	}

@@ -1,0 +1,33 @@
+0ICIXKYP:1: 	package kr.co.infopub.chapter.s199.common;
+0QAOEALK:2: 	
+0PWQISCW:3: 	import java.io.Serializable;
+0HTHUKYF:4: 	
+0AVFBDKP:5: 	public class JobsDto implements  Serializable{
+0FSHWGGA:6: 		private String job_id;
+0YELTYGD:7: 		private String job_title;
+0KZJNRBZ:8: 		public JobsDto() {
+0TENNMQQ:9: 			super();
+NSPGWEK:10: 		}
+ZCKLIBK:11: 		public JobsDto(String job_id, String job_title) {
+ALQRSVE:12: 			super();
+JMIYJBM:13: 			this.job_id = job_id;
+GCGEOIZ:14: 			this.job_title = job_title;
+SSNPFCR:15: 		}
+XSNPXSM:16: 		@Override
+YJVXJFZ:17: 		public String toString() {
+SLOKCOG:18: 			return "JobsDto [job_id=" + job_id + ", job_title=" + job_title + "]";
+WWAFWFO:19: 		}
+ROVLOAX:20: 		public String getJob_id() {
+FKVEXTE:21: 			return job_id;
+ISYNJDN:22: 		}
+NJHQBDF:23: 		public void setJob_id(String job_id) {
+CJQOJSE:24: 			this.job_id = job_id;
+QLSOPVV:25: 		}
+HBGCHBL:26: 		public String getJob_title() {
+LSLSTRF:27: 			return job_title;
+WYZXHRW:28: 		}
+AYNZCRH:29: 		public void setJob_title(String job_title) {
+JBHJLDR:30: 			this.job_title = job_title;
+PGBWONI:31: 		}
+XHREGAS:32: 		
+JWRTOKI:33: 	}

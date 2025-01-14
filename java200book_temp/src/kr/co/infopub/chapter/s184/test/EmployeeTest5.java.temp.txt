@@ -1,0 +1,59 @@
+0RBBGQVU:1: 	package kr.co.infopub.chapter.s184.test;
+0PIMFIUM:2: 	
+0XWDARTB:3: 	import java.sql.SQLException;
+0ZESPFWA:4: 	import java.util.List;
+0ZRKATVY:5: 	
+0WHRVDZP:6: 	import javafx.scene.control.TreeItem;
+0KGITRPY:7: 	import kr.co.infopub.chapter.s184.dto.EmployeeDto;
+0DVTSMNW:8: 	import kr.co.infopub.chapter.s184.model.EmployeeDAO;
+0UPWNPER:9: 	import kr.co.infopub.chapter.s184.util.EmpUtil;
+UGYDIFZ:10: 	
+GVZDHPE:11: 	public class EmployeeTest5 {
+LRBLQUC:12: 		public static void main(String[] args) {
+EQYUEUN:13: 			EmployeeDAO ddao=new EmployeeDAO();
+JAXMJSE:14: 			try {
+UDBCSRH:15: 				List<EmployeeDto> lists=ddao.findTreeManagerInEmployee();
+TZTUOVH:16: 				TreeItem<String> root = new TreeItem<String>("managers and staff");
+IPVEANO:17: 				int max=ddao.getTreeMaxLevel();
+CHSCADF:18: 				makeEmpTree(root,lists,"",1,max);
+UKFNYZB:19: 				printTree(root, 1);
+RFSRBES:20: 				
+NUJCJTX:21: 			} catch (SQLException e) {
+AXPUVKV:22: 				System.out.println( e);
+RTETDLJ:23: 			}
+ADIUJQS:24: 		}
+QPNVRTX:25: 		//using recursion
+EDKEFFZ:26: 		public static void makeEmpTree(TreeItem<String> front,List<EmployeeDto> dlists, String key, int index,int max){
+MQFRNKC:27: 			if(index>max){return ; }  //If it goes over max, it's over
+PMOVSKW:28: 			for (EmployeeDto emp: dlists) {  //There's a number, so it'll be over.
+MLVJUCK:29: 				if(EmpUtil.level(emp)!=index){   //Find only the desired level
+DSCNDLB:30: 					continue;
+MLCEBCQ:31: 				}else if(index>1 && EmpUtil.level(emp)==index){   //From 2 to 1 compared to the key value of 1
+RSRJNWC:32: 					if(EmpUtil.level(emp,index-1).equals(key)){
+ETCBLLP:33: 						TreeItem<String> aa=new TreeItem<String>(EmpUtil.tname(emp, index));
+WKFTHJM:34: 						front.getChildren().add(aa);
+LQRBHZQ:35: 						makeEmpTree(aa,dlists,EmpUtil.level(emp,index),index+1,max);
+ETKXYZM:36: 					}else{
+AJXJAXH:37: 						continue;
+ZNDFQCA:38: 					}
+XSNTXYN:39: 				}else if(EmpUtil.level(emp)==1){  //Because there is no key value of 1
+DATCOIR:40: 					TreeItem<String> aa=new TreeItem<String>(EmpUtil.tname(emp, 1));
+TXBGMKT:41: 					front.getChildren().add(aa);
+ZOVGSTC:42: 					makeEmpTree(aa,dlists,EmpUtil.level(emp,1),2,max);
+SDOGMAU:43: 				}
+SWYURMS:44: 			}
+WVYAEQJ:45: 		}	
+NEMYAXV:46: 		public static void printTree(TreeItem<String> root , int index){
+SSBIMLK:47: 	    	String tt="\t";
+DWQHTQY:48: 	    	String s="";
+OWNZDYI:49: 	    	for(int i=1; i<index ; i++){
+PWZOKHM:50: 	    		s+=tt;
+RXXOIMJ:51: 	    	}
+EPIGSYO:52: 	    	//System.out.println(s+""+index+" "+root.getValue());
+AZTEVQH:53: 	    	System.out.println(s+""+root.getValue());
+PWXVFBZ:54: 	    	for(TreeItem<String> ss:root.getChildren()){
+TLPOSYM:55: 	    		printTree(ss, index+1);
+HICBJUA:56: 	    	}
+KBNIXKN:57: 	    }
+NYVMJNT:58: 		
+YWKGZRN:59: 	}

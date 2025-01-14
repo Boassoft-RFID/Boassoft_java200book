@@ -1,0 +1,36 @@
+0UCTZTAC:1: 	package kr.co.infopub.chapter.s134;
+0SXSFGEX:2: 	public class StarPoint {
+0IWJXNXH:3: 	 public static void printStarDecrease(int n){	
+0HNLIEVQ:4: 		for(int i=0; i<n;i++){
+0RMJUNUO:5: 			for(int j=0; j<i;j++){
+0MYRBECD:6: 				System.out.print(" ");
+0FENHCNB:7: 			}
+0UIEJIVI:8: 			for(int k=1; k<2*(n-i);k++){
+0ABXRLQY:9: 				System.out.print("*");
+DUWONNK:10: 			}
+INMDUBU:11: 			System.out.println();
+VNBGMMB:12: 		}
+CMCTUTV:13: 	 }
+HOUEQXU:14: 	 public static void main(String[] args) {
+VHOBVKM:15: 		 printStarDecrease(5);
+ZHRLYMX:16: 	 }
+QCUUTEH:17: 	 public static void printStarIncrease(int n){
+JBDRYGZ:18: 		for(int i=n-1; i>=0;i--){
+QFYKAVW:19: 			for(int j=0; j<i;j++){
+UWMKIMP:20: 				System.out.print(" ");
+AXWJNUE:21: 			}
+ZZFAEIP:22: 			for(int k=1; k<2*(n-i);k++){
+PCYDJAX:23: 				System.out.print("*");
+OTERTVZ:24: 			}
+YQFWSPQ:25: 			System.out.println();
+BCAMVBF:26: 		}
+HCKZQCX:27: 	 }
+DLVKMVJ:28: 	 public static void printButterfly(int n){
+ENUXCZC:29: 		printStarDecrease(n);
+FFRWMKH:30: 		printStarIncrease(n);
+NCEQDTM:31: 	 }
+RJLJTKY:32: 	 public static void printDiamond(int n){
+VEZHDIT:33: 		printStarIncrease(n);
+CQNFYAB:34: 		printStarDecrease(n);
+PNKBRBW:35: 	 } 
+EWBZOEK:36: 	}

@@ -1,0 +1,28 @@
+0CZWLEMZ:1: 	package kr.co.infopub.chapter.s153.ref;
+0XKIMEZL:2: 	
+0FJHCVAT:3: 	public class CardPlayer {
+0WDWQFJS:4: 	
+0QLEDGIY:5: 		private Card[] card;
+0TFPCSYV:6: 		public CardPlayer(int n) {
+0MXUOCAT:7: 			card=new Card[n];
+0DCEOCHX:8: 		}
+0KQKZKBJ:9: 		public Card[] getCard() {
+FLXZKHG:10: 			return card;
+MSZQYRI:11: 		}
+BXWNRPB:12: 	
+BWTCUQL:13: 		public void setCard(Card[] cd) {
+KOCOQCU:14: 			System.arraycopy(cd, 0, card, 0, cd.length);
+FTIJLCA:15: 		}
+QJISNHH:16: 		
+QVDPTBI:17: 		public void setCard(Card cd, int index){
+LOHSRQK:18: 			card[index]=new Card(cd.getCard());
+TELEUXW:19: 		}
+TGJBKAC:20: 		public void print(){
+ZZTZDZK:21: 			System.out.printf("[");
+QKOXBOK:22: 			for (int i = 0; i < card.length; i++) {
+QXDIFCD:23: 				System.out.printf("%s ",card[i]);
+CZTTHWM:24: 			}
+URUWZXK:25: 			System.out.println("]");
+USTDZTJ:26: 		}
+OQFKQLI:27: 		//
+SOXSWSJ:28: 	}

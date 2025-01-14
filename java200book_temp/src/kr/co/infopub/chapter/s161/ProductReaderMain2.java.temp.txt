@@ -1,0 +1,41 @@
+0YVBIEJG:1: 	package kr.co.infopub.chapter.s161;
+0UZRUJNQ:2: 	import java.util.List;
+0XRJJDKJ:3: 	import java.util.stream.IntStream;
+0QOIDQGY:4: 	public class ProductReaderMain2 {
+0VQSQGFC:5: 	 public static void main(String[] args) {
+0KLSGCON:6: 	  ProductReader kr=new ProductReader();
+0JVAOBHB:7: 	  ProductList plist=new ProductList();
+0WYJHVIV:8: 	
+0EAIUAFS:9: 	  if(kr.isExist("kisul\\abc3031.txt")){
+FWTKLGH:10: 		kr.readTexts("kisul\\abc3031.txt");
+GSMTIMJ:11: 		int num=kr.listSize();
+TKNFEAS:12: 		System.out.println("데이타 개수: "+num);
+XHGJCHC:13: 		System.out.println("AllDatas===>");
+MSUFNUZ:14: 		List<Product> producst=plist.getAllProducts(kr.getAllLines());
+TUURGDG:15: 		IntStream.range(0, producst.size()).forEach(
+ASJRDPC:16: 		  i ->{ System.out.printf("%d%s\n",(i+1),producst.get(i).toString());});
+QZGWCBE:17: 		
+EJUAEKH:18: 		System.out.println("Grad in A or C===>");
+SYTSUOM:19: 		//String pGrade;    // 제조등급 문자 1 마지막 문자
+LRUUZSH:20: 		String [] acc={"A","C"};
+WNUNJXK:21: 		List<Product> gradepros=plist.getAllProdInGrade(acc,producst);
+EAHELWT:22: 		IntStream.range(0, gradepros.size()).forEach(
+CBGIFWM:23: 		  i ->{ System.out.printf("%d%s\n",(i+1),gradepros.get(i).toString());});
+XUZTGLW:24: 		
+USYKILP:25: 		System.out.println("Sort ===>");
+SEQMUVT:26: 		gradepros.sort(Product::compareProduct); //compare -> product static 으로 이동
+RNOULBZ:27: 		IntStream.range(0, gradepros.size()).forEach(
+HQLKTEF:28: 		  i ->{ System.out.printf("%d%s\n",(i+1),gradepros.get(i).toString());});
+CITWSPJ:29: 		
+HCEUWOK:30: 		// 5번의    정보를 춢력
+UTYSPKS:31: 		Product result=gradepros.get(4);
+CNASAEA:32: 	    String msgs=String.format("%s\t%s\t%s", 
+IPONYXH:33: 	    		result.getPMoney(),result.getPPoint(),result.getProdNum()) ;
+HLJYNFL:34: 		ResultWrite rw=new ResultWrite();
+NGFKDGX:35: 		System.out.println(rw.isExist("kisul\\Ans1.txt"));
+XMONGCO:36: 		rw.setTexts("kisul\\Ans1.txt",msgs);
+GGEDVDF:37: 		String krs=kr.readText("kisul\\Ans1.txt");
+HLUGLRM:38: 		System.out.println(krs);
+XWXZZTV:39: 	  }
+VLMNVUN:40: 	 }
+PBDAOST:41: 	}

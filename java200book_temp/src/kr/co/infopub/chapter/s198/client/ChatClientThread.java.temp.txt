@@ -1,0 +1,59 @@
+0UIFQNGY:1: 	package kr.co.infopub.chapter.s198.client;
+0BSNXLZH:2: 	import    java.io.*;
+0YVOOIWH:3: 	import    java.util.*;
+0GQOTBYV:4: 	import javax.swing.*;
+0BEYXNJH:5: 	
+0QRFNGCP:6: 	import kr.co.infopub.chapter.s198.common.Message;
+0BGXXUPV:7: 	
+0DOSQMGF:8: 	public class ChatClientThread implements Runnable{
+0EOAIBIV:9: 	  ObjectInputStream  ois;
+WNWEIEV:10: 	  ChatClientJPanel cc;
+QFPNDAB:11: 	  Message mess;
+XBBHKVP:12: 	  boolean exit=false;
+OUXDJDT:13: 	  DefaultListModel model;
+PDVYSRE:14: 	  public ChatClientThread(ObjectInputStream ois,ChatClientJPanel cc){
+HIAGGYQ:15: 	   this.ois=ois;
+VWNLWFT:16: 	   this.cc=cc;
+SIOFIFD:17: 	   model=new DefaultListModel();
+MGGBLVG:18: 	   model.removeAllElements();
+VIATSZV:19: 	   cc.getUserList().setModel(model);
+BMDACVB:20: 	  }
+BYTMXBH:21: 	  public void run(){
+TUPIRNV:22: 	    while(!exit){
+ZVAGIWV:23: 	       try{
+VGRFGGH:24: 	         mess=(Message)ois.readObject();
+UHLUMOJ:25: 	       }catch(Exception e){
+IIBWXGP:26: 	         System.out.println(this.getClass().toString()+" IOEXception");
+TAIIUMN:27: 	       }
+BUKEHOC:28: 	       int state=mess.getState();
+VJIKTND:29: 	       String name=mess.getName();
+MNYWWBH:30: 	       if(state==Message.INITCONTACT){
+KEXCGGQ:31: 	          model.removeAllElements();
+IYUQUDI:32: 	          Vector userName=mess.getUserName();
+TPCPCIF:33: 	          cc.getUserList().removeAll();
+SIXITSD:34: 	          for(int i=0;i<userName.size();i++){
+FOHYDND:35: 	            model.addElement((String)userName.get(i));
+OZNSYSW:36: 	            cc.getUserList().setModel(model);
+NWSXYBK:37: 	          }
+QFMKBNL:38: 	          cc.getUserCountLb().setText("Current "+model.size()+" Connects.");
+USRQIYV:39: 	       }else if(state==Message.END){
+FGOBYAQ:40: 	          cc.getUserList().removeAll();
+VACHIPW:41: 	          model.removeElement(name);
+RFRBMTF:42: 	          cc.getUserList().setModel(model);
+MSQWJSH:43: 	          cc.getUserCountLb().setText("Current "+model.size()+" Connects.");
+MWYNYRX:44: 	        }
+PZKZFVV:45: 	        cc.getChatTextArea().append("["+name+"]"+mess.getMessage()+"\n");
+PRFYKSC:46: 	      }
+RMLOQHW:47: 	      try{
+NHWQBLL:48: 	          ois.close();
+NTBWKER:49: 	      }catch(IOException e){
+RNKJHPT:50: 	        System.out.println(this.getClass().toString()+" Run Exception");
+YXOEFRN:51: 	      }
+MIMEVVM:52: 	    }
+NTWUGHE:53: 	}
+ZPWMSDB:54: 	
+OCXYLUA:55: 	
+HEEJZEM:56: 	
+OEUYLFS:57: 	
+FAHSDTV:58: 	
+YJEEOTV:59: 	

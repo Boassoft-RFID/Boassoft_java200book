@@ -1,0 +1,21 @@
+0AGIEMDH:1: 	package kr.co.infopub.chapter.s146;
+0YIYHMTI:2: 	// 행렬 연산
+0DRTYRFA:3: 	public class MatrixMain {
+0OWVGTCZ:4: 		public static void main(String[] args) {
+0DZJVXGM:5: 			double [][] basic={{1,2,3},{4,5,6},{7,8,9}};
+0AWSLPSZ:6: 			Matrix s0=new Matrix(basic);
+0GIGTVVF:7: 			s0.print();
+0RNMEMSD:8: 			double [][] x2={{0,1,0},{0,0,1},{1,0,0}};
+0VPFUNBD:9: 			double [][] x1={{0,0,1},{1,0,0},{0,1,0}};
+RBMSYUO:10: 			
+ZTZUGPX:11: 			Matrix mx2=new Matrix(x2);
+RRRQGNB:12: 			Matrix mx1=new Matrix(x1);
+LLDPXVU:13: 			
+HVUBLEK:14: 			Matrix s1=MatrixUtil.mulMatrix(mx2, s0);
+UHCRJEZ:15: 			s1.print();
+RSOCAHN:16: 			Matrix s2=MatrixUtil.mulMatrix(mx1, s0);
+HVIHQPV:17: 			s2.print();
+UZRHKSE:18: 			Matrix s3=MatrixUtil.mulMatrix( s0,mx1);
+NMHAAFR:19: 			s3.print();
+AEADMWC:20: 		}
+IRGCHCG:21: 	}

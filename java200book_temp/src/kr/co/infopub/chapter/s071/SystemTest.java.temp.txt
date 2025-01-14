@@ -1,0 +1,30 @@
+0PJRUZOQ:1: 	package kr.co.infopub.chapter.s071;
+0GJZXWCA:2: 	import java.util.Date;
+0JNEFWNT:3: 	import java.util.Enumeration;
+0CPQYKJZ:4: 	import java.util.Properties;
+0IOIDOFJ:5: 	public class SystemTest {
+0CMWXDRW:6: 		public static void main(String[] args) {
+0GMOCQPY:7: 			long ltime=System.currentTimeMillis();
+0ZRHGGKU:8: 			System.out.println((ltime));//1970.1.1부터 
+0PHKTXHJ:9: 			for(int i=0;i<100000;i++){
+GXFPFUH:10: 				System.out.print("");
+BZDMPNH:11: 			}
+KEVWXKU:12: 			long ltime2=System.currentTimeMillis();//milli 1/1000초
+FGOMQWH:13: 			System.out.println((ltime2-ltime));
+NIAEVKK:14: 			System.out.println(ltime2/1000/60/60/24/365+"년");
+TRQKNBC:15: 			Properties pro=System.getProperties();
+PWCQRWX:16: 			//원하는  System property
+YLMETXT:17: 			System.out.println(pro.getProperty("java.vm.version"));
+WUTSSZX:18: 			System.out.println(pro.getProperty("file.separator"));
+LJYPLRZ:19: 	
+PZVAHAS:20: 			System.out.println(new Date(System.currentTimeMillis())); //오늘
+QAQHZTH:21: 			//-----------------java.util.*에서 ----------------------//
+ZJSZDKB:22: 			//모든 System property
+JHOCIQF:23: 			Enumeration<Object> en=pro.keys();
+PGJSNMJ:24: 			int i=0;
+UIHKVTS:25: 			while(en.hasMoreElements()){
+UTXPKCW:26: 				String keys=(String)en.nextElement();  
+MJJTKOZ:27: 				System.out.println((++i+" ")+keys+" : "+pro.getProperty(keys));
+XSJEIPP:28: 			}
+IAILSJZ:29: 		}//main
+HCLDMOR:30: 	}

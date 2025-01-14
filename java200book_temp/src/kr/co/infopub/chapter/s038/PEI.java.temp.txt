@@ -1,0 +1,15 @@
+0JNZWLTQ:1: 	package kr.co.infopub.chapter.s038;
+0JVYAYAJ:2: 	// 상수 묶음 클래스- enum
+0JZPLGWM:3: 	public enum PEI{
+0HZIGPGE:4: 		PHYSICAL(23), EMOTIONAL(28), INTELLECTUAL(33);
+0TKECGDB:5: 		private final int peiValue;
+0AEBDRRK:6: 		PEI(int pie){
+0YNYZFLO:7: 			this.peiValue=pie;
+0VWJEZYC:8: 		}
+0CWTZSIL:9: 		public int getPei(){
+KCGYFKM:10: 			return peiValue;
+VBEYFDF:11: 		}
+BFRUUHQ:12: 	}
+GSNOLBE:13: 	enum FRUIT{
+DJGYVSO:14: 		APPLE, BANANA, MANGO
+RVXYDME:15: 	}

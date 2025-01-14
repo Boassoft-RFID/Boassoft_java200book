@@ -1,0 +1,164 @@
+00ITEFFPV:1: 	package kr.co.infopub.chapter.s102_geo;
+00NXFRBBB:2: 	import java.io.BufferedReader;
+00ZWWBRRQ:3: 	import java.io.BufferedWriter;
+00GMCKVNS:4: 	import java.io.File;
+00PGSBODX:5: 	import java.io.FileReader;
+00PXQXWGY:6: 	import java.io.FileWriter;
+00PGGQWVA:7: 	import java.io.IOException;
+00ADIGKCJ:8: 	import java.net.URL;
+00RFHBZYW:9: 	import java.util.Date;
+0ZOIGCGW:10: 	import org.json.JSONArray;
+0PHDGLSD:11: 	import org.json.JSONObject;
+0MNLWWWC:12: 	import org.json.simple.JSONValue;      // simple json
+0TSWTTKM:13: 	import javafx.application.Application;
+0QRTQSVK:14: 	import javafx.application.Platform;
+0QJALZZF:15: 	import javafx.concurrent.Worker.State;
+0YZFKCUO:16: 	import javafx.geometry.Insets;
+0BUQWHZU:17: 	import javafx.geometry.Pos;
+0EUDRBDB:18: 	import javafx.scene.Scene;
+0IMAHPGM:19: 	import javafx.scene.control.Button;
+0XWBUEMA:20: 	import javafx.scene.control.Label;
+0KDIJNRZ:21: 	import javafx.scene.layout.HBox;
+0CUMTCPM:22: 	import javafx.scene.layout.VBox;
+0OKEUNGZ:23: 	import javafx.scene.web.WebEngine;
+0ZVWSCFF:24: 	import javafx.scene.web.WebView;
+0JXDQBTR:25: 	import javafx.stage.FileChooser;
+0BQKOQOX:26: 	import javafx.stage.Stage;
+0XZDQKXY:27: 	import netscape.javascript.JSObject;
+0RMECJDL:28: 	
+0SQHIWTG:29: 	public class HowFarDistanceFx extends Application {
+0LWVZOJF:30: 	 public static void main(String[] args) {
+0IDEHFLT:31: 	        launch(args);
+0BVUWGST:32: 	 }
+0RMSALBN:33: 	 JavaApplication app;
+0OIWXYWH:34: 	 Label lbhowfar=new Label("");
+0MBVNYGZ:35: 	 @Override
+0PONPLXU:36: 	 public void start(Stage stage) {
+0KFTMYYN:37: 		stage.setTitle("거리는 얼마인가요?");
+0SHWPISL:38: 		WebView webView = new WebView();
+0MYOLUIR:39: 	    WebEngine webEngine = webView.getEngine();
+0ERLUVVX:40: 	    URL url = getClass().getResource("geonew.html");
+0XISOCSM:41: 	    //웹호출
+0XLMYJDF:42: 	    webEngine.load(url.toExternalForm());
+0CWVDHKL:43: 	    app=new JavaApplication(stage);
+0GGPAPVP:44: 	    webEngine.getLoadWorker().stateProperty().addListener(
+0QUJEZMM:45: 	       (ov,  oldState,  newState) ->{
+0ETBOUXR:46: 	        System.out.println("------state-------"+newState);
+0ELWJSRY:47: 	        if(newState == State.SUCCEEDED){
+0WNAVDGK:48: 	        	JSObject window = (JSObject) webEngine.executeScript("window");
+0RWVNSUK:49: 	            window.setMember("app", app);  //app이름으로 호출할 JS
+0KZMRIXR:50: 	        }
+0YOUJSJS:51: 	      });  
+0LRFNKOC:52: 	    VBox root = new VBox(10);       // 수직 - 웹뷰와 HBox 붙이기
+0IRVUGUF:53: 	    HBox hbox = new HBox(10);       // 수평 - 버튼들 붙이기
+0NCKDUWT:54: 	    hbox.setPadding(new Insets(5));
+0DNYBTPX:55: 	    hbox.setAlignment(Pos.CENTER);
+0JDGULAF:56: 	    // Exit 버튼
+0NZMLVZP:57: 	    Button btnExit = new Button("Exit");
+0DJIIQYA:58: 	    btnExit.setOnAction(e -> {Platform.exit();});
+0HCBLYCL:59: 	    // About 버튼
+0VTKOQZG:60: 	    Button btnAbout = new Button("About");
+0DKRNVNB:61: 	    btnAbout.setOnAction(v-> {
+0JDFFYPD:62: 	        webEngine.executeScript( " updateMessage(' " +
+0NLGVPPC:63: 	        stage.getTitle()+" "+new Date() + " ') " );}
+0BEKVUEQ:64: 	    );
+0JAMBVJK:65: 	    // Clear버튼
+0FICPFGU:66: 	    Button btnClear = new Button("Clear");
+0KYHIQQH:67: 	    btnClear.setOnAction( v->{
+0JSZHARY:68: 	    	webEngine.executeScript( "clearMessage()" );
+0PCSYCLL:69: 	    	lbhowfar.setText("");}
+0XAFNOCW:70: 	    );
+0AZQFHXZ:71: 	    // ReadFx 버튼
+0EMMLSDK:72: 	    Button btnReadFx = new Button("ReadFx");
+0GGYZJXE:73: 	    btnReadFx.setOnAction(v-> {
+0BVUTSMP:74: 	    	FileChooser fileChooser = new FileChooser();
+0DCLPCAS:75: 	        File file = fileChooser.showOpenDialog(stage);
+0CTFWBAN:76: 	        try (BufferedReader reader = new BufferedReader(
+0ZBCLGCB:77: 	        		                   new FileReader(file))){
+0RBPCDUT:78: 	            Object obj = JSONValue.parse(reader);
+0HQJUCEA:79: 	            //json을 자바스트립트에 넝어서 라인을 그림
+0IBHHVMS:80: 	            webEngine.executeScript("drawLine(" + obj + ")");
+0HZGBKJI:81: 	            System.out.println("read------->"+file.getAbsolutePath());
+0YMHQCKT:82: 	            //거리 구하기
+0KGXWCQT:83: 	            HowFarDistance2 howfarw=new HowFarDistance2(); //json
+0CTJGIXQ:84: 	            howfarw.makeDistances(file.getAbsolutePath());
+0OTYNFTL:85: 	            double dd=howfarw.howfar();
+0PVFTTJX:86: 	            lbhowfar.setText(String.format("거리: %.2fkm", dd));
+0KBWQUSK:87: 	            webEngine.executeScript( 
+0ILXRNXR:88: 	            	" updateMessage(' " + "You walk "+dd+" Km." + " ') " );
+0FJMDZWV:89: 	        } catch (Exception ex) {
+0DJUZPBV:90: 	           System.out.println("read----Exception---------->"+ex);
+0LGGQIVU:91: 	           webEngine.executeScript( "clearMessage() " );
+0SASFXQO:92: 	        }}
+0VJMEEEE:93: 	    );
+0YGTPNWU:94: 	    // Refresh 버튼
+0AYULIFT:95: 	    Button Refresh = new Button("Refresh");
+0NSBWBGG:96: 	    Refresh.setOnAction(v->{	
+0CYXWTZU:97: 	     webEngine.load(url.toExternalForm());
+0QEZHQBN:98: 	     JSObject window = (JSObject) webEngine.executeScript("window");
+0OUDHVMD:99: 	     window.setMember("app", app= new JavaApplication(stage));}
+SZQMCRM:100: 	    );
+RIDIHNY:101: 	    // 거리구하기 버튼
+DWFFOLS:102: 	    Button btndist = new Button("거리구하기");
+NKYWVFH:103: 	     btndist.setOnAction(
+HBVMEKI:104: 	    		 v->{webEngine.executeScript(" calculateFX()");}
+FSQMEUJ:105: 	    );
+ABIZNIX:106: 	    // 수평으로 붙이기 - 7개의 버튼을 수평으로 붙이기
+NTPJFOZ:107: 	    hbox.getChildren().addAll(
+WETIYLT:108: 	       lbhowfar,btnAbout,btnClear,btnReadFx,btndist,Refresh,btnExit);
+PEDRZRM:109: 	    // 수직으로 웹뷰, hbox 붙이기
+QDOWXLL:110: 	    root.getChildren().addAll(webView, hbox);
+WCZJVGI:111: 	    Scene scene = new Scene(root, 1400, 700);
+LJVTSLO:112: 	    stage.setScene(scene);
+IPCSNWP:113: 	    stage.show();
+QNWNGSM:114: 	 }
+LQMYRPY:115: 	 // JS에서 app.메서드()로 호출
+KBEBQHO:116: 	 public class JavaApplication {
+IBAZUFK:117: 	  Stage stage;
+YVEGVBO:118: 	 public JavaApplication(Stage stage){
+OMCAUEX:119: 		this.stage=stage;
+THJICFH:120: 		
+XDRXJIS:121: 	 }
+YVVIVFU:122: 	 // JS-> 자바메서드 호출, 웹뷰 파일을 자바파일로 저장
+BWXJGGT:123: 	 public void saveJSToJavaFxFile(String msg) {
+TITFCUL:124: 		System.out.println("--------------------->"+msg);
+XIWVKXZ:125: 		FileChooser fileChooser = new FileChooser();
+CZGGKFA:126: 		// 추가 
+GBEZURM:127: 		fileChooser.getExtensionFilters().addAll(
+BOJYJFU:128: 		     new FileChooser.ExtensionFilter("JSON Files", "*.json")
+TNXMJOG:129: 	/*	    ,new FileChooser.ExtensionFilter("HTML Files", "*.htm")
+UJVIGGC:130: 		    ,new FileChooser.ExtensionFilter("Text Files", "*.txt")*/
+DOVZPFH:131: 		);
+KATKUHH:132: 	    File file = fileChooser.showSaveDialog(this.stage);
+EKEHYPY:133: 	    try (BufferedWriter writer = new BufferedWriter(
+JCDOFTR:134: 	    		                           new FileWriter(file))) {
+KWHEYZY:135: 	        writer.write(msg);
+LRVWEKM:136: 	    } catch (IOException ex) {
+YAUIUFF:137: 	    	System.out.println("------------>"+ex);
+ZKSUPAV:138: 	    }
+EBZXCWU:139: 	 }
+HXVFVEN:140: 	 // JS-> 자바메서드 호출, 거리 총합 구하기, 웹뷰에 붙이기
+LHJJAUE:141: 	 public void calculate(String msg) {
+SCWCKHF:142: 		double tot=0.0;
+GTYPZWN:143: 		// Two dimensions 배열을 이용하여 거리 구하기
+HQBEVEA:144: 		tot=HowFarDistance2.howfarDistance(getLatLng(msg))	;	
+OWWKGLM:145: 		lbhowfar.setText(String.format("거리: %.2fkm", tot));
+TQSVGAM:146: 	 }
+MUNBJMT:147: 	 // JSON을 이차원 배열로
+KYZWHXF:148: 	 private  double [][] getLatLng(String json){
+MQCCSVC:149: 		JSONObject jObject = new JSONObject(json);
+URBMBYI:150: 		JSONArray loc = jObject.getJSONArray("loc");
+GDEJEXV:151: 		double [][]latlng=new double[loc.length()][2];
+FDQNMUF:152: 		if(loc!=null){
+ELWHQOV:153: 			for(int i=0; i<loc.length(); i++) {
+BDHZPWX:154: 				JSONObject local = loc.getJSONObject(i);
+IXHQDLQ:155: 				String markerX = local.getString("markerX");
+LVXZESD:156: 				String markerY = local.getString("markerY");
+IYFEUGX:157: 				latlng[i][0]=Double.parseDouble(markerX.trim());
+ABIRFLY:158: 				latlng[i][1]=Double.parseDouble(markerY.trim());
+ITFKKDH:159: 			}	
+LFJXWLY:160: 		}
+VOIBHPJ:161: 		return latlng;
+KTCJCAK:162: 	  }
+NUEURHB:163: 	 }// nested class JavaApplication
+RLZCBWY:164: 	}//class 

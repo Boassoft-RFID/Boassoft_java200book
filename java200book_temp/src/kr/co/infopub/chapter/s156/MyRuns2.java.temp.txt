@@ -1,0 +1,20 @@
+0CETXDCY:1: 	package kr.co.infopub.chapter.s156;
+0YXSAERY:2: 	public class  MyRuns2 implements Runnable{
+0XBZJFMH:3: 		private int i=0;   //멤버 자원공유
+0LZAPGTV:4: 		public void run(){
+0WVCKWQU:5: 			show();
+0LXNZUJI:6: 		}
+0KSBMSRW:7: 		public synchronized void show(){
+0EDVACVT:8: 			for(  ;i<500;i++){
+0UZRMGPK:9: 				if(((Thread.currentThread()).getName()).equals("a") ){
+ZPXXUQN:10: 					System.out.print("A");
+LCXWXST:11: 				}else if(((Thread.currentThread()).getName()).equals("b") ){
+GIDBEGO:12: 					System.out.print("B");
+EQJSENO:13: 				}else if(((Thread.currentThread()).getName()).equals("c") ){
+GVPALVZ:14: 					System.out.print("C");
+FUZAGCI:15: 				}else{
+QNLRUCL:16: 					System.out.print("["+Thread.currentThread().getName()+i+"]");
+YPJKOQU:17: 				}
+JGTEGIF:18: 			}
+RVXJSHM:19: 		}
+YZJSYCJ:20: 	}

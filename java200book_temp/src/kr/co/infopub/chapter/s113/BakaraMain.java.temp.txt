@@ -1,0 +1,80 @@
+0QOGXJSQ:1: 	package kr.co.infopub.chapter.s113;
+0ZQFVHVT:2: 	import java.util.*;
+0MGKRUKU:3: 	public class BakaraMain {
+0WXRJEVK:4: 	 public static void main(String[] args) {
+0OEZBRMK:5: 		System.out.println("자산을 입력하시오");
+0SRVIDYD:6: 		Scanner in = new Scanner(System.in);
+0SKSVFKE:7: 		int sum = in.nextInt();
+0CNSHQRL:8: 		int i = 0;
+0QWYYKQF:9: 		Bakara bakara = new Bakara();
+EJEYQYU:10: 		while (true) {
+ADIJVHE:11: 			bakara.start();
+CRJMXLS:12: 			i++;
+VFKJYAF:13: 			System.out.println(i + "번째 대결입니다.");
+AXPKUSY:14: 			System.out.println("당신의 현재 자산은 총 " + sum + "원 입니다.");
+LWGFUSY:15: 			System.out.println("당신이 배팅할 금액을 설정하세요.");
+ZWQVWRB:16: 		    
+AANHGWA:17: 			int n = in.nextInt();
+OZNHAFL:18: 			if (n > sum) {
+DYWLMDY:19: 				System.out.println("자산을 넘어설 수 없습니다. 다시 입력하세요.");
+TXIKCEH:20: 				i--;
+ZFKKAWV:21: 			}else {
+LYIIMYX:22: 				sum = sum - n;
+DBPPENU:23: 				System.out.println("당신은 " + n + "만큼의 금액을 배팅했습니다.");
+EYSZDFR:24: 				System.out.println("당신의 자산은 " + sum + "입니다.");
+VLXXVWH:25: 				System.out.println("이 금액을 어디에 거시겠습니까");
+TEQOUSG:26: 				System.out.println("1 : Player"); 
+QTCPHBY:27: 				System.out.println("2 : Dealer");
+VHXPZWF:28: 				System.out.println("3 : Tie(무승부)");
+WBAOQZX:29: 				
+PAFUPBF:30: 				int nn = in.nextInt();//승부를 걸 쪽
+RWXPVFA:31: 				switch(nn) {
+WXFKVWF:32: 					case 1 : System.out.println("당신은 Player에 걸었습니다.");
+UPHURIJ:33: 						break;
+GPRIUYG:34: 					case 2 : System.out.println("당신은 Dealer에 걸었습니다.");
+CVWTESJ:35: 						break;
+EUCXBVC:36: 					case 3 : System.out.println("당신은 Tie에 걸었습니다.");
+ICXISUA:37: 						break;
+JIUJKBI:38: 				}
+AERWILA:39: 				System.out.println();
+CBQMNNJ:40: 				System.out.println("---------------------");
+NHHGVWF:41: 				System.out.println("----<Game Start!>----");
+FMXVSJA:42: 				System.out.println("---------------------");
+DYREMQV:43: 						
+FGZMECH:44: 				bakara.result();
+JXELCHZ:45: 				
+DOUOCUQ:46: 				System.out.println("---------------------");
+NXBTCNV:47: 				System.out.println("-----<배팅 결과!>-----");
+UCCYELI:48: 				System.out.println("---------------------");
+NCZAYYA:49: 				
+SSKGWSI:50: 				if (nn == bakara.getWhoWin()) {
+KMPOJYX:51: 					System.out.println("당신이 이겼습니다!");
+JVIIALH:52: 					System.out.println("축하합니다!");
+FBRJRFK:53: 					sum = sum + (n * 2);
+EGOWKRZ:54: 				}
+HWFGSDQ:55: 				else if (nn == bakara.getWhoWin()) {
+QWJLWWD:56: 					System.out.println("당신이 이겼습니다!");
+YEUEDVP:57: 					System.out.println("축하합니다!");
+QOPRTSH:58: 					sum = sum + (n * 2);
+OHJPEBE:59: 				} 
+EPDXHPL:60: 				else if (nn == bakara.getWhoWin()) {
+AABXXPK:61: 					System.out.println("당신이 이겼습니다!");
+IQLMYWC:62: 					System.out.println("축하합니다!");
+CBJGRDO:63: 					sum = sum + (n * 8);
+CGVLETF:64: 				}
+FMOFSMM:65: 				else {
+JEYQXHG:66: 					System.out.println("안됐군요.. 유감입니다.");
+JGVNCKH:67: 				}
+KIHFQHF:68: 				
+LAXIWNQ:69: 				System.out.println("당신의 남은 자산은 " + sum + "입니다!");
+WQROGSN:70: 				System.out.println();
+CZIUIPY:71: 				System.out.println("---------------------");
+VTBMHCA:72: 				
+NJGSGHG:73: 				if (sum <= 0) {
+IFMXDAM:74: 					System.out.println("자산이 부족합니다. 수고하셨습니다!");
+VIYWCWN:75: 					break;
+TTEQIKG:76: 				}
+PLEEDVH:77: 			}
+EPLQZNI:78: 		}
+XSPFQPP:79: 	 }
+LYTLINJ:80: 	}

@@ -1,0 +1,83 @@
+0GURNNRG:1: 	package kr.co.infopub.chapter.s153;
+0ITJOWAF:2: 	import java.util.ArrayList;
+0AMZCLMW:3: 	import java.util.Collections;
+0GZGCKPV:4: 	public class CardCase {
+0PRHRQFG:5: 		private final static int numOfCards ;
+0KLDTBRY:6: 		static{ //static 생성자
+0YHUOVIQ:7: 			numOfCards = 
+0XZPOKKQ:8: 				CardUtil.SUIT.length * CardUtil.RANK.length;
+0QCGBYSV:9: 		}
+NABNDIS:10: 		private ArrayList<Card> cards;
+OXZFYBY:11: 		
+WONAQSV:12: 		public CardCase(){ 
+WAFTLKW:13: 			make(); 
+AEPAHRC:14: 		}
+RKXOWXK:15: 		public void make(){
+WIYDUFI:16: 			init();
+DRUDMGK:17: 			makeInit();
+IABXDAY:18: 		}
+ONAEQGJ:19: 		private void makeInit(){
+ICNAAJR:20: 			int count = 0;
+JFXVQZI:21: 			while (count!=numOfCards) {
+QFFFRTN:22: 				Card cc = new Card();
+PQACGSK:23: 				if (!cards.contains(cc)) {
+ZNXPGPI:24: 					cards.add(cc);
+JEZGDWX:25: 					count++;
+KGRLXWG:26: 				}
+JVFRYSE:27: 			}
+GCVZZNJ:28: 		}
+VYFREUE:29: 		public void shuffle(){
+RKQXEMQ:30: 			Collections.shuffle(cards);
+YUPFFEJ:31: 		}
+CCQXKFW:32: 		public int size(){
+AIODOSD:33: 			return cards.size();
+JIEJNDJ:34: 		}	
+SQCVVLZ:35: 		public void init(){
+LCRUUJR:36: 			cards = new ArrayList<Card>();
+ADRBRUV:37: 			cards.clear();
+SEJVXGV:38: 		}
+SETIHFU:39: 		
+YYOXQSD:40: 		public ArrayList<Card> getAllCard(){
+LFGFOWR:41: 			return cards;
+SKEAMKY:42: 		}
+GULFNHP:43: 		public Card getCard(int i) {
+VHEJOIU:44: 			return cards.get(i);
+WZAJVBD:45: 		}
+AJEWZZQ:46: 		public void print(){
+AEKLSQD:47: 			int rank=CardUtil.RANK.length;
+DVREWRJ:48: 			for (int i = 0; i < cards.size(); i++) {
+GKOALBT:49: 				Card c=cards.get(i);
+IUNSHHP:50: 				System.out.printf("%s ",c.toString());
+JAZWVFE:51: 				if((i+1)%rank==0){
+NORKIMN:52: 					System.out.println();
+FJENINI:53: 				}
+XHDVKQW:54: 			}
+QIPVJEV:55: 		}
+SMDVZJG:56: 		public static void print(Card[] cd){
+YRRMIVL:57: 			for (int i = 0; i < cd.length; i++) {
+YLRQFNJ:58: 				System.out.printf("%s \t",cd[i]);
+ZRKHKEX:59: 			}
+FYTJQIU:60: 			System.out.println();
+BJIQVWS:61: 		}
+GRYPYNR:62: 		public Card[] makeFiveCards(){
+KFVZGSJ:63: 			Card[] cd=new Card[5];
+WCHVMYV:64: 			for (int i = 0; i < cd.length; i++) {
+BWAZELI:65: 				cd[i]=getCard(i);
+XJGYMOY:66: 			}
+JLULTVK:67: 			return cd;
+AYLDYOX:68: 		}
+FKACTXZ:69: 		//0짝수 5개, 1 홀수 5개
+HOHXVWB:70: 		public Card[] makeFiveCards(int index){
+PTJHCSJ:71: 			Card[] cd=new Card[5];
+ZIINSIE:72: 			if(index%2==0){ //0,2,4,6,8
+NZGFQIM:73: 				for (int i = 0,j=0; i < cd.length; i++, j+=2) {
+FEBOKWD:74: 					cd[i]=getCard(j);
+MWAZBGG:75: 				}
+YPNVTIY:76: 			}else{  //1,3,5,7,9
+TZRIQIC:77: 				for (int i = 0,j=1; i < cd.length; i++, j+=2) {
+GOZBHJY:78: 					cd[i]=getCard(j);
+BYZCKUM:79: 				}
+XATQVHX:80: 			}
+CUJUMZB:81: 			return cd;
+NLIXXIT:82: 		}
+LYSFKQM:83: 	}

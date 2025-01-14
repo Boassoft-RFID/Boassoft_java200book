@@ -1,0 +1,52 @@
+0MJJEPXZ:1: 	package kr.co.infopub.chapter.s099;
+0GPLBSYI:2: 	import java.util.ArrayList;
+0ESXQLUD:3: 	import javafx.application.Application;
+0YKLAABE:4: 	import javafx.geometry.Insets;
+0ADCKSDX:5: 	import javafx.geometry.Pos;
+0DLVTKKN:6: 	import javafx.scene.Scene;
+0KIUKDKO:7: 	import javafx.scene.image.ImageView;
+0ZCVDEFT:8: 	import javafx.scene.layout.HBox;
+0BNHHLIL:9: 	import javafx.scene.layout.VBox;
+TUWYWJG:10: 	import javafx.stage.Stage;
+FWDRFNA:11: 	public class WikipediaTest extends Application {
+TCFYVOL:12: 	 public static void main(String[] args) {
+FDPQFES:13: 	    launch(args);
+XJMYVWH:14: 	 }
+YSOFNLR:15: 	 ImageFXListRequest  request=new ImageFXListRequest();
+RMHDYUK:16: 	 RequestFromWikipedai rfw=new RequestFromWikipedai();
+TMLJWUB:17: 	 
+FXYAPWX:18: 	 @Override
+WIZLIFK:19: 	 public void start(Stage primaryStage) {
+AMYZVST:20: 		String a="https://ko.wikipedia.org/wiki/ISO_3166-1";
+MIHOXDV:21: 		String msg="srcset=\"//upload.wikimedia.org/wikipedia";
+EFXENLG:22: 		rfw.getAllHtml(a);   
+CUUKTBL:23: 		//rfw.printHtml();
+LNOQJKX:24: 		rfw.getSevereign(msg);
+MZZNUGV:25: 		//rfw.printFlags();
+POBYZND:26: 		ArrayList<SovereignFlag> flags=rfw.getFlags();
+YQEEDTA:27: 		request.getAllImages(flags);  //image List
+LYAMLNB:28: 		int col=25; 
+XBWYVJB:29: 		VBox root = new VBox(col);     // 열 25개
+IUAFXKR:30: 	    int row=flags.size()/col;
+GKOSOUV:31: 	    for(int i=0; i<row; i++){
+DNOPJHY:32: 	    	HBox hbox = new HBox(10);          // 행 10줄
+RSTPIMH:33: 	        hbox.setPadding(new Insets(5));
+WIVBIUI:34: 	        hbox.setAlignment(Pos.CENTER);
+QXVJSWD:35: 	    	for (int j = 0; j < col; j++) {      
+CQNQLTI:36: 	    		SovereignFlag b=flags.get(i*col+j);  
+GRXBXCB:37: 	        	ImageView imageView = 
+FXDNIAV:38: 	        	  new ImageView(request.loadImage(b.getFlag()));
+USSOEZR:39: 	        	imageView.setFitWidth(50);
+MRKVMQQ:40: 	        	imageView.setFitHeight(50);
+GSZNGTQ:41: 	        	imageView.setOnMouseClicked(ee->{
+YFVNBDV:42: 	        		System.out.println(b.getFlag());
+RXJXMSV:43: 	        	});
+DYEOZRU:44: 	        	hbox.getChildren().add(imageView);
+CKPGLBM:45: 			}
+EKSUJNJ:46: 	    	root.getChildren().add(hbox);        
+OBGVYVE:47: 	    }
+IGQARIK:48: 	    primaryStage.setScene(new Scene(root, 65*col, 75*row));
+ZBWPZZI:49: 	    primaryStage.setTitle("Flag Images");
+VDKNZXF:50: 	    primaryStage.show();
+XQKFGCM:51: 	 }
+HIZJDDE:52: 	}

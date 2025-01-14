@@ -1,0 +1,83 @@
+0KYRVPHJ:1: 	package kr.co.infopub.chapter.s153.ref;
+0TYRCFNF:2: 	
+0SNAPLQA:3: 	import java.io.FileWriter;
+0JDUAVBN:4: 	import java.io.IOException;
+0HOIQYHK:5: 	import java.io.PrintWriter;
+0VWOHHWQ:6: 	import java.util.ArrayList;
+0TMYDYDK:7: 	
+0ETWQTXQ:8: 	public class CardSaveToHtml {
+0SXYVJCP:9: 	
+FPBRRKN:10: 		public  void save(Card[]cd,String fname){
+SJUEINE:11: 			FileWriter fw=null;
+MPLEABG:12: 			PrintWriter pw=null;
+VROJOGN:13: 			try {
+OADLHLV:14: 				fw=new FileWriter(fname,false);
+EMCPTIB:15: 				pw=new PrintWriter(fw,true);
+CHXLLID:16: 				pw.println("<html>");
+AGEZOIM:17: 				pw.println("<body>");
+XGFNYNY:18: 				pw.println("<table border='0'>");
+AQINFKQ:19: 				int col=CardUtil.RANK.length;
+FYEYHVC:20: 				int row=CardUtil.SUIT.length;
+PAQBEYY:21: 				
+PHWYFAU:22: 				for (int i = 0; i < row; i++) {
+RJXDZDO:23: 					pw.println("<tr>");
+MBTPZUX:24: 					for (int j = 0; j < col; j++) {
+AVNYOHP:25: 						pw.println("<td>");
+NTEVNHR:26: 						pw.println("<img src='image/"+cd[i*col+j].getCard().toLowerCase()+".gif'/>");
+QDKSRDC:27: 						pw.println("</td>");
+PNXYGWH:28: 					}
+KJDIRRQ:29: 					pw.println("</tr>");
+RCVWYHG:30: 				}
+XRBAFTI:31: 				pw.println("<table>");
+WDYKWGP:32: 				pw.println("</body>");
+TTRKGKX:33: 				pw.println("</html>");
+GKTHSOB:34: 			} catch (IOException e) {
+PPFMTPM:35: 				System.out.println(e);
+UBNXTRF:36: 			}finally{
+COCGTCC:37: 				try {
+TLAEQYA:38: 					fw.close();
+XVBUPRO:39: 				} catch (IOException e) {
+HBJTLST:40: 					
+BMGVIFL:41: 				}
+OTHQTUY:42: 				pw.close();
+PJHLLNY:43: 			}
+UOKDWIB:44: 		}
+NGWSUDC:45: 		public  void save(ArrayList<Card[]> clist,String fname){
+BNOLRQY:46: 			FileWriter fw=null;
+BZLHLMX:47: 			PrintWriter pw=null;
+WDXNGQX:48: 			try {
+BYEGLCL:49: 				fw=new FileWriter(fname,false);
+YOXWJFB:50: 				pw=new PrintWriter(fw,true);
+OUEJRBG:51: 				pw.println("<html>");
+IANPUUU:52: 				pw.println("<body>");
+HEFBLKF:53: 				pw.println("<table border='0'>");
+OWULSLY:54: 				int col=5;
+XPVBGAO:55: 				int row=clist.size();
+NDDFUFP:56: 				
+QEOQCHQ:57: 				for (int i = 0; i < row; i++) {
+NDFNGNK:58: 					pw.println("<tr>");
+LDXRKMC:59: 					pw.println("<td>");
+RCACUZP:60: 					pw.println((i+1));
+YDIQTZS:61: 					pw.println("</td>");
+YDLWRAX:62: 					for (int j = 0; j < col; j++) {
+SFXRSXX:63: 						pw.println("<td>");
+KAWZQGP:64: 						pw.println("<img src='image/"+clist.get(i)[j].getCard().toLowerCase()+".gif'/>");
+DAFDOHU:65: 						pw.println("</td>");
+BNFIGKI:66: 					}
+GMZVHLW:67: 					pw.println("</tr>");
+ONQPFFL:68: 				}
+LZCNUCK:69: 				pw.println("<table>");
+XYUPHJJ:70: 				pw.println("</body>");
+XXPSDTB:71: 				pw.println("</html>");
+FEYMLHQ:72: 			} catch (IOException e) {
+FLKCPQL:73: 				System.out.println(e);
+NPZKWKN:74: 			}finally{
+LUCIZJE:75: 				try {
+LLAWUYV:76: 					fw.close();
+VDYJTIX:77: 				} catch (IOException e) {
+TGJDGBA:78: 					
+XJAUEDJ:79: 				}
+MPQQKND:80: 				pw.close();
+JTTAREN:81: 			}
+ZGFANYE:82: 		}
+NTLIYXO:83: 	}

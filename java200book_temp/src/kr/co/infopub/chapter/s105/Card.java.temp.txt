@@ -1,0 +1,44 @@
+0BMZWXCT:1: 	package kr.co.infopub.chapter.s105;
+0KUHUWSX:2: 	public class Card {
+0LWOUUZI:3: 		private String cardVal; //H8
+0WJRSUTM:4: 		public String getCardVal() {
+0RFQTJOY:5: 			return cardVal;
+0LUVSFSA:6: 		}
+0VGYXRCO:7: 		public Card() {
+0SPJNODB:8: 			int deck=(int)(Math.random()*CardUtil.SUIT.length); // 0~1
+0BZEEIUT:9: 			int suit=(int)(Math.random()*CardUtil.VALU.length); // 0~9
+VLQJHSM:10: 			//임의의 카드 값을 갖는다. H6
+MOBMFAQ:11: 			cardVal=CardUtil.SUIT[deck]+CardUtil.VALU[suit];
+KUGIRXK:12: 		}
+JIMBSAU:13: 		// 테스트용
+FECMOKR:14: 		public Card(String s) {
+GLIPNTV:15: 			this.cardVal=s;  // 문자열은 값 복사
+HRREENW:16: 		}
+JKCNFMF:17: 		// 복사 생성자
+TOELSCO:18: 		public Card(Card c) {
+BFHSYRD:19: 			this(c.getCardVal());  // 문자열은 값 복사
+GBEZCTV:20: 			// this.cardVal=c.getCardVal(); //동일
+XKMLWEQ:21: 		}
+TJRKRSI:22: 		@Override
+PIFUGHF:23: 		public String toString() {
+LUMOGTC:24: 			return "[" + cardVal + "]";
+YWGWPIR:25: 		}
+XKMYQJZ:26: 	    // Eclipse-Source-Generate hashCode() and equals()를 이용하여 자동으로 만들자
+DKKOSLA:27: 		@Override
+FRXWUXT:28: 		public int hashCode() {
+XYBEAZC:29: 			final int prime = 31;
+LATQTMT:30: 			int result = 1;
+OYWUBOO:31: 			result = prime * result + ((cardVal == null) ? 0 : cardVal.hashCode());
+WIFRKKT:32: 			return result;
+VVCEFBE:33: 		}
+NBLKHJT:34: 	    // 소스를 정리하면  카드값과 카드값을 일대일로 비교한다.
+FXNDCPM:35: 		@Override
+HDMABZH:36: 		public boolean equals(Object obj) {
+SFGJJAM:37: 			Card cb=(Card)obj; 
+RHEZTXP:38: 			if(cardVal.equals(cb.getCardVal())){
+YGEMZVH:39: 				return true;
+XDOTSJC:40: 			}else{
+KNBSNJJ:41: 				return false;
+DUACXRJ:42: 			}
+TDNBVTR:43: 		}
+COXIRUN:44: 	}//

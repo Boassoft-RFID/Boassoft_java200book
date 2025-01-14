@@ -1,0 +1,53 @@
+0URGUYHR:1: 	package kr.co.infopub.chapter.s163;
+0RGPNBVR:2: 	import java.util.Calendar;
+0TUMLQDC:3: 	public class BioCalendar {
+0VURMKIX:4: 		//상수  
+0LNNLHZW:5: 		public static final int PHYSICAL = 23;
+0VPBNBWC:6: 		public static final int EMOTIONAL = 28;
+0FSVGOBK:7: 		public static final int INTELLECTUAL = 33;
+0KWHHPNS:8: 	
+0YMCOHOL:9: 		public static void main(String[] args) {
+LNAKWSC:10: 			
+RRVMAIY:11: 			  Calendar birth=Calendar.getInstance();
+FPMOKAY:12: 			  birth.set(1980,3-1,28);  // 0월 ~11월, 
+INBUUWH:13: 			  Calendar theDay=Calendar.getInstance();   // 오늘
+EWFUGDO:14: 			  
+TIPKWKQ:15: 			  long dateBirth=birth.getTimeInMillis();
+EQNEWEU:16: 			  long dateToDay=theDay.getTimeInMillis();
+UTWTIXO:17: 			  long days=(dateToDay-dateBirth)/1000/24/60/60;   // 태어난 지 몇일
+JBQLEDF:18: 			  System.out.println(days);
+HIMMXWJ:19: 	                    // (1) 개발자가 정의한 메서드를 호출한다. 
+AEYOUNY:20: 			  double phyval=getBioRhythm( days,  PHYSICAL,     100);
+GQDGKFZ:21: 			  double emoval=getBioRhythm( days,  EMOTIONAL,     100);
+LMDRKBA:22: 			  double inteval=getBioRhythm( days,  INTELLECTUAL, 100);
+XIFOJYG:23: 			  
+YZUNAHZ:24: 			  System.out.printf("나의 신체지수 %1$.2f입니다.\n",phyval);
+BXTMLYN:25: 			  System.out.printf("나의 감정지수 %1$.2f입니다.\n",emoval);
+DFRDKFT:26: 			  System.out.printf("나의 지성지수 %1$.2f입니다.\n",inteval); 
+CRVXZLN:27: 		}
+APDDRHM:28: 	    // (2) 개발자가 정의한 메서드
+WXJLGKP:29: 		public static double getBioRhythm(long days, int index ,int max) {
+WIDNLZJ:30: 			return max*Math.sin( (days % index) * 2 * Math.PI / index );
+HMYYOYY:31: 		}
+RDGKHYD:32: 		
+QMMOWVE:33: 		public static double getPhysical(long days, int max) {
+XFDQFQO:34: 			return getBioRhythm(days,PHYSICAL,max);
+KWPGNPO:35: 		}
+AMNMFSF:36: 		public static double getEmotional(long days, int max) {
+YDUTKEV:37: 			return getBioRhythm(days,EMOTIONAL,max);
+ZXRXVCR:38: 		}
+UXWIQTL:39: 		public static double getIntellectual(long days, int max) {
+NSURQOH:40: 			return getBioRhythm(days,INTELLECTUAL,max);
+MSADASG:41: 		}
+ZQOMJXH:42: 		
+NLEGDFK:43: 		public static long days(int year, int month, int day){
+IDDSMHR:44: 		    Calendar birth=Calendar.getInstance();
+QIGNWUA:45: 		    birth.set(year,month-1,day);  // 0월 ~11월, 
+UQKROHT:46: 		    Calendar theDay=Calendar.getInstance();   // 오늘
+RNHPFYW:47: 		    long dateBirth=birth.getTimeInMillis();
+PAPJCGY:48: 			long dateToDay=theDay.getTimeInMillis();
+TGNCKLE:49: 		    long days=(dateToDay-dateBirth)/1000/24/60/60;   // 태어난 지 몇일
+KKETDNY:50: 		    return days;
+RIRKEPN:51: 		}
+OSKYDJI:52: 	}
+PMGUVSW:53: 	

@@ -1,0 +1,26 @@
+0RJXGQMU:1: 	package kr.co.infopub.chapter.s137;
+0SRDAQSZ:2: 	public class Hanoi {
+0TVVUJLO:3: 	 private int  tray=3;       // 접시 수
+0KSSSERX:4: 	 private int  bar=3;        // 막대 수는 변경 불가능
+0NZSJFBB:5: 	 int [][] rings;
+0JMSBQFN:6: 	 public Hanoi(int tray){
+0FPEMMVB:7: 		this.tray=tray;         //접시 수 변경
+0VQKAVUR:8: 		rings=new int[tray][bar];
+0WUJRLYU:9: 		for(int i=0;i<rings.length;i++){
+RUQAVCH:10: 			int x=2*i+1;
+DYSRGHY:11: 			rings[i][0]=x;
+TAVYGCL:12: 		}
+NKAKUMY:13: 	 }
+IKGLYOI:14: 	 public int[][] getRings(){
+GHNKCPH:15: 		return rings;
+DCLZYQD:16: 	 }     
+QHPASUO:17: 	 public  void moveHanoi(int num, char ringA,char ringB,char ringC){
+DCAJJPE:18: 		if(num==1){
+RHOOKSK:19: 			System.out.println(ringA+" bar쪽에 있던 링이 "+ringB+" bar쪽으로 이동");
+MTSDSTP:20: 		}else {
+ZPOTYDV:21: 			moveHanoi(num-1,ringA,ringC,ringB);
+WVGLHKJ:22: 			System.out.println(ringA+" bar쪽에 있던 링이 "+ringB+" bar쪽으로 이동");
+LTTMGLE:23: 			moveHanoi(num-1,ringC,ringB,ringA);
+GYIMIOZ:24: 		}
+RHOTDUI:25: 	 }
+XPFEOOK:26: 	}

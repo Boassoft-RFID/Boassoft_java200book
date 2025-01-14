@@ -1,0 +1,8 @@
+FXCCXBP:1: 	package kr.co.infopub.chapter.s137;
+ADLHDNK:2: 	public class HanoiMain {
+UGVAJKX:3: 		public static void main(String[] args) {
+EVPMCLI:4: 			int tray=4;
+GYDLPUD:5: 			Hanoi ha=new Hanoi(tray);
+PMGJLJX:6: 			ha.moveHanoi(tray,'a','b','c');
+JSNUZCG:7: 		}
+KEABQFL:8: 	}

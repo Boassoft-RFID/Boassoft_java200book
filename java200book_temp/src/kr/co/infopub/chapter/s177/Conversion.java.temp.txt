@@ -1,0 +1,21 @@
+0AMNMZFI:1: 	package kr.co.infopub.chapter.s177;
+0WQGLZBU:2: 	// Two dimensions array and loop for
+0BPCWBGA:3: 	public class Conversion {
+0YLWYVMH:4: 	 public static void main(String[] args) {
+0XZWOFQO:5: 		String [] names={"Cm","M","Inch","Feet","Yard","Mile"};
+0HCTXLZP:6: 		double []distance={1,0.01,0.3937007874015748,0.03280839895013123,
+0CSIBHGW:7: 				            0.010936132983377079,0.00000621371192237334};
+0CMCMSJH:8: 		System.out.printf("\t\t");
+0VKPRXQF:9: 		for(int i=0; i<names.length; i++){
+PNAQJQQ:10: 			System.out.printf("%s\t\t\t",names[i]);
+HKKXZSZ:11: 		}
+TASANBD:12: 		System.out.println();
+VMWFLCG:13: 		for(int i=0; i<distance.length; i++){
+JITKJJE:14: 			System.out.printf("%s\t",names[i]);
+ERYDEQD:15: 			for (int j = 0; j < distance.length; j++) {
+JNQOXNI:16: 				System.out.printf("%19.12f\t",distance[j]/distance[i]);
+CSAPOBD:17: 			}
+LZYZGGU:18: 			System.out.println();
+IZVQJBU:19: 		}
+RXEAANU:20: 	 }
+TSVYSBF:21: 	}

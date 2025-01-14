@@ -1,0 +1,82 @@
+0FIVRTDU:1: 	package kr.co.infopub.chapter.s171;
+0MOQSLJW:2: 	import java.text.ParseException;
+0SBWMYXI:3: 	import java.text.SimpleDateFormat;
+0NMIGIST:4: 	import java.util.Calendar;
+0RUJAABT:5: 	import java.util.Date;
+0GNUVEIE:6: 	// s75 126
+0EIMOYUJ:7: 	public class RestDay {
+0XNOBIPQ:8: 		public static void main(String[] args) {
+0RAMMWRN:9: 			Calendar cal=Calendar.getInstance();
+VXKJKHL:10: 			int lastDay=cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+WFOERGX:11: 			for (int i= 1; i <=lastDay; i++) {
+MSOZVNZ:12: 				cal.set(Calendar.DAY_OF_MONTH, i);  //1일부터 마지막날까지 
+RUIYPSW:13: 				if(isRest(toYMD(cal))){             //휴일(토,일)확인
+UEZXBOK:14: 					System.out.println(toYMD(cal)+" is Rest Day.");
+EKNIGRU:15: 				}             
+QQPZNQF:16: 			}
+WLUBKSB:17: 		}
+XBTXHVZ:18: 		public static String toYMD(Calendar dd){
+KAWQYLM:19: 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+IZUCFYR:20: 			return sdf.format(dd.getTime());
+GUZFZBL:21: 		}
+GOQTUQB:22: 		// 오늘을 문자열로 
+IBXAPIE:23: 		public static String todates(){
+ICOJTIP:24: 			Calendar cal=Calendar.getInstance();
+NCLTINI:25: 			return toYMD(cal);
+DCECWAI:26: 		}
+IEWNKCR:27: 		public static boolean isRest(String day){
+GQJIJOG:28: 			//토, 일만 쉬도록 
+JGXWPJT:29: 			boolean isRest=false;
+LMEESGO:30: 			Calendar tod= todate(day);
+XLPFNUB:31: 			if(tod.get(Calendar.DAY_OF_WEEK)==Calendar.SATURDAY || 
+CGJNQUO:32: 					tod.get(Calendar.DAY_OF_WEEK)==Calendar.SUNDAY ){ //토요일 또는 일요일
+SKCJINZ:33: 				isRest=true;
+HUZVDKJ:34: 			}
+DEARUQA:35: 			return isRest;
+FVRSZXW:36: 		}
+YBXGMDX:37: 		public static String goGo(String ss,int day){
+XSZYXTI:38: 			Calendar cal=todate(ss);
+RBBBBMH:39: 			//-7일을 더하면 일주전
+DXPRKRV:40: 			cal.add(Calendar.DAY_OF_YEAR, day);
+BQRRRUZ:41: 			//칼렌더를 문자열로 
+QZJEMRS:42: 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+DLLJOFO:43: 			return sdf.format(cal.getTime());
+DCDRNHK:44: 		}
+FGABJWY:45: 		public static String toWantedDay(String ss,int round){
+UVSDUUH:46: 			Calendar cal=todate(ss);
+HADJAIC:47: 			//-7일을 더하면 일주전
+MWONGGV:48: 			cal.add(Calendar.DAY_OF_YEAR, round);
+UIKBCTU:49: 			//칼렌더를 문자열로 
+WZKWBJW:50: 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+CWGKNZF:51: 			return sdf.format(cal.getTime());
+ABIQVCP:52: 		}
+YMWZWJF:53: 		public static Calendar todate(String ss){
+HRHQZER:54: 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+EQDAQWN:55: 			Date dd=new Date();
+XIVZRSK:56: 			try {
+XDJKXIM:57: 				dd=sdf.parse(ss);
+TZQKIHB:58: 			} catch (ParseException e) {
+GCAPWBB:59: 			}
+VMSERES:60: 			Calendar cal=Calendar.getInstance();
+ACAGPGI:61: 			cal.setTime(dd);
+RHFBBFE:62: 			return cal;
+BXURWAA:63: 		}
+OCXNNNF:64: 		public static String toDay(String rs){  // 8월 16, 2017
+OHICOGQ:65: 			SimpleDateFormat sdfDesired = new SimpleDateFormat("MMMMM dd, yyyy");
+JOPPSTV:66: 			Calendar ts=todate(rs);
+BPIWZDF:67: 			String sss=sdfDesired.format(ts.getTime());
+BVDESVU:68: 			return sss;
+HYXEQMF:69: 		}
+RJXPGNZ:70: 		public static Date toDate(int year, int month, int day){
+EBWULTC:71: 			return toCalendar(year,month,day).getTime();
+QCUJPSY:72: 		}
+VFZUDPR:73: 		public static Calendar toCalendar(int year, int month, int day){
+EAMLFVA:74: 			Calendar cal=Calendar.getInstance();
+YVLGSGE:75: 			cal.set(year, month-1, day);
+MKGMVME:76: 			return cal;
+VOWKXTT:77: 		}
+RJCKGLW:78: 		public static String toStrDate(Date dd){
+KDOOEYE:79: 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+CHGTHVK:80: 			return sdf.format(dd);
+SCVWZZT:81: 		}
+BLSTYYX:82: 	}

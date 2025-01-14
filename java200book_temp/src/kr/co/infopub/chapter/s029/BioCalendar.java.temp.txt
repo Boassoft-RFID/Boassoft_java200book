@@ -1,0 +1,16 @@
+0KWDKUMB:1: 	package kr.co.infopub.chapter.s029;
+0JKVODGY:2: 	// static 메서드
+0DYMXYYJ:3: 	public class BioCalendar {
+0YEYNWDE:4: 		// 상수, 상수값은 변경할 수 없다.
+0DXTLXPO:5: 		public static final int PHYSICAL = 23;     // 상수(개발자 정의)
+0PABIVIN:6: 		// static 메서드 선언
+0CDXZSKB:7: 		public static double getBioRhythm(long days, int index ,int max) {
+0PGRIZGB:8: 			return max*Math.sin( (days % index) * 2 * Math.PI / index );
+0GOJJTHL:9: 		}
+OHIQVQJ:10: 		public static void main(String[] args) {
+ALFSFZB:11: 			int days=1200;     
+IHQSVBR:12: 			// 메서드 호출 
+EKVLETX:13: 			double phyval=getBioRhythm( days,  PHYSICAL,     100);
+XRRECQC:14: 			System.out.printf("나의 신체지수 %1$.2f입니다.\n",phyval);
+FDWFCOX:15: 		}
+HNMDYZI:16: 	}

@@ -1,0 +1,18 @@
+0ZQDYUJK:1: 	package kr.co.infopub.chapter.s083;
+0WCXJOZQ:2: 	public class BillboardMain2 {
+0XGAITQL:3: 		public static void main(String[] args) {
+0ZOCEFXS:4: 			//Data를 객체로 저장
+0ALYDZEM:5: 			Billbaord b1 =new Billbaord(1,"Despacito",1,
+0JPNZFBX:6: 			  "https://www.billboard.com/images/pref_images/q61808osztw.jpg","luis fonsi");
+0EHSYIMW:7: 			//객체 출력
+0LTFWYMS:8: 			showAbout(b1); 
+0FAWLRUH:9: 			//객체로 전달
+FMLNXUM:10: 			Billbaord b=b1;    //주소 복사
+CLWJEKQ:11: 			showAbout(b);      //객체 내용을 출력
+QFKUFSN:12: 		}
+HKMLCFU:13: 		public static void showAbout(Billbaord bb ){//객체를 전달하여 출력
+MATSFQL:14: 			String sf=String.format("%s, %s, %s, %s, %s",
+EXHAUCU:15: 				bb.getRank(), bb.getSong(),bb.getLastweek(),bb.getImagesrc(),bb.getArtist());
+WMPYKVQ:16: 			System.out.println(sf);
+ZIOIFIF:17: 		}
+IECTPCV:18: 	}

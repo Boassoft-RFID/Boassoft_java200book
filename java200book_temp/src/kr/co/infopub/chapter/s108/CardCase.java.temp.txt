@@ -1,0 +1,105 @@
+00VZPWBLT:1: 	package kr.co.infopub.chapter.s108;
+00LIFMSYE:2: 	import java.util.ArrayList;
+00OKBEZDT:3: 	import java.util.Collections;
+00GJNBYUT:4: 	import java.util.Comparator;
+00AFWFZOV:5: 	import java.util.List;
+00ZZOIGFQ:6: 	public class CardCase {
+00MOWNLVO:7: 	 // aggregation : CardCase는 Card로 구성된다.
+00HWFNXCZ:8: 	 private List<Card> cards=new ArrayList<Card>();
+00BJRIXNE:9: 	 public CardCase() {
+0NAVOXFJ:10: 		cards.clear(); // 내용 지우기
+0MXFVWCJ:11: 	 }
+0UBJUPFX:12: 	 // List 반환
+0LQAGMBZ:13: 	 public List<Card> getCards() { 
+0GNJCJRW:14: 		return cards;
+0FHDYBLZ:15: 	 }
+0KAUVQVO:16: 	 // List에 저장된 Card의 개수
+0UHNWWTZ:17: 	 public int count(){ 
+0TNWLPEG:18: 		return cards.size(); // 저장된 Card 개수
+0FOWFOEO:19: 	 }
+0LTXIYGV:20: 	 // List의 index번째 Card
+0UPATYIC:21: 	 public Card getCard(int index){
+0VMZAVPM:22: 		return cards.get(index);  // index번째 Card
+0FFJGCCD:23: 	 }
+0OQKTQBM:24: 	 // 서로 다른 카드 20장 만들기
+0UKWPETQ:25: 	 public void make(){
+0HWJQLUG:26: 		cards.clear(); // 내용 지우기
+0LOJCAWE:27: 		int suit=CardUtil.SUIT.length; // 0~3
+0IEXTSOC:28: 		int valu=CardUtil.VALU.length; // 0~12
+0EUAXHLR:29: 		int count=0;
+0QFPDSIT:30: 		//서로 다른 20개의 카드를 만든다.
+0ORSWMGJ:31: 		while(count!=valu*suit){    // 20장이 될 때까지
+0CRLSEPJ:32: 			Card c=new Card();      // 임의의 카드를 만든다
+0YRHHLAK:33: 			if(!cards.contains(c)){ // contains -> equals()를 이용해 비교
+0YJALXNE:34: 				cards.add(c);       // 같은 객체가 아니라면 저장
+0WKOYGMD:35: 				count++;
+0HTNLQMX:36: 			}
+0KLCRCDP:37: 		}
+0ITMCPEQ:38: 	 }
+0YPSQGOO:39: 	 public void shuffle(){
+0DTKSOPT:40: 		Collections.shuffle(cards); // 카드 섞기
+0GSFBDLA:41: 	 }
+0QIQJJEM:42: 	 public void print(){
+0AUFWOJR:43: 		int valu=CardUtil.VALU.length;
+0OCFJQPC:44: 		for (int i = 0; i < cards.size(); i++) {
+0YDGTRRA:45: 			Card c=cards.get(i);
+0YSMGKSP:46: 			System.out.printf("%s ",c.toString());
+0MYLVXCN:47: 			if((i+1)%valu==0){
+0XQRQXBQ:48: 				System.out.println();
+0UZIVMBO:49: 			}
+0RCWPUYC:50: 		}
+0UHWPXNY:51: 	 }
+0MHWPMKN:52: 	 // CardComp 클래스가 없다.
+0EZHGVFE:53: 	 public void sort(){
+0GLFBLMA:54: 		Comparator<Card> cmp=new Comparator<Card>() {
+0OLMZFLZ:55: 			@Override
+0ZVTUUGV:56: 			public int compare (Card c1, Card c2) {
+0IZFBKLP:57: 				return c1.getCardVal().compareTo(c2.getCardVal());
+0TVCUIOP:58: 			}
+0OIMRQXU:59: 		};
+0NYALSOK:60: 		cards.sort(cmp); 
+0SEMBTEJ:61: 	 }
+0ZQQMGZE:62: 	 // CardRomp 클래스가 없다.
+0NRLUGDL:63: 	 public void rsort(){
+0DVQHMIO:64: 		// 익명 -anonymous 
+0GCZXZWR:65: 		cards.sort(new Comparator<Card>() {
+0QISLEIJ:66: 			@Override
+0FCYLMXD:67: 			public int compare (Card c1, Card c2) {
+0DSLWYTQ:68: 				return - c1.getCardVal().compareTo(c2.getCardVal());
+0MNIJRDZ:69: 			}
+0YXFNHGV:70: 		});
+0KKALKLJ:71: 	}
+0SASBPIB:72: 	 // sort를 lambda로 구현
+0MRSDEFP:73: 	 public void lambdasort(){
+0MNGYYXX:74: 		cards.sort((c1, c2) ->{return c1.getCardVal().compareTo(c2.getCardVal());});
+0ZANELQW:75: 	 }
+0BJZHZRW:76: 	 public void lambdasort2(){
+0PGWVOKK:77: 		cards.sort(Comparator.comparing(Card::getCardVal)); // comparing
+0RFSNVNL:78: 	 }
+0UWSFDYL:79: 	 public void lambdasort3(){
+0TNFGLMH:80: 		cards.sort(Card::compareCard);  // static 
+0QGINGED:81: 	 }
+0THQVVFB:82: 	 // rsort를 lambda로 구현
+0VZMTIWM:83: 	 public void lambdarsort(){
+0EPJRCCO:84: 		cards.sort(
+0HEBPWPI:85: 		(c1, c2) ->{return - c1.getCardVal().compareTo(c2.getCardVal());});
+0TFVQXBW:86: 	 }
+0GCUTUQN:87: 	 public void lambdarsort2(){
+0DBULFTZ:88: 		Comparator<Card> mycard = (c1, c2) ->{return c1.getCardVal().compareTo(c2.getCardVal());};
+0FGXDXIF:89: 		cards.sort( mycard.reversed() );
+0MFONBBT:90: 	 }
+0YFVOZXS:91: 	 public void rambdarsort3(){
+0ZSPFOTL:92: 		cards.sort(Card::compareRCard);  //static 
+0OGQQMMX:93: 	 }
+0ANCFKWT:94: 	}
+0ZJICRJJ:95: 	
+0OQYTZDV:96: 	
+0TDKXMXJ:97: 	/*
+0SJZIRDU:98: 	Comparator<Card> cmp=new Comparator<Card>() {
+0EMMSWKZ:99: 		@Override
+FFVFYQR:100: 		public int compare (Card c1, Card c2) {
+KPRWHWO:101: 			return c1.getCardVal().compareTo(c2.getCardVal());
+UNYKLMP:102: 		}
+SIKGNTS:103: 	};
+ORBGSVP:104: 	cards.sort(cmp); 
+UTRCUHW:105: 	*/

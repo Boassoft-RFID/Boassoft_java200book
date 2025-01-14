@@ -1,0 +1,16 @@
+0SRYEZII:1: 	package kr.co.infopub.chapter.s120;
+0XVHZYVX:2: 	import java.util.Scanner;
+0BZYSWZO:3: 	public class SquareMain {
+0PNZKBXD:4: 	 public static void main(String[] args) {
+0EXIVRZD:5: 	    System.out.println("3이상의 정수 마방진을 입력하세요.");
+0TLWQYKB:6: 	    Scanner scann=new Scanner(System.in);
+0LJSQVYX:7: 	    int n=scann.nextInt();
+0NQKTJTZ:8: 		try(FactoryMagic magicFactory=FactoryMagic.getInstence()) { // autoclosable()
+0LNSWPEM:9: 		  IMagicSquare magic = magicFactory.getMagicSquare(n);    // 3,4,6를 팩토리가 처리한다.
+JMDBLJF:10: 		  MagicPrint.print(magic);                                // 모든 마방진을 출력한다.
+ZOHTHRW:11: 		} catch (MagicException e) {                              // 사용자 정의 예외
+FBTBFEA:12: 		  System.out.println(e);                 
+QQEQRYA:13: 	    } catch (Exception e1) {                                  // 범위를 벗어나면 자동 close()
+RBESWEE:14: 	  }
+ENHLEXZ:15: 	 }
+LCXOKHW:16: 	}

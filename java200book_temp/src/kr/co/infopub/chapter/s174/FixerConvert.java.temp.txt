@@ -1,0 +1,86 @@
+0VPQKPIM:1: 	package kr.co.infopub.chapter.s174;
+0ZOHNPIK:2: 	import java.io.InputStreamReader;
+0ZCNIXVI:3: 	import java.net.URL;
+0CMYKHEY:4: 	import java.text.SimpleDateFormat;
+0MHEJGMY:5: 	import java.util.Calendar;
+0RVYETPK:6: 	import org.json.JSONObject;
+0NTRXMKX:7: 	
+0FRDWJNK:8: 	import java.io.BufferedReader;
+0UHLBWCR:9: 	public class FixerConvert {
+GFVEQRU:10: 		public static String conversion(String date,String base) {
+UVZGZHY:11: 			BufferedReader br=null;
+OQWSZGR:12: 			String newUrls1="http://data.fixer.io/api/%s?access_key=97042483f2b64c6bfe1dbfbf4a2bd1b3&symbols=KRW,JPY,CNY,USD,EUR";
+EZKBFUK:13: 			String newUrls=String.format(newUrls1, date,base);
+CYALQOV:14: 			URL url=null;
+EDRQEEV:15: 			StringBuffer sb=new StringBuffer();
+CFZEAEK:16: 			try {
+UZGTGKQ:17: 				url=new URL(newUrls); // http://data.fixer.io/api
+CHZHFZN:18: 				System.out.println(newUrls);
+OIEYWCP:19: 				br=new BufferedReader(new InputStreamReader(url.openStream(),"utf-8"));
+KJJBIQJ:20: 				String msg="";
+NTVNDTN:21: 				// http://data.fixer.io/api 를 읽어 들인다.
+SJNNKZB:22: 				while((msg=br.readLine())!=null){
+EQGCVVF:23: 					sb.append(msg);
+JHUHNXX:24: 				}
+KJGHVVV:25: 			} catch (Exception e) {
+GOGBWQB:26: 				
+ANORMRS:27: 			}
+YEWARZK:28: 			return sb.toString();
+UFXLCSX:29: 		}
+XPEJXYN:30: 		public static FixerRate  convert2(String  data,String base) throws Exception{
+BTRALFX:31: 			JSONObject jObject = new JSONObject(data);
+HMIEAQR:32: 			JSONObject rates=jObject.getJSONObject("rates");
+HMEIBMR:33: 	
+HESZVZA:34: 			FixerRate fixerrate=new FixerRate();
+XPRFCYU:35: 			fixerrate.date=jObject.getString("date");
+BNUPPVI:36: 			fixerrate.base=base;//jObject.getString("base");
+PONNPHO:37: 			if(base.equals("USD")){
+EMHTSAW:38: 				double fixbase=rates.getDouble("USD");
+JUXHWMZ:39: 				fixerrate.usd=rates.getDouble("USD")/fixbase;
+FZWAAJE:40: 				fixerrate.krw=rates.getDouble("KRW")/fixbase;
+TASIWWH:41: 				fixerrate.jpy=rates.getDouble("JPY")/fixbase;
+DHMQUYE:42: 				fixerrate.eur=rates.getDouble("EUR")/fixbase;
+BPQUJAC:43: 				fixerrate.cny=rates.getDouble("CNY")/fixbase;
+VXWDGCT:44: 			}else if(base.equals("KRW")){
+XHKZHAN:45: 				double fixbase=rates.getDouble("KRW");
+KNBCGJU:46: 				fixerrate.usd=rates.getDouble("USD")/fixbase;
+UWJKTGB:47: 				fixerrate.krw=rates.getDouble("KRW")/fixbase;
+GVNPBGC:48: 				fixerrate.jpy=rates.getDouble("JPY")/fixbase;
+XHRKPAS:49: 				fixerrate.eur=rates.getDouble("EUR")/fixbase;
+FLBBVZY:50: 				fixerrate.cny=rates.getDouble("CNY")/fixbase;
+SQXPUDT:51: 			}else if(base.equals("JPY")){
+OCIGORH:52: 				double fixbase=rates.getDouble("JPY");
+WDPYTPL:53: 				fixerrate.usd=rates.getDouble("USD")/fixbase;
+WPDXRYS:54: 				fixerrate.krw=rates.getDouble("KRW")/fixbase;
+NWWYPYM:55: 				fixerrate.jpy=rates.getDouble("JPY")/fixbase;
+VNLHNOS:56: 				fixerrate.eur=rates.getDouble("EUR")/fixbase;
+MUGNMPG:57: 				fixerrate.cny=rates.getDouble("CNY")/fixbase;
+MZFZDMG:58: 			}  else if(base.equals("EUR")){
+BSQNVME:59: 				double fixbase=rates.getDouble("EUR");
+XESVKGQ:60: 				fixerrate.usd=rates.getDouble("USD")/fixbase;
+QWGHYET:61: 				fixerrate.krw=rates.getDouble("KRW")/fixbase;
+XGBWRCJ:62: 				fixerrate.jpy=rates.getDouble("JPY")/fixbase;
+JFYPXIW:63: 				fixerrate.eur=rates.getDouble("EUR")/fixbase;
+GRZMAYI:64: 				fixerrate.cny=rates.getDouble("CNY")/fixbase;
+IWHOZUI:65: 			} else if(base.equals("CNY")){
+IJVYTSV:66: 				double fixbase=rates.getDouble("CNY");
+ZLZMMWD:67: 				fixerrate.usd=rates.getDouble("USD")/fixbase;
+UJQIUMK:68: 				fixerrate.krw=rates.getDouble("KRW")/fixbase;
+WYYTIZX:69: 				fixerrate.jpy=rates.getDouble("JPY")/fixbase;
+TSLHTCB:70: 				fixerrate.eur=rates.getDouble("EUR")/fixbase;
+QXTPTHI:71: 				fixerrate.cny=rates.getDouble("CNY")/fixbase;
+ZBSJFAH:72: 			}	
+XFGVKHC:73: 			return fixerrate;
+HZDQJFZ:74: 		}
+RFYJKLF:75: 		public static FixerRate  convert(String  date,String base){
+NRAXOLJ:76: 			String conversions=conversion(date, base);
+OPLXWLD:77: 			FixerRate fixerRate=null;
+AZCSZWA:78: 			try {
+UHOVEPY:79: 				fixerRate= convert2(conversions, base);
+ACHFHQY:80: 			} catch (Exception e) {
+WIJKBKM:81: 				System.out.println(e);
+GJEMJLH:82: 			}
+MVXJRZI:83: 			return fixerRate;
+LUMCQHB:84: 		}
+VNRMBEG:85: 	}
+HJLXZPW:86: 		  

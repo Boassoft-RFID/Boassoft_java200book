@@ -1,0 +1,8 @@
+JXHAOEK:1: 	package kr.co.infopub.chapter.s130;
+AGLEBJO:2: 	public class JAPICalendarMain {
+YEUMOKI:3: 		public static void main(String[] args) {
+KVMVCZQ:4: 			JAPICalendar haecal=new JAPICalendar();
+JFACFOS:5: 			//haecal.showCal(2017, 2);
+OQSDEKA:6: 			haecal.showCal(2017);
+AJAYPSF:7: 		}
+LKXXOKJ:8: 	}

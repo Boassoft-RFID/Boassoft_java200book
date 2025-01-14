@@ -1,0 +1,250 @@
+00MTIWVRE:1: 	package kr.co.infopub.chapter.s150.swing;
+00AJDZNMR:2: 	public class FifteenPuzzle {
+00ORIMMDR:3: 	
+00GHYROZP:4: 		private int [][] puzzle;
+00UFLFOKK:5: 		private int n;
+00TOIZRYX:6: 		public int size(){
+00MCLLJUL:7: 			int num=-1;
+00JOLHDIO:8: 			if(puzzle!=null){
+00SRPRZYK:9: 				num=puzzle.length*puzzle.length;
+0UMGGMCL:10: 			}
+0ELPNWFR:11: 			return  num;
+0OETOUYJ:12: 		}
+0WCZJLDQ:13: 		public int getPuzzle(int r, int c){
+0ZQRJXCO:14: 			return puzzle[r][c];
+0DNPFOQM:15: 		}
+0VMQSLKP:16: 		public FifteenPuzzle(int n) {
+0KWQBMDE:17: 			init(n);
+0UYAMXLX:18: 		}
+0NNSCVUS:19: 		public FifteenPuzzle() {
+0AHKFFXZ:20: 			this(4);
+0CXHAWVX:21: 		}
+0NPJAMNW:22: 		public FifteenPuzzle(Tile [][] pz) {
+0EJMEERF:23: 			this.n=pz.length;
+0BGOIVCN:24: 			init(n);
+0LMSSZUI:25: 			for (int i = 0; i < n; i++) {
+0DCZZFOE:26: 				for (int j = 0; j <n; j++) {
+0CHZRMQB:27: 					puzzle[i][j]=pz[i][j].getTileNum();
+0MEXPUKI:28: 				}
+0SSNKFKW:29: 			}
+0TVMHDQZ:30: 		}
+0MBLYZFY:31: 		public FifteenPuzzle(int [][] pz) {
+0LHMJNIM:32: 			this.n=pz.length;
+0BLDKGUI:33: 			init(n);
+0SJJFRFR:34: 			for (int i = 0; i < n; i++) {
+0WVGFCOD:35: 				for (int j = 0; j <n; j++) {
+0JJELZYT:36: 					puzzle[i][j]=pz[i][j];
+0QMFIRED:37: 				}
+0AIUYLLR:38: 			}
+0CWZVNZA:39: 		}
+0QXKAXAJ:40: 		private void init(int n){
+0MPTOFET:41: 			this.n=n;
+0HBRDMKK:42: 			puzzle=new int[n][n];
+0SCVIZEN:43: 			for (int i = 0; i <n*n ; i++) {
+0WFJCEXA:44: 				puzzle[i/n][i%n]=i;
+0IZAMDUB:45: 			}//0~n*n-1
+0NBWLGUZ:46: 		}
+0KOMTRMM:47: 		
+0JCSLVLH:48: 		public void print(){
+0HCOTQOE:49: 			int n=puzzle.length;
+0HUWEIEY:50: 			for (int i = 0; i < n; i++) {
+0MYIIMPJ:51: 				for (int j = 0; j <n; j++) {
+0MDMVEIN:52: 					System.out.printf("%2d\t",puzzle[i][j]);
+0MHWFXXF:53: 				}
+0GOJITIZ:54: 				System.out.println();
+0LMDFPPA:55: 			}
+0YCILHDB:56: 			System.out.println();
+0YHTXQKQ:57: 		}
+0XRGNVVW:58: 		private int num(){
+0WYWSXJB:59: 			int row=puzzle.length;
+0HZEAJAJ:60: 			return (int)((row*row)*Math.random());
+0YSYSZCY:61: 		}
+0EGCYMGS:62: 		
+0PJGERDJ:63: 		public void shuffle(){
+0BGCHEBI:64: 			int row=puzzle.length;
+0SVXCFJY:65: 			int col=puzzle[0].length;
+0RVMVWBO:66: 			int [] sh=new int[row*col];
+0ODBRPQE:67: 			FifteenPuzzleUtil.toTwoOne(puzzle, sh);
+0GROACFC:68: 			for (int i = 0; i < sh.length; i++) {
+0ACXNWJN:69: 				int temp=num();
+0MWSQHJS:70: 				int mtemp=sh[i];
+0AUAUIVH:71: 				sh[i]=sh[temp];
+0GBBPPDY:72: 				sh[temp]=mtemp;
+0WEBVLOK:73: 			}
+0NYZFLHK:74: 			FifteenPuzzleUtil.toOneTwo(sh, puzzle);
+0JDSLTAU:75: 		}
+0LTEOORY:76: 		private int invertnumber(){
+0INUTRXS:77: 			int row=puzzle.length;
+0VEWYAMT:78: 			int col=puzzle[0].length;
+0QJNBFZV:79: 			int [] sh=new int[row*col];
+0OKJPRJV:80: 			int location=0;
+0BSEGXIA:81: 			FifteenPuzzleUtil.toTwoOne(puzzle, sh);
+0IPNKCLA:82: 			for (int i = 0; i < sh.length; i++) {
+0RVIXQZN:83: 				if(sh[i]==0){location=i;break;}
+0PHMDIFK:84: 			}
+0HXQCZEU:85: 			int ivn=0;
+0YYVFYIE:86: 			for (int i = 0; i < sh.length-1; i++) {
+0GZETXRU:87: 				for (int j = i+1; j < sh.length; j++) {
+0WQXTPQK:88: 					if(i!=location && j!=location && sh[i]>sh[j] ){
+0WJSCJRE:89: 						ivn++;
+0GVUXKXI:90: 						//System.out.printf("[%d > %d]",sh[i],sh[j]);
+0XYUNSFW:91: 					}
+0ZCQFEWQ:92: 				}
+0STSGMZW:93: 			}
+0RMSPSPE:94: 			//System.out.println();
+0DKYTVJU:95: 			return ivn;
+0QNULZVN:96: 		}//
+0MZHFGJG:97: 		private int zero(){
+0AOFBZZN:98: 			int row=puzzle.length;
+0XUEWCBW:99: 			int col=puzzle[0].length;
+QUSKGAU:100: 			int [] sh=new int[row*col];
+IHGUVSD:101: 			FifteenPuzzleUtil.toTwoOne(puzzle, sh);
+FGNBCQE:102: 			int znum=0;
+BAIHMAB:103: 			for (int i = 0; i < sh.length; i++) {
+UNWOWKM:104: 				if(sh[i]==0){
+XVCBVCU:105: 					znum=i/col;
+YEWHMBX:106: 					break;
+IGXUHQP:107: 				}
+HYXOYJS:108: 			}
+UINVCRG:109: 			return znum;
+IWDEDIL:110: 		}
+ZVLIFTP:111: 		private int zerocol(){
+TTFJYQE:112: 			int row=puzzle.length;
+AEWOCLY:113: 			int col=puzzle[0].length;
+SKTVXRC:114: 			int [] sh=new int[row*col];
+JPCUANR:115: 			FifteenPuzzleUtil.toTwoOne(puzzle, sh);
+BSJGEKK:116: 			int znum=0;
+VQUKSRL:117: 			for (int i = 0; i < sh.length; i++) {
+WHDFGYO:118: 				if(sh[i]==0){
+LEQUOQB:119: 					znum=i%col;
+YWFYXQF:120: 					break;
+RSMPMAQ:121: 				}
+ZTMPUGX:122: 			}
+TDHOJPK:123: 			return znum;
+WKUQAEF:124: 		}
+SPBSFGD:125: 		private int oddzero(){
+UUIMMAP:126: 			int row=puzzle.length;
+AIGPBLO:127: 			int col=puzzle[0].length;
+ZOOGKNB:128: 			int [] sh=new int[row*col];
+KUPWHMM:129: 			FifteenPuzzleUtil.toTwoOne(puzzle, sh);
+LKGQCWX:130: 			int znum=0;
+PBQZDJA:131: 			for (int i = 0; i < sh.length; i++) {
+YZGXYHF:132: 				if(sh[i]==0){
+RJDWAXV:133: 					znum=i;
+NXDXLMD:134: 					break;
+KNOQQMM:135: 				}
+DRLPKIU:136: 			}
+BCFSNEV:137: 			//9-1-(0의 위치)
+RJKQDBF:138: 			return row*col-1-znum;
+GCFZVBP:139: 		}
+NVIGFUT:140: 		public int oddpuzle(){
+NQKRKWH:141: 			int num=0;
+RLRHRJR:142: 			int invert=invertnumber();
+OOLSLQC:143: 			num+=invert;
+EYNSVHQ:144: 			num+=oddzero();
+GCVVTUK:145: 			num+=zero();
+PCWOZOV:146: 			num+=zerocol();
+FAANRRW:147: 			return num;
+GVRYOBW:148: 		}
+RGDJSCA:149: 		public int evenpuzle(){
+XWFDRJB:150: 			int num=0;
+SOBIENB:151: 			int invert=invertnumber();
+LKAJOGH:152: 			num+=invert;
+BJVXBFR:153: 			num+=puzzle.length;
+TTZYNOK:154: 			num+=zero();
+NVYMNAD:155: 			return num;
+XZGPBSB:156: 		}
+JZEBSNU:157: 		public void makePuzzle(boolean show){
+UIKCFYX:158: 			int num=0;
+BZYYLOW:159: 			do{
+EWXAMYD:160: 				shuffle();
+RPBYQEW:161: 				if(puzzle.length%2==0){
+NRLAFQW:162: 					num=evenpuzle();
+OHXPQOG:163: 				}else{
+PSHEHVG:164: 					num=oddpuzle();
+QHRBCQY:165: 				}
+TGZFYWP:166: 				if(show){
+FKHRJTE:167: 					if(puzzle.length%2==1 && num%2==0){
+WKCUUJT:168: 						System.out.println("Odd Possible Middle!");
+XJMFOTF:169: 						System.out.printf("IVN  : %d \n", invertnumber());
+ZCHSVDD:170: 						System.out.printf("Odd Zero : %d \n", oddzero());
+WNUWJLS:171: 						System.out.printf("Zero : %d \n", zero());
+NQCOUAZ:172: 						System.out.printf("Zerocol : %d \n", zerocol());
+WQZEUIL:173: 						System.out.printf("TOT  : %d \n", num);
+BEHCUOE:174: 						System.out.println("---------------------------");
+NZFDOZE:175: 					}else if(puzzle.length%2==0 && num%2==1){//홀수면 가능
+DNYIZRI:176: 						System.out.println("Even Possible Middle!");
+JLODUGL:177: 						System.out.printf("Row  : %d \n", puzzle.length);
+IQFTROP:178: 						System.out.printf("IVN  : %d \n", invertnumber());
+BYCNUKJ:179: 						System.out.printf("Zero : %d \n", zero());
+YLHDEOI:180: 						System.out.printf("TOT  : %d \n", num);
+MDZGYDS:181: 						System.out.println("---------------------------");
+KRRXZGU:182: 					}else{
+CCDBINK:183: 						if(puzzle.length%2==0){
+UNRDVPI:184: 							System.out.println("Even Impossible Middle!");
+VVCYXZR:185: 							System.out.printf("Row  : %d \n", puzzle.length);
+ZCNIWFQ:186: 							System.out.printf("IVN  : %d \n", invertnumber());
+ZVGBKJE:187: 							System.out.printf("Zero : %d \n", zero());
+DZONUNB:188: 							System.out.printf("TOT  : %d \n", num);
+NGGUFPE:189: 							System.out.println("---------------------------");
+SOXLMVU:190: 						}else{
+HYGFAUJ:191: 							System.out.println("Odd Impossible Middle!");
+IVNLZPE:192: 							System.out.printf("IVN  : %d \n", invertnumber());
+VGHVCOW:193: 							System.out.printf("Odd Zero : %d \n", oddzero());
+WTZVFDL:194: 							System.out.printf("Zerocol : %d \n", zerocol());
+QNTGOCK:195: 							System.out.printf("Zero : %d \n", zero());
+VYGZZSB:196: 							System.out.printf("TOT  : %d \n", num);
+BXPSVNZ:197: 							System.out.println("---------------------------");
+GQXDDUC:198: 						}
+LZRQRXJ:199: 					}
+GKTIAWI:200: 					//System.out.println();
+OEDUOJC:201: 				}
+WFXEDYU:202: 			}while((puzzle.length+num)%2==0);
+GVPDDLD:203: 		}
+TJCWMWE:204: 		
+KDHBHXP:205: 		public void makeTestPuzzle(boolean show){
+ZZLYTSG:206: 			int num=0;
+KEECZQW:207: 			if(puzzle.length%2==0){
+NRFQBAW:208: 				num=evenpuzle();
+OQZXBAS:209: 			}else{
+YRRYOLF:210: 				num=oddpuzle();
+EPSHXCB:211: 			}
+UBXKVBY:212: 			if(show){
+QFLRFBY:213: 				if(puzzle.length%2==1 && num%2==0){
+MANGBAN:214: 					System.out.println("Odd Possible Middle!");
+HMNEAYD:215: 					System.out.printf("IVN  : %d \n", invertnumber());
+FLZVKXW:216: 					System.out.printf("Odd Zero : %d \n", oddzero());
+JCARVWS:217: 					System.out.printf("Zero : %d \n", zero());
+OJERIFT:218: 					System.out.printf("Zerocol : %d \n", zerocol());
+LZBXCCP:219: 					System.out.printf("TOT  : %d \n", num);
+IXRIVPO:220: 					System.out.println("---------------------------");
+FYLLPSN:221: 				}else if(puzzle.length%2==0 && num%2==1){//홀수면 가능
+HYLHYTG:222: 					System.out.println("Even Possible Middle!");
+LYUXFOC:223: 					System.out.printf("Row  : %d \n", puzzle.length);
+YRTESCK:224: 					System.out.printf("IVN  : %d \n", invertnumber());
+OJGIPCE:225: 					System.out.printf("Zero : %d \n", zero());
+OZQNMYQ:226: 					System.out.printf("TOT  : %d \n", num);
+IOOQEOT:227: 					System.out.println("---------------------------");
+EHCQEGG:228: 				}else{
+VQPKTGJ:229: 					if(puzzle.length%2==0){
+BTHOBNS:230: 						System.out.println("Even Impossible Middle!");
+VMJDMFI:231: 						System.out.printf("Row  : %d \n", puzzle.length);
+NWFAQZR:232: 						System.out.printf("IVN  : %d \n", invertnumber());
+WJRJOPS:233: 						System.out.printf("Zero : %d \n", zero());
+JAEMSLR:234: 						System.out.printf("TOT  : %d \n", num);
+SJFKFDM:235: 						System.out.println("---------------------------");
+VRGCANF:236: 					}else{
+BZMANLL:237: 						System.out.println("Odd Impossible Middle!");
+BHSGJZO:238: 						System.out.printf("IVN  : %d \n", invertnumber());
+EYRSFFQ:239: 						System.out.printf("Odd Zero : %d \n", oddzero());
+FUIPTGB:240: 						System.out.printf("Zero : %d \n", zero());
+ZZWSHMM:241: 						System.out.printf("Zerocol : %d \n", zerocol());
+RVXFLXJ:242: 						System.out.printf("TOT  : %d \n", num);
+EZOXCIY:243: 						System.out.println("---------------------------");
+JFHKGCW:244: 					}
+WVOLDOP:245: 				}
+HZKYHAX:246: 				//System.out.println();
+PYDSQJY:247: 				
+NJMDBPC:248: 			}
+ZMBCGVI:249: 		}
+ONRJKPP:250: 	}//

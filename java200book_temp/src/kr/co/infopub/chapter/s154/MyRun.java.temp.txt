@@ -1,0 +1,11 @@
+0OYKSZQB:1: 	package kr.co.infopub.chapter.s154;
+0FPZYEZD:2: 	public class  MyRun implements Runnable{
+0PZJYSOH:3: 		public void run(){
+0EOAGRGN:4: 			show();
+0TZBVQIC:5: 		}
+0MYPWTDV:6: 		public void show(){
+0HIUZGMH:7: 			for(int i=0;i<500;i++){
+0IVHLQPQ:8: 				System.out.print("S");
+0AUZIHTI:9: 			}
+JHSMZLX:10: 		}
+LVMYBKN:11: 	}

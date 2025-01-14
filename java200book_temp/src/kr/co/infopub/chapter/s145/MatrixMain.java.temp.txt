@@ -1,0 +1,16 @@
+0VZFUMUX:1: 	package kr.co.infopub.chapter.s145;
+0MQBPVEQ:2: 	public class MatrixMain {
+0HVTNMYD:3: 		public static void main(String[] args) {
+0UJZDBXA:4: 			double [][] m1={{1,2,3},{2,3,4},{3,4,5}};
+0SIXUQEZ:5: 			Matrix mtr1=new Matrix(m1);
+0RWZMGCG:6: 			double [][] m2={{-1,2,-3},{2,-3,4},{-3,4,-5}};
+0ZUZNNZO:7: 			Matrix mtr2=new Matrix(m2);
+0XZWQZHI:8: 			mtr1.print();
+0VDFYBXF:9: 			mtr2.print();
+XIPKHNK:10: 			
+NJAUARX:11: 			Matrix mtr3=mtr1.makeMatrix();  // 깊은 복사
+KHWLMLF:12: 			mtr3.print();
+TRJEOES:13: 			
+FRWBSIL:14: 			System.out.println(mtr1.equals(mtr3)); // 내용이 일치하지만 주소가 다른 객체
+JIJCGSE:15: 		}
+JCUPLGC:16: 	}

@@ -1,0 +1,19 @@
+0VWBDUZD:1: 	package kr.co.infopub.chapter.s191.model;
+0TKCGKZR:2: 	import java.sql.SQLException;
+0QMFZFRS:3: 	import javafx.collections.ObservableList;
+0FHYRHAD:4: 	import kr.co.infopub.chapter.s191.dto.Employee;
+0ZRLFRWF:5: 	public class EmpServiceTest {
+0BUKZUBH:6: 	 public static void main(String[] args) {
+0GTQIEET:7: 		EmployeeService service=EmployeeService.getInstance();
+0NHHRNTC:8: 		try {
+0XPHVFEO:9: 			ObservableList<Employee> emplists=service.findAllEmployees();
+KTYEAUB:10: 			for (Employee employee : emplists) {
+ZGYIUOS:11: 				System.out.print(employee.getEmployeeId()+"\t");
+CWTUSED:12: 				System.out.print(employee.getFirstName()+"\t");
+GPJFOVD:13: 				System.out.println(employee.getLastName());
+NNTZIHQ:14: 			}
+FQOZOZV:15: 		} catch (SQLException e) {
+LZMYFLV:16: 			System.out.println(e);
+EXBBTLP:17: 		}
+FDKSTDR:18: 	 }
+XRGPHIK:19: 	}

@@ -1,0 +1,63 @@
+0EXZVATS:1: 	package kr.co.infopub.chapter.s133;
+0QIQPPFH:2: 	import java.util.Arrays;
+0CXQXYNY:3: 	public class Lotto6Num {
+0RTDPARI:4: 	 private int[] lots;
+0USPDPWA:5: 	 private int base;//45
+0OESMIRJ:6: 	 private int ballNum;//6
+0ARAPIAJ:7: 	 public Lotto6Num(int base,int ballNum) {
+0DNOUVNN:8: 		this.ballNum=ballNum;
+0EJXZHGJ:9: 		this.base=base;
+SFVNHLM:10: 		//배열 생성
+BHGQSXT:11: 		lots=new int[ballNum];
+EWCZBCY:12: 	 }
+CVOGARA:13: 	 public Lotto6Num() {
+URARRMD:14: 		this(45,6);
+JZMMBZG:15: 	 }
+TGXOCLI:16: 	 public void print(){
+XOOFTUA:17: 		for (int i = 0; i < lots.length; i++) {
+VMZNOWV:18: 			if(i==lots.length-1){
+MEGYALP:19: 				System.out.printf("%d",lots[i]);
+GLDUIJG:20: 			}else{
+HAYNZKI:21: 				System.out.printf("%d,",lots[i]);
+IVHKPFE:22: 			}
+MVDFUCB:23: 		}
+ULRALSS:24: 		System.out.println();
+YBRURYO:25: 	 }
+KVOMTVW:26: 	 private int rand(){
+OZJVBDG:27: 		return (int)(Math.random()*base)+1;
+BJVQVKX:28: 	 }
+IJWURGP:29: 	 public boolean contain(int n){
+OZYJWZK:30: 		boolean isC=false;
+LFPHTLA:31: 		for (int i = 0; i < lots.length; i++) {
+QNBJRTL:32: 			if(lots[i]==n){
+ATSBLZK:33: 				isC=true;
+MLNDKEP:34: 				break;
+IUTYCMI:35: 			}
+LFMHWWN:36: 		}
+JHVZKOT:37: 		return isC;
+EOSEOKF:38: 	 }
+CCDEVMD:39: 	 public void make(){
+IKCBQRM:40: 		Arrays.fill(lots, 0);
+MPXHAQP:41: 		int count=0;
+FNUIYDW:42: 		while(count!=ballNum){
+TWBGMYX:43: 			int temp=rand(); //1~45
+BMCDOQH:44: 			if(! contain(temp)){
+JOMEAEP:45: 				lots[count++]=temp;
+RLSLAOZ:46: 			}
+JENYELU:47: 		}
+OQUETSB:48: 		Arrays.sort(lots);
+LKJHIKI:49: 	 }
+QOILIEV:50: 	 public int[] getLots() {
+KESPFDG:51: 		return lots;
+WOHURIY:52: 	 }
+UPRDVFB:53: 	 public void randomMake(){
+UOROXCH:54: 		Arrays.fill(lots, 0);
+BGZYXHV:55: 		int count=0;
+UWDNRGP:56: 		while(count!=ballNum){
+HYVAPPE:57: 			int temp=rand();//1~45
+BNCOYQB:58: 			if(! contain(temp)){
+RQQZJUP:59: 				lots[count++]=temp;
+YMVXOBG:60: 			}
+CDRMYZM:61: 		}
+SQMGPRU:62: 	 }
+UWCOLDU:63: 	}

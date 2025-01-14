@@ -1,0 +1,73 @@
+0SMJFCJL:1: 	package kr.co.infopub.chapter.s099;
+0LHDDDNM:2: 	
+0VUSAKUG:3: 	import java.util.ArrayList;
+0TJFNAPZ:4: 	
+0CNPSLBI:5: 	import javafx.application.Application;
+0GVAHFPL:6: 	import javafx.geometry.Insets;
+0KQYUKXI:7: 	import javafx.geometry.Pos;
+0CHDURAW:8: 	import javafx.scene.Group;
+0NSGXQTG:9: 	import javafx.scene.Scene;
+JNBWSIJ:10: 	import javafx.scene.image.Image;
+GEBGRVG:11: 	import javafx.scene.image.ImageView;
+HJGBNKO:12: 	import javafx.scene.layout.HBox;
+MZNERIT:13: 	import javafx.scene.layout.VBox;
+UKSXSBE:14: 	import javafx.stage.Stage;
+BVLNLGW:15: 	 
+ZUXYCKE:16: 	public class WikipediaTest3 extends Application {
+QZLHZNQ:17: 	 
+ZSCTAGB:18: 	    public static void main(String[] args) {
+LKNGZRU:19: 	        launch(args);
+OVCCYSC:20: 	    }
+BVRVIND:21: 	    ImageFXListRequest  request=new ImageFXListRequest();
+OASWFRC:22: 	    RequestFromWikipedai rfw=new RequestFromWikipedai();
+POEQPVE:23: 	    
+GNMBXJH:24: 	    @Override
+YDBLDJT:25: 	    public void start(Stage primaryStage) {
+VSDRQBM:26: 	    	String a="https://ko.wikipedia.org/wiki/ISO_3166-1";
+ZBDXRWJ:27: 	    	String msg="srcset=\"//upload.wikimedia.org/wikipedia";
+VSGZPKB:28: 	    	rfw.getAllHtml(a);   
+ZMFJJQT:29: 	    	//rfw.printHtml();
+IVUXNWM:30: 	    	rfw.getSevereign(msg);
+GODPOTV:31: 	    	//rfw.printFlags();
+THHIAVX:32: 	    	ArrayList<SovereignFlag> flags=rfw.getFlags();
+VMLGEPQ:33: 	    	request.getAllImages(flags);  //image List
+WFZSGZK:34: 	    	int col=25; 
+JGRHKBN:35: 			//계속 읽는 것을 방지
+DDVZGZN:36: 			request.getAllImages(flags);  //image를 맵에 저장
+ILWKHRG:37: 			ImageView nimageView = new ImageView();
+WYBIXMH:38: 			nimageView.setFitWidth(250);
+AWQVACG:39: 			nimageView.setFitHeight(250);
+GWQGNBF:40: 			VBox root = new VBox(25);
+NVWGBPJ:41: 	 
+XHSABAV:42: 	        int row=flags.size()/col;
+MDDYHEQ:43: 	        for(int i=0; i<row; i++){
+KQAIEGA:44: 	        	HBox hbox = new HBox(5);            // 한줄에 10개를 묶는다.
+TOOYOLC:45: 	            hbox.setPadding(new Insets(5));
+JKNCEHU:46: 	            hbox.setAlignment(Pos.CENTER);
+WPWRZNQ:47: 	        	for (int j = 0; j < col; j++) {      
+ZTOOGMJ:48: 	        		SovereignFlag b=flags.get(i*col+j);  
+QKFJGFN:49: 	            	ImageView imageView = new ImageView(request.loadImage(b.getFlag()));
+NZFAFME:50: 	            	imageView.setFitWidth(40);
+FXOLONP:51: 	            	imageView.setFitHeight(40);
+YERYTLJ:52: 	            	imageView.setOnMouseClicked(ee->{
+DCINAHW:53: 	            		nimageView.setImage(request.loadImage(b.getFlag()));
+YYRJCPA:54: 	            	});
+PGWWMOD:55: 	            	hbox.getChildren().add(imageView);
+JTHZBKR:56: 				}
+MTKFQXB:57: 	        	root.getChildren().add(hbox);        // 아래로 HBox를 붙인다. 
+YEWMCQD:58: 	        }
+JIELIRP:59: 	        
+UYMOGUF:60: 	        HBox hbox2 = new HBox(10);            // 한줄에 10개를 묶는다.
+IYPABVI:61: 	        hbox2.setPadding(new Insets(5));
+JCUFDOQ:62: 	        hbox2.setAlignment(Pos.CENTER);
+ZBFGCUN:63: 	        hbox2.getChildren().add(nimageView);
+RCSSJAK:64: 	        root.getChildren().add(hbox2);
+CLCGQQM:65: 	        
+XOXLIAT:66: 	        primaryStage.setScene(new Scene(root, 40*col, 40*col+200));
+OLDTYSJ:67: 	        primaryStage.setTitle("Billboard Image");
+WIRDCQV:68: 	        primaryStage.show();
+KSHVDTE:69: 	    }
+YGZRQBF:70: 	    
+UGWCYEG:71: 	}
+EWEVXDC:72: 	
+WFSQYQW:73: 	   

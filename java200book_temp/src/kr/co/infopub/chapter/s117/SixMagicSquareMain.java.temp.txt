@@ -1,0 +1,57 @@
+0REVFNOG:1: 	package kr.co.infopub.chapter.s117;
+0OYFZJBS:2: 	import java.util.Scanner;
+0OMUSYGG:3: 	public class SixMagicSquareMain {
+0LDOTELW:4: 		public static void main(String[] args) {
+0QOFGKKN:5: 			Scanner scann=new Scanner(System.in);
+0RAKIODO:6: 			System.out.println("6, 10, 14 정수(4n+2)를 입력하세요.");
+0LWSOUSU:7: 			int n=scann.nextInt();
+0YIEMZBT:8: 			SixMagicSquare sms=new SixMagicSquare(n);
+0SUWBDXY:9: 			sms.make();
+UCYFUXL:10: 			sms.print();
+QSSSTTA:11: 		}
+BVDZFXS:12: 	}
+DVIACJS:13: 	/*
+ZGDYPTY:14: 	1) A 0, 3
+UXBWMXI:15: 	3	0	0	0	0	0	
+NLOVPLS:16: 	0	3	0	0	0	0	
+ZSFVZAW:17: 	3	0	0	0	0	0	
+JXXSFOA:18: 	0	0	0	0	0	0	
+XDDPKME:19: 	0	0	0	0	0	0	
+UTMTQNU:20: 	0	0	0	0	0	0	
+XCKTQDB:21: 	
+SNMSECH:22: 	2) B 2, 1
+BDRYDRK:23: 	3	0	0	2	2	2	
+WRNQIAN:24: 	0	3	0	2	2	2	
+DBFWYQN:25: 	3	0	0	2	2	2	
+JUEXFFQ:26: 	0	0	0	0	0	0	
+ZKGJAAY:27: 	0	0	0	0	0	0	
+VHBWRWO:28: 	0	0	0	0	0	0	
+RRTLRZD:29: 	
+BQUEYDT:30: 	3) C, D 
+PNUSOBJ:31: 	3	0	0	2	2	2	
+IYIHBDP:32: 	0	3	0	2	2	2	
+MLZTOCC:33: 	3	0	0	2	2	2	
+GUSVALW:34: 	0	3	3	1	1	1	
+BWUBDCU:35: 	3	0	3	1	1	1	
+BGHJWAX:36: 	0	3	3	1	1	1
+EIJEJFG:37: 	
+SHMOOCN:38: 	4) 
+QJEAAZH:39: 	27	0	0	18	18	18	
+PRWTZYM:40: 	0	27	0	18	18	18	
+SVOMPLR:41: 	27	0	0	18	18	18	
+BMEOOYP:42: 	0	27	27	9	9	9	
+TCLVAOE:43: 	27	0	27	9	9	9	
+SDGGSNR:44: 	0	27	27	9	9	9
+UQEGFTC:45: 	
+YVKMJXL:46: 	5)  4)의 각 지역 자리에 3마방을 더함
+MDRHAEE:47: 	6	1	8	
+WZTSWMP:48: 	7	5	3	
+JNYZOEP:49: 	2	9	4
+MLKOJXC:50: 	
+ICFYXHU:51: 	33	1	8	24	19	26	
+XLBTPKA:52: 	7	32	3	25	23	21	
+RLVQCJI:53: 	29	9	4	20	27	22	
+ZPLOMDP:54: 	6	28	35	15	10	17	
+HUGCWMG:55: 	34	5	30	16	14	12	
+EVNTADD:56: 	2	36	31	11	18	13	
+ITTNAYB:57: 	*/

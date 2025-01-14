@@ -1,0 +1,14 @@
+0ARISZSV:1: 	package kr.co.infopub.chapter.s023;
+0DABKOWM:2: 	// char, escape
+0XYROUVD:3: 	public class Letters {
+0ZBIZWMS:4: 		public static void main(String[] args) {
+0NJJVTVA:5: 	        char a='닳';
+0IKGPZIH:6: 			String letter="동해 물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세";
+0REZPCRU:7: 			int letterNumber=letter.length();     
+0HXRQMBI:8: 			int loc=letter.indexOf(a);
+0TWBQDZT:9: 			System.out.printf("\"%s\"=> %d자이며, '%c'은 %d번째 있다.\n",
+JFCCQPT:10: 					letter,letterNumber,a,loc);
+AWVCUSB:11: 			char b=letter.charAt(loc) ;   
+SGFXSCM:12: 			System.out.printf("\"%s\"의 %d번째 문자는 '%c'다.",letter,loc,b );
+UPXFZTL:13: 		}
+YGXENLQ:14: 	}

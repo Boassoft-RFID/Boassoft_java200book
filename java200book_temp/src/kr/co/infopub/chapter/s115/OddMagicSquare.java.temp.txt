@@ -1,0 +1,102 @@
+00FUENKBQ:1: 	package kr.co.infopub.chapter.s115;
+00ZMAFCIH:2: 	public class OddMagicSquare {
+00SAJRTUT:3: 		private int [][] magic; // Two dimensions 배열 선언
+00AFAIUQL:4: 		private int n;          // 마방진 크기 n X n
+00NJIYVAI:5: 	
+00ITOEKFE:6: 		public int[][] getMagic() {
+00IRPEUBO:7: 			return magic;
+00QMRYYFV:8: 		}
+00AWMEWGM:9: 		public OddMagicSquare(int n) {
+0CTPWVXM:10: 			magic=new int[n][n]; // Two dimensions 배열 생성, 초기화
+0AXBVHMA:11: 			this.n=n;            // 마방진 크기 결정
+0DNESZWW:12: 		}
+0WJNSVJR:13: 		public OddMagicSquare( ) {
+0UUSMWAL:14: 			this(3);    // 생성자 오버로딩 - OddMagicSquare(int n)을 이용
+0YNRMCXF:15: 		}
+0XRWQHCM:16: 		public void make( ){   // 홀수 마방진 만들기
+0TMFWCSJ:17: 			int x=0;           // 가장 윗줄
+0FYGFXEU:18: 			int y=n/2;         // 중앙
+0OMACGYU:19: 			for (int i = 1; i <= n*n ; i++) {
+0ZYZFRRK:20: 				int temX=x;    // 옮기기 전 위치 저장
+0JAIUOKK:21: 				int temY=y;    
+0SUGDAIR:22: 				System.out.printf("(%d,%d)\t",x,y);
+0QZSYDRZ:23: 				magic[x][y]=i; // 1~nxn 대입
+0PSCTZLO:24: 				// 위로 이동
+0ENYHAKR:25: 				if( x-1<0 ){ // 윗벽
+0AUZQLFM:26: 					x=n-1;
+0MFXALKF:27: 				}else{
+0NEESATB:28: 					x--;     // 정상 x=x-1;
+0KQXLEZO:29: 				}
+0BIBAMEP:30: 				// 왼쪽으로 이동
+0TKHPHJM:31: 				if( y-1<0 ){ // 왼쪽 벽
+0HIHOLHY:32: 					y=n-1;
+0WUFWIUR:33: 				}else{
+0MJMVKPY:34: 					y--;     // 정상 y=y-1;
+0GTITKKA:35: 				}
+0APDCNIP:36: 				if(magic[x][y]!=0){ // 이미 존재
+0DWNKLSL:37: 					x=temX+1;  // x원위치+1
+0OUBMDYN:38: 					y=temY;    // y원위치
+0QDCVXHH:39: 				}
+0DSWTKHJ:40: 			}//for
+0YMCAFCB:41: 		}
+0FNQWPLR:42: 		public void print(){
+0EHCWGKU:43: 			System.out.println();
+0PEPSMSA:44: 			System.out.println(n+" is magic : "+isMagic()); //마방진 완성?
+0AQYLUJO:45: 			for (int i = 0; i < n; i++) {
+0LUETXLP:46: 				for (int j = 0; j < n; j++) {
+0LTATNDG:47: 					System.out.print(magic[i][j]+"\t");
+0ZLFELCJ:48: 				}
+0BXCEAKV:49: 				System.out.println();
+0KWHEHTM:50: 			}
+0NPCWEYV:51: 		}
+0IPCMMRF:52: 		//row 행에 대한 열들의 합
+0SIGCLSF:53: 		private int sumRow(int row){
+0FLARBDP:54: 			int tot=0;
+0LBUSAVJ:55: 			for (int i = 0; i < n; i++) {
+0YDRUWOU:56: 				tot+=magic[row][i];
+0ZGIBARV:57: 			}
+0KLHKDMK:58: 			return tot;
+0FLCFMAJ:59: 		}
+0PRIJEEW:60: 		// col 열에 대한  행들의 합
+0FFJYFOR:61: 		private int sumCol(int col){
+0RJNSVID:62: 			int tot=0;
+0ARRLEOY:63: 			for (int i = 0; i < n; i++) {
+0EWTMLXC:64: 				tot+=magic[i][col];
+0DWUPXUR:65: 			}
+0WVFOUUU:66: 			return tot;
+0YJRQULC:67: 		}
+0QJAANPB:68: 		// 역 대각선 (2,0)(1,1),(0,2)
+0DSDEODA:69: 		private int sumDia(){
+0URLWGXE:70: 			int tot=0;
+0NTLFDJV:71: 			for (int i = 0; i < n ; i++) {
+0MKIQPKS:72: 				tot+=magic[i][n-1-i];
+0CNDNQMH:73: 			}
+0YYVMUAZ:74: 			return tot;
+0ZGQDEDE:75: 		}
+0DXGMSVG:76: 		// 대각선 (0,0),(1,1),(2,2)
+0QSRTKPW:77: 		private int sumReverseDia(){
+0CJXDOJR:78: 			int tot=0;
+0ISVIOPL:79: 			for (int i = 0; i < n ; i++) {
+0ZGHMWTM:80: 				tot+=magic[i][i];
+0PMRVJMG:81: 			}
+0EWCZZUB:82: 			return tot;
+0YPEMLWD:83: 		}
+0IDULMTX:84: 		// 마방진이 잘 되었는가를 판단
+0BUROSBN:85: 		private  boolean isMagic( ){
+0ZCCAVFJ:86: 			boolean isM=true;
+0LWSOWXA:87: 			int[ ]m=new int[2*n+2];  // 행수n+열수n+대각선1+역대각선1
+0UHOMEMM:88: 			for (int i = 0; i < n; i++) {
+0AUMKPEO:89: 				m[i]=sumRow(i);      // 0,1,2 행의 합
+0KZWMZTN:90: 				m[i+n]=sumCol(i);    // 3,4,5 열의 합
+0JEUSYEZ:91: 			}
+0LNTPRUI:92: 			m[2*n]=sumReverseDia();  // 역대각선의합
+0RDUDOIN:93: 			m[2*n+1]=sumDia();       // 대각선의 합
+0DEADUOV:94: 			for (int i = 1; i < m.length; i++) {
+0AZLVZJV:95: 				if(m[0]==0 || m[0]!=m[i]){ // 하나라도 다르면 마방진이 아님
+0JLUEBAA:96: 					isM=false;
+0UINVIRU:97: 					break;
+0UBTLYKJ:98: 				}
+0TWAFYZD:99: 			}
+WJXXNWX:100: 			return isM;
+YYTYMKY:101: 		}
+BOSGZZX:102: 	}//class 

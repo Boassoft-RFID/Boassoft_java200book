@@ -1,0 +1,146 @@
+00JELOXXG:1: 	package kr.co.infopub.chapter.s183.model;
+00HJVPXPE:2: 	import kr.co.infopub.chapter.s183.dto.DepCountDto;
+00CFNWUUK:3: 	import kr.co.infopub.chapter.s183.dto.DepartmentDto;
+00LRGGPBE:4: 	import java.sql.Connection;
+00AVDHYBD:5: 	import java.sql.PreparedStatement;
+00LZDJSMC:6: 	import java.sql.ResultSet;
+00PEGHYQK:7: 	import java.sql.SQLException;
+00JZEZBHV:8: 	import java.util.ArrayList;
+00IIZSVII:9: 	import java.util.List;
+0APTJXQW:10: 	public class EmployeeDAO extends DataBase{
+0PVCRINQ:11: 	 // Number of all temples	
+0BGSFKAA:12: 	 public  int getEmployeesTotal () throws SQLException {
+0WRHRMYD:13: 	    String SQL = " SELECT COUNT(*) FROM EMPLOYEES ";
+0KCIVSYR:14: 	    Connection conn=null;
+0ZMAJXWP:15: 	    PreparedStatement psmt=null;
+0GEQZYJB:16: 	    ResultSet rs=null;
+0MEKFEUJ:17: 	    int count=0;
+0NBRXCLH:18: 	    try {
+0WTTYEPS:19: 	        conn=getConnection();
+0NVXSNIH:20: 	        psmt=conn.prepareStatement(SQL);
+0KFBNPJW:21: 	        log("3/6 getEmployeesTotal Success!!!");
+0DZRLBBM:22: 	        log(SQL,"getEmployeesTotal");
+0PQJLOGH:23: 	        rs =psmt.executeQuery();
+0EYUDCYM:24: 	        log("4/6 getEmployeesTotal Success!!!");
+0DIIUJTI:25: 	        if (rs.next()) {
+0WUUSLHP:26: 	            count=rs.getInt(1);  
+0KWMXUWI:27: 	        }
+0DAASAUP:28: 	        log("5/6 getEmployeesTotal Success!!!");
+0PXALZEV:29: 	    } catch (SQLException e) {
+0KSUFWCK:30: 	    	log(" getEmployeesTotal Error!!!",e);
+0RNXAQKP:31: 	    }finally{
+0JVEAPII:32: 	    	close(conn, psmt, rs);
+0OXHSFZF:33: 	    }
+0XFNDAHB:34: 	    return count;
+0WLVNAYI:35: 	 }
+0FZLQKPX:36: 	 // Only departments with employees, NOTYET for employees who have not been assigned to a department
+0AFUNXPN:37: 	 public  List<DepartmentDto> findAllDepartments () throws SQLException {
+0YNVNTOL:38: 		 String SQL=""+
+0FEKOMZC:39: 		  " SELECT NVL(E.DEPARTMENT_ID,0) DEPARTMENT_ID, "
+0NMDVVTS:40: 		 +" NVL(D.DEPARTMENT_NAME,'NOTYET') DEPARTMENT_NAME            "
+0ULVYQEL:41: 		 +" FROM EMPLOYEES E, DEPARTMENTS D            "
+0MSLRUYU:42: 		 +" WHERE E.DEPARTMENT_ID=D.DEPARTMENT_ID(+)            " 
+0QLHXMLW:43: 		 +" GROUP BY E.DEPARTMENT_ID, D.DEPARTMENT_NAME            "
+0PCRSSEA:44: 		 +" ORDER BY E.DEPARTMENT_ID            ";
+0PVNVUFN:45: 		Connection conn=null;
+0ITAITDK:46: 		PreparedStatement psmt=null;
+0IGTGRPN:47: 		ResultSet rs=null;
+0GDRNZLA:48: 		List<DepartmentDto> empList = new ArrayList<>();
+0RURDRRJ:49: 		try {
+0WANASMC:50: 			 conn=getConnection();
+0CILLXPX:51: 		     psmt=conn.prepareStatement(SQL);
+0GMZGVEJ:52: 		     log(SQL,"findAllDepartments");
+0IRGKHRC:53: 		     log("3/6 findAllDepartments Success!!!");
+0YMCXTYU:54: 		     rs =psmt.executeQuery();
+0TSAZSVT:55: 		     log("4/6 findAllDepartments Success!!!");
+0OFKWOZM:56: 		     while (rs.next()) {
+0FAVRZER:57: 		    	 DepartmentDto emp = new DepartmentDto();
+0DSXYFUI:58: 		         emp.setDepartment_id(rs.getInt("DEPARTMENT_id"));
+0GGVJVVA:59: 		         emp.setDepartment_name(rs.getString("DEPARTMENT_name"));
+0DUEFVXA:60: 		         empList.add(emp);
+0DTRSHBA:61: 		     }
+0JBKTDCX:62: 		     log("5/6 findAllDepartments Success!!!");
+0XHZKUAJ:63: 		} catch (SQLException e) {
+0WZNNAXZ:64: 			log(" findAllDepartments Error!!!",e);
+0GHVLZNX:65: 	    }finally{
+0EHVXPBB:66: 	    	close(conn, psmt, rs);
+0EJWCKSS:67: 	    }
+0OABTKGP:68: 	    return empList;
+0GHNWFAI:69: 	 }
+0FBKJGPR:70: 	 // All departments, including those without departments
+0THDQOOP:71: 	 public  List<DepartmentDto> findAllDepartments2 () throws SQLException {
+0QBMFPNW:72: 		 //Includes employees without departments
+0SSSPFPT:73: 	    String SQL=""+
+0MZOQMHX:74: 		 " SELECT  NVL(D.DEPARTMENT_ID,0) DEPARTMENT_ID,            "
+0OFXZNUO:75: 		+" NVL(D.DEPARTMENT_NAME,'NOTYET') DEPARTMENT_NAME         "
+0BJFOCOX:76: 		+" FROM EMPLOYEES E FULL OUTER JOIN  DEPARTMENTS D         "
+0WROKSLM:77: 		+" ON E.DEPARTMENT_ID=D.DEPARTMENT_ID                      "
+0MPIWACZ:78: 		+" GROUP BY D.DEPARTMENT_ID,D.DEPARTMENT_NAME              "
+0GVJVRBL:79: 		+" ORDER BY D.DEPARTMENT_ID                                ";
+0YOOKOSS:80: 		// Excluding employees without departments  
+0NMCAHPQ:81: 	/*    String SQL=""+
+0YOUMKNS:82: 		 " SELECT  NVL(D.DEPARTMENT_ID,0) DEPARTMENT_ID,           "
+0NFPXLEF:83: 		+" NVL(D.DEPARTMENT_NAME,'NOTYET') DEPARTMENT_NAME         "
+0HQNWXMF:84: 		+" FROM DEPARTMENTS D              ";
+0PMPIWUT:85: 	*/
+0LXXPHOQ:86: 	    Connection conn=null;
+0PTQRXFY:87: 	    PreparedStatement psmt=null;
+0KVGXGZA:88: 	    ResultSet rs=null;
+0PTSOKKF:89: 	    List<DepartmentDto> empList = new ArrayList<>();
+0EQFJOGT:90: 	    try {
+0YCDNDBM:91: 	    	 conn=getConnection();
+0OHAGOXP:92: 	         psmt=conn.prepareStatement(SQL);
+0LSJEGZJ:93: 	         log(SQL,"findAllDepartments");
+0KWOURVI:94: 	         log("3/6 findAllDepartments Success!!!");
+0HOFRVQU:95: 	         rs =psmt.executeQuery();
+0QUOUPCY:96: 	         log("4/6 findAllDepartments Success!!!");
+0QSCXQCA:97: 	         while (rs.next()) {
+0UYOQNON:98: 	        	 DepartmentDto emp = new DepartmentDto();
+0XTDLUCU:99: 	             emp.setDepartment_id(rs.getInt("DEPARTMENT_id"));
+EXFGMOU:100: 	             emp.setDepartment_name(rs.getString("DEPARTMENT_name"));
+GTNCIAG:101: 	             empList.add(emp);
+XUGHCWV:102: 	         }
+IESZDCF:103: 	         log("5/6 findAllDepartments Success!!!");
+ERXNRZL:104: 	    } catch (SQLException e) {
+SCLTFGJ:105: 	    	log(" findAllDepartments Error!!!",e);
+XSUXNSY:106: 	    }finally{
+GTYEVCM:107: 	    	close(conn, psmt, rs);
+JIFNAPH:108: 	    }
+UITLNOZ:109: 	    return empList;
+LWMQEMC:110: 	 }
+NAHTWIW:111: 	 // a department with department members와 부서원의 수
+NWVNPHN:112: 	 public  List<DepCountDto> findAllDepCounts () throws SQLException {
+PATCDIN:113: 	    String SQL = ""
+RWKGBRW:114: 	 +" SELECT COUNT(*) COUNT, NVL(E.DEPARTMENT_ID,0) DEPARTMENT_ID,        "
+DLYYDPZ:115: 	 +"         NVL(D.DEPARTMENT_NAME,'NOTYET') DEPARTMENT_NAME             "
+XWRNTBE:116: 	 +" FROM EMPLOYEES E, DEPARTMENTS D                                     "
+PERYSGK:117: 	 +" WHERE E.DEPARTMENT_ID=D.DEPARTMENT_ID(+)                            "
+ISCICVE:118: 	 +" GROUP BY E.DEPARTMENT_ID, D.DEPARTMENT_NAME                         "
+UZGQFAT:119: 	 +" ORDER BY COUNT DESC,E.DEPARTMENT_ID ASC                             ";
+ROEXCGY:120: 	    Connection conn=null;
+CQYRSNQ:121: 	    PreparedStatement psmt=null;
+XTSDMVB:122: 	    ResultSet rs=null;
+EYJMJWG:123: 	    List<DepCountDto> empList = new ArrayList<>();
+OBHXSJR:124: 	    try {
+JOTNLOU:125: 	    	 conn=getConnection();
+PJXLRFW:126: 	         psmt=conn.prepareStatement(SQL);
+IRYSYHJ:127: 	         log("3/6 findAllDepCounts Success!!!");
+YTNSLLM:128: 	         log(SQL,"findAllDepCounts");
+JMKHEJD:129: 	         rs =psmt.executeQuery();
+BEPBDHJ:130: 	         log("4/6 findAllDepCounts Success!!!");
+TCRFODV:131: 	         while (rs.next()) {
+CXKOPAC:132: 	        	 DepCountDto emp = new DepCountDto();
+ITYMAAC:133: 	             emp.setCount(rs.getInt("COUNT"));
+SLNQDUS:134: 	             emp.setDepartment_id(rs.getInt("DEPARTMENT_ID"));
+EOIBKEV:135: 	             emp.setDepartment_name(rs.getString("DEPARTMENT_NAME"));
+GXOQMVR:136: 	             empList.add(emp);
+ZAVAUFU:137: 	         }
+OWLJSVN:138: 	         log("5/6 findAllDepCounts Success!!!");
+TTFMQKH:139: 	    } catch (SQLException e) {
+UIWCOQV:140: 	    	log(" findAllDepCounts Error !!!",e);
+ELUWIIJ:141: 	    }finally{
+FRYPSGQ:142: 	    	close(conn, psmt, rs);
+SMOOGFE:143: 	    }
+MIZIZUH:144: 	    return empList;
+QIDYZNL:145: 	 }
+KHWZJPH:146: 	}

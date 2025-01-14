@@ -1,0 +1,49 @@
+0KNEEWBX:1: 	package kr.co.infopub.chapter.s184.dto;
+0ILOMSJY:2: 	public class DepartmentDto {
+0RZAVPRU:3: 	 private int department_id;
+0KTYHIEH:4: 	 private String department_name="NOTYET";
+0ECRZQME:5: 	 private int manager_id;
+0VGLLZOT:6: 	 private int location_id;
+0NIMFWKA:7: 	
+0QJJYDUR:8: 	 public DepartmentDto() {
+0TOODOQY:9: 		super();
+WBXJISL:10: 	 }
+ORQUCXC:11: 	 public DepartmentDto(int department_id, String department_name,
+KLSQMZW:12: 			int manager_id, int location_id) {
+IPGEBLX:13: 		super();
+FZECAXR:14: 		this.department_id = department_id;
+GJIKBHA:15: 		this.department_name = department_name;
+NGKZZMS:16: 		this.manager_id = manager_id;
+FAUBXYR:17: 		this.location_id = location_id;
+MSZUPYE:18: 	 }
+VMVTOQH:19: 	 @Override
+ZTTEJUA:20: 	 public String toString() {
+NKYWULC:21: 		return "DepartmentDto [department_id=" + department_id +
+MYHSEZD:22: 		    ", department_name=" + department_name
+TPFXRUS:23: 		+ ", manager_id=" + manager_id + ", location_id=" + location_id + "]";
+TDZZGGT:24: 	 }
+MXPJPKL:25: 	 public int getDepartment_id() {
+YUKRKMJ:26: 		return department_id;
+CGJSXOX:27: 	 }
+ZQTCEAU:28: 	 public void setDepartment_id(int department_id) {
+LEPBUYH:29: 		this.department_id = department_id;
+EZAGQCP:30: 	 }
+VLQSHVD:31: 	 public String getDepartment_name() {
+ERPZRLM:32: 		return department_name;
+VEBILRP:33: 	 }
+VBQYXRS:34: 	 public void setDepartment_name(String department_name) {
+DFACAPJ:35: 		this.department_name = department_name;
+HVDGKTG:36: 	 }
+QZWCGFI:37: 	 public int getManager_id() {
+QUSZNZR:38: 		return manager_id;
+QVGZVFZ:39: 	 }
+QKDBSHQ:40: 	 public void setManager_id(int manager_id) {
+ENMTRTP:41: 		this.manager_id = manager_id;
+XKHCCTV:42: 	 }
+PKUPHAO:43: 	 public int getLocation_id() {
+HMZXGLL:44: 		return location_id;
+UPBSLMW:45: 	 }
+AXSQCSH:46: 	 public void setLocation_id(int location_id) {
+XTLNTRC:47: 		this.location_id = location_id;
+DHYRCPE:48: 	 }
+PHCBFIU:49: 	}

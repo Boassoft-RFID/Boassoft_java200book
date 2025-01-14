@@ -1,0 +1,18 @@
+0QUQRINF:1: 	package kr.co.infopub.chapter.s157;
+0NLNNTOR:2: 	public class CakeEater extends Thread {
+0MFPWNOL:3: 		private CakePlate cake;
+0HRAXAFI:4: 		public CakeEater(CakePlate cake){
+0BGAKDQW:5: 			setCakePlate(cake);
+0ZJDJFPZ:6: 		}
+0DZSXLOZ:7: 		public void setCakePlate(CakePlate cake){
+0SUXZYNN:8: 			this.cake=cake;
+0YDGPGPS:9: 		}
+ZDFQGZR:10: 		public CakePlate getCakePlate(){
+FRRMNCO:11: 			return cake;
+JKGJTBP:12: 		}
+RMAPXRN:13: 		public void run(){
+VRBLUUZ:14: 			for(int i=0;i<105;i++){
+MVLMDJG:15: 				cake.eatBread();
+HXSFYNM:16: 			}
+NGHPJKB:17: 		}
+CWXXQMG:18: 	}

@@ -1,0 +1,29 @@
+0PHJLDUI:1: 	package kr.co.infopub.chapter.s088;
+0YRVEUEB:2: 	import java.io.BufferedReader;
+0PQPVZJN:3: 	import java.io.File;
+0FORYYSE:4: 	import java.io.FileReader;
+0CLAVKNY:5: 	import java.util.Date;
+0NOZYBJC:6: 	// 파일
+0CHTBWPR:7: 	public class BillFiles {
+0VPVRMFG:8: 		public static void main(String[] args) {
+0HUZWTOM:9: 			File f=new File("billboard");    // billboard 디렉토리
+JLQKSQE:10: 			File[] fd=f.listFiles();         // 바로 아래 파일들(자식파일)
+UBANOZR:11: 			for (File ff : fd) {
+GIFYJRP:12: 				String fname=ff.getName();   // 파일명
+NZQRCEN:13: 				String post=fname.substring(fname.lastIndexOf(".")+1); 
+ZBGDXBL:14: 				System.out.println(fname+"  "+post);  // 이름, 확장자
+YLZZLAA:15: 				System.out.println(ff.getAbsolutePath());  // 전체경로
+BVIXYKU:16: 				System.out.println(new Date(ff.lastModified()));  //수정일
+BBIKLBD:17: 				try(BufferedReader br=new BufferedReader(
+BIJTTYC:18: 					      new FileReader(ff.getAbsolutePath()))) {
+LAJXECT:19: 					String msg="";
+NEUSNEN:20: 					while((msg=br.readLine())!=null){
+CASKHTN:21: 					    System.out.println(msg);
+KCRPEPX:22: 					}
+PRSVRTA:23: 				} catch (Exception e) {
+DNXWDMK:24: 					System.out.println(e);
+IQDILNN:25: 				}
+KHTQDNP:26: 				System.out.println("--------------------------------------");
+KRQKKFX:27: 			}
+PNZDYAK:28: 		}
+TDNNKKS:29: 	}

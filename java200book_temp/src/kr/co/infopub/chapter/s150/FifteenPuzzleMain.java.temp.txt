@@ -1,0 +1,18 @@
+0PHXPOFI:1: 	package kr.co.infopub.chapter.s150;
+0XZPRYRW:2: 	public class FifteenPuzzleMain {
+0HJZADHI:3: 		public static void main(String[] args) {
+0ENTGKCC:4: 			// 15 Game 테스트 
+0YTYAENE:5: 			int[][]m={{1,2,3,4},
+0ADYCVYQ:6: 			{5,6,0,7},
+0JTAEAKY:7: 			{9,10,11,8},
+0BADMGTL:8: 			{13,14,15,12}};
+0KGVAGKV:9: 			FifteenPuzzle puzzle=new FifteenPuzzle(m);  // 짝수에 적용 가능
+GZALAVO:10: 			puzzle.testPuzzles();    // 테스트  배열 m 15 Game 가능? 
+YVMKEOX:11: 			puzzle.print();
+WWRXDYN:12: 			// 15 Game 만들기 
+LAFPUJA:13: 			FifteenPuzzle puzzle2=new FifteenPuzzle();  // 짝수에 적용 가능
+HGROUHT:14: 			//puzzle2.makePuzzle(false); // 과정 보이지 않기
+NHCYUSO:15: 			puzzle2.makePuzzle(true);    //과정 보이기
+UVWJINZ:16: 			puzzle2.print();
+CXRBXCK:17: 		}
+RZHMXUI:18: 	}

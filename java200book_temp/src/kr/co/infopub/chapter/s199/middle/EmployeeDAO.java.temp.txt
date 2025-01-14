@@ -1,0 +1,652 @@
+00OMPSCBR:1: 	package kr.co.infopub.chapter.s199.middle;
+00WUQHBNV:2: 	import java.sql.Connection;
+00PEQFRSG:3: 	import java.sql.PreparedStatement;
+00FPTXRPD:4: 	import java.sql.ResultSet;
+00QEZAMJD:5: 	import java.sql.SQLException;
+00BXNRPDX:6: 	import java.util.ArrayList;
+00HNQDEIV:7: 	import java.util.List;
+00IMEQJQH:8: 	
+00TAEJHIB:9: 	import kr.co.infopub.chapter.s199.common.DepCountDto;
+0AWFKIKD:10: 	import kr.co.infopub.chapter.s199.common.DepartmentDto;
+0CFAZVUU:11: 	import kr.co.infopub.chapter.s199.common.EmployeeDto;
+0QAMOYSO:12: 	
+0FELHUSX:13: 	public class EmployeeDAO extends DataBase{
+0RMOEWZM:14: 		 public  int getEmployeesTotal () throws SQLException {
+0GGDQRSJ:15: 		        String SQL = " SELECT COUNT(*) FROM EMPLOYEES ";
+0IYJRYTA:16: 		        Connection conn=null;
+0DCXBKNQ:17: 		        PreparedStatement psmt=null;
+0XJGDVXO:18: 		        ResultSet rs=null;
+0UTNPVXU:19: 		        int count=0;
+0QKZLDZT:20: 		        try {
+0QGAXNKL:21: 		            conn=getConnection();
+0QPTFXRW:22: 		            psmt=conn.prepareStatement(SQL);
+0TRXQQTZ:23: 		            log("3/6 getEmployeesTotal Success!!!");
+0XLIHRXY:24: 		            log(SQL,"getEmployeesTotal");
+0ARUGGOL:25: 		            rs =psmt.executeQuery();
+0ZANXUAM:26: 		            log("4/6 getEmployeesTotal Success!!!");
+0EBKKOEA:27: 		           
+0YRGPUUQ:28: 		            if (rs.next()) {
+0URNTTCX:29: 		                count=rs.getInt(1);  
+0BWQDNDR:30: 		            }
+0HGOTIYL:31: 		            log("5/6 getEmployeesTotal Success!!!");
+0DJJHTRN:32: 		        } catch (SQLException e) {
+0JCYHNOV:33: 		        	log(" getEmployeesTotal Error!!!",e);
+0MGDJRAM:34: 		        	throw e;
+0DZGCXWC:35: 		        }finally{
+0BZYFZTN:36: 		        	close(conn, psmt, rs);
+0HKNTHUU:37: 		        }
+0PGQHBXQ:38: 		        return count;
+0BXSJURO:39: 		    }
+0LJIMXTJ:40: 	
+0WAEUCYO:41: 		  public  List<DepartmentDto> findAllDepartments () throws SQLException {
+0MLDEWEE:42: 	
+0GYIXWFZ:43: 		        String SQL=""+
+0HKDADAJ:44: 		          " SELECT NVL(E.DEPARTMENT_ID,0) DEPARTMENT_ID, NVL(D.DEPARTMENT_NAME,'NOTYET') DEPARTMENT_NAME            "
+0IRZUJZB:45: 		         +" FROM EMPLOYEES E, DEPARTMENTS D            "
+0PROGYKR:46: 		         +" WHERE E.DEPARTMENT_ID=D.DEPARTMENT_ID(+)            " 
+0OZIQTAC:47: 		         +" GROUP BY E.DEPARTMENT_ID, D.DEPARTMENT_NAME            "
+0OOHKMSV:48: 		         +" ORDER BY E.DEPARTMENT_ID            ";
+0IOAHMIO:49: 	
+0ZIWSFCT:50: 		        Connection conn=null;
+0CDQRPTM:51: 		        PreparedStatement psmt=null;
+0DYJJHFB:52: 		        ResultSet rs=null;
+0TJJESGJ:53: 		        List<DepartmentDto> empList = new ArrayList<>();
+0CWNBGUE:54: 		        //List<DepartmentDto> empList = FXCollections.observableArrayList();
+0VFMDRZK:55: 		        try {
+0IEMNLFX:56: 		        	 conn=getConnection();
+0UPEQKFL:57: 		             psmt=conn.prepareStatement(SQL);
+0SQJJRFL:58: 		             log(SQL,"findAllDepartments");
+0LEEZLXK:59: 		             log("3/6 findAllDepartments Success!!!");
+0DAFIJZJ:60: 		             rs =psmt.executeQuery();
+0WKDNMVW:61: 		             log("4/6 findAllDepartments Success!!!");
+0VCOVXWW:62: 		             while (rs.next()) {
+0SNGQDHM:63: 		            	 DepartmentDto emp = new DepartmentDto();
+0IMRMWRZ:64: 		                 emp.setDepartment_id(rs.getInt("DEPARTMENT_id"));
+0XESTWHL:65: 		                 emp.setDepartment_name(rs.getString("DEPARTMENT_name"));
+0STTJCMH:66: 		                 empList.add(emp);
+0EURMVCH:67: 		             }
+0XYWERBX:68: 		             log("5/6 findAllDepartments Success!!!");
+0QAWGSBJ:69: 		        } catch (SQLException e) {
+0VMJZKXI:70: 		        	log(" findAllDepartments Error!!!",e);
+0ABOIJLW:71: 		        	throw e;
+0YMKKNFA:72: 		        }finally{
+0LCKQEGE:73: 		        	close(conn, psmt, rs);
+0WGWQXSK:74: 		        }
+0DSNKIZW:75: 		        return empList;
+0WSXTEOM:76: 		    }
+0FRYXQZR:77: 		  public  List<DepartmentDto> findAllDepartments2 () throws SQLException {
+0TAMOFHQ:78: 	
+0MXFHETL:79: 		        String SQL=""+
+0VTQVSGK:80: 				 " SELECT  NVL(D.DEPARTMENT_ID,0) DEPARTMENT_ID,            "
+0FEHBGPJ:81: 				+" NVL(D.DEPARTMENT_NAME,'NOTYET') DEPARTMENT_NAME         "
+0KIRSHQP:82: 				+" FROM EMPLOYEES E FULL OUTER JOIN  DEPARTMENTS D         "
+0RUGVHBN:83: 				+" ON E.DEPARTMENT_ID=D.DEPARTMENT_ID                      "
+0IZGQXQI:84: 				+" GROUP BY D.DEPARTMENT_ID,D.DEPARTMENT_NAME              "
+0JGBXUVB:85: 				+" ORDER BY D.DEPARTMENT_ID                                ";
+0CVLNXES:86: 		        Connection conn=null;
+0NFIMFCR:87: 		        PreparedStatement psmt=null;
+0DAYMPTS:88: 		        ResultSet rs=null;
+0OERCZMY:89: 		       // ObservableList<Department> empList = FXCollections.observableArrayList();
+0QNGPADE:90: 		        List<DepartmentDto> empList = new ArrayList<>();
+0HCBPMLJ:91: 		        try {
+0UXWQALE:92: 		        	 conn=getConnection();
+0MUKSPRF:93: 		             psmt=conn.prepareStatement(SQL);
+0AIPKAJO:94: 		             log(SQL,"findAllDepartments");
+0CKVRSSO:95: 		             log("3/6 findAllDepartments Success!!!");
+0JUTAGOE:96: 		             rs =psmt.executeQuery();
+0YEUSOIZ:97: 		             log("4/6 findAllDepartments Success!!!");
+0FLTWTLI:98: 		             while (rs.next()) {
+0ROOZEGW:99: 		            	 DepartmentDto emp = new DepartmentDto();
+TAAIVBZ:100: 		                 emp.setDepartment_id(rs.getInt("DEPARTMENT_id"));
+OKBTNIF:101: 		                 emp.setDepartment_name(rs.getString("DEPARTMENT_name"));
+UUZNOKH:102: 		                 empList.add(emp);
+OSOKMND:103: 		             }
+IPMQTZC:104: 		             log("5/6 findAllDepartments Success!!!");
+WLMRDSB:105: 		        } catch (SQLException e) {
+HJDRMVY:106: 		        	log(" findAllDepartments Error!!!",e);
+VYJUNMC:107: 		        	throw e;
+PUJSEXK:108: 		        }finally{
+OCKSWHV:109: 		        	close(conn, psmt, rs);
+TXDNGUK:110: 		        }
+PAKSVLU:111: 		        return empList;
+SBOHQVD:112: 		    }
+PZNCFQE:113: 		  public  List<DepCountDto> findAllDepCounts ()   throws SQLException{
+RPRSFNH:114: 		        String SQL = ""
+AOETOOU:115: 		        		+" SELECT COUNT(*) COUNT, NVL(E.DEPARTMENT_ID,0) DEPARTMENT_ID,        "
+WYRAIZL:116: 		        		+"         NVL(D.DEPARTMENT_NAME,'NOTYET') DEPARTMENT_NAME             "
+ITKAUUU:117: 		        		+" FROM EMPLOYEES E, DEPARTMENTS D                                     "
+QWAAFXC:118: 		        		+" WHERE E.DEPARTMENT_ID=D.DEPARTMENT_ID(+)                            "
+PMYAVOF:119: 		        		+" GROUP BY E.DEPARTMENT_ID, D.DEPARTMENT_NAME                         "
+HQKIHHA:120: 		        		+" ORDER BY COUNT DESC,E.DEPARTMENT_ID ASC                             ";
+BDWALLP:121: 		        Connection conn=null;
+OJNDLNY:122: 		        PreparedStatement psmt=null;
+NAWWPNM:123: 		        ResultSet rs=null;
+GGCDERH:124: 		        List<DepCountDto> empList = new ArrayList<>();
+YCBFIGA:125: 		        //List<DepCount> empList = FXCollections.observableArrayList();
+EVFPOBF:126: 		        try {
+COYJCJN:127: 		        	 conn=getConnection();
+LXXJLHP:128: 		             psmt=conn.prepareStatement(SQL);
+NPCSWDF:129: 		             log("3/6 findAllDepCounts Success!!!");
+PRFBKEN:130: 		             log(SQL,"findAllDepCounts");
+FOMYRAY:131: 		             rs =psmt.executeQuery();
+ZQPXRUQ:132: 		             log("4/6 findAllDepCounts Success!!!");
+YSTHLLS:133: 		             while (rs.next()) {
+IAGTMBP:134: 		            	 DepCountDto emp = new DepCountDto();
+IILJSEH:135: 		                 emp.setCount(rs.getInt("COUNT"));
+HNJQOZB:136: 		                 emp.setDepartment_id(rs.getInt("DEPARTMENT_ID"));
+SFTHTBB:137: 		                 emp.setDepartment_name(rs.getString("DEPARTMENT_NAME"));
+HTEOZLU:138: 		                 empList.add(emp);
+FPEYKQQ:139: 		             }
+FMNWBEO:140: 		             log("5/6 findAllDepCounts Success!!!");
+RSYATSJ:141: 		        } catch (SQLException e) {
+PXTXWAR:142: 		        	log(" findAllDepCounts Error !!!",e);
+WCRDLSS:143: 		        	throw e;
+XFHBYQX:144: 		        }finally{
+JSIAKTF:145: 		        	close(conn, psmt, rs);
+HNUHOVG:146: 		        }
+HKHLQGF:147: 		        return empList;
+BWEPDMX:148: 		    }
+RVKJMMC:149: 		  
+THUKZFP:150: 		  //-------------------------------------emp
+JVZYIIS:151: 		  public  List<EmployeeDto> findAllEmployees ()  throws SQLException{
+BYDZFDF:152: 	
+BVQUCAK:153: 		        String SQL = " SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL,                   "
+BAHVTMM:154: 		        		+ " PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY , COMMISSION_PCT,              "
+TIMTDWK:155: 		        		+"  MANAGER_ID, DEPARTMENT_ID FROM EMPLOYEES ORDER BY EMPLOYEE_ID          ";
+ZHQELYD:156: 		        Connection conn=null;
+VKACIKD:157: 		        PreparedStatement psmt=null;
+FIYFHDH:158: 		        ResultSet rs=null;
+AQEYHKU:159: 		        List<EmployeeDto> empList = new ArrayList<>();
+UQSZJNC:160: 		        try {
+PKSTTLR:161: 		        	 conn=getConnection();
+NCWBCWC:162: 		             psmt=conn.prepareStatement(SQL);
+WNCPLDE:163: 		             log("3/6 findAllEmployees Success!!!");
+THXXBPR:164: 		             log(SQL,"findAllEmployees");
+BTLADFL:165: 		             rs =psmt.executeQuery();
+SHEOUZU:166: 		             log("4/6 findAllEmployees Success!!!");
+ILVFSYC:167: 		             while (rs.next()) {
+ARXAQTK:168: 		            	 EmployeeDto emp = new EmployeeDto();
+KVMQRUF:169: 		                 emp.setEmployeeId(rs.getInt("EMPLOYEE_ID"));
+MTMWEFN:170: 		                 emp.setFirstName(rs.getString("FIRST_NAME"));
+UJCRUJV:171: 		                 emp.setLastName(rs.getString("LAST_NAME"));
+OGKTMWP:172: 		                 emp.setEmail(rs.getString("EMAIL"));
+HNJERUV:173: 		                 emp.setPhoneNumber(rs.getString("PHONE_NUMBER"));
+LHKJDFP:174: 		                 emp.setHireDate(rs.getDate("HIRE_DATE"));
+ZPLORQR:175: 		                 emp.setJobId(rs.getString("JOB_ID"));
+EHZDFUJ:176: 		                 emp.setSalary(rs.getInt("SALARY"));
+EKNDOOP:177: 		                 emp.setCommissionPct(rs.getDouble("COMMISSION_PCT"));
+EWZWRQG:178: 		                 emp.setManagerId(rs.getInt("MANAGER_ID"));
+QNVDULQ:179: 		                 emp.setDepartmantId(rs.getInt("DEPARTMENT_ID"));
+MRSMXNE:180: 		                 empList.add(emp);
+DGPDTOA:181: 		             }
+XUKJWSE:182: 		             log("5/6 findAllEmployees Success!!!");
+JXYAZAW:183: 		        } catch (SQLException e) {
+WGYJAVC:184: 		        	log(" findAllEmployees Error !!!",e);
+DGJGXNT:185: 		        	throw e;
+JLBAZWY:186: 		        }finally{
+FKEWHYA:187: 		        	close(conn, psmt, rs);
+TFAVEEI:188: 		        }
+RMRVDBT:189: 		        return empList;
+VVLLUXD:190: 		    }
+AKXCRRI:191: 		  public  List<EmployeeDto> findTreeManagerInEmployee ()  throws SQLException{
+ORPFIJG:192: 		        String SQL = ""
+NVAXHKF:193: 					        +" SELECT                   "
+NGSIJXB:194: 					    	+" EMPLOYEE_ID,             "
+UVYXVKS:195: 					    	+" MANAGER_ID,              "
+BSEHXRU:196: 					    	+" FIRST_NAME,              "
+BQUVOXK:197: 					    	+" LAST_NAME, DEPARTMENT_ID, ORDER2              "
+CZTSKGQ:198: 					    	+" FROM ( 	SELECT                      "
+WRJDIZM:199: 					    	+" 				EMPLOYEE_ID,            "
+OUSWZYC:200: 					    	+" 				MANAGER_ID,             "
+VJXZCLB:201: 					    	+" 				FIRST_NAME,             "
+UXHHXVV:202: 					    	+" 				LAST_NAME, DEPARTMENT_ID, LEVEL ,             "
+UALVKVY:203: 					    	+" 				SYS_CONNECT_BY_PATH(TO_CHAR(LEVEL,'FM000')||EMPLOYEE_ID,'/') ORDER2             "
+OHBYWMB:204: 						    +"   			FROM EMPLOYEES              "
+FYJEPSW:205: 						    +"  			START WITH  MANAGER_ID  IS NULL             "
+HHPVVNB:206: 						    +"  			CONNECT BY PRIOR  EMPLOYEE_ID = MANAGER_ID)             "
+YSSPBGW:207: 						    +"  ORDER BY ORDER2  ";
+PXZSOGD:208: 		        Connection conn=null;
+WBHOMUD:209: 		        PreparedStatement psmt=null;
+WBGCQFV:210: 		        ResultSet rs=null;
+AQERHDI:211: 		        List<EmployeeDto> empList = new ArrayList<>();
+MXRACJQ:212: 		        try {
+DKBUCHQ:213: 		        	 conn=getConnection();
+DNXAGMT:214: 		             psmt=conn.prepareStatement(SQL);
+RPYIUEA:215: 		             log("3/6 findTreeManagerInEmployee Success!!!");
+YILBNLK:216: 		             log(SQL,"findTreeManagerInEmployee");
+MOXBNQK:217: 		             rs =psmt.executeQuery();
+EVIMXXH:218: 		             log("4/6 findTreeManagerInEmployee Success!!!");
+MYKQTXN:219: 		             while (rs.next()) {
+PPPKHQP:220: 		            	 EmployeeDto emp = new EmployeeDto();
+QQAWHNX:221: 		                 emp.setEmployeeId(rs.getInt("EMPLOYEE_ID"));
+ECXOHWV:222: 		                 emp.setManagerId(rs.getInt("MANAGER_ID"));
+YFXGPZL:223: 		                 emp.setFirstName(rs.getString("FIRST_NAME"));
+GIECEPP:224: 		                 emp.setLastName(rs.getString("LAST_NAME"));
+FTLYTDF:225: 		                 emp.setDepartmantId(rs.getInt("DEPARTMENT_ID"));
+WCOTFOP:226: 		                 emp.setOrder2(rs.getString("ORDER2"));
+DTEJMTU:227: 		                 empList.add(emp);
+TTMZAGA:228: 		             }
+MIMLWYS:229: 		             log("5/6 findTreeManagerInEmployee Success!!!");
+UMQNSFW:230: 		        } catch (SQLException e) {
+DZYQZVJ:231: 		        	 log(" findTreeManagerInEmployee Error!!!",e);
+LZGNAFS:232: 		        	 throw e;
+PRVOAJL:233: 		        }finally{
+QNITQOB:234: 		        	close(conn, psmt, rs);
+NQALRER:235: 		        }
+VGZMORO:236: 		        return empList;
+VXNTRSU:237: 		    }
+DMWPZIG:238: 		  public  int getTreeMaxLevel () throws SQLException {
+OQNHLUV:239: 	
+RYHIQXQ:240: 		    	String SQL = ""
+LRAHTZP:241: 		         		+" SELECT MAX(LEVEL)                         "
+BLSAGYW:242: 		         		+" FROM EMPLOYEES                            "
+HYMMRAA:243: 		         		+" START WITH  MANAGER_ID  IS NULL           "
+NXSDYEX:244: 		         		+" CONNECT BY PRIOR  EMPLOYEE_ID = MANAGER_ID";
+VUKJSWK:245: 		        Connection conn=null;
+ADJXUBS:246: 		        PreparedStatement psmt=null;
+JQFTFPP:247: 		        ResultSet rs=null;
+OKTSAKA:248: 		        int count=0;
+YCNJJWX:249: 		        try {
+SEAQCOF:250: 		        	 conn=getConnection();
+UYQCLBI:251: 		             psmt=conn.prepareStatement(SQL);
+YQIOVZP:252: 		             log("3/6 getTreeMaxLevel Success!!!");
+IZFKJSX:253: 		             log(SQL,"getTreeMaxLevel");
+LVALETA:254: 		             rs =psmt.executeQuery();
+CTRIFPJ:255: 		             log("4/6 getTreeMaxLevel Success!!!");
+PWDMLAV:256: 		             if (rs.next()) {
+ELESUQV:257: 		                 count=rs.getInt(1);
+VQQIIYP:258: 		             }
+CKACNYI:259: 		             log("5/6 getTreeMaxLevel Success!!!");
+QVXLQHD:260: 		        } catch (SQLException e) {
+ONENUEP:261: 		        	log(" getTreeMaxLevel Error!!!",e);
+GBYHQBB:262: 		        	 throw e;
+LOUGGDC:263: 		        }finally{
+CLYGEAH:264: 		        	close(conn, psmt, rs);
+YYZNFNP:265: 		        }
+ATQSDTX:266: 		        return count;
+DIAFMKH:267: 		    }
+DMIPAXH:268: 		  public  List<EmployeeDto> findEmployeesByManagerId (String empid)  throws SQLException{
+FXZWMWZ:269: 		        String SQL = "SELECT "
+IPOPQLF:270: 			    			+" E.EMPLOYEE_ID EMPLOYEE_ID, D.EMPLOYEE_ID MANAGER_ID,           "
+KOQEJNJ:271: 			    			+" E.FIRST_NAME ,                                                 "
+MQEJQYO:272: 			    			+" E.LAST_NAME, E.EMAIL, E.PHONE_NUMBER,E.HIRE_DATE               "
+CMNHXUF:273: 			    			+" FROM EMPLOYEES E, EMPLOYEES D                                  "
+GQDGUIO:274: 			    			+" WHERE D.EMPLOYEE_ID=E.MANAGER_ID AND E.MANAGER_ID=?            ";
+TPZNGVZ:275: 		      
+UNDUZHE:276: 		        Connection conn=null;
+MJTUBGQ:277: 		        PreparedStatement psmt=null;
+NTQVSZB:278: 		        ResultSet rs=null;
+BKJAYOE:279: 		        List<EmployeeDto> empList = new ArrayList<>();
+PLHNLOW:280: 		        try {
+QOSSXRA:281: 		        	 conn=getConnection();
+MZCWQYY:282: 		             psmt=conn.prepareStatement(SQL);
+HUILCEF:283: 		             psmt.setString(1, empid);
+GGAMGAV:284: 		             log("3/6 findEmployeesByManagerId Success!!!");
+XKJEHBE:285: 		             log(SQL,"findEmployeesByManagerId",empid);
+OUVUDUT:286: 		             rs =psmt.executeQuery();
+TEXUAUH:287: 		             log("4/6 findEmployeesByManagerId Success!!!");
+XTTCDJS:288: 		             while (rs.next()) {
+JLZYLKF:289: 		            	 EmployeeDto emp = new EmployeeDto();
+QDXKCYH:290: 		                 emp.setEmployeeId(rs.getInt("EMPLOYEE_ID"));
+SZSBNAL:291: 		                 emp.setFirstName(rs.getString("FIRST_NAME"));
+CQMITYR:292: 		                 emp.setLastName(rs.getString("LAST_NAME"));
+YOSTHRJ:293: 		                 emp.setEmail(rs.getString("EMAIL"));
+LSUSGJK:294: 		                 emp.setPhoneNumber(rs.getString("PHONE_NUMBER"));
+ZIUAHGH:295: 		                 emp.setHireDate(rs.getDate("HIRE_DATE"));
+ORXNVEQ:296: 		                 empList.add(emp);
+WDQHXQK:297: 		             }
+CEDHNOM:298: 		             log("5/6 findEmployeesByManagerId Success!!!");
+VIXVPGT:299: 		        } catch (SQLException e) {
+JPLHAIY:300: 		        	 log(" findEmployeesByManagerId Error!!!",e);
+XUFLAOZ:301: 		        	 throw e;
+WAMUGDG:302: 		        }finally{
+ABJDAQH:303: 		        	close(conn, psmt, rs);
+PCWLQXZ:304: 		        }
+BQBWADJ:305: 		        return empList;
+TRQAOTV:306: 		    }
+CRSIPFK:307: 		  
+KOSOGMS:308: 		  
+FXRMEHO:309: 		  public  List<String> findAllJobs () throws SQLException {
+UWBVTGT:310: 		        String SQL= " SELECT JOB_ID, JOB_TITLE FROM JOBS           ";
+BPOYBWR:311: 		        Connection conn=null;
+PVUDXFG:312: 		        PreparedStatement psmt=null;
+TPPEZVR:313: 		        ResultSet rs=null;
+ZGPUIWM:314: 		        List<String> jobList = new ArrayList<>();
+SCACQRT:315: 		        try {
+EBZCIDB:316: 		        	 conn=getConnection();
+KCLLALE:317: 		             psmt=conn.prepareStatement(SQL);
+CCXWPOD:318: 		             log(SQL,"findAllJobs");
+VYWOJYK:319: 		             log("3/6 findAllJobs Success!!!");
+DJXOVJY:320: 		             rs =psmt.executeQuery();
+VAQRWYA:321: 		             log("4/6 findAllJobs Success!!!");
+JSDJKTI:322: 		             while (rs.next()) {
+QVNMIDD:323: 		                 //jobList.add(String.format("%s(%s)",rs.getString("JOB_ID"),rs.getString("JOB_TITLE")));
+RBTOHSJ:324: 		                 jobList.add(String.format("%s",rs.getString("JOB_ID")));
+FPJNEWW:325: 		             }
+CWXJGKI:326: 		             log("5/6 findAllJobs Success!!!");
+VUCZDHH:327: 		        } catch (SQLException e) {
+DHJOWAC:328: 		        	log(" findAllJobs Error!!!",e);
+ETNBZSY:329: 		        }finally{
+JYKEZND:330: 		        	close(conn, psmt, rs);
+VDYJZVO:331: 		        }
+ABONPPL:332: 		        return jobList;
+YDVDDHF:333: 		    }
+AVXELNW:334: 	
+OXHBHKE:335: 		  public  List<EmployeeDto> findEmployeesByDepartName (String department_name) throws SQLException {
+GUABOKD:336: 			    List<EmployeeDto> empList = new ArrayList<>();
+PGGESCM:337: 		    	//ObservableList<Employee> empList = FXCollections.observableArrayList();
+QJPGPGG:338: 		    	String SQL = 
+PRDSPMR:339: 			        		" SELECT * FROM EMPLOYEES            "
+JTFRZWP:340: 			        		+" WHERE DEPARTMENT_ID=            "
+QXKOROJ:341: 			        		+" (SELECT DEPARTMENT_ID FROM DEPARTMENTS WHERE DEPARTMENT_NAME=?)            ";
+CDUBKOM:342: 		    	String SQL2 = 
+PIOPUEG:343: 			        		" SELECT * FROM EMPLOYEES            "
+DKZARHK:344: 			        		+" WHERE DEPARTMENT_ID IS NULL ";
+VGYTITM:345: 		        Connection conn=null;
+MAXGTFN:346: 		        PreparedStatement psmt=null;
+XYWIAAG:347: 		        ResultSet rs=null;
+TLSMKYE:348: 		        try {
+ILMSJMG:349: 		            conn=getConnection();
+XUWQXFK:350: 		            if(department_name==null ||  department_name.equalsIgnoreCase("NotYet")){
+HTGPQUF:351: 		            	 psmt=conn.prepareStatement(SQL2);
+LZUJEGM:352: 		            	 log(SQL2,"findEmployeesByDepartName");
+LTLZPNJ:353: 		            }else {
+EJXKNCZ:354: 		            	 psmt=conn.prepareStatement(SQL);
+UFXSOLE:355: 		            	 psmt.setString(1, department_name.trim());
+VNQLURW:356: 		            	 log(SQL,"findEmployeesByDepartName",department_name);
+POPNCIB:357: 		            }
+PMAQHXE:358: 		            log("3/6 findEmployeesByDepartName Success!!!");
+XYHGEEC:359: 		            rs =psmt.executeQuery(); 
+QAFTVGY:360: 		            log("4/6 findEmployeesByDepartName Success!!!");
+WEEHIUA:361: 		            while (rs.next()) {
+MIFFLUO:362: 		            	EmployeeDto emp  = new EmployeeDto();
+WRDENCZ:363: 		                emp.setEmployeeId(rs.getInt("EMPLOYEE_ID"));
+KVJRFRA:364: 		                emp.setFirstName(rs.getString("FIRST_NAME"));
+JJCGFJJ:365: 		                emp.setLastName(rs.getString("LAST_NAME"));
+NZWSBYM:366: 		                emp.setEmail(rs.getString("EMAIL"));
+LAZTRZZ:367: 		                emp.setPhoneNumber(rs.getString("PHONE_NUMBER"));
+LRFOGCY:368: 		                emp.setHireDate(rs.getDate("HIRE_DATE"));
+EFYXEIM:369: 		                emp.setJobId(rs.getString("JOB_ID"));
+JNMFGWH:370: 		                emp.setSalary(rs.getInt("SALARY"));
+IOSKSBZ:371: 		                emp.setCommissionPct(rs.getDouble("COMMISSION_PCT"));
+CHLSZWG:372: 		                emp.setManagerId(rs.getInt("MANAGER_ID"));
+UCZDCFW:373: 		                emp.setDepartmantId(rs.getInt("DEPARTMENT_ID"));
+ROWIKBZ:374: 		                empList.add(emp);
+YZNXXSX:375: 		            }
+BSCXCRV:376: 		            log("5/6 findEmployeesByDepartName Success!!!");
+KMDGIBL:377: 		        } catch (SQLException e) {
+ZXVNWSH:378: 		        	log(" findEmployeesByDepartName Error!!!",e);
+EOJPLPT:379: 		        }finally{
+QKPGRKV:380: 		        	close(conn, psmt, rs);
+XEOJIAS:381: 		        }
+PPUPUMU:382: 		        return empList;
+IQZCZWT:383: 		    }
+DPVMKIQ:384: 		  public  List<EmployeeDto> findEmployeesByEmpId (String empid) throws SQLException {
+TGHQMEE:385: 		        String SQL = ""
+KBUCVPK:386: 		        		+" SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME,                "
+KJHVQLD:387: 		        		+" EMAIL,PHONE_NUMBER,HIRE_DATE FROM EMPLOYEES               "
+CBVLEFP:388: 		        		+" START WITH  EMPLOYEE_ID =?                                "
+YJXLFDP:389: 		        		+" CONNECT BY PRIOR EMPLOYEE_ID = MANAGER_ID";
+ZBUUFUD:390: 		        Connection conn=null;
+FSFADNA:391: 		        PreparedStatement psmt=null;
+AJJDDPN:392: 		        ResultSet rs=null;
+PEJDDBC:393: 		        List<EmployeeDto> empList = new ArrayList<>();
+OCIBYHY:394: 		        try {
+FUEVHGH:395: 		        	 conn=getConnection();
+ZAQCHOH:396: 		             psmt=conn.prepareStatement(SQL);
+IPVPLWU:397: 		             psmt.setString(1, empid);
+FNRVYRJ:398: 		             log("3/6 findEmployeesByEmpId Success!!!");
+HZCUHYZ:399: 		             log(SQL,"findEmployeesByEmpId",empid);
+YMMVAGM:400: 		             rs =psmt.executeQuery();
+PDDVXLI:401: 		             log("4/6 findEmployeesByEmpId Success!!!");
+WSORCEE:402: 		             while (rs.next()) {
+QTDXXBG:403: 		            	 EmployeeDto emp = new EmployeeDto();
+AMALAXF:404: 		                 emp.setEmployeeId(rs.getInt("EMPLOYEE_ID"));
+BMSIDQU:405: 		                 emp.setFirstName(rs.getString("FIRST_NAME"));
+SPPHOOB:406: 		                 emp.setLastName(rs.getString("LAST_NAME"));
+TWIZCAY:407: 		                 emp.setEmail(rs.getString("EMAIL"));
+DMYXMKU:408: 		                 emp.setPhoneNumber(rs.getString("PHONE_NUMBER"));
+QVVHRQF:409: 		                 emp.setHireDate(rs.getDate("HIRE_DATE"));
+EPGRHBY:410: 		                 empList.add(emp);
+MWJUBAI:411: 		             }
+BJJOPGI:412: 		             log("5/6 findEmployeesByEmpId Success!!!");
+USRTOFB:413: 		        } catch (SQLException e) {
+AOYNLKD:414: 		        	 log(" findEmployeesByEmpId Error!!!",e);
+ORQRBIF:415: 		        }finally{
+QTRYLGF:416: 		        	close(conn, psmt, rs);
+GAEQJRT:417: 		        }
+WYEHLBS:418: 		        return empList;
+EENMQHC:419: 		    }
+FXPNHSM:420: 		  public  EmployeeDto findEmployeeById (String empId) throws SQLException {
+JVMKPOT:421: 		        String SQL = " SELECT * FROM EMPLOYEES WHERE EMPLOYEE_ID="+empId;
+YJHAWKU:422: 		        Connection conn=null;
+IROWHWR:423: 		        PreparedStatement psmt=null;
+TKAVSGF:424: 		        ResultSet rs=null;
+ZFOMUVV:425: 		        EmployeeDto emp =  null;
+ILRDJAU:426: 		        try {
+OXLNDAU:427: 		            conn=getConnection();
+VOFXZDN:428: 		            psmt=conn.prepareStatement(SQL);
+XRYFEUV:429: 		            log("3/6 findEmployeeById Success!!!");
+HRPJDSA:430: 		            log(SQL,"findEmployeeById",empId);
+PKRZKOD:431: 		            rs =psmt.executeQuery();
+NNPLHUO:432: 		            log("4/6 findEmployeeById Success!!!");
+WPRYAQA:433: 		           
+RXCLYMY:434: 		            if (rs.next()) {
+VRYGJOT:435: 		                emp = new EmployeeDto();
+IBJZBIZ:436: 		                emp.setEmployeeId(rs.getInt("EMPLOYEE_ID"));
+HZMFBPO:437: 		                emp.setFirstName(rs.getString("FIRST_NAME"));
+UREJTRZ:438: 		                emp.setLastName(rs.getString("LAST_NAME"));
+MTXRJFB:439: 		                emp.setEmail(rs.getString("EMAIL"));
+PTGDWPI:440: 		                emp.setPhoneNumber(rs.getString("PHONE_NUMBER"));
+QRWAOAB:441: 		                emp.setHireDate(rs.getDate("HIRE_DATE"));
+AUOOGQO:442: 		                emp.setJobId(rs.getString("JOB_ID"));
+NRVAKQH:443: 		                emp.setSalary(rs.getInt("SALARY"));
+KTAECHJ:444: 		                emp.setCommissionPct(rs.getDouble("COMMISSION_PCT"));
+IRGSCME:445: 		                emp.setManagerId(rs.getInt("MANAGER_ID"));
+RYJCZEP:446: 		                emp.setDepartmantId(rs.getInt("DEPARTMENT_ID"));
+YGLSFCM:447: 		            }
+TVFEYJK:448: 		            log("5/6 findEmployeeById Success!!!");
+FOUORTN:449: 		        } catch (SQLException e) {
+MJIODKC:450: 		        	log(" findEmployeeById Error!!!",e);
+SIRUJRY:451: 		        }finally{
+BNVEZDQ:452: 		        	close(conn, psmt, rs);
+SOAHTWY:453: 		        }
+BHDRNSW:454: 		        return emp;
+MISDESM:455: 		    }
+QZIMRBK:456: 		//대소문자 구별없이 서치 가능
+AKKIJSY:457: 			public List<EmployeeDto> findManagersByName(String searchManagerId) throws SQLException{
+ZJYZYYE:458: 				String SQL = ""
+ARBFTWE:459: 		        		+" SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE                   "
+CZNLYDY:460: 		        		+" FROM EMPLOYEES                                                       "
+WNERTEH:461: 		        		+" WHERE    (UPPER(LAST_NAME) LIKE   "+"'%"+searchManagerId.toUpperCase()+"%' )              "
+ULQADWS:462: 		        		+" OR (UPPER(FIRST_NAME) LIKE   "+"'%"+searchManagerId.toUpperCase()+"%' )            "
+PIJOMAR:463: 		        		+" ORDER BY EMPLOYEE_ID                 ";
+OGHNPKI:464: 	
+XTPGVMV:465: 		        Connection conn=null;
+FTHQXEW:466: 		        PreparedStatement psmt=null;
+VDFADOP:467: 		        ResultSet rs=null;
+HIHEKNF:468: 		        List<EmployeeDto> empList = new ArrayList<>();
+FBRIDGN:469: 		        try {
+PIMTCNB:470: 		        	 conn=getConnection();
+TTXIVSK:471: 		             psmt=conn.prepareStatement(SQL);
+HSACQSD:472: 		             log("3/6 findManagersByName Success!!!");
+GUPCNSF:473: 		             log(SQL,"findManagersByName");
+CEXIALT:474: 		             rs =psmt.executeQuery();
+CRFOZZA:475: 		             log("4/6 findManagersByName Success!!!");
+ZOULLSN:476: 		             while (rs.next()) {
+HJUALUO:477: 		            	 EmployeeDto emp = new EmployeeDto();
+UBKXZFF:478: 		                 emp.setEmployeeId(rs.getInt("EMPLOYEE_ID"));
+BYWTDCU:479: 		                 emp.setFirstName(rs.getString("FIRST_NAME"));
+HQAWGYZ:480: 		                 emp.setLastName(rs.getString("LAST_NAME"));
+IGIYVRB:481: 		                 emp.setEmail(rs.getString("EMAIL"));
+HOEVGTQ:482: 		                 emp.setPhoneNumber(rs.getString("PHONE_NUMBER"));
+ECWYXNS:483: 		                 emp.setHireDate(rs.getDate("HIRE_DATE"));
+QLZCQOE:484: 		                 empList.add(emp);
+KJSGMXT:485: 		             }
+IDEDPFT:486: 		             log("5/6 findManagersByName Success!!!");
+KSRSEMH:487: 		        } catch (SQLException e) {
+QVGUCAA:488: 		        	 log(" findManagersByName Error!!!",e);
+FQAYDFZ:489: 		        }finally{
+GJHOPXK:490: 		        	close(conn, psmt, rs);
+KPUOYXV:491: 		        }
+VGWPKWH:492: 		        return empList;
+BYCWZGN:493: 			}
+QGCMYWO:494: 			public  int addEmployee (EmployeeDto emp) throws SQLException {
+UBCMHWJ:495: 				  String SQL =""+
+OIVAGLY:496: 				                  "INSERT INTO EMPLOYEES	          " 
+GYKUWPA:497: 				                  + " (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL,          "
+RIMJXNT:498: 				                  + " PHONE_NUMBER,  HIRE_DATE, JOB_ID, SALARY,          "
+IBORMVR:499: 				                  + " COMMISSION_PCT,MANAGER_ID,DEPARTMENT_ID )	          " 
+JGRSPRV:500: 				                  + " VALUES(EMPLOYEES_SEQ.NEXTVAL,?,?,?,"
+IVSUMVX:501: 				                  + " ?,?,?"
+OSZOASU:502: 				                  + " ,"+quots(emp.getSalary()+"")
+PFLHTXG:503: 				                  + " ,"+quots(emp.getCommissionPct()+"")
+SIZEVAF:504: 				                  + " ,"+quoti(emp.getManagerId()+"")
+KSZWBYW:505: 				                  + " , "+quoti(emp.getDepartmantId()+"")
+UGUYAOO:506: 				                  + ") " ;
+XKRVNFZ:507: 				  String SQL2=" SELECT EMPLOYEES_SEQ.CURRVAL FROM EMPLOYEES ";
+JLXPLIG:508: 				  
+SGPBYXF:509: 				  Connection conn=null;
+FUEBPZM:510: 				  PreparedStatement psmt=null;
+YLLVMNY:511: 				  ResultSet rs=null;
+VYXDZZJ:512: 				  int count=0;
+LPZQZLL:513: 				  try {
+LOPHSAF:514: 					  conn=getConnection();
+KKTKAMO:515: 					  conn.setAutoCommit(false);      //TRX
+WPHMVLQ:516: 			          psmt=conn.prepareStatement(SQL);
+BJFAWOD:517: 			          int i=1;
+TPEQICD:518: 			          //아이디는 시퀀스 -> 자동입력						//EMPLOYEE_ID-> SEQUENCE_EMPLOYEE.NEXTVAL
+BIDABSF:519: 			          psmt.setString(i++,emp.getFirstName());   //FIRST_NAME
+OBXVWZJ:520: 			          psmt.setString(i++,emp.getLastName());    //LAST_NAME
+IPUUWNV:521: 			          psmt.setString(i++,emp.getEmail());		//EMAIL
+OZJSDJN:522: 			          psmt.setString(i++,emp.getPhoneNumber()); //PHONE_NUMBER
+LQLOQJJ:523: 			          psmt.setDate(i++, (java.sql.Date)emp.getHireDate());//HIRE_DATE
+GXEIOJP:524: 			          psmt.setString(i++,emp.getJobId());		//JOB_ID
+JCBGWDI:525: 			         
+KOCFAGU:526: 			          log(SQL,"addEmployee",emp);
+HIKAOSJ:527: 			          log("3/6 addEmployee Success 1!!!");
+QWBBXQX:528: 			          psmt.executeUpdate();
+MCUYPEW:529: 			          log("4/6 addEmployee Success 1!!!");
+LJOQZNA:530: 			          log("3/6 addEmployee Success 2!!!");
+OLUOJJN:531: 			          psmt=conn.prepareStatement(SQL2);
+TODEDEZ:532: 			          rs=psmt.executeQuery();
+KGVZNUV:533: 			          if(rs.next()){
+OTGFRHR:534: 			        	  count=rs.getInt(1);
+EVMLFGT:535: 			          }
+GTEPJAE:536: 			          log("4/6 addEmployee Success 2 !!!");
+GFLYQYY:537: 			          conn.commit();
+AQWPUDP:538: 				  } catch (SQLException e) {
+YHKJJVP:539: 					  log(" addEmployee Error!!!",e);
+OLZZLHV:540: 					  conn.rollback();
+MALMXFI:541: 					  throw e;
+YQQQTPA:542: 				  }finally{
+KUYQDCU:543: 					  conn.setAutoCommit(true);
+SSPAYHT:544: 			      	  close(conn, psmt, rs);
+DOEYXXZ:545: 			      }
+ESQGPMN:546: 			      return count;
+FKXKZQP:547: 				}
+ZZFCLYE:548: 	
+TSPEFKG:549: 			public  boolean updateEmployee(EmployeeDto emp) throws SQLException {
+MRVBJAW:550: 				  String SQL =""
+LGWIBKD:551: 		         +"  UPDATE EMPLOYEES   SET                                                          "
+BJAQFXS:552: 		         + " FIRST_NAME=?, LAST_NAME=?  ,      EMAIL=?,                                      " 
+PGUEHMO:553: 		         + " PHONE_NUMBER=?,    JOB_ID=?,                                      "
+QRMJXRJ:554: 		         + " SALARY=%s,         COMMISSION_PCT=%s, MANAGER_ID=%s, DEPARTMENT_ID=%s           "
+DPKKFNQ:555: 		         + " WHERE EMPLOYEE_ID=?                                                             " ;
+VOTOUBW:556: 	
+TWZJGKH:557: 				  String sql=String.format(SQL, 
+AQLBNQY:558: 						  quotd(emp.getSalary()+""),quoti(emp.getCommissionPct()+""),
+QINKSBJ:559: 						  quoti(emp.getManagerId()+""),quoti(emp.getDepartmantId()+""));
+AGTPUWW:560: 				  Connection conn=null;
+IELSAYB:561: 				  PreparedStatement psmt=null;
+UDUAOZQ:562: 				  ResultSet rs=null;
+XPASLWY:563: 				  int count=0;
+DQDNGRN:564: 				  try {
+YOFDTLX:565: 					  conn=getConnection();
+URDETBH:566: 			          psmt=conn.prepareStatement(sql);
+PFFVJPT:567: 			          int i=1;
+SEPZQRM:568: 			          psmt.setString(i++,    emp.getFirstName());   
+BVDAMKB:569: 			          psmt.setString(i++,    emp.getLastName());
+UQVSJJE:570: 			          psmt.setString(i++,  emp.getEmail());
+VNLDPJH:571: 			          psmt.setString(i++,    emp.getPhoneNumber());
+QSOPQVG:572: 			          //psmt.setDate(i++,      (java.sql.Date)emp.getHireDate());//HIRE_DATE
+OSFAUHI:573: 			          psmt.setString(i++,    emp.getJobId());
+FORZOJA:574: 			          psmt.setInt(i++,       emp.getEmployeeId());
+HTDLVLW:575: 		              //SALARY
+WEEQASR:576: 			          //COMMISSION_PCT
+SIKROXO:577: 			          //MANAGER_ID
+AKAQQOI:578: 			          //DEPARTMENT_ID
+IHATQBO:579: 			          log(sql,"updateEmployee",emp);  //EMPLOYEE_ID
+ZKDQZYL:580: 			          log("3/6 updateEmployee Success 1!!!");
+KNRMQJL:581: 			          count=psmt.executeUpdate();
+GXFVFKN:582: 			          log("4/6 updateEmployee Success 2 !!!");
+PSAUYJZ:583: 				  } catch (SQLException e) {
+DJKMEMB:584: 					  log(" updateEmployee Error!!!",e);
+WRDJQUO:585: 					  throw e;
+PSEACPR:586: 				  }finally{
+BTNWURL:587: 			      	close(conn, psmt, rs);
+UYNTDNO:588: 			      }
+WKRXPVY:589: 			      return count>0?true:false;
+HGHXOGQ:590: 				}
+TIFFCEL:591: 			  
+VBBVKIO:592: 			  
+RXPQQUA:593: 			  public  boolean updateJobHistory(EmployeeDto emp) throws SQLException {
+EEMPSST:594: 				  String SQL =""
+UYPXPGA:595: 		         +"  UPDATE EMPLOYEES   SET                                    "
+BSDREVY:596: 		         + " JOB_ID=?,  DEPARTMENT_ID=?                  "
+KMZJGFT:597: 		         + " WHERE EMPLOYEE_ID=?                                       " ;
+FRIXFFF:598: 	
+ABSUYZP:599: 				  String sql=String.format(SQL, 
+EAYTLCS:600: 						  quotd(emp.getSalary()+""),quoti(emp.getCommissionPct()+""),
+YBUGRAU:601: 						  quoti(emp.getManagerId()+""),quoti(emp.getDepartmantId()+""));
+UWXVILH:602: 				  Connection conn=null;
+AXNJRLS:603: 				  PreparedStatement psmt=null;
+GCNEYIV:604: 				  ResultSet rs=null;
+UFRTVSR:605: 				  int count=0;
+JIEBRPA:606: 				  try {
+HLZDZQN:607: 					  conn=getConnection();
+CGXETMZ:608: 			          psmt=conn.prepareStatement(sql);
+PGOZMLZ:609: 			          int i=1;
+LVNQMME:610: 			          //psmt.setDate(i++,      (java.sql.Date)emp.getHireDate());//HIRE_DATE
+AGZKRMU:611: 			          psmt.setString(i++,    emp.getJobId());
+FYQCVZA:612: 			          psmt.setInt(i++,       emp.getDepartmantId());
+PLQJOXR:613: 			          psmt.setInt(i++,       emp.getEmployeeId());
+UXQGCKU:614: 	
+XDDJLSO:615: 			          log(sql,"updateJobHistory",emp);  //EMPLOYEE_ID
+XIRCBPY:616: 			          log("3/6 updateJobHistory Success 1!!!");
+KKFXRGV:617: 			          count=psmt.executeUpdate();
+WZYGZUQ:618: 			          log("4/6 updateJobHistory Success 2 !!!");
+XKREZWQ:619: 				  } catch (SQLException e) {
+DTXEPVA:620: 					  log(" updateJobHistory Error!!!",e);
+LUZUGZO:621: 					  throw e;
+NCVOTSO:622: 				  }finally{
+KBEDUYY:623: 			      	close(conn, psmt, rs);
+KSMBGUQ:624: 			      }
+QPKAPQA:625: 			      return count>0?true:false;
+PLYWXIS:626: 				}
+ULOISAU:627: 			  public  boolean deleteEmployee (EmployeeDto emp) throws SQLException {
+ZYWJGAQ:628: 				  String SQL =""
+JNWEJSA:629: 		         +" DELETE   FROM   EMPLOYEES                  "
+VRQYHZP:630: 		         +" WHERE EMPLOYEE_ID=?                        " ;
+ZTLSKIU:631: 	
+XXFZPBA:632: 				  Connection conn=null;
+AJAGBOA:633: 				  PreparedStatement psmt=null;
+SHOILGV:634: 				  ResultSet rs=null;
+TNMGKXO:635: 				  int count=0;
+GJJUBJW:636: 				  try {
+BBVNKTS:637: 					  conn=getConnection();
+BABOPML:638: 			          psmt=conn.prepareStatement(SQL);
+PWKELWX:639: 			          psmt.setInt(1, emp.getEmployeeId());
+MHMLDMS:640: 			          log(SQL,"deleteEmployee",emp);  //EMPLOYEE_ID
+LJWCOZQ:641: 			          log("3/6 deleteEmployee Success 1!!!");
+WMHRQUE:642: 			          count=psmt.executeUpdate();
+UPZJTTP:643: 			          log("4/6 deleteEmployee Success 2 !!!");
+WRPQAHT:644: 				  } catch (SQLException e) {
+LTDMYDV:645: 					  log(" deleteEmployee Error!!!",e);
+RTFLZUD:646: 					
+RDIPPWT:647: 				  }finally{
+XBWIKOZ:648: 			      	close(conn, psmt, rs);
+FWVISKX:649: 			      }
+PUWUYXN:650: 			      return count>0?true:false;
+YCGZPKT:651: 				}
+EEKJHVJ:652: 	}

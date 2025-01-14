@@ -1,0 +1,85 @@
+0NMFQLLP:1: 	package kr.co.infopub.chapter.s160;
+0PFCVPHY:2: 	import java.io.*;
+0ZBPNTMI:3: 	import java.util.*;
+0MWFXZRU:4: 	public class ProductReader {
+0YUMUXLV:5: 	 private List<String> list=new ArrayList<>();
+0KITKXGG:6: 	 public boolean isExist(String fname){
+0RPBFAXV:7: 		boolean isE=false;
+0BVJBBHP:8: 		File f=null;
+0FOCPVCH:9: 		try{
+XLZUZKY:10: 			f=new File(fname);
+KKTZOMM:11: 			if(f.exists()){
+ZGXUQQB:12: 				isE=true;
+PKCSSQJ:13: 			}
+LPINIKD:14: 		}catch(Exception ee){
+BLHMELL:15: 			log(ee.getMessage());
+RPZPRKI:16: 		}
+UTQOBKH:17: 		return isE;
+OANOAOA:18: 	 }
+POMFPTJ:19: 	 public int listSize(){
+MARUTXR:20: 		return list.size();
+SCSCGSD:21: 	 }
+KDMBOJV:22: 	 public void readTexts(String fname){
+YUDNQCY:23: 		list.clear();
+KTUPLVA:24: 		FileReader fr=null;
+KPADUYQ:25: 		BufferedReader br=null;
+MBMBRVQ:26: 		File ff=null;
+PZBXDLK:27: 		try{
+REMXIXP:28: 			if(isExist(fname)){
+IZNRWRM:29: 				ff=new File(fname);
+AFTGJKA:30: 				fr=new FileReader(ff);
+WSKTXON:31: 				br=new BufferedReader(fr);
+FXJRLNW:32: 			}
+VIDSBTE:33: 			String msg="";
+TIFXSUT:34: 			while((msg=br.readLine())!=null){
+FHHTMJO:35: 				list.add(msg);
+JELJUFS:36: 			}
+UKCQRFC:37: 				
+JCCOYRT:38: 		}catch(Exception ee){
+EZSUSGG:39: 			log(ee.getMessage());
+XHNDGCO:40: 		}finally{
+UGMWBQU:41: 			try{
+ZIYBAGA:42: 				br.close();
+FQVMGBI:43: 				fr.close();
+JEQAUID:44: 			}catch(Exception eee){
+NPESUKT:45: 				log(eee.getMessage());
+HJATAYY:46: 			}
+AEGWEBB:47: 		}
+EISFPUA:48: 	 }
+CCPLUAX:49: 	 public String readText(String fname){
+GVGHOBP:50: 		String msg="";
+PCAVOXD:51: 		FileReader fr=null;
+NDCKJVI:52: 		BufferedReader br=null;
+FWKLZSG:53: 		File ff=null;
+PIPJGYQ:54: 		try{
+SXJSNBZ:55: 			if(isExist(fname)){
+FYEVKWU:56: 				ff=new File(fname);
+LSWXDOF:57: 				fr=new FileReader(ff);
+DSVVZOB:58: 				br=new BufferedReader(fr);
+JVJFFJI:59: 			}
+KWWIPWO:60: 			msg=br.readLine();
+MIEVSUC:61: 		}catch(Exception ee){
+GXMKQXW:62: 			log(ee.getMessage());
+MIVSEXO:63: 		}finally{
+PDYSOBU:64: 			try{
+EDRAERX:65: 				br.close();
+EQNCUGC:66: 				fr.close();
+IBNHCQY:67: 			}catch(Exception eee){
+BLUGOTD:68: 				log(eee.getMessage());
+GJANIIL:69: 			}
+QKHXOXR:70: 		}
+JMLKBWJ:71: 		return msg;
+RYESSBS:72: 	 }
+PKQUYDQ:73: 	 public String getText(int i){
+WQEYTWL:74: 		if(i+1>list.size()){
+AJGOOBY:75: 		 return "";
+NELFBEC:76: 		}
+SMATCHN:77: 		return list.get(i);
+TWPHDGW:78: 	 }
+NOQJQAI:79: 	 private static void log(String msg){
+DYZGCIR:80: 		System.out.println("Error------------->:"+msg);
+EIXSXKF:81: 	 }
+MMVQEKO:82: 	 public List<String> getAllLines(){
+PIUGLMD:83: 		return list;
+DNQHHXS:84: 	 }
+USPNEPO:85: 	}

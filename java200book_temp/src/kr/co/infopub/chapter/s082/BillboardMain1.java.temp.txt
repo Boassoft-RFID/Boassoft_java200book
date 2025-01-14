@@ -1,0 +1,15 @@
+0LVTQALW:1: 	package kr.co.infopub.chapter.s082;
+0TNIRAMR:2: 	// 기본타입과 문자열
+0XESPDXP:3: 	public class BillboardMain1 {
+0MCPMYKQ:4: 		public static void main(String[] args) {
+0GODPCQU:5: 			//변수-Data를 저장하는 임서저장공간 
+0TTKWHME:6: 			int rank=1;                 //정수를 저장
+0GNXLBZM:7: 			String song="Despacito";    //문자열을 저장
+0EMQMTAH:8: 			//Data를 그릇에 담는다.
+0GCHRKVC:9: 			int lastweek=1;             
+VUTTEBY:10: 			String imagesrc="https://www.billboard.com/images/pref_images/q61808osztw.jpg";
+ARFMAMR:11: 			String artist="luis fonsi";
+ANNWAWG:12: 			String sf=String.format("%d, %s, %d, %s, %s",rank, song,lastweek,imagesrc,artist);
+XPVEMCJ:13: 			System.out.println(sf);
+KAXQFLS:14: 		}
+FPVCPQG:15: 	}

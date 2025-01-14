@@ -1,0 +1,34 @@
+0PKGZPSA:1: 	package kr.co.infopub.chapter.s120;
+0WQECDUA:2: 	public class FourMagicSquare extends MagicSquare{
+0BVEKFAN:3: 		
+0ICOQJVQ:4: 		public FourMagicSquare(int n) {
+0KDUPACR:5: 			super(n);
+0HNMNULE:6: 		}
+0DZOVEAI:7: 		public FourMagicSquare() {
+0IPJVWZT:8: 			this(4);
+0UCBYWRI:9: 		}
+AZZCNVJ:10: 		private void makeR() {
+WENDUSE:11: 			for (int i = 0; i < n; i++) {
+SKFRPBA:12: 				for (int j = 0; j < n; j++) {
+TQMRHUK:13: 					if ((i >= 0 && i < n / 4) || (i >= n / 4 * 3 && i < n)) {
+ATMEFNX:14: 						if (j >= n / 4 && j < n / 4 * 3) {
+IHHKEWR:15: 							magic[i][j] = n * n - (i * n + j);
+GTOMHNC:16: 						}
+ZSDBMNL:17: 					} else {// i가 중앙
+DZFYYAV:18: 						if ((j >= 0 && j < n / 4) || (j >= n / 4 * 3 && j < n)) {// 양쪽
+PJIKEHK:19: 							magic[i][j] = n * n - (i * n + j);
+FEXQJYI:20: 						}
+OGRGLVY:21: 					}
+CIYWNLI:22: 				}
+KQOHQOB:23: 			}
+YEKKAJR:24: 		}
+CTWQNUD:25: 		private void makeA() {
+JCXQOUC:26: 			for (int i = 0; i <n*n; i++) {
+ASQVAAJ:27: 				magic[i/n][i%n]= i+1;
+MXQDUVJ:28: 			}
+DOYIKAX:29: 		}
+EEIHGPD:30: 		public void make(){
+UTNIBHI:31: 			makeA();
+WXBSYXF:32: 			makeR();
+EDDPPOY:33: 		}
+LFKSPYM:34: 	}

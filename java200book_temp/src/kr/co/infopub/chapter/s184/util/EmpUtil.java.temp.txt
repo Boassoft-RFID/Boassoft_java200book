@@ -1,0 +1,53 @@
+0HRYKKRB:1: 	package kr.co.infopub.chapter.s184.util;
+0EDMNVQY:2: 	
+0IBQADHL:3: 	import kr.co.infopub.chapter.s183.dto.DepartmentDto;
+0UOOGUJH:4: 	import kr.co.infopub.chapter.s184.dto.EmployeeDto;
+0WDJSHPK:5: 	
+0KZOIXAM:6: 	public class EmpUtil {
+0WOSEYYW:7: 		public static String name(EmployeeDto ee){
+0LJLCPIG:8: 			return q(ee.getFirstName()+" "+ee.getLastName());
+0REMHEJH:9: 		}
+HATYAFQ:10: 		public static String q(String msg){
+MUFDVTA:11: 			return "("+msg+")";
+VAUYCGS:12: 		}
+QUGAJOS:13: 		public static   int level(String msg){
+LENFSTQ:14: 			String [] sp=msg.split("/");
+WFMFDML:15: 			return sp.length-1;
+TCNUXLW:16: 		}
+RKBRDPS:17: 		public static String level(String msg, int index){
+ROUDSFZ:18: 			String [] sp=msg.split("/");
+FQFJKFY:19: 			return sp[index];
+NXTIIDM:20: 		}
+DCYNSEE:21: 		public static int  level(EmployeeDto emp){
+DUEYVCM:22: 			return level(emp.getOrder2());
+NGDBWVA:23: 		}
+OHOIRTP:24: 		public static String level(EmployeeDto emp, int index){
+TVGLDAL:25: 			return level(emp.getOrder2(),index);
+ATVZRXH:26: 		}
+PUZDHIT:27: 		public static  String str(String msg){
+AKBSCZU:28: 			return msg.substring(3);
+CZVNHCD:29: 		}
+DLWBWLU:30: 		public  static String bfstr(String msg){
+MGLLNHH:31: 			return msg.substring(0,3);
+KCORNQO:32: 		}
+STYPWLT:33: 		//001100(sdfs sfsfs asdfasdf)->100(sdfs sfsfs asdfasdf)
+YODIHDU:34: 		public static String tname(EmployeeDto emp, int index){
+PJJBZCA:35: 			return str(level(emp.getOrder2(),index)+name(emp));
+BSIBHKS:36: 		}
+LKIGQWB:37: 		//100(sdfs sfsfs asdfasdf)-> 100
+AFGRUDH:38: 		public static String sname(String emp){
+UHQXRVV:39: 			return bfstr(emp);
+BYSTAFB:40: 		}
+KHCEVZI:41: 	    public static String dep(String msg){
+FEZQCFO:42: 	    	String ss="";
+BCKNIZU:43: 	    	if(msg.indexOf("(")!=-1){
+ELTUMQY:44: 	    		ss=msg.substring(0, msg.indexOf("("));
+YYHLIQW:45: 	    	}else{
+EHZTPEP:46: 	    		ss=msg.trim();
+WIMKBDW:47: 	    	}
+CQQRZIH:48: 	    	return ss.trim();
+ZBMIDIV:49: 	    }
+SVQHDNN:50: 	    public static String tname(DepartmentDto ee){
+ENSMRXB:51: 	  		return ee.getDepartment_name()+q(ee.getDepartment_id()+"");
+AVDOGRZ:52: 	  	}
+RYZTGGG:53: 	}

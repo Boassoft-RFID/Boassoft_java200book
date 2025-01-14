@@ -1,0 +1,92 @@
+0QKOULMG:1: 	package kr.co.infopub.chapter.s1733;
+0BWRJKOT:2: 	import java.io.InputStreamReader;
+0GVOCBQZ:3: 	import java.net.URL;
+0LEOHXWT:4: 	import java.text.SimpleDateFormat;
+0FVRPBCH:5: 	import java.util.Calendar;
+0RXXAWUX:6: 	import org.json.JSONObject;
+0TASGLPS:7: 	import java.io.BufferedReader;
+0MWVFNOC:8: 	public class FixerConvert {
+0UWNAXOT:9: 		public static String conversion(String date,String base) {
+UKYXPXB:10: 			BufferedReader br=null;
+CFAUFNA:11: 			String newUrls1 = "http://api.fixer.io/%s?base=%s";
+PAGQMBK:12: 			String newUrls=String.format(newUrls1, date,base);
+RSMSBAE:13: 			URL url=null;
+CBJORSX:14: 			StringBuffer sb=new StringBuffer();
+NHWIMHW:15: 			try {
+NMVGWMM:16: 				url=new URL(newUrls); // http://api.fixer.io
+GPSQIBZ:17: 				System.out.println(newUrls);
+AXIWXMC:18: 				br=new BufferedReader(new InputStreamReader(url.openStream(),"utf-8"));
+RAGYIAO:19: 				String msg="";
+WROEVIH:20: 				// http://api.fixer.io/2017-06-09?base=USD를 읽어 들인다.
+APAMCNY:21: 				while((msg=br.readLine())!=null){
+ZXEKTVH:22: 					sb.append(msg);
+YXXQVWS:23: 				}
+BJGKMUB:24: 			} catch (Exception e) {
+NWRIZIG:25: 				
+YSMMTZP:26: 			}
+RCYTBNV:27: 			return sb.toString();
+MCDWBQJ:28: 		}
+MZFZOFA:29: 		public static FixerRate  convert2(String  data,String base) throws Exception{
+OWMCRFG:30: 			JSONObject jObject = new JSONObject(data);
+FFBMPOP:31: 			JSONObject rates=jObject.getJSONObject("rates");
+ZDYHVDU:32: 	
+DXPRBCN:33: 			FixerRate fixerrate=new FixerRate();
+QMZWFOC:34: 			fixerrate.date=jObject.getString("date");
+ALOKAMR:35: 			fixerrate.base=jObject.getString("base");
+SPDKMZQ:36: 			if(base.equals("USD")){
+VCDRWDT:37: 				fixerrate.usd=1.0;
+NUUXMRT:38: 				fixerrate.krw=rates.getDouble("KRW");
+BTBEXPW:39: 				fixerrate.jpy=rates.getDouble("JPY");
+PFYXVXA:40: 				fixerrate.eur=rates.getDouble("EUR");
+HSSNRYB:41: 				fixerrate.cny=rates.getDouble("CNY");
+AHRNVNW:42: 			}else if(base.equals("KRW")){
+XLPYLCU:43: 				fixerrate.usd=rates.getDouble("USD");
+AQPHZIL:44: 				fixerrate.krw=1.0;
+IGSORFD:45: 				fixerrate.jpy=rates.getDouble("JPY");
+EEXZSAE:46: 				fixerrate.eur=rates.getDouble("EUR");
+CWSDYCI:47: 				fixerrate.cny=rates.getDouble("CNY");
+QDXQBDK:48: 			}else if(base.equals("JPY")){
+KTMOFOW:49: 				fixerrate.usd=rates.getDouble("USD");
+EMKGITK:50: 				fixerrate.krw=rates.getDouble("KRW");
+OZWWCMW:51: 				fixerrate.jpy=1.0;
+FTCOAUO:52: 				fixerrate.eur=rates.getDouble("EUR");
+WOJYWIP:53: 				fixerrate.cny=rates.getDouble("CNY");
+OBPJEGD:54: 			}  else if(base.equals("EUR")){
+NFGJBMT:55: 				fixerrate.usd=rates.getDouble("USD");
+OYAVRAZ:56: 				fixerrate.krw=rates.getDouble("KRW");
+MHDSVTS:57: 				fixerrate.jpy=rates.getDouble("JPY");
+WPXDEUL:58: 				fixerrate.eur=1.0;
+AAPUGJP:59: 				fixerrate.cny=rates.getDouble("CNY");
+EHYJURM:60: 			} else if(base.equals("CNY")){
+WMYSVCK:61: 				fixerrate.usd=rates.getDouble("USD");
+GPBGAPO:62: 				fixerrate.krw=rates.getDouble("KRW");
+VPJVIFT:63: 				fixerrate.jpy=rates.getDouble("JPY");
+SEJHJBC:64: 				fixerrate.eur=rates.getDouble("EUR");
+CGSXACO:65: 				fixerrate.cny=1.0;
+GAERPNJ:66: 			}	
+YICRXOQ:67: 			return fixerrate;
+VQEGZYB:68: 		}
+MEAFVGD:69: 		public static FixerRate  convert(String  date,String base){
+WSQTXID:70: 			String conversions=conversion(date, base);
+EXSEPDC:71: 			FixerRate fixerRate=null;
+ZHYLLAG:72: 			try {
+AFKIPYK:73: 				fixerRate= convert2(conversions, base);
+RTVNMEZ:74: 			} catch (Exception e) {
+YIERYYA:75: 				System.out.println(e);
+UELYILA:76: 			}
+PANOTSN:77: 			return fixerRate;
+USVNIBR:78: 		}
+OSDBQVS:79: 		public static void main(String[] args) {
+XMTHLSJ:80: 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+AWTROLW:81: 			Calendar cal=Calendar.getInstance();
+QRZJTRY:82: 			//String date=sdf.format(cal.getTime());
+HDMFPGR:83: 			String date="2018-04-15";
+YZQYVFL:84: 			String base="USD";       
+TMLDTDQ:85: 			FixerRate frate=convert(date, base);
+ZRJICLR:86: 			if(frate!=null){
+ZRAVKEH:87: 				System.out.println(frate);
+SZHZPNA:88: 				System.out.println(frate.krw);
+KIXIVHR:89: 			}
+FINFFXD:90: 		}
+CGQKUQL:91: 	}
+UTMFBMA:92: 		  

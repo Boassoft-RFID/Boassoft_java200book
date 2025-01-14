@@ -1,0 +1,60 @@
+0HIVHCII:1: 	package kr.co.infopub.chapter.s148;
+0GNBGNFL:2: 	import java.util.Arrays;
+0NZCWKPH:3: 	public class Matrix {
+0FJKMVII:4: 		private double [][] matrix;
+0JTTHUAW:5: 		public Matrix(int m, int n) {
+0HTGUXTA:6: 			matrix=new double[m][n];
+0DOIGGUG:7: 		}
+0OIZNSAA:8: 		public Matrix() {
+0BSSFDKH:9: 			this(3,3);
+AGRZYHN:10: 		}
+JDNXDFP:11: 		public Matrix(Matrix mat) {
+JALOOOH:12: 			this(mat.getMatrix());
+RKMNVFC:13: 		}
+LVLZMFT:14: 		public Matrix(double[][] deep) {
+ZZGUJYU:15: 			matrix=deepCopy(deep);
+XQYFADO:16: 		}
+WXBYFRW:17: 		public  void clear(){
+ULDXSSQ:18: 			int m=matrix.length;
+BFOMRNL:19: 			for (int i = 0; i < m; i++) {
+BKNOKCQ:20: 				Arrays.fill(matrix[i], 0);
+HQXOOTW:21: 			}
+ZETJCSF:22: 		}
+HDJHIBI:23: 		private double[][] deepCopy(double[][] deep){
+HJYLBAE:24: 			int m=deep.length;
+BFQEBVM:25: 			int n=deep[0].length;
+WTSDSBO:26: 			double[][] paste=new double[m][n];
+FDRYASI:27: 			for (int i = 0; i <m; i++) {
+BSZLPWS:28: 				System.arraycopy(deep[i], 0, paste[i], 0, n);
+WZISUZW:29: 			}
+YUDVTGJ:30: 			return paste;
+CIQUTBM:31: 		}
+TZYJBUT:32: 		public double[][] getMatrix() {
+AWVUHWK:33: 			return deepCopy(matrix);
+JTVYUXZ:34: 		}
+DMXRRAY:35: 		
+QJCDKYP:36: 		public Matrix makeMatrix(){
+EBRCASD:37: 			return new Matrix(matrix);
+RILLXHK:38: 		}
+UMQBYFZ:39: 		@Override
+JMABIXK:40: 		public String toString() {
+WDMGNID:41: 			StringBuffer sb=new StringBuffer();
+ZBIZDMG:42: 			for (int i = 0; i < matrix.length; i++) {
+MXMNZVB:43: 				sb.append("[");
+LYWKKWY:44: 				for (int j = 0; j < matrix[i].length; j++) {
+GJUGHYX:45: 					sb.append(matrix[i][j]+"\t");
+PXQFKQK:46: 				}
+NUINQQX:47: 				sb.append("]");
+OLRHGRC:48: 				sb.append("\n");
+PYBCMXL:49: 			}
+VLFAOJI:50: 			return sb.toString();
+SWHAVDC:51: 		}
+HVYLSQN:52: 		public void print(){
+QMLGQDV:53: 			for (int i = 0; i < matrix.length; i++) {
+YAZPDEZ:54: 				for (int j = 0; j < matrix[i].length; j++) {
+HKZMBXH:55: 					System.out.printf("%f\t",matrix[i][j]);
+LKCXBJS:56: 				}
+MPHMYIY:57: 				System.out.println();
+PMPHABY:58: 			}
+RTHSQTE:59: 		}
+LVSUZHC:60: 	}

@@ -1,0 +1,231 @@
+00FWSBPWT:1: 	package kr.co.infopub.chapter.s153.ref;
+00FNKAUBJ:2: 	
+00OQKAEHO:3: 	import java.util.ArrayList;
+00TIVEBZU:4: 	/*
+00XKOSWOP:5: 	 * 모든 카드의 경우 수를 만들러 족보를 파악한다.
+00OCUIBUH:6: 	 */
+00VJPBGEI:7: 	public class CardKinds {
+00NNQHSZY:8: 		int count=0;
+00QMWBYXR:9: 		int straightflush=0;
+0QOZEJWN:10: 		int fourKind=0;
+0SYKRRNV:11: 		int fullhouse=0;
+0SPWNNJN:12: 		int flush=0;
+0MIKKDKQ:13: 		int straight=0;
+0IKZBWBP:14: 		int threeKind=0;
+0ADKNOES:15: 		int twoPairs=0;
+0HVRZVWX:16: 		int onePair=0;
+0HQZNRZD:17: 		ArrayList<Card[]> straightflushcardlist=new ArrayList<>();
+0APEDYKJ:18: 		ArrayList<Card[]> fourKindcardlist=new ArrayList<>();
+0QRGQTQL:19: 		ArrayList<Card[]> fullhousecardlist=new ArrayList<>();
+0WRQOHEP:20: 		ArrayList<Card[]> flushcardlist=new ArrayList<>();
+0KHMFQTK:21: 		ArrayList<Card[]> straightcardlist=new ArrayList<>();
+0THKXVUU:22: 		ArrayList<Card[]> threeKindcardlist=new ArrayList<>();
+0VYKPYCI:23: 		ArrayList<Card[]> twoPairscardlist=new ArrayList<>();
+0DUUMMMP:24: 		ArrayList<Card[]> onePaircardlist=new ArrayList<>();
+0SWCEXRB:25: 	
+0PXILVGL:26: 		
+0NKHMTGE:27: 		
+0FMBYYJZ:28: 		public ArrayList<Card[]> getStraightflushcardlist() {
+0FBIIADM:29: 			return straightflushcardlist;
+0DJYVWBB:30: 		}
+0FWOJGSR:31: 	
+0TVXWUAO:32: 	
+0KDBRVMV:33: 	
+0UXDYUSO:34: 		public ArrayList<Card[]> getFourKindcardlist() {
+0HFXNQXB:35: 			return fourKindcardlist;
+0NIINBUN:36: 		}
+0XFRLKZC:37: 	
+0PQKMEGN:38: 	
+0BKFHYKA:39: 	
+0AMATYIN:40: 		public ArrayList<Card[]> getFullhousecardlist() {
+0GUJEVPP:41: 			return fullhousecardlist;
+0XDUSJSF:42: 		}
+0UJQAOFH:43: 	
+0VKXLYGJ:44: 	
+0FTSULXX:45: 	
+0TRDSSUR:46: 		public ArrayList<Card[]> getFlushcardlist() {
+0CAQFKHH:47: 			return flushcardlist;
+0XMDDMQZ:48: 		}
+0KTSALCQ:49: 	
+0UKSSRRP:50: 	
+0ESBOAQA:51: 	
+0MIUEMOX:52: 		public ArrayList<Card[]> getStraightcardlist() {
+0LRRRKIF:53: 			return straightcardlist;
+0DRQUHBY:54: 		}
+0INDSTBQ:55: 	
+0FCYZEMZ:56: 	
+0WNFPLHO:57: 	
+0XRWGZBY:58: 		public ArrayList<Card[]> getThreeKindcardlist() {
+0OORXYHG:59: 			return threeKindcardlist;
+0QJFKFXY:60: 		}
+0YSVLYNF:61: 	
+0WYSDTNE:62: 	
+0VVOQFQH:63: 	
+0CCBPRFD:64: 		public ArrayList<Card[]> getTwoPairscardlist() {
+0XBESUNJ:65: 			return twoPairscardlist;
+0SDZATZP:66: 		}
+0KHVHJYE:67: 	
+0TZAYLZQ:68: 		public ArrayList<Card[]> getOnePaircardlist() {
+0KNYJOSA:69: 			return onePaircardlist;
+0ELXJFRA:70: 		}
+0FTZGMPG:71: 	
+0ESCXIHK:72: 		int iallstraight=0;
+0XTULTFD:73: 		ArrayList<Card[]> allstraight=new ArrayList<>();
+0ATJMBKJ:74: 		
+0ZCOOWUU:75: 		Card [] result=new Card[5];
+0DHZZIZB:76: 		
+0KECFCAK:77: 		
+0MRYZQLB:78: 		public CardKinds() {
+0AOBJJPL:79: 			straightflushcardlist.clear();
+0RDBLBRK:80: 			fourKindcardlist.clear();
+0YJXNJEF:81: 			fullhousecardlist.clear();
+0RNUFDKH:82: 			flushcardlist.clear();
+0BMWOYUA:83: 			straightcardlist.clear();
+0SDNZFKP:84: 			threeKindcardlist.clear();
+0CSBFWAR:85: 			twoPairscardlist.clear();
+0MQNVCMI:86: 			onePaircardlist.clear();
+0CXZGJLL:87: 		}
+0MXOZNDW:88: 	
+0QRFSXDF:89: 		
+0EOSZSHT:90: 		
+0ZLGCFHN:91: 		public void cardmake(){
+0GEBBNSW:92: 			int col=CardUtil.RANK.length;
+0NHSJKDA:93: 			int row=CardUtil.SUIT.length;
+0AXSALVN:94: 			Card[] cards=new Card[row*col];
+0JTEABTA:95: 			for (int i = 0; i < row; i++) {//4
+0RDGDYQY:96: 				for (int j = 0; j < col; j++) {//13
+0QOWFNBG:97: 					cards[i*col+j]=new Card(CardUtil.SUIT[i]+CardUtil.RANK[j]);
+0HGGLNEU:98: 				}
+0VWIQXMV:99: 			}
+ZRALOOC:100: 			
+SMNBXRD:101: 			CardSaveToHtml csth=new CardSaveToHtml();
+APDMMEE:102: 			//카드 52장
+GKYGBMB:103: 			//csth.save(cards, "cards.html");
+IAYKDKS:104: 			System.out.println("-------------------");
+YFYCKDL:105: 			
+DCAXKRJ:106: 			//straight flush 
+VLLMREF:107: 			//Card[] cd=new Card[5];
+CGUGAXC:108: 			//comb(row*col,row*col,5,5,cards,cd);
+YSBNJMC:109: 			comb(row*col,row*col,5,5,cards);
+UWZZTFG:110: 			csth.save(straightflushcardlist, "straightflush.html");
+ITBPASU:111: 	        csth.save(fourKindcardlist, "fourkind.html");
+KTQOLOP:112: 	//		csth.save(fullhousecardlist, "fullhouse.html");
+RUIFTQC:113: 	//		csth.save(flushcardlist, "flush.html");
+ZUJGXBT:114: 	//		csth.save(straightcardlist, "straight.html");
+YWMHGJH:115: 	//		csth.save(threeKindcardlist, "threeKind.html");
+ZTUSGWB:116: 	//		csth.save(twoPairscardlist, "twoPairs.html");//너무 많아서 안 돌리는 것이 좋을 듯
+TFICIWX:117: 	//		csth.save(onePaircardlist, "onePair.html");//너무 많아서 안 돌리는 것이 좋을 듯
+JMYNIJB:118: 			System.out.println("--경우수--------------------------------");
+VVEWIRV:119: 	                   System.out.println("1.straightflush \t"+straightflush);
+IJIFMLE:120: 			System.out.println("2.fourKind \t\t"+fourKind);
+BUXSTWU:121: 			System.out.println("3.fullhouse \t\t"+fullhouse);
+UCOXVWR:122: 			System.out.println("4.flush \t\t"+flush);
+UJOUEDU:123: 			
+FLKPWCQ:124: 			System.out.println("5.straight \t\t"+straight);
+BNRAKBH:125: 			System.out.println("6.threeKind \t\t"+threeKind);
+XLVOOGL:126: 			System.out.println("7.twoPairs \t\t"+twoPairs);
+BLGKJBW:127: 			System.out.println("8.onePair \t\t"+onePair);
+VWDOESD:128: 			int nothing=count-(straightflush+fourKind
+VWGPYRZ:129: 					+fullhouse+flush+straight
+SFUVKFE:130: 					+threeKind+twoPairs+onePair);
+QGYLAQD:131: 			
+RDTNQQW:132: 			System.out.println("9.nothing \t\t"+nothing);
+ZVNNVLG:133: 			System.out.println("전체 \t\t\t"+count);
+VVXZLXV:134: 			System.out.println("---확률-----------------");
+VRVOQWS:135: 	        System.out.printf("1.straightflush \t%.9f\n",1.0*straightflush/count);
+AOTBZYT:136: 			System.out.printf("2.fourKind \t\t%.9f\n",1.0*fourKind/count);
+JRXIFAV:137: 			System.out.printf("3.fullhouse \t\t%.9f\n",1.0*fullhouse/count);
+XRZVNWS:138: 			System.out.printf("4.flush \t\t%.9f\n",1.0*flush/count);
+FNADAOV:139: 			System.out.printf("5.straight \t\t%.9f\n",1.0*straight/count);
+BPRNTCR:140: 			System.out.printf("6.threeKind \t\t%.9f\n",1.0*threeKind/count);
+GIASNOP:141: 			System.out.printf("7.twoPairs \t\t%.9f\n",1.0*twoPairs/count);
+ABOUETO:142: 			System.out.printf("8.onePair \t\t%.9f\n",1.0*onePair/count);
+JUKCZOI:143: 			System.out.printf("9.nothing \t\t%.9f\n",1.0*nothing/count);
+TDQAECS:144: 			System.out.printf("----------------------------------------\n");
+XKPMBVL:145: 		}
+QWTNHCX:146: 		public void comb(int n, int N, int  r, int  R, Card [] src){
+DCODVVW:147: 		//public void comb(int n, int N, int  r, int  R, Card [] src,Card [] result){
+EYUTSTP:148: 		       if ( r == 0 ){
+GSXELUJ:149: 		             //showCards(result, R);
+AOJRXAI:150: 		    	     if(CardRanking.isStraightFlush(result)){
+SBCDNIY:151: 		    	    	 Card[]temp=new Card[5];
+PCWZFCY:152: 		    	    	 System.arraycopy(result, 0, temp, 0, result.length);
+OPFKIXE:153: 		    	    	 straightflushcardlist.add(temp);
+QVEZQFJ:154: 		    	    	 //CardRanking.print(result);
+YQMPPOU:155: 		    	    	 straightflush++;
+PTIJXRM:156: 		    	     }
+MOIMMUT:157: 		    	     if(CardRanking.isFourKind(result)){
+XFKJGPE:158: 		    	    	 Card[]temp=new Card[5];
+ERVSOZO:159: 		    	    	 System.arraycopy(result, 0, temp, 0, result.length);
+DPOWXEW:160: 		    	    	 fourKindcardlist.add(temp);
+TSDXLHM:161: 		    	    	 //CardRanking.print(result);
+MVWTULR:162: 		    	    	 fourKind++;
+KMQVBMR:163: 		    	     }
+ZYVGYNX:164: 		    	     if(CardRanking.isFullHouse(result)){
+RRVUWIS:165: 		    	    	 Card[]temp=new Card[5];
+XJMQDGN:166: 		    	    	 System.arraycopy(result, 0, temp, 0, result.length);
+LOTYOPD:167: 		    	    	 fullhousecardlist.add(temp);
+XPEOSUS:168: 		    	    	 //CardRanking.print(result);
+WXSBHLV:169: 		    	    	 fullhouse++;
+XYSYPPP:170: 		    	     }
+YIJXRBX:171: 		    	     if(CardRanking.isFlush(result)){
+XVCHVYQ:172: 		    	    	 Card[]temp=new Card[5];
+DLCYDEM:173: 		    	    	 System.arraycopy(result, 0, temp, 0, result.length);
+MDRMQGJ:174: 		    	    	 flushcardlist.add(temp);
+BURPCLU:175: 		    	    	 //CardRanking.print(result);
+BCIHORC:176: 		    	    	 flush++;
+JARBZAM:177: 		    	     }
+TCPUVTU:178: 		    	     if(CardRanking.isStraight(result)){
+LQKHYXR:179: 		    	    	 Card[]temp=new Card[5];
+MCRGLDX:180: 		    	    	 System.arraycopy(result, 0, temp, 0, result.length);
+FMLAHBT:181: 		    	    	 straightcardlist.add(temp);
+TSEUWWL:182: 		    	    	 //CardRanking.print(result);
+ARNQLTM:183: 		    	    	 straight++;
+UXMSTZJ:184: 		    	     }
+SLSPDGI:185: 		    	     if(CardRanking.isThreeKind(result)){
+FQJABZA:186: 		    	    	 Card[]temp=new Card[5];
+HCPHFEJ:187: 		    	    	 System.arraycopy(result, 0, temp, 0, result.length);
+KSDDJAB:188: 		    	    	 threeKindcardlist.add(temp);
+IEPSJUT:189: 		    	    	 //CardRanking.print(result);
+RMLIZJN:190: 		    	    	 threeKind++;
+UMAQYBW:191: 		    	     }
+YTYPDGL:192: 		    	     if(CardRanking.isTwoPairs(result)){
+NPJPDDL:193: 			  	    	 Card[]temp=new Card[5];
+TCIYNMC:194: 			  	    	 System.arraycopy(result, 0, temp, 0, result.length);
+KUYSXUG:195: 			  	    	 twoPairscardlist.add(temp);
+EPIMSKE:196: 			  	    	 //CardRanking.print(result);
+PCYILUP:197: 			  	    	 twoPairs++;
+PHVFAQM:198: 		  	         }
+KPMNOIF:199: 		    	     if(CardRanking.isOnePair(result)){
+AFYUHZR:200: 			  	    	 Card[]temp=new Card[5];
+DDZXSUA:201: 			  	    	 System.arraycopy(result, 0, temp, 0, result.length);
+JVXQFXU:202: 			  	    	 onePaircardlist.add(temp);
+OFARRSA:203: 			  	    	 //CardRanking.print(result);
+ALKFBHR:204: 			  	    	 onePair++;
+UCNDIAV:205: 		  	         }
+JJALRLG:206: 		             count++; //전체 카운트
+WKQJHQR:207: 		             return;
+BAWMEJP:208: 		       }else if ( n < r ){
+OHVBDFA:209: 		             return;
+NWBBOCO:210: 		       }else{
+LLHEKHW:211: 		             result[R-r] = src[N-n];
+AZUYQVV:212: 		             //comb(n-1, N, r-1, R, src, result);
+QIETAAB:213: 		             //comb(n-1, N, r, R, src, result);
+CYHAHCP:214: 		             comb(n-1, N, r-1, R, src);
+WCKGEMW:215: 		             comb(n-1, N, r, R, src);
+VTKDGIL:216: 		       }
+MUMELIZ:217: 		}
+LERILMQ:218: 		
+RZRKWZB:219: 		void showCards(Card [] r, int size){
+BAEVRFR:220: 		       int n = 0;
+GWRYXOO:221: 		       int i = 0;
+UABCAUL:222: 		       if ( n != 0 ) System.out.printf("%d / ", n);
+IGRYLEV:223: 		       for (; i < size - 1; i++ ){
+TSBUZHL:224: 		    	   System.out.printf("%s, ", r[i]);
+OYXYOCR:225: 		       }
+ZBIUOZR:226: 		       System.out.printf("%s\n", r[i]);
+IUKWGPU:227: 		       n++;
+MEJFHCM:228: 		}
+XUFSCNG:229: 		
+LLWGJPE:230: 		
+EGCSXSY:231: 	}

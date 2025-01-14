@@ -1,0 +1,52 @@
+0SKDEVSJ:1: 	package kr.co.infopub.chapter.s198;
+0XVLJJJT:2: 	import java.io.BufferedReader;
+0XMTVHPC:3: 	import java.io.IOException;
+0ANTUBWP:4: 	import java.io.InputStreamReader;
+0TZENTKH:5: 	import java.io.OutputStreamWriter;
+0BREQAVI:6: 	import java.io.PrintWriter;
+0ZFVJRIM:7: 	import java.net.Socket;
+0QAGYURM:8: 	public class HwiClient {
+0MVPEHDV:9: 	 public static void main(String[] args) {
+MOIVYXO:10: 		HwiClient hclient=new HwiClient();
+FKHEGNU:11: 		hclient.go();
+OVCKXUI:12: 	 }
+GIMFUXN:13: 	 
+ARWFDJX:14: 	 int port =9907;
+KCSKHKU:15: 	 String ip="127.0.0.1";
+NMAJRJF:16: 	 public void go() {
+NGVTMBI:17: 		Socket s=null;
+RBTNWKU:18: 		BufferedReader br=null;
+OBSGJJP:19: 		PrintWriter pw=null;
+RGHLSYR:20: 		try {
+TJYMIVP:21: 			System.out.println("소켓 만들기");
+ZXTPDQZ:22: 			s=new Socket(ip, port);
+AWWFECD:23: 			br=new BufferedReader(
+KMXNWSC:24: 					new InputStreamReader(System.in));
+HJWPFAC:25: 	
+XNBHNSK:26: 			pw=new PrintWriter( 
+XULWAYS:27: 					new OutputStreamWriter(
+ZKXIAVH:28: 							s.getOutputStream()) ,true);
+OIUKNDF:29: 			String msg="";
+EEFGTEJ:30: 			System.out.println("아이디를 입력하세요");
+LWGNIRE:31: 			String name=br.readLine();
+DZUCVND:32: 			
+ZOXHTVE:33: 			//쓰레드
+ZCEWKKJ:34: 			CientThread ctr=new CientThread(s);
+GQOHXVS:35: 			ctr.start();
+NXKJKIO:36: 			
+ICZFTDH:37: 			while((msg=br.readLine())!=null){
+YTDFXWH:38: 				pw.println(name+":"+msg);
+KYPTVDH:39: 			}
+WIDLGAX:40: 			
+WUTXEWK:41: 		} catch (IOException e) {
+OCJHBUW:42: 			System.out.println(e);
+TBWQZAQ:43: 		}finally{			
+QNTAXBG:44: 			try {
+QSNQDHY:45: 				pw.close();
+FJTAONX:46: 				s.close();
+GYCGZVD:47: 			} catch (IOException e) {
+DLMUEHD:48: 				System.out.println(e);
+DVRAEOU:49: 			}
+PUQCOAM:50: 		}
+VWDPIVQ:51: 	 }
+DCDASFO:52: 	}

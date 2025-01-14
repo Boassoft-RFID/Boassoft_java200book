@@ -1,0 +1,219 @@
+00TZPIDOA:1: 	package kr.co.infopub.chapter.s153.ref;
+00LPUNZAQ:2: 	import java.util.Arrays;
+00WPMWKUA:3: 	// 족보를 값으로 환산하기
+00DHPELVE:4: 	public class CardValue {
+00SFKJNQI:5: 		public int toVal(Card[] cd){
+00PSPOILT:6: 			int tot=0;
+00HTKLKYM:7: 			if(CardRanking.isStraightFlush(cd)){
+00PHTQJEQ:8: 				tot=toStraightFlush(cd);//calculate
+00CUJQUTM:9: 			}else if(CardRanking.isFourKind(cd)){
+0PORPFMM:10: 				tot=toFourKind(cd);//calculate
+0TBUFHWF:11: 			}else if(CardRanking.isFullHouse(cd)){
+0NSQTZBI:12: 				tot=toFullHouse(cd);//calculate
+0TCLENDD:13: 			}else if(CardRanking.isFlush(cd)){
+0DFQQZIH:14: 				tot=toFlush(cd);//calculate
+0ITJBBJK:15: 			}else if(CardRanking.isStraight(cd)){
+0TFNKYMS:16: 				tot=toStraight(cd);//calculate
+0QATBPAS:17: 			}else if(CardRanking.isThreeKind(cd)){
+0TNKODJG:18: 				tot=toThreeKind(cd);//calculate
+0UJWOSUR:19: 			}else if(CardRanking.isTwoPairs(cd)){
+0XFWDUBA:20: 				tot=toTwoPairs(cd);//calculate
+0QYXJTBC:21: 			}else if(CardRanking.isOnePair(cd)){
+0CDRZTII:22: 				tot=toOnePair(cd);//calculate
+0IYBYVUU:23: 			}else{
+0NFEPQIH:24: 				tot=toNotThing(cd);//calculate
+0MLGEDWD:25: 			}
+0AMGIASX:26: 			return tot;
+0EGCLNWD:27: 		}
+0LNETFYC:28: 		public int toStraightFlush(Card[] cd){
+0LDATNCA:29: 			int tot=100000;
+0TNIQDPC:30: 			Card[] ccd=new Card[5];
+0BUQJTUH:31: 			System.arraycopy(cd, 0, ccd, 0, cd.length);
+0CHQIWUQ:32: 			Arrays.sort(ccd,new CardRankComp());
+0OOGUBIR:33: 			String fr= CardRanking.fiveRank(ccd);
+0JCLOFCR:34: 			String basement="A23456789TJQK";
+0QWTORWU:35: 			for (int i = 0; i < 9; i++) {
+0GLWAOHW:36: 				String ts=basement.substring(i,5+i);
+0WVUUOJK:37: 				if(ts.equals(fr)){
+0WFWTAHF:38: 					tot+=CardUtil.toVal(ts.charAt(0))*200;
+0FCVUBQS:39: 					break;
+0MIXXHCF:40: 				}
+0BIKTGVZ:41: 			}
+0SIUCRXZ:42: 			//TJQKA일 때 Royal Straight
+0CWMUDNH:43: 			if("ATJQK".equals(fr)){
+0USSEZAU:44: 				tot+=CardUtil.toVal('T')*200;//"TJQKA"
+0LOIZWTF:45: 			}
+0EYISWDD:46: 			return tot;
+0OVCVHLC:47: 		}
+0JVOPBPE:48: 		public int toNotThing(Card[] cd) {
+0MFNSLWO:49: 			int tot=0;
+0TAWYMGB:50: 			Card[] ccd=new Card[5];
+0ZQSEVAO:51: 			System.arraycopy(cd, 0, ccd, 0, cd.length);
+0KWOYSSU:52: 			Arrays.sort(ccd,new CardRankComp());
+0OUPMXBE:53: 			for (int i = 0; i < ccd.length; i++) {
+0EUHPHNK:54: 				tot+=CardUtil.toVal(ccd[i])*(i+1)*20;
+0ZNKQCFW:55: 			}
+0DVZYVJS:56: 			return tot;
+0PTXVQLR:57: 		}
+0OBXRYPW:58: 		public int toOnePair(Card[] cd) {
+0OBVOWYU:59: 			int tot=30000;
+0EWONKAK:60: 			Card[] ccd=new Card[5];
+0QSGYMGP:61: 			System.arraycopy(cd, 0, ccd, 0, cd.length);
+0WZEUXXP:62: 			Arrays.sort(ccd,new CardRankComp());
+0JZTOMCQ:63: 			String fr= CardRanking.fiveRank(ccd);
+0TWGPOKU:64: 			int[] ss=new int[CardUtil.RANK.length];
+0QOAQATL:65: 			for (int i = 0; i < ss.length; i++) {
+0YSPPYZS:66: 				ss[i]=CardRanking.sameRank(fr,CardUtil.RANK[i].charAt(0));
+0TJMYYZW:67: 			}
+0MFGFNNY:68: 			int[] mm=new int[3];
+0LIWEUUZ:69: 			int t=0;
+0AVSCBZR:70: 			for (int i = 0; i < ss.length; i++) {
+0MFKLZTU:71: 				if(ss[i]==2){
+0KREAJRD:72: 					tot+=(i+1)*200;
+0SIZWOYS:73: 					//break;
+0PGLTVIB:74: 				}else if(ss[i]==1){
+0DJVJTAQ:75: 					mm[t++]=(i+1);
+0AEWEUOH:76: 				}
+0FTUKHFV:77: 			}
+0FUUYBBU:78: 			for (int i = 0; i < mm.length; i++) {
+0HGMHQMB:79: 				//System.out.println(mm[i]);
+0TRVUXCF:80: 				tot+= mm[i]*20*(i+1);//34
+0IHSHBJC:81: 			}
+0USKLGKK:82: 			return tot;
+0MDJJRAV:83: 		}
+0ZXRYCLH:84: 		public int toTwoPairs(Card[] cd) {
+0UHTRPGJ:85: 			int tot=40000;
+0ASPFFGR:86: 			Card[] ccd=new Card[5];
+0HDUOSAZ:87: 			System.arraycopy(cd, 0, ccd, 0, cd.length);
+0MTKLCCP:88: 			Arrays.sort(ccd,new CardRankComp());
+0IEYAZCJ:89: 			String fr= CardRanking.fiveRank(ccd);
+0NATUJCT:90: 			int[] ss=new int[CardUtil.RANK.length];
+0EUUFZCD:91: 			for (int i = 0; i < ss.length; i++) {
+0STDBPRM:92: 				ss[i]=CardRanking.sameRank(fr,CardUtil.RANK[i].charAt(0));
+0GBUGGFF:93: 			}
+0MKOXKIL:94: 			int temp=0;
+0PJZYHIH:95: 			for (int i = 0; i < ss.length; i++) {
+0AQJUDKE:96: 				if(ss[i]==2){
+0ZUVIBCH:97: 					tot+=(i+1)*200;
+0LNVVJDQ:98: 				}else if(ss[i]==1){
+0PBOVDUT:99: 					temp=(i+1);
+WLPFENU:100: 				}
+IZCFRYB:101: 			}
+VESURKD:102: 			tot+= temp*20;//34
+NYYAKJU:103: 			return tot;
+UTIQNCQ:104: 		}
+BYORFQW:105: 		public int toThreeKind(Card[] cd) {
+YBSLHWF:106: 			int tot=50000;
+YNQHNSA:107: 			Card[] ccd=new Card[5];
+XAAJSDZ:108: 			System.arraycopy(cd, 0, ccd, 0, cd.length);
+VQEDGUM:109: 			Arrays.sort(ccd,new CardRankComp());
+IHTFGTL:110: 			String fr= CardRanking.fiveRank(ccd);//2777K
+FMTDXXY:111: 			int[] ss=new int[CardUtil.RANK.length];
+ZULDTLG:112: 			for (int i = 0; i < ss.length; i++) {
+FPVMUQG:113: 				ss[i]=CardRanking.sameRank(fr,CardUtil.RANK[i].charAt(0));
+WTERIUP:114: 			}
+ODYQIKE:115: 			int[] mm=new int[2];
+LVRKUII:116: 			int t=0;
+WXXAHWD:117: 			for (int i = 0; i < ss.length; i++) {
+FJCBRSZ:118: 				if(ss[i]==3){
+KNILUXM:119: 					tot+=(i+1)*300;
+NOEFCUO:120: 				}else if(ss[i]==1){
+THCFWQP:121: 					mm[t++]=(i+1);
+CJAIQYF:122: 				}
+YLUEJAM:123: 			}
+SHTKBBH:124: 	
+SVJUYTF:125: 			for (int i = 0; i < mm.length; i++) {
+MYDJHAF:126: 				//System.out.println(mm[i]);
+RVWUZSB:127: 				tot+= mm[i]*20*(i+1);//34
+VICAPBC:128: 			}
+QBRIZFH:129: 			return tot;
+ONQDXEK:130: 		}
+ZCGJNOD:131: 		public int toStraight(Card[] cd) {
+SOAVAQO:132: 			int tot=60000;
+KVYPUUC:133: 			Card[] ccd=new Card[5];
+WRBTXXF:134: 			System.arraycopy(cd, 0, ccd, 0, cd.length);
+HJWIZOX:135: 			Arrays.sort(ccd,new CardRankComp());
+APDVCCN:136: 			String fr= CardRanking.fiveRank(ccd);
+WFTUGAD:137: 			String basement="A23456789TJQK";
+VZQKSOU:138: 			for (int i = 0; i < 9; i++) {
+ZNGRNGR:139: 				String ts=basement.substring(i,5+i);
+VPLYYOQ:140: 				if(ts.equals(fr)){
+KGTPUNT:141: 					tot+=CardUtil.toVal(ts.charAt(0))*200;
+BAIEEFB:142: 					break;
+JQHFSRT:143: 				}
+JADZFSI:144: 			}
+IKBOUNR:145: 			//TJQKA 일때 Royal Straight
+GLALTRP:146: 			if("ATJQK".equals(fr)){
+BXESBTW:147: 				tot+=CardUtil.toVal('T')*200;//"TJQKA"
+QIVSCCD:148: 			}
+QNINXWK:149: 			return tot;
+YQZTGZB:150: 		}
+DOGHCNJ:151: 	
+CBHTDFM:152: 		public int toFlush(Card[] cd) {
+OSZZIIW:153: 			int tot=70000;
+EJTTROQ:154: 			Card[] ccd=new Card[5];
+IARZARD:155: 			System.arraycopy(cd, 0, ccd, 0, cd.length);
+EKKPYOY:156: 			Arrays.sort(ccd,new CardSuitComp());
+JMWGZMH:157: 			String fs=  CardRanking.fiveSuit(ccd);
+DTQUXMT:158: 			int[] ss=CardRanking.sameSuits(fs);//CDHS
+LGDQXPE:159: 			for (int i = 0; i < ss.length; i++) {
+PKKWRQI:160: 				if(ss[i]==5){
+OSUMTTP:161: 					tot+=  //값이 큰 숫자부터 값 대입
+USMOBGI:162: 							 CardUtil.toVal(ccd[4])*20*5
+WMXYYZL:163: 							+CardUtil.toVal(ccd[3])*20*4
+PTDZEEY:164: 							+CardUtil.toVal(ccd[2])*20*3
+JITZDKO:165: 							+CardUtil.toVal(ccd[1])*20*2
+HIQPEXS:166: 							+CardUtil.toVal(ccd[0])*20*1;
+OJDBLJC:167: 					break;
+AVEQHPY:168: 				}
+DNUKMFN:169: 			}
+JAUOGAK:170: 			return tot;
+OMPFPPX:171: 		}
+VPVBABY:172: 	
+IUKYQRM:173: 	
+XZDIOBF:174: 		public int toFullHouse(Card[] cd) {
+CSHEBKG:175: 			int tot=80000;
+LGYKTXT:176: 			Card[] ccd=new Card[5];
+BSSYZCQ:177: 			System.arraycopy(cd, 0, ccd, 0, cd.length);
+WIFLBWS:178: 			Arrays.sort(ccd,new CardRankComp());
+FLRLREX:179: 			String fr= CardRanking.fiveRank(ccd);
+LFPJXZC:180: 			int[] ss=new int[CardUtil.RANK.length];
+ERJZMYH:181: 			for (int i = 0; i < ss.length; i++) {
+QOOFTYY:182: 				ss[i]=CardRanking.sameRank(fr,CardUtil.RANK[i].charAt(0));
+IVQXCJD:183: 			}			
+PJUKYSI:184: 			for (int i = 0; i < ss.length; i++) {
+ASRIPCQ:185: 				if(ss[i]==3){
+LNTXMFJ:186: 					tot+=(i+1)*200;
+YMJLEJW:187: 					break;
+IYHRKVQ:188: 				}
+ZGXHCJE:189: 			}
+BWHTGGH:190: 			for (int i = 0; i < ss.length; i++) {
+HQLZAFA:191: 				if(ss[i]==2){
+OXLWKSV:192: 					tot+=(i+1)*20;
+XYSOVTQ:193: 					break;
+JMVZDPC:194: 				}
+UBLJLYV:195: 			}
+WYWVQPN:196: 			return tot;
+AWGHUTA:197: 		}
+NGBRAXK:198: 	
+JUVTLFU:199: 	
+NTRXXZA:200: 		public int toFourKind(Card[] cd){
+NGAOQIY:201: 			int tot=90000;
+NPUZZCR:202: 			Card[] ccd=new Card[5];
+RBQKNUH:203: 			System.arraycopy(cd, 0, ccd, 0, cd.length);
+NGREPAQ:204: 			Arrays.sort(ccd,new CardRankComp());
+AZEKHLF:205: 			String fr= CardRanking.fiveRank(ccd);
+EHGTMYD:206: 			int[] ss=new int[CardUtil.RANK.length];
+JMDQCXJ:207: 			for (int i = 0; i < ss.length; i++) {
+TFWHBPD:208: 				ss[i]=CardRanking.sameRank(fr,CardUtil.RANK[i].charAt(0));
+KOZPGOR:209: 			}			
+JTAOQVL:210: 			for (int i = 0; i < ss.length; i++) {
+CSEZAKK:211: 				if(ss[i]==4){
+XZRSXBC:212: 					tot+=200*(i+1);  //5가 네 장-> 5*200
+ILUUJMR:213: 				}else if(ss[i]==1){
+ZHAQBDE:214: 					tot+=10*(i+1);   //나머지 한 장의 값 
+ZGZFSMR:215: 				}
+QFEAWNT:216: 			}
+ZOOUWDF:217: 			return tot;
+EHPIVOH:218: 		}
+HBNCWFU:219: 	}

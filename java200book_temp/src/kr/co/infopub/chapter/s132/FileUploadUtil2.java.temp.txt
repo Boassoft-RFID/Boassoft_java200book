@@ -1,0 +1,107 @@
+00BSBKHJP:1: 	package kr.co.infopub.chapter.s132;
+00BFDAVDQ:2: 	import java.io.File;
+00BLWPGZS:3: 	import java.io.FileInputStream;
+00DLPXUPD:4: 	import java.io.FileOutputStream;
+00HRXBYIN:5: 	import java.io.IOException;
+00DRCARTF:6: 	import java.io.InputStream;
+00OFTHZSS:7: 	import java.io.OutputStream;
+00RJWJTXZ:8: 	import java.nio.channels.FileChannel;
+00YMKBDBL:9: 	import java.nio.file.Files;
+0FJGKCCA:10: 	import java.util.Date;
+0KCMGKQB:11: 	public class FileUploadUtil2 {
+0AOALCIG:12: 		//f=abc.zip => f.indexOf('.') 3
+0EETRJDF:13: 		//f.substring(3) .zip
+0MGPNGNK:14: 		//f.substring(0,3) abc
+0VEVMQJK:15: 		public static String getNewFile(String f){
+0RNFAUWJ:16: 			String filename="";
+0AFSKVBL:17: 			String fpost="";
+0PQUCUDS:18: 			//String fre="";
+0DCHWQTK:19: 			if(f.indexOf('.')>=0){
+0RNGLZGR:20: 				fpost=f.substring(f.indexOf('.'));
+0BJPYWIH:21: 				//fre=f.substring(0,f.indexOf('.'));
+0GMIQUSD:22: 				filename=new Date().getTime()+fpost;
+0KXCGXTE:23: 			}else{
+0CSBSQAN:24: 				filename=new Date().getTime()+".back";
+0PHSZNHT:25: 			}
+0VTQHYAM:26: 			return filename;
+0NTDTIFX:27: 		} 
+0AYIDVOB:28: 		public static String getNewFile2(String f){
+0KINLDXD:29: 			String filename="";
+0ISXHVLD:30: 			String fpost="";
+0KIEKUEG:31: 			String fre="";
+0KBZUXGB:32: 			if(f.indexOf('.')>=0){
+0LGHHPIL:33: 				fpost=f.substring(f.indexOf('.'));
+0PCPHONE:34: 				fre=f.substring(0,f.indexOf('.'));
+0KYNVHFK:35: 				filename=fre+new Date().getTime()+fpost;
+0BKLWYAU:36: 			}else{
+0DIGKYSD:37: 				filename=f+new Date().getTime()+".back";
+0BLTWNBR:38: 			}
+0SPOMPVG:39: 			return filename;
+0RCAJPEN:40: 		} 
+0GWCZMBO:41: 		public static String getNewjpg(String f){
+0HJQCLHT:42: 			String filename="";
+0FPNLZNM:43: 			String fpost="";
+0PGTFYVE:44: 			String fre="";
+0RPMIYOB:45: 			if(f.indexOf('.')>=0){
+0VSTFCGH:46: 				fpost=f.substring(f.indexOf('.'));
+0USSNQTT:47: 				fre=f.substring(0,f.indexOf('.'));
+0KITJKDV:48: 				filename=fre+fpost;
+0URPMLSF:49: 			}else{
+0URRPZFP:50: 				filename=f+".jpg";
+0VLZEFKA:51: 			}
+0IPRQCTC:52: 			return filename;
+0WRUKWZW:53: 		} 
+0ALWSWXX:54: 		private static void copyUsingFileStreams(File source, File target){
+0BKIKKZP:55: 			InputStream input = null;
+0OVXFMRA:56: 			OutputStream output = null;
+0YEYBMZY:57: 			try {
+0IXOFKRD:58: 				input = new FileInputStream(source);
+0RHQJLKI:59: 				output = new FileOutputStream(target);
+0VPADJJW:60: 				byte[] buf = new byte[1024];
+0CGFNAMG:61: 				int bytesRead;
+0VEPVGLT:62: 				while ((bytesRead = input.read(buf)) > 0) {
+0MBZODWS:63: 					output.write(buf, 0, bytesRead);
+0EYHVUCU:64: 				}
+0TNWGIYZ:65: 			}catch(IOException e){	
+0IRJNONY:66: 				System.out.println( e);
+0FVTMNZD:67: 			}catch(Exception e){
+0QXTHUNS:68: 				System.out.println( e);
+0AAHUZCQ:69: 			}
+0QRFXGMR:70: 			finally {
+0TRAYPWZ:71: 				try {
+0MGAYYHY:72: 					input.close();
+0ULYSJJX:73: 					output.close();
+0XBOFHAL:74: 				} catch (IOException e) {
+0ILDIWWE:75: 				}
+0PUAUCWB:76: 			}
+0MMSXVWX:77: 		}
+0RQEHWEP:78: 	
+0EPKTMXL:79: 		public static void copyUsingFileChannels(File source, File target) {
+0WZSFGJR:80: 			FileChannel input = null;
+0UQRITXT:81: 			FileChannel output = null;
+0YUYAKMX:82: 			try {
+0GPUDBSP:83: 				input = new FileInputStream(source).getChannel();
+0AXSSSLM:84: 				output = new FileOutputStream(target).getChannel();
+0FGXVRYD:85: 				output.transferFrom(input, 0, input.size());
+0PSGTDSR:86: 			}catch(IOException e){	
+0FIFSDFJ:87: 				System.out.println( e);
+0AQZGAKG:88: 			}catch(Exception e){
+0YBXBBPK:89: 				System.out.println( e);
+0KRYEFSF:90: 			} 
+0TIAMRFS:91: 			finally {
+0DWWAMII:92: 				try {
+0AGCEUHR:93: 					input.close();
+0JUSUYJD:94: 					output.close();
+0WMCIKWQ:95: 				} catch (IOException e) {
+0JCDZAFK:96: 				}
+0FFFDNVF:97: 			}
+0VPICKKT:98: 		}
+0KRVNYFB:99: 	
+HMQFLAY:100: 		public static void copyUsingFiles(File source, File target) {
+GEKNHCH:101: 			try {
+GPZKBRE:102: 				Files.copy(source.toPath(), target.toPath());
+VOXISEG:103: 			} catch (IOException e) {
+RCDHYKB:104: 				System.out.println(e);
+JOTOGJN:105: 			}
+APPGPPN:106: 		}
+JGQPSTP:107: 	}

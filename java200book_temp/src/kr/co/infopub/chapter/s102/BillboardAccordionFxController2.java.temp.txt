@@ -1,0 +1,126 @@
+00OVSRZHG:1: 	package kr.co.infopub.chapter.s102;
+00QWVXKSP:2: 	import java.util.ArrayList;
+00CXTNZMP:3: 	import javafx.collections.ObservableList;
+00IBATVBD:4: 	import javafx.event.ActionEvent;
+00JKABVWM:5: 	import javafx.fxml.FXML;  
+00BADLFIO:6: 	import javafx.scene.control.Button;
+00YYTWJHD:7: 	import javafx.scene.control.Accordion;
+00EAHWAMK:8: 	import javafx.scene.control.Label;
+00GRFTVFE:9: 	import javafx.scene.control.TitledPane;
+0OUTBDXH:10: 	import javafx.scene.control.TreeItem;
+0ENWDIIU:11: 	import javafx.scene.control.TreeView;
+0VAGTHSZ:12: 	import javafx.scene.web.WebEngine;
+0SJKCULS:13: 	import javafx.scene.web.WebView;
+0LVDKRSZ:14: 	public class BillboardAccordionFxController2 {
+0MVZWOXG:15: 		
+0SKATUAV:16: 	 @FXML
+0WKIHGRB:17: 	 private Accordion baccordina;
+0CWEQBQE:18: 	 @FXML
+0LMVBHHC:19: 	 private TreeView<String> youtrv;
+0UONNRKX:20: 	 @FXML
+0ELZSBJT:21: 	 private WebView webview;
+0GRDJPTQ:22: 	 ObservableList<BillbaordProperty> obsbills;
+0RFULFRG:23: 	 
+0NKSYKKR:24: 	 @FXML
+0OPGCCHW:25: 	 private Button btnAf;
+0HAUSEGF:26: 	 @FXML
+0ACEHTYE:27: 	 private Button btnBf;
+0UQGIEHE:28: 	 @FXML
+0XWIWQDC:29: 	 private Label lbbill;
+0WQUNNQF:30: 	 
+0VVZQCMD:31: 	 
+0QIKPCAC:32: 	 TreeItem<String> root = new TreeItem<String>("Singer ");
+0WHNFDHD:33: 	 int count=0;
+0NRFVAOD:34: 	 @FXML
+0QZNPBYS:35: 	 void onClickBtnBf(ActionEvent event) {
+0OQEMFJN:36: 		count++;
+0YMFZNLY:37: 		baccordina.getPanes().clear(); //페인에 붙은 것들 제거 후
+0IKPEIBR:38: 		getAllBillboard();  //다시 불러서
+0OGDBTOG:39: 		showAllBillboard(); //붙임
+0GJUGISZ:40: 	 }
+0TAPFZNG:41: 	 @FXML
+0XAENFMB:42: 	 void onClickBtnAf(ActionEvent event) {
+0QOTEDAL:43: 		count=0;
+0JDPWMVJ:44: 		baccordina.getPanes().clear();//페인에 붙은 것들 제거 후
+0PUHRQLV:45: 		getAllBillboard();  //다시 불러서
+0AUEWMXJ:46: 		showAllBillboard(); //붙임
+0YPGPUFL:47: 	 }
+0QRLONII:48: 	 
+0LGBPUES:49: 	 @FXML
+0HAKLTKZ:50: 	 void initialize() {
+0SCKVPHK:51: 		getAllBillboard();
+0UMDDWSK:52: 		showAllBillboard();
+0JXDRCGK:53: 		youtrv.getSelectionModel().selectedItemProperty().addListener(
+0EMVFMLR:54: 	    		(observable, oldValue, newValue) -> {
+0NOSQMMO:55: 	    			if(newValue!=null){
+0WAWPWQK:56: 	    				final WebEngine webEngine = webview.getEngine();
+0MMHVAYB:57: 	    				//https://www.youtube.com/watch?v=%s 수정
+0LXPHCZF:58: 	    				String ttt=String.format("https://www.youtube.com/results?search_query=%s",
+0CCIRQSN:59: 	    						           ((TreeItem<String>)newValue).getValue());
+0PAVDIUB:60: 	    				webEngine.load(ttt);
+0BRENZRA:61: 	    			}
+0PHPAHLD:62: 	    		});
+0CAEQYMX:63: 		youtrv.setRoot(root);
+0VMUEDOI:64: 	 }
+0EGVMWTF:65: 	 public void loadTreeItems(String key){
+0VSANTBR:66: 		root.getChildren().clear();
+0WVSXDAV:67: 		TreeItem<String> abs = new TreeItem<String>(key);
+0FSNSQBL:68: 		root.getChildren().add(abs);
+0WPGIRRQ:69: 		root.setExpanded(true);
+0VPXMXUB:70: 		
+0FPJIPYY:71: 	/*	TreeItem<String> aa=new TreeItem<String>(you.getUrl());
+0RIDKUUA:72: 		abs.getChildren().add(aa);
+0GMLVZSC:73: 		// 파서 의미가 있는가??
+0BNSDYCZ:74: 		ArrayList<Youtube> youlist=parser.getTitles(key);
+0ZLJKQSS:75: 		for(Youtube you:youlist){
+0LUZKSGY:76: 			TreeItem<String> aa=new TreeItem<String>(you.getUrl());
+0NYXNISY:77: 			abs.getChildren().add(aa);
+0LSJFTHG:78: 		   	System.out.println(you.getUrl()+"---------------------------->");
+0JFACOTU:79: 		}*/
+0SYFLKQS:80: 	 }
+0UPCBGJK:81: 	 public void getAllBillboard(){
+0CFTSMWM:82: 		RequestFromBillboardHot rfw=new RequestFromBillboardHot();
+0BLHPZMO:83: 		//RequestFromBillboard200 rfw=new RequestFromBillboard200();
+0RZKJRPU:84: 		//String a="https://www.billboard.com/charts/billboard-200/";
+0QDDVLFX:85: 		String a="https://www.billboard.com/charts/hot-100/";
+0PBLCLBB:86: 		String rs=rfw.getTimeDate(a);
+0WISKTCG:87: 		rs=RestDay.toWantedDay(rs, count); //count 주 이전
+0MDHDCFV:88: 		rfw.getBillboardData(a+rs);
+0ZERJHDY:89: 		ArrayList<Billbaord> bills=rfw.getBillboards();
+0KCYFFON:90: 	    //request.getAllImages(bills);  //image
+0UWDONSQ:91: 	    obsbills= BillboardConvert.toObservBill(bills);
+0TMTCDNT:92: 	    lbbill.setText("Billboard Chat HOT 100 "+rs);
+0MVXANPI:93: 	 }
+0HOTZQUU:94: 	 public String toP(String msg){
+0JONEHZG:95: 	    String ss=msg;
+0BQNJMQO:96: 	    ss=ss.replaceAll(" ", "+");
+0FOXXLCK:97: 	    return ss.trim();
+0LMYBGFL:98: 	 }
+0MMEHKVF:99: 	 public void showAllBillboard(){
+ZXHPUUC:100: 		//TitledPane firsttitle = new TitledPane();
+TRNVLBV:101: 		if(obsbills!=null){
+HONPJPE:102: 			for(BillbaordProperty bp: obsbills){
+THRNWQE:103: 				TitledPane mytitle = new TitledPane();
+YZWNESM:104: 				mytitle.setText(bp.getSong());
+TWTSUJP:105: 	/*    		ImageView theImage = new ImageView(request.loadImage(bp.getImagesrc()));
+DRWAGQT:106: 	    		theImage.setOnMouseClicked(event -> {
+ICDGGQC:107: 	    			if(mytitle.getText()!=null || mytitle.getText().indexOf(".")!=-1 ){
+EZYZKKA:108: 	    				System.out.println(mytitle.getText()+"1----------------->>>");//ok
+PLGJQYE:109: 	        			loadTreeItems(mytitle.getText());
+AYVRCOQ:110: 	    			}
+VXOBXTR:111: 	            });*/
+UJINNSA:112: 	    		mytitle.setOnMouseClicked(event -> {
+YNJKAPN:113: 	    			if(mytitle.getText()!=null || mytitle.getText().indexOf(".")!=-1 ){
+YPBBNEU:114: 	    				System.out.println(mytitle.getText()+"2----------------->>>");//ok
+JNTTXCX:115: 	        			loadTreeItems(toP(mytitle.getText()));
+ZDSHBWX:116: 	    			}
+ATHCHTB:117: 	            });
+PZHKLMD:118: 	/*    		theImage.setFitHeight(50);
+XLAEYFE:119: 	    		theImage.setFitWidth(50);
+QDOFBSX:120: 	    		theImage.setPreserveRatio (false);
+UXJWWTF:121: 	    		mytitle.setContent(theImage);*/
+YHALTAF:122: 	    		baccordina.getPanes().add(mytitle);
+PBGLDCE:123: 			}
+GUHBAJF:124: 		}
+JRCQCPA:125: 	 }
+SGJDGLY:126: 	}

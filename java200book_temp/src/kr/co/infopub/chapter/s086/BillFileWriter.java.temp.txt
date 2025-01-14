@@ -1,0 +1,29 @@
+0MERRWAK:1: 	package kr.co.infopub.chapter.s086;
+0YWASTRO:2: 	import java.io.File;
+0KKAMSZP:3: 	import java.io.FileWriter;
+0OBDYUWJ:4: 	import java.io.IOException;
+0JLRZCPY:5: 	import java.io.PrintWriter;
+0IUOZYKY:6: 	import java.util.ArrayList;
+0QAQKUIG:7: 	public class BillFileWriter {
+0OUGSHFL:8: 	 public static void main(String[] args) {
+0HISCLWL:9: 		Billbaord b1 =new Billbaord(1,"Despacito",1,
+JVFXNOG:10: 				"https://www.billboard.com/images/pref_images/q61808osztw.jpg","luis fonsi");
+PBUMCHO:11: 		Billbaord b2 =new Billbaord(2,"That's What I Like",2,
+QDQGYTW:12: 				"https://www.billboard.com/images/pref_images/q59725qvpol.jpg","bruno mars");
+AHQOUUX:13: 		Billbaord b3 =new Billbaord(3,"I'm The One",3,
+MPRDQCK:14: 				"https://www.billboard.com/images/pref_images/q64532pl64x.jpg","dj khaled");
+BHLGKBR:15: 		ArrayList<Billbaord> bblist=new ArrayList<Billbaord>();
+UULNFLS:16: 		bblist.add(b1);
+BDPSIFR:17: 		bblist.add(b2);
+WCOPXPE:18: 		bblist.add(b3);
+HVAUQYB:19: 		File f=new File("billboard");
+RLYOPLR:20: 		if(!f.exists()){ f.mkdirs(); }
+FWNKACT:21: 		try (PrintWriter pw=new PrintWriter(new FileWriter("billboard\\bill.csv",false),true)){
+YHQAPXL:22: 			for(Billbaord bb : bblist){
+MRQXMDQ:23: 				pw.println(bb);
+IMFXOGR:24: 			}
+UCWQYTV:25: 		} catch (IOException e) {
+UFCTUYE:26: 			System.out.println(e);
+UNCUKIF:27: 		}
+JYSUZPG:28: 	 }
+NKQMSBW:29: 	}

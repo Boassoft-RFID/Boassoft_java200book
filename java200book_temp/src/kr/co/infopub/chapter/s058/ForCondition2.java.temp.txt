@@ -1,0 +1,21 @@
+0CRHSHJB:1: 	package kr.co.infopub.chapter.s058;
+0JPLRJMH:2: 	import java.util.ArrayList;
+0GNZDSWG:3: 	import java.util.List;
+0VCSWBRV:4: 	// List
+0GUHEVIQ:5: 	public class ForCondition2 {
+0CXDOQSA:6: 		public static void main(String[] args) {
+0HTFZOYP:7: 			List<Integer> ilist=new ArrayList<>();
+0NPFBBKI:8: 			int s=0;
+0ZEDBNXS:9: 			for (int i = 1; i <= 10; i++) {
+RGMSAUU:10: 				ilist.add(i);
+BEJIKLO:11: 			}
+AHLPZJL:12: 			for(int m: ilist){
+UYJBSOL:13: 				if(m%2==1){
+BELHBBM:14: 					s+= m*m;
+KDHYPHA:15: 					System.out.printf("%d\t", m*m);
+RRUFDRI:16: 				}
+IMGBGFQ:17: 			}
+IBUDTYG:18: 			System.out.println();
+WFWQJKP:19: 			System.out.println("1~10사이의 홀수에 대한 제곱합: "+s);
+QPTMWGH:20: 		}
+ZCEWXRA:21: 	}

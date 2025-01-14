@@ -1,0 +1,23 @@
+0RNEMGTD:1: 	package kr.co.infopub.chapter.s102_geo;
+0HNDFMGW:2: 	//https://en.wikipedia.org/wiki/Haversine_formula
+0GVZZBWJ:3: 	
+0MGAOURI:4: 	public class HaversineDistance {
+0EQZATWR:5: 		
+0JRWAFTA:6: 		 //객체 지향과 오버로딩
+0VSJMQAS:7: 		 public static double distance(Geo geo1, Geo geo2) { 
+0UCIFMOW:8: 		    return distance(geo1.getLatitude(), geo1.getLongitude(),
+0GSTAJCD:9: 		    		geo2.getLatitude(), geo2.getLongitude());
+FYXOQEL:10: 		 }
+QNHLDYH:11: 		//구위의 두 위치 사이의 거리 
+SVXPLEV:12: 		 public static double distance(double lat1, double lng1, double lat2, double lng2) {
+JKTUSMN:13: 			 double earthR = 6371; // km
+URLFYEV:14: 			 double dLat = (lat2-lat1);
+QCSMVGF:15: 			 double dLng = (lng2-lng1);
+BRSTRVS:16: 			 double a = Math.sin(Math.toRadians(dLat/2))  * Math.sin(Math.toRadians(dLat/2)) +
+SMQPHJC:17: 			            Math.cos(Math.toRadians( lat1))   * Math.cos(Math.toRadians( lat2)) * 
+SUIOYRO:18: 			            Math.sin(Math.toRadians( dLng/2)) * Math.sin(Math.toRadians( dLng/2)); 
+TKHXYHJ:19: 			 double c = 2 * Math.asin(Math.sqrt(a)); 
+DLTGERV:20: 			 double d = earthR * c;
+SXLGOHC:21: 		    return d;
+XOUYOIC:22: 		 }
+KTBXOTS:23: 	}

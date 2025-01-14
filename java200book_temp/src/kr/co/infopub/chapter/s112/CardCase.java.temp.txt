@@ -1,0 +1,66 @@
+0BPPZKOB:1: 	package kr.co.infopub.chapter.s112;
+0ILOVCJO:2: 	import java.util.ArrayList;
+0ORYLTUV:3: 	import java.util.Collections;
+0NGUEDSL:4: 	import java.util.List;
+0ZFFDHQE:5: 	import java.util.stream.IntStream;
+0IMRPPUF:6: 	public class CardCase {
+0APLJRBL:7: 		// aggregation : CardCase는 Card로 구성된다.
+0HJJWFFU:8: 	 private List<Card> cards=new ArrayList<Card>();
+0FTTQPQZ:9: 	 public CardCase() {
+VZBCSOL:10: 		cards.clear(); // 내용 지우기
+EHTTIAI:11: 	 }
+YVUMHVC:12: 	 public List<Card> getCards() {
+RORSVXJ:13: 		return cards;
+QJWQCPG:14: 	 }
+SNGRMUD:15: 	 public int count(){
+UBZPFLJ:16: 		return cards.size(); // 저장된 Card 개수
+HKGOWBY:17: 	 }
+LCFIHFN:18: 	 public Card getCard(int index){
+YDLIDPO:19: 		return cards.get(index);  // index번째 Card
+RBBSVFR:20: 	 }
+ANEHEKU:21: 	 public void make(){
+BMAXNSO:22: 		cards.clear(); // 내용 지우기
+MZHBSBT:23: 		int deck=CardUtil.SUIT.length; // 0~3
+FRXLYZQ:24: 		int suit=CardUtil.VALU.length; // 0~12
+DEVMHQV:25: 		int count=0;
+YLRHKTE:26: 		//서로 다른 20개의 카드를 만든다.
+NUNFWJA:27: 		while(count!=deck*suit){    // 20장이 될 때까지
+TIEBAGC:28: 			Card c=new Card();      // 임의의 카드를 만든다
+OYQXNGJ:29: 			if(!cards.contains(c)){ // contains -> equals()를 이용해 비교
+RPRISEQ:30: 				cards.add(c);       // 같은 객체가 아니라면 저장
+RYCEXWM:31: 				count++;
+NEOEKLP:32: 			}
+TNCRLPB:33: 		}
+LALQIAQ:34: 	 }
+QTMTENO:35: 	 public void shuffle(){
+BVNIZWI:36: 		Collections.shuffle(cards); // 카드 섞기
+QQZQWVG:37: 	 }
+ZURXNGS:38: 	/* public void print(){
+ZVSQIQL:39: 		int valu=CardUtil.VALU.length;
+WGXWXBT:40: 		for (int i = 0; i < cards.size(); i++) {
+LHGDAUD:41: 			Card c=cards.get(i);
+ISUHAZB:42: 			System.out.printf("%s ",c.toString());
+DZMYKXU:43: 			if((i+1)%valu==0){
+VKOKDOT:44: 				System.out.println();
+UABXZOM:45: 			}
+UGFSHJS:46: 		}
+QKEDVHS:47: 	 }*/
+FYZXDNA:48: 	 public void print(){
+NEWXRFP:49: 		int suit=CardUtil.VALU.length;
+ETMYGQY:50: 		IntStream.range(0, cards.size())
+RGJHDYW:51: 		  .forEach(
+QOSKBTO:52: 			i ->{ System.out.printf("%s ",cards.get(i).toString());
+KKTEEJA:53: 				  if((i+1)%suit==0){System.out.println();} 
+OLZMMXW:54: 		        }
+OFFMMIH:55: 		    );
+DEUVWZT:56: 	 }
+FKSWNUS:57: 	 // CardComp 클래스가 없다.
+ZDPNBGE:58: 	 public void sort(){
+BDPXGBE:59: 		cards.sort((c1, c2) ->{return c1.getCardVal().compareTo(c2.getCardVal());});
+KUTLQYW:60: 	 }
+XWJORSQ:61: 	 // CardRomp 클래스가 없다.
+HNLUALI:62: 	 public void rsort(){
+CHLUAJT:63: 		cards.sort(
+UDKKWQM:64: 				(c1, c2) ->{return - c1.getCardVal().compareTo(c2.getCardVal());});
+JSIDNIP:65: 	 }
+IBTORKD:66: 	}

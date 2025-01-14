@@ -1,0 +1,18 @@
+0ZESEJZJ:1: 	package kr.co.infopub.chapter.s157;
+0QGIEEYU:2: 	public class CakeMaker extends Thread {
+0KANDTMP:3: 		private CakePlate cake;
+0VYRDAKK:4: 		public CakeMaker(CakePlate cake){
+0VRSVPPB:5: 			setCakePlate(cake);
+0RGBHGZE:6: 		}
+0DNININH:7: 		public void setCakePlate(CakePlate cake){
+0ZRVTEAO:8: 			this.cake=cake;
+0KDEVICF:9: 		}
+ZLCKAHT:10: 		public CakePlate getCakePlate(){
+JQQYPVT:11: 			return cake;
+NCWOMAD:12: 		}
+PNQAAHX:13: 		public void run(){
+KBGUHIH:14: 			for(int i=0;i<105;i++){
+JRECAJY:15: 				cake.makeBread();
+CMDYAJW:16: 			}
+ARRWJRK:17: 		}
+YLWPQMM:18: 	}

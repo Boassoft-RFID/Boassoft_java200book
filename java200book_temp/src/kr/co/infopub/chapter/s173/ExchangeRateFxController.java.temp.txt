@@ -1,0 +1,111 @@
+00TOAYYUV:1: 	package kr.co.infopub.chapter.s173;
+00VVUNFTX:2: 	import javafx.event.ActionEvent;
+00QMKWQNH:3: 	import javafx.fxml.FXML;
+00XVWDVDJ:4: 	import javafx.scene.control.Button;
+00QJUNXYO:5: 	import javafx.scene.control.ComboBox;
+00BZRBPJC:6: 	import javafx.scene.control.Label;
+00DIJILRQ:7: 	import javafx.scene.control.RadioButton;
+00SWTPSMM:8: 	import javafx.scene.control.TextField;
+00OHNLUIV:9: 	public class ExchangeRateFxController {
+0FLGIQNJ:10: 	    @FXML
+0JXZBEFC:11: 	    private Label lbfrom;
+0EARMBTA:12: 	    @FXML
+0DVJJKMF:13: 	    private TextField tffrom;
+0SCJFADB:14: 	    @FXML
+0WMWFIJL:15: 	    private TextField tfjpy;
+0ZMZEIOR:16: 	    @FXML
+0UTTTUFV:17: 	    private Label lbto;
+0ZWQLVAB:18: 	    @FXML
+0JTWBMHY:19: 	    private RadioButton rdother;
+0RJJDYYB:20: 	    @FXML
+0GYALYHK:21: 	    private ComboBox<String> cbfinance;
+0QCICCCF:22: 	    @FXML
+0HBUKHHF:23: 	    private TextField tfusd;
+0ZWVOOPL:24: 	    @FXML
+0BSKVSST:25: 	    private Button btncon;
+0VITLPUX:26: 	    @FXML
+0KGJMUFJ:27: 	    private TextField tfto;
+0APDGSIR:28: 	    @FXML
+0OHJREXW:29: 	    private RadioButton rdkrw;
+0TXMPYLA:30: 	    @FXML
+0HNXSGGQ:31: 	    private TextField tfcny;
+0FJOADOB:32: 	    @FXML
+0RTVGOEB:33: 	    private Label lbboard;
+0QDXYRAK:34: 	    //static 변환 메서드
+0QJGCSUW:35: 		public static double fromKRW(double krwMoney, double exchangeRatio){
+0KMJOVML:36: 			return krwMoney/exchangeRatio;
+0LJETQAD:37: 		}
+0YSYUSCD:38: 		public static double toKRW(double otherMoney, double exchangeRatio){
+0XOTYFSH:39: 			return otherMoney*exchangeRatio;
+0NHTIMKQ:40: 		}
+0CYKMEDD:41: 		public static double toD(String s){
+0YXBPEXL:42: 			if(s==null || s.equals("")){
+0DOVMEWI:43: 				return 0.0;
+0ONBPEMP:44: 			}else {
+0GCECPFP:45: 				return Double.parseDouble(s.trim());
+0SZWLQPD:46: 			}
+0HWQHDIG:47: 		}
+0EWBMHBP:48: 	    @FXML
+0VPZLMCB:49: 	    void initialize() {
+0CNVXFYW:50: 	    	cbfinance.getItems().addAll("USD","JPY","CNY");
+0ISLHKJA:51: 	    }
+0NYMWUXM:52: 	    //콤보박스의 아이템을 선택
+0BDDCZAU:53: 	    @FXML
+0RKLNXPX:54: 	    void cbdistanceOnAction(ActionEvent event) {
+0VDWFXGN:55: 	    	if(rdother.isSelected()){
+0ZTEMEYH:56: 	    		String value = (String) cbfinance.getValue();
+0RSTGINY:57: 	        	lbto.setText(value);
+0MVULNEQ:58: 	        	lbfrom.setText("KRW");
+0WIWBVMC:59: 	        	String krwMoney=tffrom.getText().equals("")?"0.0":tffrom.getText().trim();
+0SRITPZU:60: 	        	double exchangeRatio=1.0;
+0BWYYWXM:61: 	        	if(value.equals("USD")){
+0QTBJVWF:62: 	        		exchangeRatio=toD(tfusd.getText().trim());
+0LDHLLXA:63: 	        	}else if(value.equals("JPY")){
+0VAUFRHQ:64: 	        		exchangeRatio=toD(tfjpy.getText().trim());
+0ILWEUYT:65: 	        	}else if(value.equals("CNY")){
+0EDWSWCL:66: 	        		exchangeRatio=toD(tfcny.getText().trim());
+0BEKHRAT:67: 	        	}
+0CVDUIVZ:68: 	        	double d=fromKRW(toD(krwMoney),exchangeRatio );
+0NEWVLZD:69: 	    		tfto.setText(String.format("%.2f", d));
+0BCIEJQY:70: 	    	}else{
+0IGTWCJF:71: 	    		String value = (String) cbfinance.getValue();
+0GLZCRMG:72: 	        	lbfrom.setText(value);
+0OZHCMHV:73: 	        	lbto.setText("KRW");
+0SENDZWK:74: 	        	String otherMoney=tffrom.getText().equals("")?"0.0":tffrom.getText().trim();
+0LCWYRMR:75: 	        	double exchangeRatio=1.0;
+0MTMPZRI:76: 	        	if(value.equals("USD")){
+0FZWTGTP:77: 	        		exchangeRatio=toD(tfusd.getText().trim());
+0XBOIWIN:78: 	        	}else if(value.equals("JPY")){
+0AIAXPPK:79: 	        		exchangeRatio=toD(tfjpy.getText().trim());
+0TVFIEDS:80: 	        	}else if(value.equals("CNY")){
+0BNWUAKG:81: 	        		exchangeRatio=toD(tfcny.getText().trim());
+0HSYNWKU:82: 	        	}
+0BDVRDXD:83: 	        	double d=toKRW(toD(otherMoney),exchangeRatio );
+0VHQOKEN:84: 	    		tfto.setText(String.format("%.2f", d));
+0KPLCQXF:85: 	    	}
+0ANXFRFS:86: 	    }
+0MRIDEEB:87: 	    @FXML
+0NGDBNTS:88: 	    void onConvertAction(ActionEvent event) {
+0SEXSNZB:89: 	    	//미국 달러
+0OMACTOP:90: 	    	String you="USD";      //미국 달러 
+0ESLNIZW:91: 			String date=RestDay.todates();
+0VTYRRUQ:92: 			FixerRate finance=FixerConvert.convert(date, you); 
+0HKTBBOS:93: 			tfusd.setText(finance.krw+"");   
+0OHGDBBQ:94: 			//일본 엔
+0ZDSPYQV:95: 			you="JPY";
+0WIPUJLO:96: 			finance=FixerConvert.convert(date, you); 
+0ZBCGTND:97: 			tfjpy.setText(finance.krw+"");   
+0MYIOMKH:98: 			//중국 위엔
+0XVZKRII:99: 			you="CNY";
+NHPQYSX:100: 			finance=FixerConvert.convert(date, you); 
+XIQEYUL:101: 			tfcny.setText(finance.krw+"");   
+XJDNBPJ:102: 	    }
+TSYDNMA:103: 	    //라디오-다른 국가의 화폐로 환전
+ULPGKGB:104: 	    @FXML
+GSYFHWW:105: 	    void onOtherAction(ActionEvent event) {}
+PCFXSMF:106: 	    //라디오-한화로 환전
+ORMZYUD:107: 	    @FXML
+BULMSQY:108: 	    void onKrwAction(ActionEvent event) {}
+EEJLJIF:109: 	    //최신 환율 가져오기
+LEJXDSP:110: 	}
+QZBOVDT:111: 	

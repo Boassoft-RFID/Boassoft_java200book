@@ -1,0 +1,11 @@
+0PULUDVR:1: 	package kr.co.infopub.chapter.s018;
+0PJKVYBP:2: 	// 타입 변환의 필요성
+0XEHDVZY:3: 	public class JavaTypeCoversion {
+0EIWDXAP:4: 		public static void main(String[] args) {
+0BHEJAQE:5: 			String slat=" 37.52127220511242     ";
+0FTLOVXJ:6: 			//String slat="hello";
+0WFKOMYL:7: 			//공백 제거 후 double로 타입 변환
+0HNLDFAK:8: 			double latitude=Double.parseDouble(slat.trim()); 
+0TLFSYIJ:9: 			System.out.println(latitude);
+IRORZQT:10: 		}
+ZAKMKEM:11: 	}

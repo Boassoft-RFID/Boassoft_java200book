@@ -1,0 +1,57 @@
+0ZKILWQK:1: 	package kr.co.infopub.chapter.s173;
+0QGWGVVC:2: 	public class FixerRate {
+0ETTQUWK:3: 		public String base;
+0YJBKZQC:4: 		public String date;
+0SEWZCRL:5: 		public double usd;
+0RBMBYYC:6: 		public double jpy;
+0FHHZYHR:7: 		public double krw;
+0BRTBONW:8: 		public double cny;
+0FIVGZKG:9: 		public double eur;
+BFMYPNP:10: 		@Override
+VYRQIQX:11: 		public String toString() {
+KYOUCVA:12: 			return "FixerRate [base=" + base + ", date=" + date + ","
+BKDNQRC:13: 					+ " usd=" + usd + ", jpy=" + jpy + ", krw=" + krw
+HZTFLZF:14: 					+ ", cny=" + cny + ", eur=" + eur + "]";
+JKFKMJQ:15: 		}
+NHHTNPC:16: 		
+HKDSGQZ:17: 	}
+YOAACYF:18: 	/*
+LULRCUO:19: 	http://api.fixer.io/2017-06-09?base=USD
+TOCFMZJ:20: 	{
+IXDFFZV:21: 	  "base": "USD",
+QIYYNAI:22: 	  "date": "2017-06-08",
+YHNJGPN:23: 	  "rates": {
+YDJQLWX:24: 	    "AUD": 1.3264,
+QKDCNGG:25: 	    "BGN": 1.7417,
+FRZGBJS:26: 	    "BRL": 3.2819,
+OWLPILQ:27: 	    "CAD": 1.3514,
+JVQFZMY:28: 	    "CHF": 0.96678,
+SEWWGHF:29: 	    "CNY": 6.7978,
+LZDVFQW:30: 	    "CZK": 23.393,
+LNXRQYL:31: 	    "DKK": 6.6242,
+RFEFVLI:32: 	    "GBP": 0.7726,
+DIPWDIL:33: 	    "HKD": 7.7969,
+VYUTDMP:34: 	    "HRK": 6.6104,
+TXVRJMN:35: 	    "HUF": 274.3,
+APCGUWC:36: 	    "IDR": 13298,
+CNHZIUV:37: 	    "ILS": 3.5358,
+CXLREGW:38: 	    "INR": 64.241,
+AKHYWUP:39: 	    "JPY": 110.22,
+CBNUBRN:40: 	    "KRW": 1123.3,
+PPPTVJS:41: 	    "MXN": 18.23,
+DRTUMWL:42: 	    "MYR": 4.2685,
+ACBJHEM:43: 	    "NOK": 8.481,
+ZKLYADX:44: 	    "NZD": 1.387,
+VCOTEMG:45: 	    "PHP": 49.536,
+WJXEKPU:46: 	    "PLN": 3.7461,
+MOTFVWE:47: 	    "RON": 4.0667,
+WKKSUNY:48: 	    "RUB": 57.008,
+QGGYMYV:49: 	    "SEK": 8.7172,
+VGSARSA:50: 	    "SGD": 1.3826,
+NYOXROA:51: 	    "THB": 34.037,
+JTAINDG:52: 	    "TRY": 3.5502,
+UABNNHF:53: 	    "ZAR": 12.867,
+ZOJLOMG:54: 	    "EUR": 0.89055
+TMQZKTO:55: 	  }
+LENYKTH:56: 	}
+JFMPTUX:57: 	 */

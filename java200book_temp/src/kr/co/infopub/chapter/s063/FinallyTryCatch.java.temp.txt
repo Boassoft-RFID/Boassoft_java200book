@@ -1,0 +1,17 @@
+0FWGNXVT:1: 	package kr.co.infopub.chapter.s063;
+0OLNYIQC:2: 	
+0CRSJFFR:3: 	public class FinallyTryCatch {
+0LRLKBXV:4: 		public static void main(String[] args) {
+0VRWCLMK:5: 			try {
+0QQCNDHQ:6: 				// Divide by zero.
+0MKGUMVG:7: 				int x = 5;
+0UHOSWLL:8: 				int y = 20 / (5 - x);   //여기서 예외를 던진다.
+0HDRXBCH:9: 				System.out.println(y);
+FYXWWGA:10: 			} catch (ArithmeticException e) {//run time 
+HLZKWRV:11: 			   System.out.println("==> 0으로 나눴나 확인해 봐!!!!");
+HLTWWQY:12: 			   //e.printStackTrace();
+AZYTRRU:13: 			}finally{
+HLHHPMC:14: 				System.out.println("난 수행되어야 만 해!!!!");
+MNVWDUM:15: 			}
+KCILQWP:16: 		}
+WFHRFWU:17: 	}

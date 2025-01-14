@@ -1,0 +1,44 @@
+0ODMLPOA:1: 	package kr.co.infopub.chapter.s153.ref;
+0NBSSZTJ:2: 	
+0JUZSYIQ:3: 	public class Card {
+0BXKVWHC:4: 		private String card; //H8
+0GZXBIDM:5: 		public String getCard() {
+0KNURIYA:6: 			return card;
+0UFVMIOR:7: 		}
+0IMJXJWA:8: 		public Card() {
+0TDRAGVX:9: 			//0~3
+MCDJRNO:10: 			int suit=(int)(Math.random()*CardUtil.SUIT.length);
+WCUQAXP:11: 			//0~12
+BTOWJXE:12: 			int rank=(int)(Math.random()*CardUtil.RANK.length);
+SXWEERD:13: 			//임의의 카드 값을 갖는다. H6
+DSDORSZ:14: 			card=CardUtil.SUIT[suit]+CardUtil.RANK[rank];
+IIUXCEY:15: 		}
+WGAIFMO:16: 		//테스트할 때 사용
+PBJADPN:17: 		public Card(String s) {
+EJTXWTD:18: 			this.card=s;
+OWZGTYF:19: 		}
+WYLRSCZ:20: 		//복사 생성자 테스트할 때 사용
+FQZTMVZ:21: 		public Card(Card s) {
+UKDDMGN:22: 			this(s.getCard());
+KJPOIXY:23: 		}
+VACDXLS:24: 		@Override
+HNMSVDH:25: 		public String toString() {
+PQLTXQI:26: 			return "[" + card + "]";
+SBMKFDX:27: 		}
+OGSKFGC:28: 		@Override
+INHBGDQ:29: 		public int hashCode() {
+QUHHXFB:30: 			final int prime = 31;
+DNWTATT:31: 			int result = 1;
+THNJUSP:32: 			result = prime * result + ((card == null) ? 0 : card.hashCode());
+XTTBZOT:33: 			return result;
+UVXMBOM:34: 		}
+BVHXGFF:35: 		@Override
+SMEFXFV:36: 		public boolean equals(Object obj) {
+YXTBOXW:37: 			Card cb=(Card)obj;
+UEENZKC:38: 			if(card.equals(cb.getCard())){
+ZIDGMBL:39: 				return true;
+QTGYTAZ:40: 			}else{
+NRCXLRU:41: 				return false;
+YMRSCQM:42: 			}
+XLHCUJM:43: 		}
+FUHXQNJ:44: 	}//
